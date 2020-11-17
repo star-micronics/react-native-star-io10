@@ -1,0 +1,455 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		88AB8713251B23BF00245D2A /* StarIO10.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AB8712251B23BF00245D2A /* StarIO10.xcframework */; platformFilter = ios; };
+		B3E7B58A1CC2AC0600A0062D /* StarIo10.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* StarIo10.m */; };
+		E3414398254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3414396254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m */; };
+		E3951A43254FD9FF003A9953 /* StarIO10ErrorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A42254FD9FF003A9953 /* StarIO10ErrorWrapper.m */; };
+		E3951A5C254FDA55003A9953 /* BuzzerBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A47254FDA54003A9953 /* BuzzerBuilderWrapper.m */; };
+		E3951A5D254FDA55003A9953 /* LedSettingBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A48254FDA54003A9953 /* LedSettingBuilderWrapper.m */; };
+		E3951A5E254FDA55003A9953 /* DocumentBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A49254FDA54003A9953 /* DocumentBuilderWrapper.m */; };
+		E3951A5F254FDA55003A9953 /* PageModeBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A4A254FDA54003A9953 /* PageModeBuilderWrapper.m */; };
+		E3951A60254FDA55003A9953 /* DrawerBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A4D254FDA54003A9953 /* DrawerBuilderWrapper.m */; };
+		E3951A61254FDA55003A9953 /* PresenterSettingBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A4E254FDA54003A9953 /* PresenterSettingBuilderWrapper.m */; };
+		E3951A62254FDA55003A9953 /* PreSettingBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A50254FDA54003A9953 /* PreSettingBuilderWrapper.m */; };
+		E3951A63254FDA55003A9953 /* MelodySpeakerBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A51254FDA54003A9953 /* MelodySpeakerBuilderWrapper.m */; };
+		E3951A64254FDA55003A9953 /* BezelSettingBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A52254FDA54003A9953 /* BezelSettingBuilderWrapper.m */; };
+		E3951A65254FDA55003A9953 /* PrinterBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A59254FDA55003A9953 /* PrinterBuilderWrapper.m */; };
+		E3951A66254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A5A254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m */; };
+		E3951A6D254FDA80003A9953 /* StarPrinterStatusWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A6B254FDA80003A9953 /* StarPrinterStatusWrapper.m */; };
+		E3951A6E254FDA80003A9953 /* StarPrinterWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A6C254FDA80003A9953 /* StarPrinterWrapper.m */; };
+		E3951A77254FDAA6003A9953 /* StarObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A71254FDAA6003A9953 /* StarObjectManager.m */; };
+		E3951A78254FDAA6003A9953 /* EventParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A73254FDAA6003A9953 /* EventParameter.m */; };
+		E3951A79254FDAA6003A9953 /* StarIO10ValueConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A75254FDAA6003A9953 /* StarIO10ValueConverter.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		58B511D91A9E6C8500147676 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		134814201AA4EA6300B7C361 /* libStarIo10.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStarIo10.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		88AB8712251B23BF00245D2A /* StarIO10.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = StarIO10.xcframework; path = libs/StarIO10.xcframework; sourceTree = "<group>"; };
+		88AB8714251B23F700245D2A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		88AB8716251B243600245D2A /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
+		88AB8718251B244000245D2A /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreImage.framework; sourceTree = DEVELOPER_DIR; };
+		88AB871A251B246400245D2A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B3E7B5881CC2AC0600A0062D /* StarIo10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarIo10.h; sourceTree = "<group>"; };
+		B3E7B5891CC2AC0600A0062D /* StarIo10.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarIo10.m; sourceTree = "<group>"; };
+		E3414396254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDeviceDiscoveryManagerWrapper.m; sourceTree = "<group>"; };
+		E3414397254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDeviceDiscoveryManagerWrapper.h; sourceTree = "<group>"; };
+		E3951A41254FD9FF003A9953 /* StarIO10ErrorWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarIO10ErrorWrapper.h; sourceTree = "<group>"; };
+		E3951A42254FD9FF003A9953 /* StarIO10ErrorWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarIO10ErrorWrapper.m; sourceTree = "<group>"; };
+		E3951A46254FDA54003A9953 /* DrawerBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A47254FDA54003A9953 /* BuzzerBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzerBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A48254FDA54003A9953 /* LedSettingBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedSettingBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A49254FDA54003A9953 /* DocumentBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A4A254FDA54003A9953 /* PageModeBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageModeBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A4B254FDA54003A9953 /* StarXpandCommandBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarXpandCommandBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A4C254FDA54003A9953 /* DocumentBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A4D254FDA54003A9953 /* DrawerBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A4E254FDA54003A9953 /* PresenterSettingBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenterSettingBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A4F254FDA54003A9953 /* BezelSettingBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezelSettingBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A50254FDA54003A9953 /* PreSettingBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreSettingBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A51254FDA54003A9953 /* MelodySpeakerBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodySpeakerBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A52254FDA54003A9953 /* BezelSettingBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezelSettingBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A53254FDA54003A9953 /* BuzzerBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzerBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A54254FDA54003A9953 /* PreSettingBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreSettingBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A55254FDA54003A9953 /* LedSettingBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedSettingBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A56254FDA54003A9953 /* MelodySpeakerBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodySpeakerBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A57254FDA54003A9953 /* PresenterSettingBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenterSettingBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A58254FDA54003A9953 /* PrinterBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinterBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A59254FDA55003A9953 /* PrinterBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrinterBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A5A254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarXpandCommandBuilderWrapper.m; sourceTree = "<group>"; };
+		E3951A5B254FDA55003A9953 /* PageModeBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageModeBuilderWrapper.h; sourceTree = "<group>"; };
+		E3951A69254FDA80003A9953 /* StarPrinterStatusWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarPrinterStatusWrapper.h; sourceTree = "<group>"; };
+		E3951A6A254FDA80003A9953 /* StarPrinterWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarPrinterWrapper.h; sourceTree = "<group>"; };
+		E3951A6B254FDA80003A9953 /* StarPrinterStatusWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarPrinterStatusWrapper.m; sourceTree = "<group>"; };
+		E3951A6C254FDA80003A9953 /* StarPrinterWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarPrinterWrapper.m; sourceTree = "<group>"; };
+		E3951A71254FDAA6003A9953 /* StarObjectManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarObjectManager.m; sourceTree = "<group>"; };
+		E3951A72254FDAA6003A9953 /* StarIO10ValueConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarIO10ValueConverter.h; sourceTree = "<group>"; };
+		E3951A73254FDAA6003A9953 /* EventParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventParameter.m; sourceTree = "<group>"; };
+		E3951A74254FDAA6003A9953 /* EventParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventParameter.h; sourceTree = "<group>"; };
+		E3951A75254FDAA6003A9953 /* StarIO10ValueConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarIO10ValueConverter.m; sourceTree = "<group>"; };
+		E3951A76254FDAA6003A9953 /* StarObjectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarObjectManager.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		58B511D81A9E6C8500147676 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				88AB8713251B23BF00245D2A /* StarIO10.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		134814211AA4EA7D00B7C361 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				134814201AA4EA6300B7C361 /* libStarIo10.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		58B511D21A9E6C8500147676 = {
+			isa = PBXGroup;
+			children = (
+				88103EB3250F5E0100A825B8 /* Frameworks */,
+				134814211AA4EA7D00B7C361 /* Products */,
+				E35D4B14254FD92700E242A3 /* StarDeviceDiscoveryManager */,
+				B3E7B5881CC2AC0600A0062D /* StarIo10.h */,
+				B3E7B5891CC2AC0600A0062D /* StarIo10.m */,
+				E3951A3F254FD9B0003A9953 /* StarIO10Error */,
+				E3951A68254FDA68003A9953 /* StarPrinter */,
+				E3951A45254FDA0E003A9953 /* StarXpandCommand */,
+				E3951A70254FDA93003A9953 /* Util */,
+			);
+			sourceTree = "<group>";
+		};
+		88103EB3250F5E0100A825B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88AB871A251B246400245D2A /* UIKit.framework */,
+				88AB8718251B244000245D2A /* CoreImage.framework */,
+				88AB8716251B243600245D2A /* ImageIO.framework */,
+				88AB8714251B23F700245D2A /* QuartzCore.framework */,
+				88AB8712251B23BF00245D2A /* StarIO10.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E35D4B14254FD92700E242A3 /* StarDeviceDiscoveryManager */ = {
+			isa = PBXGroup;
+			children = (
+				E3414397254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.h */,
+				E3414396254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m */,
+			);
+			path = StarDeviceDiscoveryManager;
+			sourceTree = "<group>";
+		};
+		E3951A3F254FD9B0003A9953 /* StarIO10Error */ = {
+			isa = PBXGroup;
+			children = (
+				E3951A41254FD9FF003A9953 /* StarIO10ErrorWrapper.h */,
+				E3951A42254FD9FF003A9953 /* StarIO10ErrorWrapper.m */,
+			);
+			path = StarIO10Error;
+			sourceTree = "<group>";
+		};
+		E3951A45254FDA0E003A9953 /* StarXpandCommand */ = {
+			isa = PBXGroup;
+			children = (
+				E3951A4F254FDA54003A9953 /* BezelSettingBuilderWrapper.h */,
+				E3951A52254FDA54003A9953 /* BezelSettingBuilderWrapper.m */,
+				E3951A53254FDA54003A9953 /* BuzzerBuilderWrapper.h */,
+				E3951A47254FDA54003A9953 /* BuzzerBuilderWrapper.m */,
+				E3951A4C254FDA54003A9953 /* DocumentBuilderWrapper.h */,
+				E3951A49254FDA54003A9953 /* DocumentBuilderWrapper.m */,
+				E3951A46254FDA54003A9953 /* DrawerBuilderWrapper.h */,
+				E3951A4D254FDA54003A9953 /* DrawerBuilderWrapper.m */,
+				E3951A55254FDA54003A9953 /* LedSettingBuilderWrapper.h */,
+				E3951A48254FDA54003A9953 /* LedSettingBuilderWrapper.m */,
+				E3951A56254FDA54003A9953 /* MelodySpeakerBuilderWrapper.h */,
+				E3951A51254FDA54003A9953 /* MelodySpeakerBuilderWrapper.m */,
+				E3951A5B254FDA55003A9953 /* PageModeBuilderWrapper.h */,
+				E3951A4A254FDA54003A9953 /* PageModeBuilderWrapper.m */,
+				E3951A57254FDA54003A9953 /* PresenterSettingBuilderWrapper.h */,
+				E3951A4E254FDA54003A9953 /* PresenterSettingBuilderWrapper.m */,
+				E3951A54254FDA54003A9953 /* PreSettingBuilderWrapper.h */,
+				E3951A50254FDA54003A9953 /* PreSettingBuilderWrapper.m */,
+				E3951A58254FDA54003A9953 /* PrinterBuilderWrapper.h */,
+				E3951A59254FDA55003A9953 /* PrinterBuilderWrapper.m */,
+				E3951A4B254FDA54003A9953 /* StarXpandCommandBuilderWrapper.h */,
+				E3951A5A254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m */,
+			);
+			path = StarXpandCommand;
+			sourceTree = "<group>";
+		};
+		E3951A68254FDA68003A9953 /* StarPrinter */ = {
+			isa = PBXGroup;
+			children = (
+				E3951A69254FDA80003A9953 /* StarPrinterStatusWrapper.h */,
+				E3951A6B254FDA80003A9953 /* StarPrinterStatusWrapper.m */,
+				E3951A6A254FDA80003A9953 /* StarPrinterWrapper.h */,
+				E3951A6C254FDA80003A9953 /* StarPrinterWrapper.m */,
+			);
+			path = StarPrinter;
+			sourceTree = "<group>";
+		};
+		E3951A70254FDA93003A9953 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				E3951A74254FDAA6003A9953 /* EventParameter.h */,
+				E3951A73254FDAA6003A9953 /* EventParameter.m */,
+				E3951A72254FDAA6003A9953 /* StarIO10ValueConverter.h */,
+				E3951A75254FDAA6003A9953 /* StarIO10ValueConverter.m */,
+				E3951A76254FDAA6003A9953 /* StarObjectManager.h */,
+				E3951A71254FDAA6003A9953 /* StarObjectManager.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		58B511DA1A9E6C8500147676 /* StarIo10 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "StarIo10" */;
+			buildPhases = (
+				58B511D71A9E6C8500147676 /* Sources */,
+				58B511D81A9E6C8500147676 /* Frameworks */,
+				58B511D91A9E6C8500147676 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StarIo10;
+			productName = RCTDataManager;
+			productReference = 134814201AA4EA6300B7C361 /* libStarIo10.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		58B511D31A9E6C8500147676 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				KnownAssetTags = (
+					New,
+				);
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Facebook;
+				TargetAttributes = {
+					58B511DA1A9E6C8500147676 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "StarIo10" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+			);
+			mainGroup = 58B511D21A9E6C8500147676;
+			productRefGroup = 58B511D21A9E6C8500147676;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				58B511DA1A9E6C8500147676 /* StarIo10 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		58B511D71A9E6C8500147676 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3951A63254FDA55003A9953 /* MelodySpeakerBuilderWrapper.m in Sources */,
+				E3951A62254FDA55003A9953 /* PreSettingBuilderWrapper.m in Sources */,
+				E3951A5E254FDA55003A9953 /* DocumentBuilderWrapper.m in Sources */,
+				E3414398254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m in Sources */,
+				E3951A78254FDAA6003A9953 /* EventParameter.m in Sources */,
+				E3951A5F254FDA55003A9953 /* PageModeBuilderWrapper.m in Sources */,
+				E3951A43254FD9FF003A9953 /* StarIO10ErrorWrapper.m in Sources */,
+				B3E7B58A1CC2AC0600A0062D /* StarIo10.m in Sources */,
+				E3951A61254FDA55003A9953 /* PresenterSettingBuilderWrapper.m in Sources */,
+				E3951A79254FDAA6003A9953 /* StarIO10ValueConverter.m in Sources */,
+				E3951A66254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m in Sources */,
+				E3951A5C254FDA55003A9953 /* BuzzerBuilderWrapper.m in Sources */,
+				E3951A6D254FDA80003A9953 /* StarPrinterStatusWrapper.m in Sources */,
+				E3951A65254FDA55003A9953 /* PrinterBuilderWrapper.m in Sources */,
+				E3951A60254FDA55003A9953 /* DrawerBuilderWrapper.m in Sources */,
+				E3951A5D254FDA55003A9953 /* LedSettingBuilderWrapper.m in Sources */,
+				E3951A6E254FDA80003A9953 /* StarPrinterWrapper.m in Sources */,
+				E3951A77254FDAA6003A9953 /* StarObjectManager.m in Sources */,
+				E3951A64254FDA55003A9953 /* BezelSettingBuilderWrapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		58B511ED1A9E6C8500147676 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		58B511EE1A9E6C8500147676 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		58B511F01A9E6C8500147676 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/libs/**",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../../React/**",
+					"$(SRCROOT)/../node_modules/react-native/**",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = StarIo10;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		58B511F11A9E6C8500147676 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SRCROOT)/libs/**",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/**",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/../../react-native/React/**",
+					"$(SRCROOT)/../../../React/**",
+					"$(SRCROOT)/../node_modules/react-native/**",
+				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = StarIo10;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "StarIo10" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58B511ED1A9E6C8500147676 /* Debug */,
+				58B511EE1A9E6C8500147676 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "StarIo10" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				58B511F01A9E6C8500147676 /* Debug */,
+				58B511F11A9E6C8500147676 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 58B511D31A9E6C8500147676 /* Project object */;
+}

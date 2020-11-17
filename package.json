@@ -1,0 +1,34 @@
+{
+  "name": "react-native-star-io10",
+  "title": "React Native Star Io10",
+  "version": "0.1.0",
+  "description": "TODO",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/github_account/react-native-star-io10.git",
+    "baseUrl": "https://github.com/github_account/react-native-star-io10"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": {
+    "name": "Your Name",
+    "email": "yourname@email.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": "^16.8.1",
+    "react-native": ">=0.60.0-rc.0 <1.0.x",
+    "react-native-windows": "0.63"
+  },
+  "devDependencies": {
+    "react": "^16.9.0",
+    "react-native": "0.63"
+  }
+}

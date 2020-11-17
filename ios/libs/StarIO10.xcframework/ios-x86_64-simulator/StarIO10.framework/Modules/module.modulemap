@@ -1,0 +1,11 @@
+framework module StarIO10 {
+  umbrella header "StarIO10.h"
+
+  export *
+  module * { export * }
+}
+
+module StarIO10.Swift {
+    header "StarIO10-Swift.h"
+    requires objc
+}
