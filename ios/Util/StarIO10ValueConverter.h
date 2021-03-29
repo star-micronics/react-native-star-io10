@@ -20,7 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray<NSNumber *> *)toPrinterCJKCharacterPriorityTypes:(nonnull NSArray<NSString *> *)types;
 + (STARIO10StarPrinterModel)toStarPrinterModel:(NSString *)value;
 + (STARIO10InterfaceType)toInterfaceType:(NSString *)value;
-+ (STARIO10StarXpandCommandLEDType)toLEDType:(NSString *)value;
++ (STARIO10StarXpandCommandPresenterLEDType)toPresenterLEDType:(NSString *)value;
++ (STARIO10StarXpandCommandBezelLEDType)toBezelLEDType:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterInternationalCharacterType)toPrinterInternationalCharacterType:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterCharacterEncodingType)toPrinterCharacterEncodingType:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterCJKCharacterType)toPrinterCJKCharacterType:(NSString *)value;
@@ -37,23 +38,29 @@ NS_ASSUME_NONNULL_BEGIN
 + (STARIO10StarXpandCommandDrawerChannel)toDrawerChannel:(NSString *)value;
 + (STARIO10StarXpandCommandBuzzerChannel)toBuzzerChannel:(NSString *)value;
 + (STARIO10StarXpandCommandMelodySpeakerSoundStorageArea)toMelodySpeakerSoundStorageArea:(NSString *)value;
-+ (STARIO10StarXpandCommandLEDAutomaticBlinkParameter *)toLEDAutomaticBlinkParameterWithType:(nonnull NSString *)type
-                                                                                      onTime:(nonnull NSNumber *)onTime
-                                                                                     offTime:(nonnull NSNumber *)offTime;
++ (STARIO10StarXpandCommandDisplayContrast)toDisplayContrast:(NSString *)value;
++ (STARIO10StarXpandCommandDisplayCursorState)toDisplayCursorState:(NSString *)value;
++ (STARIO10StarXpandCommandDisplayInternationalCharacterType)toDisplayInternationalCharacterType:(NSString *)value;
++ (STARIO10StarXpandCommandDisplayCharacterEncodingType)toDisplayCharacterEncodingType:(NSString *)value;
++ (STARIO10StarXpandCommandPresenterLEDAutomaticBlinkParameter *)toPresenterLEDAutomaticBlinkParameterWithType:(nonnull NSString *)type
+                                                                                                        onTime:(nonnull NSNumber *)onTime
+                                                                                                       offTime:(nonnull NSNumber *)offTime;
++ (STARIO10StarXpandCommandBezelLEDAutomaticBlinkParameter *)toBezelLEDAutomaticBlinkParameterWithType:(nonnull NSString *)type
+                                                                                                onTime:(nonnull NSNumber *)onTime
+                                                                                               offTime:(nonnull NSNumber *)offTime;
+
 + (STARIO10StarXpandCommandPresenterModeParameter *)toPresenterModeParameterWithLoop:(BOOL)loop
                                                                                 hold:(BOOL)hold
                                                                              retract:(BOOL)retract
                                                                             holdTime:(nonnull NSNumber *)holdTime;
-+ (STARIO10StarXpandCommandPrinterPageModeParameter *)toPrinterPageModeParameterWithX:(nonnull NSNumber *)x
-                                                                                    y:(nonnull NSNumber *)y
-                                                                                width:(nonnull NSNumber *)width
-                                                                               height:(nonnull NSNumber *)height
-                                                                       printDirection:(nonnull NSString *)printDirection;
-+ (STARIO10StarXpandCommandPrinterBlackMarkParameter *)toPrinterBlackMarkParameterWithStart:(BOOL)start
-                                                                                        end:(BOOL)end
++ (STARIO10StarXpandCommandPrinterPageModeAreaParameter *)toPrinterPageModeAreaParameterWithX:(nonnull NSNumber *)x
+                                                                                            y:(nonnull NSNumber *)y
+                                                                                        width:(nonnull NSNumber *)width
+                                                                                       height:(nonnull NSNumber *)height;
+
++ (STARIO10StarXpandCommandPrinterBlackMarkParameter *)toPrinterBlackMarkParameterWithStart:(BOOL)enable
                                                                                    position:(nonnull NSString *)position;
-+ (STARIO10StarXpandCommandPrinterLabelParameter *)toPrinterLabelParameterWithStart:(BOOL)start
-                                                                                end:(BOOL)end;
++ (STARIO10StarXpandCommandPrinterLabelParameter *)toPrinterLabelParameterWithStart:(BOOL)enable;
 + (STARIO10StarXpandCommandPrinterHoldPrintParameter *)toPrinterHoldPrintParameterWithEnable:(BOOL)enable;
 + (STARIO10StarXpandCommandMagnificationParameter *)toMagnificationParameterWithWidth:(nonnull NSNumber *)width
                                                                                height:(nonnull NSNumber *)height;
@@ -87,8 +94,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (STARIO10StarXpandCommandMelodySpeakerDriveRegisteredSoundParameter *)toMelodySpeakerDriveRegisteredSoundParameterWithArea:(nonnull NSString *)area
                                                                                                                       number:(nonnull NSNumber *)number
                                                                                                                       volume:(nonnull NSNumber *)volume;
-+ (STARIO10StarXpandCommandMelodySpeakerDriveOneTimeSoundParameter *)toMelodySpeakerDriveOneTimeSoundParameterWithSource:(nonnull NSArray<NSNumber *> *)source
++ (STARIO10StarXpandCommandMelodySpeakerDriveOneTimeSoundParameter *)toMelodySpeakerDriveOneTimeSoundParameterWithSource:(nonnull NSString *)source
                                                                                                                   volume:(nonnull NSNumber *)volume;
++ (STARIO10StarXpandCommandDisplayImageParameter *)toDisplayImageParameterWithSource:(nonnull NSString *)source
+                                                                     effectDiffusion:(BOOL)effectDiffusion
+                                                                           threshold:(nonnull NSNumber *)threshold;
++ (STARIO10StarXpandCommandDisplayPositionParameter *)toDisplayPositionParameterWithX:(nonnull NSNumber *)x
+                                                                                    y:(nonnull NSNumber *)y;
++ (NSDictionary<NSString *, id> *)toJSNamingDictionary:(NSDictionary<NSString *, id> *)dictionary;
 
 @end
 

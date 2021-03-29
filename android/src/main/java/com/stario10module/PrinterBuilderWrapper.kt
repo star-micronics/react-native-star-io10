@@ -39,12 +39,12 @@ class PrinterBuilderWrapper internal constructor(context: ReactApplicationContex
     }
 
     @ReactMethod
-    fun settingPageMode(identifier: String, x: Double, y: Double, width: Double, height: Double, printDirection: String, pageModeBuilderIdentifier: String, promise: Promise) {
+    fun addPageMode(identifier: String, x: Double, y: Double, width: Double, height: Double, pageModeBuilderIdentifier: String, promise: Promise) {
         val builder = InstanceManager.get(identifier)
         val pageModeBuilder = InstanceManager.get(pageModeBuilderIdentifier)
 
         if (builder is PrinterBuilder && pageModeBuilder is PageModeBuilder) {
-            builder.settingPageMode(StarIO10ValueConverter.toPrinterPageModeParameter(x, y, width, height, printDirection), pageModeBuilder)
+            builder.addPageMode(StarIO10ValueConverter.toPrinterPageModeAreaParameter(x, y, width, height), pageModeBuilder)
             promise.resolve(true)
         }
         else {
@@ -344,7 +344,7 @@ class PrinterBuilderWrapper internal constructor(context: ReactApplicationContex
 
         if (builder is PrinterBuilder) {
             try {
-                val parameter = StarIO10ValueConverter.toPrinterImageParameter(source, width, effectDiffusion, threshold)
+                val parameter = StarIO10ValueConverter.toPrinterImageParameter(source, width, effectDiffusion, threshold, reactApplicationContext)
                 builder.actionPrintImage(parameter)
                 promise.resolve(0)
             }

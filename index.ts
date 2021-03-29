@@ -1,6 +1,7 @@
 import * as StarXpandCommand from './src/StarXpandCommand/StarXpandCommand';
 export { StarXpandCommand };
 
+export { DisplayDelegate } from './src/DisplayDelegate';
 export { InputDeviceDelegate } from './src/InputDeviceDelegate';
 export { InterfaceType } from './src/InterfaceType';
 export { PrinterDelegate } from './src/PrinterDelegate';
@@ -10,6 +11,7 @@ export { StarConnectionSettings } from './src/StarConnectionSettings';
 export { StarPrinterModel } from './src/StarPrinterModel';
 export { StarPrinterEmulation } from './src/StarPrinterEmulation';
 export { StarPrinter } from './src/StarPrinter';
+export { StarIO10Logger } from './src/StarIO10Logger';
 export { StarPrinterInformation } from './src/StarPrinterInformation';
 export { StarIO10ArgumentError } from './src/StarIO10ArgumentError';
 export { StarIO10BadResponseError } from './src/StarIO10BadResponseError';

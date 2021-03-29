@@ -79,7 +79,7 @@ RCT_REMAP_METHOD(actionDriveRegisteredSound,
 
 RCT_REMAP_METHOD(actionDriveOneTimeSound,
                  actionDriveOneTimeSoundWithObjectIdentifier:(nonnull NSString *)objID
-                 source:(nonnull NSArray<NSNumber *> *)source
+                 source:(nonnull NSString *)source
                  volume:(nonnull NSNumber *)volume
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
@@ -93,6 +93,17 @@ RCT_REMAP_METHOD(actionDriveOneTimeSound,
     
     STARIO10StarXpandCommandMelodySpeakerDriveOneTimeSoundParameter *param = [StarIO10ValueConverter toMelodySpeakerDriveOneTimeSoundParameterWithSource:source volume:volume];
 
+    if (param == nil) {
+        NSDictionary *info = @{
+            NSLocalizedDescriptionKey: @"Invalid source.",
+            STARIO10ErrorDetailErrorCodeKey: [[NSNumber alloc] initWithInt:STARIO10ErrorCodeNone]
+        };
+        NSError *error = [[NSError alloc] initWithDomain:@"StarIO10.STARIO10Error" code:STARIO10ErrorArgument userInfo:info];
+        NSString *errorID = [self->_objManager add:error];
+        reject(errorID, error.localizedDescription, error);
+        return;
+    }
+    
     [builder actionDriveOneTimeSound:param];
     
     resolve(nil);

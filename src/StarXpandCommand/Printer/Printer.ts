@@ -1,4 +1,6 @@
 export * from './Alignment';
+export * from './PageModePrintDirection';
+export * from './PageModeAreaParameter';
 export * from './BlackMarkPosition';
 export * from './FontType';
 export * from './InternationalCharacterType';

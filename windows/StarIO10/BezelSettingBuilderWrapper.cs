@@ -1,5 +1,6 @@
 ﻿using Microsoft.ReactNative.Managed;
 using StarMicronics.StarIO10.StarXpandCommand;
+using StarMicronics.StarIO10.StarXpandCommand.Bezel;
 
 namespace StarMicronics.ReactNative.StarIO10
 {
@@ -38,17 +39,17 @@ namespace StarMicronics.ReactNative.StarIO10
             promise.Resolve();
         }
 
-        [ReactMethod("addLed")]
-        public void AddLed(string objectIdentifier, string ledSettingBuilderIdentifier, IReactPromise<JSValue.Void> promise)
+        [ReactMethod("settingLedAutomaticBlink")]
+        public void SettingLedAutomaticBlink(string objectIdentifier, string type, int onTime, int offTime, IReactPromise<JSValue.Void> promise)
         {
             if (!GetObject(objectIdentifier, out BezelSettingBuilder nativeObject) ||
-                !LedSettingBuilderWrapper.GetObject(ledSettingBuilderIdentifier, out LedSettingBuilder ledSettingBuilder))
+                !StarIO10ValueConverter.ToBezelLedAutomaticBlinkParameter(type, onTime, offTime, out LedAutomaticBlinkParameter parameter))
             {
                 promise.Reject(new ReactError());
                 return;
             }
 
-            nativeObject.AddLed(ledSettingBuilder);
+            nativeObject.SettingLedAutomaticBlink(parameter);
 
             promise.Resolve();
         }

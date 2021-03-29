@@ -19,6 +19,7 @@ extern NSString * const kKeyInterfaceType;
 extern NSString * const kKeyConnectionIdentifier;
 extern NSString * const kKeyModel;
 extern NSString * const kKeyEmulation;
+extern NSString * const kKeyReserved;
 
 extern NSString * const kNamePrinterDelegateReady;
 extern NSString * const kNamePrinterDelegateError;

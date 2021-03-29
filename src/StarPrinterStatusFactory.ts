@@ -12,6 +12,7 @@ export class StarPrinterStatusFactory {
             status._drawerOpenCloseSignal = await NativeModules.StarPrinterStatusWrapper.getDrawerOpenCloseSignal(nativeStatus);
             status._paperEmpty = await NativeModules.StarPrinterStatusWrapper.getPaperEmpty(nativeStatus);
             status._paperNearEmpty = await NativeModules.StarPrinterStatusWrapper.getPaperNearEmpty(nativeStatus);
+            status._reserved = new Map(Object.entries(await NativeModules.StarPrinterStatusWrapper.getReserved(nativeStatus)));
         }
         catch(_) {
             throw new StarIO10UnknownError("Failed to create Status.");

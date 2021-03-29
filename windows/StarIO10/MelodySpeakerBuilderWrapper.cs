@@ -1,6 +1,8 @@
 ﻿using Microsoft.ReactNative.Managed;
+using StarMicronics.StarIO10;
 using StarMicronics.StarIO10.StarXpandCommand;
 using StarMicronics.StarIO10.StarXpandCommand.MelodySpeaker;
+using System;
 
 namespace StarMicronics.ReactNative.StarIO10
 {
@@ -41,18 +43,28 @@ namespace StarMicronics.ReactNative.StarIO10
         }
 
         [ReactMethod("actionDriveOneTimeSound")]
-        public void ActionDriveOneTimeSound(string objectIdentifier, byte[] source, int volume, IReactPromise<JSValue.Void> promise)
+        public async void ActionDriveOneTimeSound(string objectIdentifier, string source, int volume, IReactPromise<JSValue.Void> promise)
         {
-            if (!GetObject(objectIdentifier, out MelodySpeakerBuilder nativeObject) ||
-                !StarIO10ValueConverter.ToMelodySpeakerDriveOneTimeSoundParameter(source, volume, out DriveOneTimeSoundParameter parameter))
+            try
             {
-                promise.Reject(new ReactError());
-                return;
+                if (!GetObject(objectIdentifier, out MelodySpeakerBuilder nativeObject))
+                {
+                    promise.Reject(new ReactError());
+                    return;
+                }
+
+                DriveOneTimeSoundParameter parameter = await StarIO10ValueConverter.ToMelodySpeakerDriveOneTimeSoundParameterAsync(source, volume);
+
+                nativeObject.ActionDriveOneTimeSound(parameter);
+
+                promise.Resolve();
             }
-
-            nativeObject.ActionDriveOneTimeSound(parameter);
-
-            promise.Resolve();
+            catch (Exception)
+            {
+                StarIO10Exception exception = new StarIO10ArgumentException("Invalid source.");
+                StarIO10ErrorWrapper.SetObject(exception, out string exceptionIdentifier);
+                promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = exception });
+            }
         }
     }
 }

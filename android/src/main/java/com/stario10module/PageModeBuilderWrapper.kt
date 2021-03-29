@@ -25,24 +25,11 @@ class PageModeBuilderWrapper internal constructor(context: ReactApplicationConte
     }
 
     @ReactMethod
-    fun settingVerticalPositionTo(identifier: String, position: Double, promise: Promise) {
+    fun stylePrintDirection(identifier: String, direction: String, promise: Promise) {
         val builder = InstanceManager.get(identifier)
 
         if (builder is PageModeBuilder) {
-            builder.settingVerticalPositionTo(position)
-            promise.resolve(0)
-        }
-        else {
-            promise.reject(ReactNoCrashSoftException("Not found native instance"))
-        }
-    }
-
-    @ReactMethod
-    fun settingVerticalPositionBy(identifier: String, position: Double, promise: Promise) {
-        val builder = InstanceManager.get(identifier)
-
-        if (builder is PageModeBuilder) {
-            builder.settingVerticalPositionBy(position)
+            builder.stylePrintDirection(StarIO10ValueConverter.toPrinterPageModePrintDirection(direction))
             promise.resolve(0)
         }
         else {
@@ -134,6 +121,32 @@ class PageModeBuilderWrapper internal constructor(context: ReactApplicationConte
 
         if (builder is PageModeBuilder) {
             builder.styleLineSpace(height)
+            promise.resolve(0)
+        }
+        else {
+            promise.reject(ReactNoCrashSoftException("Not found native instance"))
+        }
+    }
+
+    @ReactMethod
+    fun styleVerticalPositionTo(identifier: String, position: Double, promise: Promise) {
+        val builder = InstanceManager.get(identifier)
+
+        if (builder is PageModeBuilder) {
+            builder.styleVerticalPositionTo(position)
+            promise.resolve(0)
+        }
+        else {
+            promise.reject(ReactNoCrashSoftException("Not found native instance"))
+        }
+    }
+
+    @ReactMethod
+    fun styleVerticalPositionBy(identifier: String, position: Double, promise: Promise) {
+        val builder = InstanceManager.get(identifier)
+
+        if (builder is PageModeBuilder) {
+            builder.styleVerticalPositionBy(position)
             promise.resolve(0)
         }
         else {
@@ -289,7 +302,7 @@ class PageModeBuilderWrapper internal constructor(context: ReactApplicationConte
 
         if (builder is PageModeBuilder) {
             try {
-                val parameter = StarIO10ValueConverter.toPrinterImageParameter(source, width, effectDiffusion, threshold)
+                val parameter = StarIO10ValueConverter.toPrinterImageParameter(source, width, effectDiffusion, threshold, reactApplicationContext)
                 builder.actionPrintImage(parameter)
                 promise.resolve(0)
             }

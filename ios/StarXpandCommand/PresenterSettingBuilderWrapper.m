@@ -1,6 +1,6 @@
 #import "PresenterSettingBuilderWrapper.h"
 #import "StarObjectManager.h"
-#import "StarIO10ValueConverter.h"
+#import "../Util/StarIO10ValueConverter.h"
 
 @import StarIO10;
 
@@ -77,9 +77,11 @@ RCT_REMAP_METHOD(settingMode,
     resolve(nil);
 }
 
-RCT_REMAP_METHOD(addLed,
-                 addLedWithObjectIdentifier:(nonnull NSString *)objID
-                 ledSettingBuilderIdentifier:(nonnull NSString *)ledSettingBuilderID
+RCT_REMAP_METHOD(settingLedAutomaticBlink,
+                 settingLedAutomaticBlinkWithObjectIdentifier:(nonnull NSString *)objID
+                 type:(nonnull NSString *)type
+                 onTime:(nonnull NSNumber *)onTime
+                 offTime:(nonnull NSNumber *)offTime
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -90,14 +92,11 @@ RCT_REMAP_METHOD(addLed,
         return;
     }
     
-    STARIO10StarXpandCommandLEDSettingBuilder *ledSettingBuilder = [_objManager getObject:ledSettingBuilderID];
-    if (ledSettingBuilder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
+    STARIO10StarXpandCommandPresenterLEDAutomaticBlinkParameter *parameter = [StarIO10ValueConverter toPresenterLEDAutomaticBlinkParameterWithType:type
+                                                                                                                                            onTime:onTime
+                                                                                                                                           offTime:offTime];
     
-    [builder addLED:ledSettingBuilder];
-    
+    builder = [builder settingLEDAutomaticBlinkWithParameter:parameter];
     resolve(nil);
 }
 

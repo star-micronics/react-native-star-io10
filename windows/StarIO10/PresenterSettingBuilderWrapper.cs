@@ -40,17 +40,17 @@ namespace StarMicronics.ReactNative.StarIO10
             promise.Resolve();
         }
 
-        [ReactMethod("addLed")]
-        public void AddLed(string objectIdentifier, string ledSettingBuilderIdentifier, IReactPromise<JSValue.Void> promise)
+        [ReactMethod("settingLedAutomaticBlink")]
+        public void SettingLedAutomaticBlink(string objectIdentifier, string type, int onTime, int offTime, IReactPromise<JSValue.Void> promise)
         {
             if (!GetObject(objectIdentifier, out PresenterSettingBuilder nativeObject) ||
-                !LedSettingBuilderWrapper.GetObject(ledSettingBuilderIdentifier, out LedSettingBuilder ledSettingBuilder))
+                !StarIO10ValueConverter.ToPresenterLedAutomaticBlinkParameter(type, onTime, offTime, out LedAutomaticBlinkParameter parameter))
             {
                 promise.Reject(new ReactError());
                 return;
             }
 
-            nativeObject.AddLed(ledSettingBuilder);
+            nativeObject.SettingLedAutomaticBlink(parameter);
 
             promise.Resolve();
         }

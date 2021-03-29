@@ -1,30 +1,19 @@
 import { BlackMarkPosition } from './BlackMarkPosition';
 
 export class BlackMarkParameter {
-    private _start: boolean = true;
-    private _end: boolean = true;
-    private _position: BlackMarkPosition = BlackMarkPosition.Front;
+    private _enable: boolean = true;
+    private _position: BlackMarkPosition = BlackMarkPosition.Back;
 
-    get start(): boolean {
-        return this._start;
-    }
-
-    get end(): boolean {
-        return this._end;
+    get enable(): boolean {
+        return this._enable;
     }
 
     get position(): BlackMarkPosition {
         return this._position;
     }
 
-    setStart(start: boolean): BlackMarkParameter {
-        this._start = start;
-
-        return this;
-    }
-
-    setEnd(end: boolean): BlackMarkParameter {
-        this._end = end;
+    setEnable(enable: boolean): BlackMarkParameter {
+        this._enable = enable;
 
         return this;
     }

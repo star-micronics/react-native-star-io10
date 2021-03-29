@@ -2,6 +2,7 @@ package com.stario10module
 
 import com.facebook.react.bridge.*
 import com.starmicronics.stario10.starxpandcommand.MelodySpeakerBuilder
+import com.starmicronics.stario10.StarIO10ArgumentException
 
 class MelodySpeakerBuilderWrapper internal constructor(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {
     override fun getName(): String {
@@ -38,14 +39,20 @@ class MelodySpeakerBuilderWrapper internal constructor(context: ReactApplication
     }
 
     @ReactMethod
-    fun actionDriveOneTimeSound(identifier: String, source: ReadableArray, volume: Int, promise: Promise) {
+    fun actionDriveOneTimeSound(identifier: String, source: String, volume: Int, promise: Promise) {
         val builder = InstanceManager.get(identifier)
 
         if (builder is MelodySpeakerBuilder) {
-            val parameter = StarIO10ValueConverter.toMelodySpeakerDriveOneTimeSoundParameter(source, volume)
-
-            builder.actionDriveOneTimeSound(parameter)
-            promise.resolve(0)
+            try {
+                val parameter = StarIO10ValueConverter.toMelodySpeakerDriveOneTimeSoundParameter(source, volume, reactApplicationContext)
+                builder.actionDriveOneTimeSound(parameter)
+                promise.resolve(0)
+            }
+            catch (e: Exception) {
+                val exception = StarIO10ArgumentException("Invalid source.")
+                val exceptionIdentifier = InstanceManager.set(exception)
+                promise.reject(exceptionIdentifier, exception)
+            }
         }
         else {
             promise.reject(ReactNoCrashSoftException("Not found native instance"))

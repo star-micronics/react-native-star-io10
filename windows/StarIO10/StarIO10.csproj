@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="16.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup Label="ReactNativeWindowsProps">
-    <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>
+    <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(SolutionDir), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1EC44C11-86A0-43EE-B591-5592883ABBC4}</ProjectGuid>
+    <ProjectGuid>{7FB29169-C0D3-427E-A025-ACA364164F6D}</ProjectGuid>
     <OutputType>winmdobj</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>StarMicronics.ReactNative.StarIO10</RootNamespace>
@@ -16,9 +16,10 @@
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.18362.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.16299.0</TargetPlatformMinVersion>
-    <MinimumVisualStudioVersion>16</MinimumVisualStudioVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <AllowCrossPlatformRetargeting>false</AllowCrossPlatformRetargeting>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -125,30 +126,27 @@
   <ItemGroup>
     <Compile Include="BezelSettingBuilderWrapper.cs" />
     <Compile Include="BuzzerBuilderWrapper.cs" />
+    <Compile Include="DisplayBuilderWrapper.cs" />
     <Compile Include="DocumentBuilderWrapper.cs" />
     <Compile Include="DrawerBuilderWrapper.cs" />
-    <Compile Include="EventParamter\CommunicationErrorEventParameter.cs" />
-    <Compile Include="EventParamter\DrawerOpenCloseSignalSwitchedEventParameter.cs" />
-    <Compile Include="EventParamter\EventParameter.cs" />
-    <Compile Include="EventParamter\InputDeviceDataReceivedEventParameter.cs" />
-    <Compile Include="EventParamter\PrinterFoundParameter.cs" />
+    <Compile Include="EventParameter.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
-    <Compile Include="LedSettingBuilderWrapper.cs" />
     <Compile Include="MelodySpeakerBuilderWrapper.cs" />
     <Compile Include="PageModeBuilderWrapper.cs" />
     <Compile Include="PresenterSettingBuilderWrapper.cs" />
     <Compile Include="PreSettingBuilderWrapper.cs" />
     <Compile Include="PrinterBuilderWrapper.cs" />
-    <Compile Include="StarDeviceDiscoveryManagerWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReactPackageProvider.cs" />
-    <Compile Include="StarXpandCommandBuilderWrapper.cs" />
+    <Compile Include="StarDeviceDiscoveryManagerWrapper.cs" />
     <Compile Include="StarIO10ErrorWrapper.cs" />
+    <Compile Include="StarIO10LoggerWrapper.cs" />
     <Compile Include="StarIO10ObjectWrapper.cs" />
     <Compile Include="StarIO10ValueConverter.cs" />
     <Compile Include="StarPrinterStatusWrapper.cs" />
     <Compile Include="StarPrinterWrapper.cs" />
+    <Compile Include="StarXpandCommandBuilderWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
@@ -160,8 +158,8 @@
       <HintPath>..\libs\StarIO10.UWP.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '16.0' ">
-    <VisualStudioVersion>16.0</VisualStudioVersion>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <ImportGroup Label="ReactNativeWindowsPropertySheets">

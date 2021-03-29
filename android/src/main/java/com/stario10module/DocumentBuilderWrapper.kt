@@ -36,11 +36,11 @@ class DocumentBuilderWrapper internal constructor(context: ReactApplicationConte
     }
 
     @ReactMethod
-    fun settingBlackMark(identifier: String, start: Boolean, end: Boolean, position: String, promise: Promise) {
+    fun settingBlackMark(identifier: String, enable: Boolean, position: String, promise: Promise) {
         val builder = InstanceManager.get(identifier)
 
         if (builder is DocumentBuilder) {
-            val parameter = StarIO10ValueConverter.toPrinterBlackMarkParameter(start, end, position)
+            val parameter = StarIO10ValueConverter.toPrinterBlackMarkParameter(enable, position)
 
             builder.settingBlackMark(parameter)
             promise.resolve(0)
@@ -51,11 +51,11 @@ class DocumentBuilderWrapper internal constructor(context: ReactApplicationConte
     }
 
     @ReactMethod
-    fun settingLabel(identifier: String, start: Boolean, end: Boolean, promise: Promise) {
+    fun settingLabel(identifier: String, enable: Boolean, promise: Promise) {
         val builder = InstanceManager.get(identifier)
 
         if (builder is DocumentBuilder) {
-            val parameter = StarIO10ValueConverter.toPrinterLabelParameter(start, end)
+            val parameter = StarIO10ValueConverter.toPrinterLabelParameter(enable)
 
             builder.settingLabel(parameter)
             promise.resolve(0)
@@ -142,6 +142,20 @@ class DocumentBuilderWrapper internal constructor(context: ReactApplicationConte
 
         if (documentBuilder is DocumentBuilder && melodySpeakerBuilder is MelodySpeakerBuilder) {
             documentBuilder.addMelodySpeaker(melodySpeakerBuilder)
+            promise.resolve(true)
+        }
+        else {
+            promise.reject(ReactNoCrashSoftException("Not found native instance"))
+        }
+    }
+
+    @ReactMethod
+    fun addDisplay(identifier: String, displayIdentifier: String, promise: Promise) {
+        val documentBuilder = InstanceManager.get(identifier)
+        val displayBuilder = InstanceManager.get(displayIdentifier)
+
+        if (documentBuilder is DocumentBuilder && displayBuilder is DisplayBuilder) {
+            documentBuilder.addDisplay(displayBuilder)
             promise.resolve(true)
         }
         else {

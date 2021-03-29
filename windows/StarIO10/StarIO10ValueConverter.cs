@@ -1,16 +1,24 @@
-﻿using StarMicronics.StarIO10;
+﻿using Microsoft.ReactNative.Managed;
+using StarMicronics.StarIO10;
 using StarMicronics.StarIO10.StarXpandCommand;
 using StarMicronics.StarIO10.StarXpandCommand.Buzzer;
+using StarMicronics.StarIO10.StarXpandCommand.Display;
 using StarMicronics.StarIO10.StarXpandCommand.Drawer;
-using StarMicronics.StarIO10.StarXpandCommand.Led;
 using StarMicronics.StarIO10.StarXpandCommand.MelodySpeaker;
 using StarMicronics.StarIO10.StarXpandCommand.Presenter;
 using StarMicronics.StarIO10.StarXpandCommand.Printer;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel;
 using Windows.Graphics.Imaging;
+using Windows.Storage;
 using Windows.Storage.Streams;
 
 namespace StarMicronics.ReactNative.StarIO10
@@ -21,6 +29,7 @@ namespace StarMicronics.ReactNative.StarIO10
         {
             { InterfaceType.Lan, "Lan" },
             { InterfaceType.Bluetooth, "Bluetooth" },
+            { InterfaceType.BluetoothLE, "BluetoothLE" },
             { InterfaceType.Usb, "Usb" }
         };
 
@@ -30,11 +39,6 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarPrinterModel.TSP650II, "TSP650II" },
             { StarPrinterModel.TSP700II, "TSP700II" },
             { StarPrinterModel.TSP800II, "TSP800II" },
-            { StarPrinterModel.FVP10, "FVP10" },
-            { StarPrinterModel.TSP100U, "TSP100U" },
-            { StarPrinterModel.TSP100GT, "TSP100GT" },
-            { StarPrinterModel.TSP100ECO, "TSP100ECO" },
-            { StarPrinterModel.TSP100LAN, "TSP100LAN" },
             { StarPrinterModel.TSP100IIIW, "TSP100IIIW" },
             { StarPrinterModel.TSP100IIILAN, "TSP100IIILAN" },
             { StarPrinterModel.TSP100IIIBI, "TSP100IIIBI" },
@@ -43,15 +47,18 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarPrinterModel.mCPrint2, "mC_Print2" },
             { StarPrinterModel.mCPrint3, "mC_Print3" },
             { StarPrinterModel.SMS210i, "SM_S210i" },
-            { StarPrinterModel.SMS220i, "SM_S220i" },
             { StarPrinterModel.SMS230i, "SM_S230i" },
+            { StarPrinterModel.SMT300,  "SM_T300" },
             { StarPrinterModel.SMT300i, "SM_T300i" },
             { StarPrinterModel.SMT400i, "SM_T400i" },
             { StarPrinterModel.SML200, "SM_L200" },
             { StarPrinterModel.SML300, "SM_L300" },
             { StarPrinterModel.BSC10, "BSC10" },
+            { StarPrinterModel.TSP043, "TSP043" },
             { StarPrinterModel.SP700, "SP700" },
-            { StarPrinterModel.TUP500, "TUP500" }
+            { StarPrinterModel.TUP500, "TUP500" },
+            { StarPrinterModel.SK12xx, "SK1_2xx" },
+            { StarPrinterModel.SK13xx, "SK1_3xx" }
         };
 
         private static readonly IReadOnlyDictionary<StarPrinterEmulation, string> StarPrinterEmulationDictionary = new Dictionary<StarPrinterEmulation, string>()
@@ -65,11 +72,18 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarPrinterEmulation.EscPosMobile, "EscPosMobile" }
         };
 
-        private static readonly IReadOnlyDictionary<StarMicronics.StarIO10.StarXpandCommand.Led.Type, string> LedTypeDictionary = new Dictionary<StarMicronics.StarIO10.StarXpandCommand.Led.Type, string>()
+        private static readonly IReadOnlyDictionary<StarMicronics.StarIO10.StarXpandCommand.Bezel.LedType, string> BezelLedTypeDictionary = new Dictionary<StarMicronics.StarIO10.StarXpandCommand.Bezel.LedType, string>()
         {
-            { StarMicronics.StarIO10.StarXpandCommand.Led.Type.Printing, "Printing" },
-            { StarMicronics.StarIO10.StarXpandCommand.Led.Type.Error, "Error" },
-            { StarMicronics.StarIO10.StarXpandCommand.Led.Type.Idle, "Idle" }
+            { StarMicronics.StarIO10.StarXpandCommand.Bezel.LedType.Holding, "Holding" },
+            { StarMicronics.StarIO10.StarXpandCommand.Bezel.LedType.Error, "Error" },
+            { StarMicronics.StarIO10.StarXpandCommand.Bezel.LedType.Idle, "Idle" }
+        };
+
+        private static readonly IReadOnlyDictionary<StarMicronics.StarIO10.StarXpandCommand.Presenter.LedType, string> PresenterLedTypeDictionary = new Dictionary<StarMicronics.StarIO10.StarXpandCommand.Presenter.LedType, string>()
+        {
+            { StarMicronics.StarIO10.StarXpandCommand.Presenter.LedType.Holding, "Holding" },
+            { StarMicronics.StarIO10.StarXpandCommand.Presenter.LedType.Error, "Error" },
+            { StarMicronics.StarIO10.StarXpandCommand.Presenter.LedType.Idle, "Idle" }
         };
 
         private static readonly IReadOnlyDictionary<BlackMarkPosition, string> PrinterBlackMarkPositionDictionary = new Dictionary<BlackMarkPosition, string>()
@@ -124,13 +138,13 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarMicronics.StarIO10.StarXpandCommand.Printer.InternationalCharacterType.Legal, "Legal" },
         };
 
-        private static readonly IReadOnlyDictionary<CharacterEncodingType, string> PrinterCharacterEncodingTypeDictionary = new Dictionary<CharacterEncodingType, string>()
+        private static readonly IReadOnlyDictionary<StarMicronics.StarIO10.StarXpandCommand.Printer.CharacterEncodingType, string> PrinterCharacterEncodingTypeDictionary = new Dictionary<StarMicronics.StarIO10.StarXpandCommand.Printer.CharacterEncodingType, string>()
         {
-            { CharacterEncodingType.ShiftJis, "ShiftJis" },
-            { CharacterEncodingType.GB18030, "GB18030" },
-            { CharacterEncodingType.Big5, "Big5" },
-            { CharacterEncodingType.Korean, "Korean" },
-            { CharacterEncodingType.CodePage, "CodePage" },
+            { StarMicronics.StarIO10.StarXpandCommand.Printer.CharacterEncodingType.Japanese, "Japanese" },
+            { StarMicronics.StarIO10.StarXpandCommand.Printer.CharacterEncodingType.SimplifiedChinese, "SimplifiedChinese" },
+            { StarMicronics.StarIO10.StarXpandCommand.Printer.CharacterEncodingType.TraditionalChinese, "TraditionalChinese" },
+            { StarMicronics.StarIO10.StarXpandCommand.Printer.CharacterEncodingType.Korean, "Korean" },
+            { StarMicronics.StarIO10.StarXpandCommand.Printer.CharacterEncodingType.CodePage, "CodePage" },
         };
 
         private static readonly IReadOnlyDictionary<CjkCharacterType, string> PrinterCjkCharacterTypeDictionary = new Dictionary<CjkCharacterType, string>()
@@ -138,7 +152,7 @@ namespace StarMicronics.ReactNative.StarIO10
             { CjkCharacterType.Japanese, "Japanese" },
             { CjkCharacterType.SimplifiedChinese, "SimplifiedChinese" },
             { CjkCharacterType.TraditionalChinese, "TraditionalChinese" },
-            { CjkCharacterType.Hangul, "Hangul" },
+            { CjkCharacterType.Korean, "Korean" },
         };
 
         private static readonly IReadOnlyDictionary<CutType, string> PrinterCutTypeDictionary = new Dictionary<CutType, string>()
@@ -216,14 +230,64 @@ namespace StarMicronics.ReactNative.StarIO10
             { SoundStorageArea.Area2, "Area2" },
         };
 
+        private static readonly IReadOnlyDictionary<Contrast, string> DisplayContrastDictionary = new Dictionary<Contrast, string>()
+        {
+            { Contrast.Plus3, "Plus3" },
+            { Contrast.Plus2, "Plus2" },
+            { Contrast.Plus1, "Plus1" },
+            { Contrast.Default, "Default" },
+            { Contrast.Minus1, "Minus1" },
+            { Contrast.Minus2, "Minus2" },
+            { Contrast.Minus3, "Minus3" }
+        };
+
+        private static readonly IReadOnlyDictionary<CursorState, string> DisplayCursorStateDictionary = new Dictionary<CursorState, string>()
+        {
+            { CursorState.On, "On" },
+            { CursorState.Blink, "Blink" },
+            { CursorState.Off, "Off" }
+        };
+
+        private static readonly IReadOnlyDictionary<StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType, string> DisplayInternationalCharacterTypeDictionary = new Dictionary<StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType, string>()
+        {
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Usa, "Usa" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.France, "France" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Germany, "Germany" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.UK, "UK" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Denmark, "Denmark" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Sweden, "Sweden" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Italy, "Italy" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Spain, "Spain" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Japan, "Japan" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Norway, "Norway" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Denmark2, "Denmark2" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Spain2, "Spain2" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.LatinAmerica, "LatinAmerica" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType.Korea, "Korea" }
+        };
+
+        private static readonly IReadOnlyDictionary<StarMicronics.StarIO10.StarXpandCommand.Display.CharacterEncodingType, string> DisplayCharacterEncodingTypeDictionary = new Dictionary<StarMicronics.StarIO10.StarXpandCommand.Display.CharacterEncodingType, string>()
+        {
+            { StarMicronics.StarIO10.StarXpandCommand.Display.CharacterEncodingType.Japanese, "Japanese" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.CharacterEncodingType.SimplifiedChinese, "SimplifiedChinese" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.CharacterEncodingType.TraditionalChinese, "TraditionalChinese" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.CharacterEncodingType.Korean, "Korean" },
+            { StarMicronics.StarIO10.StarXpandCommand.Display.CharacterEncodingType.CodePage, "CodePage" },
+        };
+
         public static bool ToInterfaceType(string value, out InterfaceType output)
         {
             return InterfaceTypeDictionary.TryGetKey(value, out output);
         }
 
-        public static bool ToLedType(string value, out StarMicronics.StarIO10.StarXpandCommand.Led.Type output)
+        public static bool ToBezelLedType(string value, out StarMicronics.StarIO10.StarXpandCommand.Bezel.LedType output)
         {
-            return LedTypeDictionary.TryGetKey(value, out output);
+            return BezelLedTypeDictionary.TryGetKey(value, out output);
+        }
+
+        public static bool ToPresenterLedType(string value, out StarMicronics.StarIO10.StarXpandCommand.Presenter.LedType output)
+        {
+            return PresenterLedTypeDictionary.TryGetKey(value, out output);
         }
 
         public static bool ToPrinterBlackMarkPosition(string value, out BlackMarkPosition output)
@@ -306,6 +370,26 @@ namespace StarMicronics.ReactNative.StarIO10
             return MelodySpeakerSoundStorageAreaDictionary.TryGetKey(value, out output);
         }
 
+        public static bool ToDisplayContrast(string value, out Contrast output)
+        {
+            return DisplayContrastDictionary.TryGetKey(value, out output);
+        }
+
+        public static bool ToDisplayCursorState(string value, out CursorState output)
+        {
+            return DisplayCursorStateDictionary.TryGetKey(value, out output);
+        }
+
+        public static bool ToDisplayInternationalCharacterType(string value, out StarMicronics.StarIO10.StarXpandCommand.Display.InternationalCharacterType output)
+        {
+            return DisplayInternationalCharacterTypeDictionary.TryGetKey(value, out output);
+        }
+
+        public static bool ToDisplayCharacterEncodingType(string value, out StarMicronics.StarIO10.StarXpandCommand.Display.CharacterEncodingType output)
+        {
+            return DisplayCharacterEncodingTypeDictionary.TryGetKey(value, out output);
+        }
+
         public static bool ToString(InterfaceType value, out string output)
         {
             return InterfaceTypeDictionary.TryGetValue(value, out output);
@@ -313,12 +397,26 @@ namespace StarMicronics.ReactNative.StarIO10
 
         public static bool ToString(StarPrinterModel value, out string output)
         {
-            return StarPrinterModelDictionary.TryGetValue(value, out output);
+            bool result = StarPrinterModelDictionary.TryGetValue(value, out output);
+
+            if (!result)
+            {
+                output = "Unknown";
+            }
+
+            return true;
         }
 
         public static bool ToString(StarPrinterEmulation value, out string output)
         {
-            return StarPrinterEmulationDictionary.TryGetValue(value, out output);
+            bool result = StarPrinterEmulationDictionary.TryGetValue(value, out output);
+
+            if (!result)
+            {
+                output = "Unknown";
+            }
+
+            return true;
         }
 
         public static bool ToPresenterModeParameter(bool loop, bool hold, bool retract, int holdTime, out ModeParameter parameter)
@@ -332,23 +430,39 @@ namespace StarMicronics.ReactNative.StarIO10
             return true;
         }
 
-        public static bool ToLedAutomaticBlinkParameter(string type, int onTime, int offTime, out AutomaticBlinkParameter parameter)
+        public static bool ToBezelLedAutomaticBlinkParameter(string type, int onTime, int offTime, out StarMicronics.StarIO10.StarXpandCommand.Bezel.LedAutomaticBlinkParameter parameter)
         {
             parameter = null;
 
-            if (!ToLedType(type, out StarMicronics.StarIO10.StarXpandCommand.Led.Type nativeType))
+            if (!ToBezelLedType(type, out StarMicronics.StarIO10.StarXpandCommand.Bezel.LedType nativeType))
             {
                 return false;
             }
 
-            parameter = new AutomaticBlinkParameter(nativeType);
+            parameter = new StarMicronics.StarIO10.StarXpandCommand.Bezel.LedAutomaticBlinkParameter(nativeType);
             parameter.SetOnTime(onTime);
             parameter.SetOffTime(offTime);
 
             return true;
         }
 
-        public static bool ToPrinterBlackMarkParameter(bool start, bool end, string position, out BlackMarkParameter parameter)
+        public static bool ToPresenterLedAutomaticBlinkParameter(string type, int onTime, int offTime, out StarMicronics.StarIO10.StarXpandCommand.Presenter.LedAutomaticBlinkParameter parameter)
+        {
+            parameter = null;
+
+            if (!ToPresenterLedType(type, out StarMicronics.StarIO10.StarXpandCommand.Presenter.LedType nativeType))
+            {
+                return false;
+            }
+
+            parameter = new StarMicronics.StarIO10.StarXpandCommand.Presenter.LedAutomaticBlinkParameter(nativeType);
+            parameter.SetOnTime(onTime);
+            parameter.SetOffTime(offTime);
+
+            return true;
+        }
+
+        public static bool ToPrinterBlackMarkParameter(bool enable, string position, out BlackMarkParameter parameter)
         {
             parameter = null;
 
@@ -358,18 +472,16 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             parameter = new BlackMarkParameter();
-            parameter.SetStart(start);
-            parameter.SetEnd(end);
+            parameter.SetEnable(enable);
             parameter.SetPosition(nativePosition);
 
             return true;
         }
 
-        public static bool ToPrinterLabelParameter(bool start, bool end, out LabelParameter parameter)
+        public static bool ToPrinterLabelParameter(bool enable, out LabelParameter parameter)
         {
             parameter = new LabelParameter();
-            parameter.SetStart(start);
-            parameter.SetEnd(end);
+            parameter.SetEnable(enable);
 
             return true;
         }
@@ -381,19 +493,11 @@ namespace StarMicronics.ReactNative.StarIO10
             return true;
         }
 
-        public static bool ToPrinterPageModeParameter(double x, double y, double width, double height, string printDirection, out PageModeParameter parameter)
+        public static bool ToPrinterPageModeAreaParameter(double x, double y, double width, double height, out PageModeAreaParameter parameter)
         {
-            parameter = null;
-
-            if (!ToPrinterPageModePrintDirection(printDirection, out PageModePrintDirection nativePrintDirection))
-            {
-                return false;
-            }
-
-            parameter = new PageModeParameter(width, height);
+            parameter = new PageModeAreaParameter(width, height);
             parameter.SetX(x);
             parameter.SetY(y);
-            parameter.SetPrintDirection(nativePrintDirection);
 
             return true;
         }
@@ -468,11 +572,11 @@ namespace StarMicronics.ReactNative.StarIO10
             return true;
         }
 
-        public static async Task<ImageParameter> ToPrinterImageParameterAsync(string source, int width, bool effectDiffusion, int threshold)
+        public static async Task<StarMicronics.StarIO10.StarXpandCommand.Printer.ImageParameter> ToPrinterImageParameterAsync(string source, int width, bool effectDiffusion, int threshold)
         {
-            SoftwareBitmap image = await Base64ToImageAsync(source);
+            SoftwareBitmap image = await SourceToImageAsync(source);
 
-            ImageParameter parameter = new StarMicronics.StarIO10.StarXpandCommand.Printer.ImageParameter(image, width);
+            StarMicronics.StarIO10.StarXpandCommand.Printer.ImageParameter parameter = new StarMicronics.StarIO10.StarXpandCommand.Printer.ImageParameter(image, width);
             parameter.SetEffectDiffusion(effectDiffusion);
             parameter.SetThreshold(threshold);
 
@@ -528,12 +632,179 @@ namespace StarMicronics.ReactNative.StarIO10
             return true;
         }
 
-        public static bool ToMelodySpeakerDriveOneTimeSoundParameter(byte[] source, int volume, out DriveOneTimeSoundParameter parameter)
+        public static async Task<StarMicronics.StarIO10.StarXpandCommand.Display.ImageParameter> ToDisplayImageParameterAsync(string source, bool effectDiffusion, int threshold)
         {
-            parameter = new DriveOneTimeSoundParameter(source);
-            parameter.SetVolume(volume);
+            SoftwareBitmap image = await SourceToImageAsync(source);
+
+            StarMicronics.StarIO10.StarXpandCommand.Display.ImageParameter parameter = new StarMicronics.StarIO10.StarXpandCommand.Display.ImageParameter(image);
+            parameter.SetEffectDiffusion(effectDiffusion);
+            parameter.SetThreshold(threshold);
+
+            return parameter;
+        }
+
+        public static bool ToDisplayPositionParameter(int x, int y, out PositionParameter parameter)
+        {
+            parameter = new PositionParameter(x, y);
 
             return true;
+        }
+
+        public static async Task<DriveOneTimeSoundParameter> ToMelodySpeakerDriveOneTimeSoundParameterAsync(string source, int volume)
+        {
+            byte[] sourceBytes = await SourceToBytesAsync(source);
+
+            DriveOneTimeSoundParameter parameter = new DriveOneTimeSoundParameter(sourceBytes);
+            parameter.SetVolume(volume);
+
+            return parameter;
+        }
+
+        public static JSValue ToJSValue(dynamic value)
+        {
+            JSValue result;
+
+            if (value is string stringValue)
+            {
+                result = new JSValue(stringValue);
+            }
+            else if (value is bool boolValue)
+            {
+                result = new JSValue(boolValue);
+            }
+            else if (value is sbyte sbyteValue)
+            {
+                result = new JSValue(sbyteValue);
+            }
+            else if (value is short shortValue)
+            {
+                result = new JSValue(shortValue);
+            }
+            else if (value is int intValue)
+            {
+                result = new JSValue(intValue);
+            }
+            else if (value is long longValue)
+            {
+                result = new JSValue(longValue);
+            }
+            else if (value is byte byteValue)
+            {
+                result = new JSValue(byteValue);
+            }
+            else if (value is ushort ushortValue)
+            {
+                result = new JSValue(ushortValue);
+            }
+            else if (value is uint uintValue)
+            {
+                result = new JSValue(uintValue);
+            }
+            else if (value is ulong ulongValue)
+            {
+                result = new JSValue(ulongValue);
+            }
+            else if (value is float floatValue)
+            {
+                result = new JSValue(floatValue);
+            }
+            else if (value is double doubleValue)
+            {
+                result = new JSValue(doubleValue);
+            }
+            else if (value is IDictionary<string, dynamic> dictionaryValue)
+            {
+                result = new JSValue(ToJSDictionary(dictionaryValue));
+            }
+            else if (value is IEnumerable<dynamic> collectionValue)
+            {
+                result = ToJSCollection(collectionValue);
+            }
+            else if (value is Array arrayValue)
+            {
+                result = ToJSCollection(arrayValue.OfType<dynamic>().ToList());
+            }
+            else
+            {
+                result = JSValue.Null;
+            }
+
+            return result;
+        }
+
+        public static ReadOnlyCollection<JSValue> ToJSCollection(IEnumerable<dynamic> colleciton)
+        {
+            List<JSValue> result = new List<JSValue>();
+
+            foreach (dynamic item in colleciton)
+            {
+                result.Add(ToJSValue(item));
+            }
+
+            return new ReadOnlyCollection<JSValue>(result);
+        }
+
+        public static IReadOnlyDictionary<string, JSValue> ToJSDictionary(IEnumerable<KeyValuePair<string, object>> dictionary)
+        {
+            Dictionary<string, object> jsNamingDictionary = new Dictionary<string, object>();
+
+            foreach (KeyValuePair<string, object> item in dictionary)
+            {
+                jsNamingDictionary[ToJSNaming(item.Key)] = item.Value;
+            }
+
+            return ToJSDictionaryGeneral(jsNamingDictionary);
+        }
+
+        public static IReadOnlyDictionary<TKey, JSValue> ToJSDictionaryGeneral<TKey, TValue>(IEnumerable<KeyValuePair<TKey, TValue>> dictionary)
+        {
+            Dictionary<TKey, JSValue> result = new Dictionary<TKey, JSValue>();
+
+            foreach (KeyValuePair<TKey, TValue> item in dictionary)
+            {
+                result[item.Key] = ToJSValue(item.Value);
+            }
+
+            return result;
+        }
+
+        private static async Task<SoftwareBitmap> SourceToImageAsync(string source)
+        {
+            SoftwareBitmap image = null;
+
+            if (image == null)
+            {
+                try
+                {
+                    image = await UriToImageAsync(source);
+                }
+                catch { }
+            }
+
+            if (image == null)
+            {
+                try
+                {
+                    image = await ResourceFileToImageAsync(source);
+                }
+                catch { }
+            }
+
+            if (image == null)
+            {
+                try
+                {
+                    image = await Base64ToImageAsync(source);
+                }
+                catch { }
+            }
+
+            if (image == null)
+            {
+                throw new StarIO10ArgumentException("Invalid source.");
+            }
+
+            return image;
         }
 
         private static async Task<SoftwareBitmap> Base64ToImageAsync(string base64String)
@@ -553,6 +824,231 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             return image;
+        }
+
+        private static async Task<SoftwareBitmap> UriToImageAsync(string uri)
+        {
+            WebRequest request = WebRequest.Create(uri);
+            WebResponse response = request.GetResponse();
+            Stream stream = response.GetResponseStream();
+
+            SoftwareBitmap image;
+
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(memoryStream.AsRandomAccessStream());
+                image = await decoder.GetSoftwareBitmapAsync(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
+            }
+
+            return image;
+        }
+
+        private static async Task<SoftwareBitmap> ResourceFileToImageAsync(string fileName)
+        {
+            SoftwareBitmap image = null;
+            StorageFile file = await GetResourceFileAsync(fileName);
+
+            if (file != null)
+            {
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read))
+                {
+                    BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
+                    image = await decoder.GetSoftwareBitmapAsync(BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
+                }
+
+            }
+
+            return image;
+        }
+
+        private static async Task<byte[]> SourceToBytesAsync(string source)
+        {
+            byte[] sourceBytes = null;
+
+            if (sourceBytes == null)
+            {
+                try
+                {
+                    sourceBytes = UriToBytes(source);
+                }
+                catch { }
+            }
+
+            if (sourceBytes == null)
+            {
+                try
+                {
+                    sourceBytes = await ResourceFileToBytesAsync(source);
+                }
+                catch { }
+            }
+
+
+            if (sourceBytes == null)
+            {
+                try
+                {
+                    sourceBytes = Convert.FromBase64String(source);
+                }
+                catch { }
+            }
+
+            if (sourceBytes == null)
+            {
+                throw new StarIO10ArgumentException("Invalid source.");
+            }
+
+            return sourceBytes;
+        }
+
+        private static byte[] UriToBytes(string uri)
+        {
+            WebRequest request = WebRequest.Create(uri);
+            WebResponse response = request.GetResponse();
+            Stream stream = response.GetResponseStream();
+
+            byte[] buffer;
+
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                buffer = memoryStream.ToArray();
+            }
+
+            return buffer;
+        }
+
+        private static async Task<byte[]> ResourceFileToBytesAsync(string fileName)
+        {
+            byte[] buffer = null;
+            StorageFile file = await GetResourceFileAsync(fileName);
+
+            if (file != null)
+            {
+                using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read))
+                {
+                    buffer = new byte[stream.Size];
+                    await stream.ReadAsync(buffer.AsBuffer(), (uint)stream.Size, InputStreamOptions.None);
+                }
+
+            }
+
+            return buffer;
+        }
+
+        private static async Task<StorageFile> GetResourceFileAsync(string fileName)
+        {
+            StorageFile file = null;
+
+            try
+            {
+                file = await Package.Current.InstalledLocation.GetFileAsync(@"Assets\" + fileName);
+            }
+            catch (Exception) { }
+
+            //if (file == null)
+            //{
+            //    try
+            //    {
+            //        file = await ApplicationData.Current.LocalFolder.GetFileAsync(fileName);
+            //    }
+            //    catch (Exception) { }
+            //}
+
+            return file;
+        }
+
+        private static string ToJSNaming(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+
+            StringBuilder result = new StringBuilder();
+
+            char[] characters = value.ToCharArray();
+
+            for(int i = 0; i < characters.Length; i++)
+            {
+                char character = characters[i];
+
+                if(char.IsUpper(character))
+                {
+                    StringBuilder upperWord = new StringBuilder();
+                    upperWord.Append(character);
+
+                    for(int j = i + 1; j < characters.Length; j++)
+                    {
+                        i = j;
+
+                        char nextCharacter = characters[j];
+
+                        if(char.IsUpper(nextCharacter))
+                        {
+                            upperWord.Append(nextCharacter);
+                        }
+                        else
+                        {
+                            i = j - 1;
+                            break;
+                        }
+                    }
+
+                    if(2 <= upperWord.Length && i != characters.Length - 1)
+                    {
+                        upperWord.Remove(upperWord.Length - 1, 1);
+                        i--;
+                    }
+
+                    if(result.Length == 0)
+                    {
+                        result.Append(upperWord.ToString().ToLower());
+                    }
+                    else
+                    {
+                        result.Append(ToProperString(upperWord.ToString()));
+                    }
+                }
+                else
+                {
+                    result.Append(character);
+                }
+            }
+
+            return ToTopLowerString(result.ToString());
+        }
+
+        private static string ToProperString(string value)
+        {
+            StringBuilder result = new StringBuilder();
+
+            char[] characters = value.ToCharArray();
+
+            for (int i = 0; i < characters.Length; i++)
+            {
+                char character = characters[i];
+
+                if (i == 0 || characters.Length <= 2)
+                {
+                    result.Append(char.ToUpper(character));
+                }
+                else
+                {
+                    result.Append(char.ToLower(character));
+                }
+            }
+
+            return result.ToString();
+        }
+
+        private static string ToTopLowerString(string value)
+        {
+            char[] characters = value.ToCharArray();
+            characters[0] = char.ToLower(characters[0]);
+
+            return new string(characters);
         }
     }
 }

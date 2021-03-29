@@ -9,6 +9,7 @@ class EventParameter {
         const val KEY_INTERFACE_TYPE = "interfaceType"
         const val KEY_MODEL = "model"
         const val KEY_EMULATION = "emulation"
+        const val KEY_RESERVED = "reserved"
         const val KEY_CONNECTION_IDENTIFIER = "connectionIdentifier"
 
         const val NAME_PRINTER_DELEGATE_READY = "PrinterReady"

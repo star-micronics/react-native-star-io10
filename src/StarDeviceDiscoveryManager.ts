@@ -22,10 +22,11 @@ export class StarDeviceDiscoveryManager extends NativeObject {
     onPrinterFound: (printer: StarPrinter) => void = () => {};
     onDiscoveryFinished: () => void = () => {};
 
-    constructor(_interfaceTypes: Array<InterfaceType>) {
+    constructor(_interfaceTypes: Array<InterfaceType>, _nativeObject: string) {
         super();
 
         this._interfaceTypes = _interfaceTypes;
+        this._nativeObject = _nativeObject;
     }
 
     async startDiscovery(): Promise<void> {
@@ -45,6 +46,7 @@ export class StarDeviceDiscoveryManager extends NativeObject {
                         var information = new StarPrinterInformation();
                         information._model = actualPrams.model;
                         information._emulation = actualPrams.emulation;
+                        information._reserved = new Map(Object.entries(actualPrams.reserved));
 
                         var printer = new StarPrinter(settings);
                         printer._information = information;
@@ -89,7 +91,7 @@ export class StarDeviceDiscoveryManager extends NativeObject {
 
         await NativeModules.StarDeviceDiscoveryManagerWrapper.stopDiscovery(this._nativeObject)
         .catch(async (nativeError: Error) => {
-            var error = await StarIO10ErrorFactory.create(nativeError);
+            var error = await StarIO10ErrorFactory.create(nativeError.code);
             throw error;
         });
     }

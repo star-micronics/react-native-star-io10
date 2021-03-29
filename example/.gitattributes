@@ -1,1 +1,3 @@
 *.pbxproj -text
+*.sln 	 binary
+*.csproj binary

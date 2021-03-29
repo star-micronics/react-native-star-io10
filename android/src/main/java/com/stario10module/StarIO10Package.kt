@@ -12,18 +12,20 @@ class StarIO10Package : ReactPackage {
 
         modules.add(BezelSettingBuilderWrapper(reactContext))
         modules.add(BuzzerBuilderWrapper(reactContext))
+        modules.add(DisplayBuilderWrapper(reactContext))
         modules.add(DocumentBuilderWrapper(reactContext))
         modules.add(DrawerBuilderWrapper(reactContext))
-        modules.add(LedSettingBuilderWrapper(reactContext))
         modules.add(MelodySpeakerBuilderWrapper(reactContext))
         modules.add(PageModeBuilderWrapper(reactContext))
+        modules.add(PresenterSettingBuilderWrapper(reactContext))
         modules.add(PreSettingBuilderWrapper(reactContext))
         modules.add(PrinterBuilderWrapper(reactContext))
         modules.add(StarDeviceDiscoveryManagerWrapper(reactContext))
         modules.add(StarIO10ErrorWrapper(reactContext))
-        modules.add(StarXpandCommandBuilderWrapper(reactContext))
         modules.add(StarPrinterStatusWrapper(reactContext))
         modules.add(StarPrinterWrapper(reactContext))
+        modules.add(StarIO10LoggerWrapper(reactContext))
+        modules.add(StarXpandCommandBuilderWrapper(reactContext))
 
         return modules
     }

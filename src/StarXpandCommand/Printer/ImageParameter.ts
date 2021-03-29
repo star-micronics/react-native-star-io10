@@ -1,5 +1,5 @@
 export class ImageParameter {
-    private _source: string; 
+    private _source: string;
     private _width: number;
     private _effectDiffusion: boolean = false;
     private _threshold: number = 127;

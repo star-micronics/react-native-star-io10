@@ -1,8 +1,8 @@
 export class DriveOneTimeSoundParameter {
-    private _source: Array<number>; 
+    private _source: string; 
     private _volume: number = -1;
 
-    get source(): Array<number> {
+    get source(): string {
         return this._source;
     }
 
@@ -10,7 +10,7 @@ export class DriveOneTimeSoundParameter {
         return this._volume;
     }
 
-    constructor(source: Array<number>) {
+    constructor(source: string) {
         this._source = source;
     }
 

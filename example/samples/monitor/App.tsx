@@ -8,7 +8,7 @@ import {
 
 import {
     Picker
-} from '@react-native-community/picker';
+} from '@react-native-picker/picker';
 
 import {
     InterfaceType,
@@ -83,6 +83,16 @@ class App extends React.Component<AppProps, AppState> {
         this._printer.inputDeviceDelegate.onDataReceived = (data) => {
             console.log(`Input Device: DataReceived ${String(data)}`);
         }
+        this._printer.displayDelegate.onCommunicationError = (error) => {
+            console.log(`Display: Communication Error`);
+            console.log(error);
+        }
+        this._printer.displayDelegate.onConnected = () => {
+            console.log(`Display: Connected`);
+        }
+        this._printer.displayDelegate.onDisconnected = () => {
+            console.log(`Display: Disconnected`);
+        }
 
         try {
             await this._printer.open();
@@ -119,6 +129,7 @@ class App extends React.Component<AppProps, AppState> {
                     }}>
                     <Picker.Item label='LAN' value={InterfaceType.Lan} />
                     <Picker.Item label='Bluetooth' value={InterfaceType.Bluetooth}/>
+                    <Picker.Item label='Bluetooth LE' value={InterfaceType.BluetoothLE}/>
                     <Picker.Item label='USB' value={InterfaceType.Usb} />
                 </Picker>
                 </View>

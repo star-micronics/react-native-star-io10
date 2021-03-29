@@ -270,44 +270,20 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
         }
     }
 
-//    @ReactMethod
-//    fun getMacAddress(identifier: String, promise: Promise) {
-//        val printer = InstanceManager.get(identifier)
-//
-//        if (printer is StarPrinter) {
-//            promise.resolve(printer.information!!.connectionIdentifier.macAddress)
-//        }
-//        else {
-//            promise.reject(StarIO10Exception("Identifier error"))
-//        }
-//    }
-//
-//    @ReactMethod
-//    fun getBluetoothAddress(identifier: String, promise: Promise) {
-//        val printer = InstanceManager.get(identifier)
-//
-//        if (printer is StarPrinter) {
-//            promise.resolve(printer.information!!.connectionIdentifier.bluetoothAddress)
-//        }
-//        else {
-//            promise.reject(StarIO10Exception("Identifier error"))
-//        }
-//    }
-//
-//    @ReactMethod
-//    fun getUsbSerialNumber(identifier: String, promise: Promise) {
-//        val printer = InstanceManager.get(identifier)
-//
-//        if (printer is StarPrinter) {
-//            promise.resolve(printer.information!!.connectionIdentifier.usbSerialNumber)
-//        }
-//        else {
-//            promise.reject(StarIO10Exception("Identifier error"))
-//        }
-//    }
+    @ReactMethod
+    fun getReserved(identifier: String, promise: Promise) {
+        val printer = InstanceManager.get(identifier)
+
+        if (printer is StarPrinter) {
+            promise.resolve(StarIO10ValueConverter.toWritableMap(printer.information!!.reserved))
+        }
+        else {
+            promise.reject(StarIO10Exception("Identifier error"))
+        }
+    }
 
     @ReactMethod
-    fun printRaw(identifier: String, data: ReadableArray, timeout: Int, promise: Promise) {
+    fun printRawData(identifier: String, data: ReadableArray, timeout: Int, promise: Promise) {
         val job = SupervisorJob()
         val scope = CoroutineScope(Dispatchers.Default + job)
 

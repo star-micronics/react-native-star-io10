@@ -55,38 +55,21 @@ RCT_REMAP_METHOD(dispose,
     resolve(nil);
 }
 
-RCT_REMAP_METHOD(settingVerticalPositionTo,
-                 settingVerticalPositionToWithObjectIdentifier:(nonnull NSString *)objID
-                 position:(nonnull NSNumber *)position
+RCT_REMAP_METHOD(stylePrintDirection,
+                 stylePrintDirectionWithObjectIdentifier:(nonnull NSString *)objID
+                 direction:(nonnull NSString *)direction
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
     STARIO10StarXpandCommandPageModeBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-
-    [builder settingVerticalPositionTo:position.doubleValue];
-    
-    resolve(nil);
-}
-
-RCT_REMAP_METHOD(settingVerticalPositionBy,
-                 settingVerticalPositionByWithObjectIdentifier:(nonnull NSString *)objID
-                 position:(nonnull NSNumber *)position
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandPageModeBuilder *builder = [_objManager getObject:objID];
-    
     if (builder == nil) {
         reject(@"Error", @"Fail to get object.", nil);
         return;
     }
     
-    [builder settingVerticalPositionBy:position.doubleValue];
+    STARIO10StarXpandCommandPrinterPageModePrintDirection directionType = [StarIO10ValueConverter toPrinterPageModePrintDirection:direction];
+
+    [builder stylePrintDirection:directionType];
     
     resolve(nil);
 }
@@ -218,6 +201,42 @@ RCT_REMAP_METHOD(styleLineSpace,
     }
     
     [builder styleLineSpace:height.doubleValue];
+    
+    resolve(nil);
+}
+
+RCT_REMAP_METHOD(styleVerticalPositionTo,
+                 styleVerticalPositionToWithObjectIdentifier:(nonnull NSString *)objID
+                 position:(nonnull NSNumber *)position
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarXpandCommandPageModeBuilder *builder = [_objManager getObject:objID];
+    
+    if (builder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+
+    [builder styleVerticalPositionTo:position.doubleValue];
+    
+    resolve(nil);
+}
+
+RCT_REMAP_METHOD(styleVerticalPositionBy,
+                 styleVerticalPositionByWithObjectIdentifier:(nonnull NSString *)objID
+                 position:(nonnull NSNumber *)position
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarXpandCommandPageModeBuilder *builder = [_objManager getObject:objID];
+    
+    if (builder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    [builder styleVerticalPositionBy:position.doubleValue];
     
     resolve(nil);
 }
@@ -462,7 +481,13 @@ RCT_REMAP_METHOD(actionPrintImage,
                                                                                                            threshold:threshold];
     
     if (param == nil) {
-        reject(@"Error", @"Fail to create image.", nil);
+        NSDictionary *info = @{
+            NSLocalizedDescriptionKey: @"Invalid source.",
+            STARIO10ErrorDetailErrorCodeKey: [[NSNumber alloc] initWithInt:STARIO10ErrorCodeNone]
+        };
+        NSError *error = [[NSError alloc] initWithDomain:@"StarIO10.STARIO10Error" code:STARIO10ErrorArgument userInfo:info];
+        NSString *errorID = [self->_objManager add:error];
+        reject(errorID, error.localizedDescription, error);
         return;
     }
     

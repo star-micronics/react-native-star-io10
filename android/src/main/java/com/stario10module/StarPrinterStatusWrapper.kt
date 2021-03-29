@@ -1,6 +1,8 @@
 package com.stario10module
 
 import com.facebook.react.bridge.*
+import com.starmicronics.stario10.StarIO10Exception
+import com.starmicronics.stario10.StarPrinter
 import com.starmicronics.stario10.StarPrinterStatus
 
 
@@ -66,6 +68,18 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
         }
         else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
+        }
+    }
+
+    @ReactMethod
+    fun getReserved(identifier: String, promise: Promise) {
+        val status = InstanceManager.get(identifier)
+
+        if (status is StarPrinterStatus) {
+            promise.resolve(StarIO10ValueConverter.toWritableMap(status.reserved))
+        }
+        else {
+            promise.reject(StarIO10Exception("Identifier error"))
         }
     }
 

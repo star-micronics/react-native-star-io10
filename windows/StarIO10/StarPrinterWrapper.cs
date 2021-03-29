@@ -1,6 +1,7 @@
 ﻿using Microsoft.ReactNative.Managed;
 using StarMicronics.StarIO10;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace StarMicronics.ReactNative.StarIO10
@@ -9,46 +10,55 @@ namespace StarMicronics.ReactNative.StarIO10
     class StarPrinterWrapper : StarIO10ObjectWrapper<StarPrinter>
     {
         [ReactEvent]
-        public Action<CommunicationErrorEventParameter> PrinterCommunicationError { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> PrinterCommunicationError { get; set; }
 
         [ReactEvent]
-        public Action<EventParameter> PrinterReady { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> PrinterReady { get; set; }
 
         [ReactEvent]
-        public Action<EventParameter> PrinterError { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> PrinterError { get; set; }
 
         [ReactEvent]
-        public Action<EventParameter> PrinterPaperReady { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> PrinterPaperReady { get; set; }
 
         [ReactEvent]
-        public Action<EventParameter> PrinterPaperNearEmpty { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> PrinterPaperNearEmpty { get; set; }
 
         [ReactEvent]
-        public Action<EventParameter> PrinterPaperEmpty { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> PrinterPaperEmpty { get; set; }
 
         [ReactEvent]
-        public Action<EventParameter> PrinterCoverOpened { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> PrinterCoverOpened { get; set; }
 
         [ReactEvent]
-        public Action<EventParameter> PrinterCoverClosed { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> PrinterCoverClosed { get; set; }
 
         [ReactEvent]
-        public Action<CommunicationErrorEventParameter> DrawerCommunicationError { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> DrawerCommunicationError { get; set; }
 
         [ReactEvent]
-        public Action<DrawerOpenStateSwitchedEventParameter> DrawerOpenCloseSignalSwitched { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> DrawerOpenCloseSignalSwitched { get; set; }
 
         [ReactEvent]
-        public Action<CommunicationErrorEventParameter> InputDeviceCommunicationError { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> InputDeviceCommunicationError { get; set; }
 
         [ReactEvent]
-        public Action<EventParameter> InputDeviceConnected { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> InputDeviceConnected { get; set; }
 
         [ReactEvent]
-        public Action<EventParameter> InputDeviceDisconnected { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> InputDeviceDisconnected { get; set; }
 
         [ReactEvent]
-        public Action<InputDeviceDataReceivedEventParameter> InputDeviceDataReceived { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> InputDeviceDataReceived { get; set; }
+
+        [ReactEvent]
+        public Action<IReadOnlyDictionary<string, JSValue>> DisplayCommunicationError { get; set; }
+
+        [ReactEvent]
+        public Action<IReadOnlyDictionary<string, JSValue>> DisplayConnected { get; set; }
+
+        [ReactEvent]
+        public Action<IReadOnlyDictionary<string, JSValue>> DisplayDisconnected { get; set; }
 
         [ReactMethod("init")]
         public void Init(IReactPromise<string> promise)
@@ -60,19 +70,45 @@ namespace StarMicronics.ReactNative.StarIO10
             nativeObject.PrinterDelegate.CommunicationError += (sender, e) =>
             {
                 StarIO10ErrorWrapper.SetObject(e.Exception, out string exceptionIdentifier);
-                PrinterCommunicationError(new CommunicationErrorEventParameter() { identifier = objectIdentifier, errorIdentifier = exceptionIdentifier });
+
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
+
+                PrinterCommunicationError(parameter);
             };
 
             nativeObject.DrawerDelegate.CommunicationError += (sender, e) =>
             {
                 StarIO10ErrorWrapper.SetObject(e.Exception, out string exceptionIdentifier);
-                DrawerCommunicationError(new CommunicationErrorEventParameter() { identifier = objectIdentifier, errorIdentifier = exceptionIdentifier });
+
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
+
+                DrawerCommunicationError(parameter);
             };
 
             nativeObject.InputDeviceDelegate.CommunicationError += (sender, e) =>
             {
                 StarIO10ErrorWrapper.SetObject(e.Exception, out string exceptionIdentifier);
-                InputDeviceCommunicationError(new CommunicationErrorEventParameter() { identifier = objectIdentifier, errorIdentifier = exceptionIdentifier });
+
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
+
+                InputDeviceCommunicationError(parameter);
+            };
+
+            nativeObject.DisplayDelegate.CommunicationError += (sender, e) =>
+            {
+                StarIO10ErrorWrapper.SetObject(e.Exception, out string exceptionIdentifier);
+
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
+
+                DisplayCommunicationError(parameter);
             };
 
             promise.Resolve(objectIdentifier);
@@ -97,37 +133,58 @@ namespace StarMicronics.ReactNative.StarIO10
 
             nativeObject.PrinterDelegate.Ready += (sender, e) =>
             {
-                PrinterReady(new EventParameter() { identifier = objectIdentifier });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                PrinterReady(parameter);
             };
 
             nativeObject.PrinterDelegate.Error += (sender, e) =>
             {
-                PrinterError(new EventParameter() { identifier = objectIdentifier });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                PrinterError(parameter);
             };
 
             nativeObject.PrinterDelegate.PaperReady += (sender, e) =>
             {
-                PrinterPaperReady(new EventParameter() { identifier = objectIdentifier });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                PrinterPaperReady(parameter);
             };
 
             nativeObject.PrinterDelegate.PaperNearEmpty += (sender, e) =>
             {
-                PrinterPaperNearEmpty(new EventParameter() { identifier = objectIdentifier });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                PrinterPaperNearEmpty(parameter);
             };
 
             nativeObject.PrinterDelegate.PaperEmpty += (sender, e) =>
             {
-                PrinterPaperEmpty(new EventParameter() { identifier = objectIdentifier });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                PrinterPaperEmpty(parameter);
             };
 
             nativeObject.PrinterDelegate.CoverOpened += (sender, e) =>
             {
-                PrinterCoverOpened(new EventParameter() { identifier = objectIdentifier });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                PrinterCoverOpened(parameter);
             };
 
             nativeObject.PrinterDelegate.CoverClosed += (sender, e) =>
             {
-                PrinterCoverClosed(new EventParameter() { identifier = objectIdentifier });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                PrinterCoverClosed(parameter);
             };
 
             promise.Resolve();
@@ -144,7 +201,11 @@ namespace StarMicronics.ReactNative.StarIO10
 
             nativeObject.DrawerDelegate.OpenCloseSignalSwitched += (sender, e) =>
             {
-                DrawerOpenCloseSignalSwitched(new DrawerOpenStateSwitchedEventParameter() { identifier = objectIdentifier, openCloseSignal = e.OpenCloseSignal });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyDrawerOpenCloseSignalState, e.OpenCloseSignal);
+
+                DrawerOpenCloseSignalSwitched(parameter);
             };
 
             promise.Resolve();
@@ -161,17 +222,55 @@ namespace StarMicronics.ReactNative.StarIO10
 
             nativeObject.InputDeviceDelegate.Connected += (sender, e) =>
             {
-                InputDeviceConnected(new EventParameter() { identifier = objectIdentifier });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                InputDeviceConnected(parameter);
             };
 
             nativeObject.InputDeviceDelegate.Disconnected += (sender, e) =>
             {
-                InputDeviceDisconnected(new EventParameter() { identifier = objectIdentifier });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                InputDeviceDisconnected(parameter);
             };
 
             nativeObject.InputDeviceDelegate.DataReceived += (sender, e) =>
             {
-                InputDeviceDataReceived(new InputDeviceDataReceivedEventParameter() { identifier = objectIdentifier, data = e.Data.ToArray() });
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyInputDeviceData, StarIO10ValueConverter.ToJSValue(e.Data.ToArray()));
+
+                InputDeviceDataReceived(parameter);
+            };
+
+            promise.Resolve();
+        }
+
+        [ReactMethod("activateDisplayDelegate")]
+        public void ActivateDisplayDelegate(string objectIdentifier, IReactPromise<JSValue.Void> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.DisplayDelegate.Connected += (sender, e) =>
+            {
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                DisplayConnected(parameter);
+            };
+
+            nativeObject.DisplayDelegate.Disconnected += (sender, e) =>
+            {
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                DisplayDisconnected(parameter);
             };
 
             promise.Resolve();
@@ -228,6 +327,18 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             promise.Resolve(emulationString);
+        }
+
+        [ReactMethod("getReserved")]
+        public void GetReserved(string objectIdentifier, IReactPromise<IReadOnlyDictionary<string, JSValue>> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            promise.Resolve(StarIO10ValueConverter.ToJSDictionary(nativeObject.Information.Reserved));
         }
 
         [ReactMethod("print")]

@@ -75,13 +75,12 @@ RCT_REMAP_METHOD(styleAlignment,
      resolve(nil);
 }
 
-RCT_REMAP_METHOD(settingPageMode,
-                 settingPageModeWithObjectIdentifier:(nonnull NSString *)objID
+RCT_REMAP_METHOD(addPageMode,
+                 addPageModeWithObjectIdentifier:(nonnull NSString *)objID
                  x:(nonnull NSNumber *)x
                  y:(nonnull NSNumber *)y
                  width:(nonnull NSNumber *)width
                  height:(nonnull NSNumber *)height
-                 printDirection:(nonnull NSString *)printDirection
                  pageModeBuilderID:(nonnull NSString *)pageModeBuilderID
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
@@ -100,13 +99,12 @@ RCT_REMAP_METHOD(settingPageMode,
         return;
     }
     
-    STARIO10StarXpandCommandPrinterPageModeParameter *param = [StarIO10ValueConverter toPrinterPageModeParameterWithX:x
+    STARIO10StarXpandCommandPrinterPageModeAreaParameter *param = [StarIO10ValueConverter toPrinterPageModeAreaParameterWithX:x
                                                                                                                     y:y
                                                                                                                 width:width
-                                                                                                               height:height
-                                                                                                       printDirection:printDirection];
+                                                                                                               height:height];
     
-    [builder settingPageModeUsing:param with:pageModeBuilder];
+    [builder addPageModeWithParameter:param builder:pageModeBuilder];
      
     resolve(nil);
 }
@@ -558,7 +556,13 @@ RCT_REMAP_METHOD(actionPrintImage,
                                                                                                            threshold:threshold];
     
     if (param == nil) {
-        reject(@"Error", @"Fail to create image.", nil);
+        NSDictionary *info = @{
+            NSLocalizedDescriptionKey: @"Invalid source.",
+            STARIO10ErrorDetailErrorCodeKey: [[NSNumber alloc] initWithInt:STARIO10ErrorCodeNone]
+        };
+        NSError *error = [[NSError alloc] initWithDomain:@"StarIO10.STARIO10Error" code:STARIO10ErrorArgument userInfo:info];
+        NSString *errorID = [self->_objManager add:error];
+        reject(errorID, error.localizedDescription, error);
         return;
     }
     

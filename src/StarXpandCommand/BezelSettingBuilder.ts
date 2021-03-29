@@ -11,15 +11,14 @@ export class BezelSettingBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
-    addLed(builder: StarXpandCommand.LedSettingBuilder): BezelSettingBuilder {
-        this._addChild(builder);
-
+    settingLedAutomaticBlink(parameter: StarXpandCommand.Bezel.LedAutomaticBlinkParameter): BezelSettingBuilder {
         this._addAction(async() => {
-            await NativeModules.BezelSettingBuilderWrapper.addLed(this._nativeObject, builder._nativeObject);
+            await NativeModules.BezelSettingBuilderWrapper.settingLedAutomaticBlink(this._nativeObject, parameter.type, parameter.onTime, parameter.offTime);
         });
 
         return this;
     }
+
 
     protected async _initNativeObjectImpl(): Promise<string> {
         return await NativeModules.BezelSettingBuilderWrapper.init();

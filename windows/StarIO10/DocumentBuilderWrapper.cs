@@ -40,10 +40,10 @@ namespace StarMicronics.ReactNative.StarIO10
         }
 
         [ReactMethod("settingBlackMark")]
-        public void SettingBlackMark(string objectIdentifier, bool start, bool end, string position, IReactPromise<JSValue.Void> promise)
+        public void SettingBlackMark(string objectIdentifier, bool enable, string position, IReactPromise<JSValue.Void> promise)
         {
             if (!GetObject(objectIdentifier, out DocumentBuilder nativeObject) ||
-                !StarIO10ValueConverter.ToPrinterBlackMarkParameter(start, end, position, out BlackMarkParameter parameter))
+                !StarIO10ValueConverter.ToPrinterBlackMarkParameter(enable, position, out BlackMarkParameter parameter))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -55,10 +55,10 @@ namespace StarMicronics.ReactNative.StarIO10
         }
 
         [ReactMethod("settingLabel")]
-        public void SettingLabel(string objectIdentifier, bool start, bool end, IReactPromise<JSValue.Void> promise)
+        public void SettingLabel(string objectIdentifier, bool enable, IReactPromise<JSValue.Void> promise)
         {
             if (!GetObject(objectIdentifier, out DocumentBuilder nativeObject) ||
-                !StarIO10ValueConverter.ToPrinterLabelParameter(start, end, out LabelParameter parameter))
+                !StarIO10ValueConverter.ToPrinterLabelParameter(enable, out LabelParameter parameter))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -154,6 +154,21 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             nativeObject.AddMelodySpeaker(melodySpeakerBuilder);
+
+            promise.Resolve();
+        }
+
+        [ReactMethod("addDisplay")]
+        public void AddDisplay(string objectIdentifier, string displayBuilderIdentifier, IReactPromise<JSValue.Void> promise)
+        {
+            if (!GetObject(objectIdentifier, out DocumentBuilder nativeObject) ||
+                !DisplayBuilderWrapper.GetObject(displayBuilderIdentifier, out DisplayBuilder displayBuilder))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.AddDisplay(displayBuilder);
 
             promise.Resolve();
         }

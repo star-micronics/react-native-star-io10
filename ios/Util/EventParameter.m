@@ -16,7 +16,8 @@ NSString * const kKeyInputDeviceData = @"data";
 NSString * const kKeyInterfaceType = @"interfaceType";
 NSString * const kKeyConnectionIdentifier = @"connectionIdentifier";
 NSString * const kKeyModel = @"model";
-NSString * const kKeyEmulation = @"model";
+NSString * const kKeyEmulation = @"emulation";
+NSString * const kKeyReserved = @"reserved";
 
 NSString * const kNamePrinterDelegateReady = @"PrinterReady";
 NSString * const kNamePrinterDelegateError = @"PrinterError";

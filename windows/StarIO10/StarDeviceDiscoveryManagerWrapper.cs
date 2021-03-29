@@ -9,10 +9,10 @@ namespace StarMicronics.ReactNative.StarIO10
     class StarDeviceDiscoveryManagerWrapper : StarIO10ObjectWrapper<IStarDeviceDiscoveryManager>
     {
         [ReactEvent]
-        public Action<PrinterFoundParameter> PrinterFound { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> PrinterFound { get; set; }
 
         [ReactEvent]
-        public Action<EventParameter> DiscoveryFinished { get; set; }
+        public Action<IReadOnlyDictionary<string, JSValue>> DiscoveryFinished { get; set; }
 
         [ReactMethod("init")]
         public void Init(string[] interfaceTypes, IReactPromise<string> promise)
@@ -30,35 +30,46 @@ namespace StarMicronics.ReactNative.StarIO10
                 nativeInterfaceTypes.Add(nativeInterfaceType);
             }
 
-            IStarDeviceDiscoveryManager nativeObject = StarDeviceDiscoveryManagerFactory.Create(nativeInterfaceTypes);
-
-            SetObject(nativeObject, out string objectIdentifier);
-
-            nativeObject.PrinterFound += (sender, e) =>
+            try
             {
-                if(!StarIO10ValueConverter.ToString(e.Printer.ConnectionSettings.InterfaceType, out string interfaceTypeString) ||
-                   !StarIO10ValueConverter.ToString(e.Printer.Information.Model, out string modelString) ||
-                   !StarIO10ValueConverter.ToString(e.Printer.Information.Emulation, out string emulationString))
-                {
-                    return;
-                }
+                IStarDeviceDiscoveryManager nativeObject = StarDeviceDiscoveryManagerFactory.Create(nativeInterfaceTypes);
 
-                PrinterFound(new PrinterFoundParameter()
-                {
-                    identifier = objectIdentifier,
-                    interfaceType = interfaceTypeString,
-                    connectionIdentifier = e.Printer.ConnectionSettings.Identifier,
-                    model = modelString,
-                    emulation = emulationString
+                SetObject(nativeObject, out string objectIdentifier);
 
-                });
-            };
-            nativeObject.DiscoveryFinished += (sender, e) =>
+                nativeObject.PrinterFound += (sender, e) =>
+                {
+                    if(!StarIO10ValueConverter.ToString(e.Printer.ConnectionSettings.InterfaceType, out string interfaceTypeString) ||
+                       !StarIO10ValueConverter.ToString(e.Printer.Information.Model, out string modelString) ||
+                       !StarIO10ValueConverter.ToString(e.Printer.Information.Emulation, out string emulationString))
+                    {
+                        return;
+                    }
+
+                    var parameter = new Dictionary<string, JSValue>();
+                    parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                    parameter.Add(EventParameter.KeyInterfaceType, interfaceTypeString);
+                    parameter.Add(EventParameter.KeyConnectionIdentifier, e.Printer.ConnectionSettings.Identifier);
+                    parameter.Add(EventParameter.KeyModel, modelString);
+                    parameter.Add(EventParameter.KeyEmulation, emulationString);
+                    parameter.Add(EventParameter.KeyReserved, StarIO10ValueConverter.ToJSValue(e.Printer.Information.Reserved));
+
+                    PrinterFound(parameter);
+                };
+                nativeObject.DiscoveryFinished += (sender, e) =>
+                {
+                    var parameter = new Dictionary<string, JSValue>();
+                    parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+
+                    DiscoveryFinished(parameter);
+                };
+
+                promise.Resolve(objectIdentifier);
+            }
+            catch (StarIO10Exception e)
             {
-                DiscoveryFinished(new EventParameter() { identifier = objectIdentifier });
-            };
-
-            promise.Resolve(objectIdentifier);
+                StarIO10ErrorWrapper.SetObject(e, out string exceptionIdentifier);
+                promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
+            }
         }
 
         [ReactMethod("dispose")]

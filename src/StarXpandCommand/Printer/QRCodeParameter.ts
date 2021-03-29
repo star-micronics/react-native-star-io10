@@ -5,7 +5,7 @@ export class QRCodeParameter {
     private _content: string;
     private _model: QRCodeModel = QRCodeModel.Model2;
     private _level: QRCodeLevel = QRCodeLevel.L;
-    private _cellSize: number = 2;
+    private _cellSize: number = 3;
 
     get content(): string {
         return this._content;

@@ -1,4 +1,4 @@
-import { 
+import {
     NativeModules,
     NativeEventEmitter,
     EventSubscription
@@ -13,6 +13,7 @@ import { StarPrinterStatusFactory } from './StarPrinterStatusFactory';
 import { PrinterDelegate } from './PrinterDelegate';
 import { DrawerDelegate } from './DrawerDelegate';
 import { InputDeviceDelegate } from './InputDeviceDelegate';
+import { DisplayDelegate } from './DisplayDelegate';
 
 const eventEmitter = new NativeEventEmitter(NativeModules.StarPrinterWrapper);
 
@@ -22,12 +23,13 @@ export class StarPrinter extends NativeObject {
     private _printerDelegate: PrinterDelegate  = new PrinterDelegate();
     private _drawerDelegate: DrawerDelegate  = new DrawerDelegate();
     private _inputDeviceDelegate: InputDeviceDelegate  = new InputDeviceDelegate();
+    private _displayDelegate: DisplayDelegate  = new DisplayDelegate();
 
     _information: StarPrinterInformation | undefined = undefined;
 
     openTimeout: number = 10000;
-    printTimeout: number = 10000;
-    getStatusTimeout: number = 10000;
+    printTimeout: number = 30000;
+    getStatusTimeout: number = 5000;
 
     get information(): StarPrinterInformation | undefined {
         return this._information;
@@ -47,6 +49,10 @@ export class StarPrinter extends NativeObject {
 
     get inputDeviceDelegate(): InputDeviceDelegate {
         return this._inputDeviceDelegate;
+    }
+
+    get displayDelegate(): DisplayDelegate {
+        return this._displayDelegate;
     }
 
     constructor(connectionSettings : StarConnectionSettings) {
@@ -76,6 +82,14 @@ export class StarPrinter extends NativeObject {
             await this._initNativeObject();
 
             await NativeModules.StarPrinterWrapper.activateInputDeviceDelegate(this._nativeObject);
+        };
+
+        this.displayDelegate._onEventSet = async () => {
+            this.displayDelegate._onEventSet = () => {};
+
+            await this._initNativeObject();
+
+            await NativeModules.StarPrinterWrapper.activateDisplayDelegate(this._nativeObject);
         };
 
         this._eventSubscriptions.push(
@@ -193,6 +207,31 @@ export class StarPrinter extends NativeObject {
                 }
             }, this)
         );
+        this._eventSubscriptions.push(
+            eventEmitter.addListener('DisplayCommunicationError', async (params) => {
+                var actualPrams = NativeObject._getEventParams(params);
+                if(this._nativeObject === actualPrams.identifier) {
+                    var error = await StarIO10ErrorFactory.create(actualPrams.errorIdentifier);
+                    this.displayDelegate.onCommunicationError(error);
+                }
+            }, this)
+        );
+        this._eventSubscriptions.push(
+            eventEmitter.addListener('DisplayConnected', (params) => {
+                var actualPrams = NativeObject._getEventParams(params);
+                if(this._nativeObject === actualPrams.identifier) {
+                    this.displayDelegate.onConnected();
+                }
+            }, this)
+        );
+        this._eventSubscriptions.push(
+            eventEmitter.addListener('DisplayDisconnected', (params) => {
+                var actualPrams = NativeObject._getEventParams(params);
+                if(this._nativeObject === actualPrams.identifier) {
+                    this.displayDelegate.onDisconnected();
+                }
+            }, this)
+        );
     }
 
     async open(): Promise<void> {
@@ -207,6 +246,7 @@ export class StarPrinter extends NativeObject {
         this._information = new StarPrinterInformation();
         this._information._model = await NativeModules.StarPrinterWrapper.getModel(this._nativeObject);
         this._information._emulation = await NativeModules.StarPrinterWrapper.getEmulation(this._nativeObject);
+        this._information._reserved = new Map(Object.entries(await NativeModules.StarPrinterWrapper.getReserved(this._nativeObject)));
     }
 
     async print(command: string): Promise<void> {
@@ -232,12 +272,12 @@ export class StarPrinter extends NativeObject {
     async getStatus(): Promise<StarPrinterStatus> {
         await this._initNativeObject();
 
-        var nativeStatus = await NativeModules.StarPrinterWrapper.getStatus(this._nativeObject, this.getStatusTimeout)        
+        var nativeStatus = await NativeModules.StarPrinterWrapper.getStatus(this._nativeObject, this.getStatusTimeout)
         .catch(async (nativeError: Error) => {
             var error = await StarIO10ErrorFactory.create(nativeError.code);
             throw error;
         });
-        
+
         return await StarPrinterStatusFactory.create(nativeStatus);
     }
 

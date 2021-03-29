@@ -1,7 +1,6 @@
 package com.stario10module
 
 import com.facebook.react.bridge.*
-import com.starmicronics.stario10.starxpandcommand.LedSettingBuilder
 import com.starmicronics.stario10.starxpandcommand.PresenterSettingBuilder
 
 class PresenterSettingBuilderWrapper internal constructor(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {
@@ -39,12 +38,13 @@ class PresenterSettingBuilderWrapper internal constructor(context: ReactApplicat
     }
 
     @ReactMethod
-    fun addLed(identifier: String, ledSettingBuilderIdentifier: String, promise: Promise) {
+    fun settingLedAutomaticBlink(identifier: String, type: String, onTime: Int, offTime: Int, promise: Promise) {
         val builder = InstanceManager.get(identifier)
-        val ledSettingBuilder = InstanceManager.get(ledSettingBuilderIdentifier)
 
-        if (builder is PresenterSettingBuilder && ledSettingBuilder is LedSettingBuilder) {
-            builder.addLed(ledSettingBuilder)
+        if (builder is PresenterSettingBuilder) {
+            val parameter = StarIO10ValueConverter.toPresenterLedAutomaticBlinkParameter(type, onTime, offTime)
+
+            builder.settingLedAutomaticBlink(parameter)
             promise.resolve(0)
         }
         else {

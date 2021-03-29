@@ -4,11 +4,12 @@ export class StarPrinterStatus {
     _drawerOpenCloseSignal: boolean = false;
     _paperEmpty: boolean = false;
     _paperNearEmpty: boolean = false;
+    _reserved: Map<string, any | undefined> = new Map<string, any | undefined>()
 
     get hasError(): boolean {
         return this._hasError;
     }
-    
+
     get coverOpen(): boolean {
         return this._coverOpen;
     }
@@ -23,5 +24,9 @@ export class StarPrinterStatus {
 
     get paperNearEmpty(): boolean {
         return this._paperNearEmpty;
+    }
+
+    get reserved(): ReadonlyMap<string, any | undefined> {
+        return this._reserved;
     }
 }

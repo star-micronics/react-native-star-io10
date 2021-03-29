@@ -47,11 +47,17 @@ RCT_REMAP_METHOD(init,
         [numberArray addObject:@(nativeType)];
     }
 
-    id<STARIO10StarDeviceDiscoveryManager> manager = [STARIO10StarDeviceDiscoveryManagerFactory createWithInterfaceTypes:numberArray];
+    NSError *error = nil;
+    id<STARIO10StarDeviceDiscoveryManager> manager = [STARIO10StarDeviceDiscoveryManagerFactory createWithInterfaceTypes:numberArray error:&error];
+    
+    if (error) {
+        NSString *errorID = [_objManager add:error];
+        reject(errorID, error.localizedDescription, nil);
+        return;
+    }
+    
     manager.delegate = self;
-    
     NSString *objID = [_objManager add:manager];
-    
     resolve(objID);
 }
 
@@ -130,7 +136,9 @@ RCT_REMAP_METHOD(stopDiscovery,
                                                          kKeyInterfaceType: interfaceTypeString,
                                                          kKeyConnectionIdentifier: printer.connectionSettings.identifier,
                                                          kKeyModel: modelString,
-                                                         kKeyEmulation: emulationString}];
+                                                         kKeyEmulation: emulationString,
+                                                         kKeyReserved: [StarIO10ValueConverter toJSNamingDictionary:printer.information.reserved]
+        }];
     }
 }
 

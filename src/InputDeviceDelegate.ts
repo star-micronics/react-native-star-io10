@@ -8,7 +8,7 @@ export class InputDeviceDelegate {
     private _onDataReceived: (data: Array<number>) => void = () => {};
 
     onCommunicationError: (error: StarIO10Error) => void = () => {};
-    
+
     set onConnected(value: () => void) {
         this._onConnected = value;
 

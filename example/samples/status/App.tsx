@@ -8,7 +8,7 @@ import {
 
 import {
   Picker
-} from '@react-native-community/picker';
+} from '@react-native-picker/picker';
 
 import {
     InterfaceType,
@@ -74,6 +74,7 @@ class App extends React.Component<AppProps, AppState> {
                     }}>
                     <Picker.Item label='LAN' value={InterfaceType.Lan} />
                     <Picker.Item label='Bluetooth' value={InterfaceType.Bluetooth}/>
+                    <Picker.Item label='Bluetooth LE' value={InterfaceType.BluetoothLE}/>
                     <Picker.Item label='USB' value={InterfaceType.Usb} />
                 </Picker>
                 </View>

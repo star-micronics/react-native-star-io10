@@ -28,30 +28,17 @@ namespace StarMicronics.ReactNative.StarIO10
             promise.Resolve();
         }
 
-        [ReactMethod("settingVerticalPositionTo")]
-        public void SettingVerticalPositionTo(string objectIdentifier, double position, IReactPromise<JSValue.Void> promise)
+        [ReactMethod("stylePrintDirection")]
+        public void StylePrintDirection(string objectIdentifier, string direction, IReactPromise<JSValue.Void> promise)
         {
-            if (!GetObject(objectIdentifier, out PageModeBuilder nativeObject))
+            if (!GetObject(objectIdentifier, out PageModeBuilder nativeObject) ||
+                !StarIO10ValueConverter.ToPrinterPageModePrintDirection(direction, out PageModePrintDirection nativeDirection))
             {
                 promise.Reject(new ReactError());
                 return;
             }
 
-            nativeObject.SettingVerticalPositionTo(position);
-
-            promise.Resolve();
-        }
-
-        [ReactMethod("settingVerticalPositionBy")]
-        public void SettingVerticalPositionBy(string objectIdentifier, double position, IReactPromise<JSValue.Void> promise)
-        {
-            if (!GetObject(objectIdentifier, out PageModeBuilder nativeObject))
-            {
-                promise.Reject(new ReactError());
-                return;
-            }
-
-            nativeObject.SettingVerticalPositionBy(position);
+            nativeObject.StylePrintDirection(nativeDirection);
 
             promise.Resolve();
         }
@@ -152,6 +139,34 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             nativeObject.StyleLineSpace(height);
+
+            promise.Resolve();
+        }
+
+        [ReactMethod("styleVerticalPositionTo")]
+        public void StyleVerticalPositionTo(string objectIdentifier, double position, IReactPromise<JSValue.Void> promise)
+        {
+            if (!GetObject(objectIdentifier, out PageModeBuilder nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.StyleVerticalPositionTo(position);
+
+            promise.Resolve();
+        }
+
+        [ReactMethod("styleVerticalPositionBy")]
+        public void StyleVerticalPositionBy(string objectIdentifier, double position, IReactPromise<JSValue.Void> promise)
+        {
+            if (!GetObject(objectIdentifier, out PageModeBuilder nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.StyleVerticalPositionBy(position);
 
             promise.Resolve();
         }

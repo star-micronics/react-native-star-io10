@@ -2,7 +2,6 @@ package com.stario10module
 
 import com.facebook.react.bridge.*
 import com.starmicronics.stario10.starxpandcommand.BezelSettingBuilder
-import com.starmicronics.stario10.starxpandcommand.LedSettingBuilder
 import com.starmicronics.stario10.starxpandcommand.PreSettingBuilder
 import com.starmicronics.stario10.starxpandcommand.PresenterSettingBuilder
 

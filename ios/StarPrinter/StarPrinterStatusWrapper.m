@@ -1,5 +1,6 @@
 #import "StarPrinterStatusWrapper.h"
 #import "StarObjectManager.h"
+#import "StarIO10ValueConverter.h"
 #import <React/RCTLog.h>
 @import StarIO10;
 
@@ -111,6 +112,21 @@ RCT_REMAP_METHOD(getDrawerOpenCloseSignal,
     }
 
     resolve(@(status.drawerOpenCloseSignal));
+}
+
+RCT_REMAP_METHOD(getReserved,
+                 getReservedWithObjectIdentifier:(nonnull NSString *)objID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinterStatus *status = [_objManager getObject:objID];
+    
+    if (status == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+
+    resolve([StarIO10ValueConverter toJSNamingDictionary:status.reserved]);
 }
 
 @end

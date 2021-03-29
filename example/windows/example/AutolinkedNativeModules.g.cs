@@ -11,8 +11,6 @@ namespace Microsoft.ReactNative.Managed
     {
         internal static void RegisterAutolinkedNativeModulePackages(IList<IReactPackageProvider> packageProviders)
         { 
-            // IReactPackageProviders from react-native-star-io10
-            packageProviders.Add(new StarMicronics.ReactNative.StarIO10.ReactPackageProvider());
         }
     }
 }

@@ -9,7 +9,7 @@ import {
 
 import {
     Picker
-} from '@react-native-community/picker';
+} from '@react-native-picker/picker';
 
 import {
     InterfaceType,
@@ -17,9 +17,6 @@ import {
     StarXpandCommand,
     StarPrinter
 } from 'react-native-star-io10';
-
-import axios from 'axios';
-import { Buffer } from 'buffer';
 
 interface AppProps {
 }
@@ -30,21 +27,8 @@ interface AppState {
     imageBase64: string;
 }
 
-const imageIndex = require('./logo_01.png')
-
 class App extends React.Component<AppProps, AppState> {
     private _onPressPrintButton = async() => {
-        let imageObj = Image.resolveAssetSource(imageIndex)
-
-        axios.get(imageObj.uri, {responseType: 'arraybuffer'})
-        .then(response => {
-        let imageBase64 = Buffer.from(response.data).toString('base64')
-        this.setState({ imageBase64: imageBase64 });
-        this._Print()
-        });
-    }
-
-    private _Print = async() => {
         var settings = new StarConnectionSettings();
         settings.interfaceType = this.state.interfaceType;
         settings.identifier = this.state.identifier;
@@ -56,7 +40,7 @@ class App extends React.Component<AppProps, AppState> {
             var builder = new StarXpandCommand.StarXpandCommandBuilder();
             builder.addDocument(new StarXpandCommand.DocumentBuilder()
             .addPrinter(new StarXpandCommand.PrinterBuilder()
-                .actionPrintImage(new StarXpandCommand.Printer.ImageParameter(this.state.imageBase64, 406))
+                .actionPrintImage(new StarXpandCommand.Printer.ImageParameter("logo_01.png", 406))
                 .styleInternationalCharacter(StarXpandCommand.Printer.InternationalCharacterType.Usa)
                 .styleCharacterSpace(0)
                 .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
@@ -156,6 +140,7 @@ class App extends React.Component<AppProps, AppState> {
                     }}>
                     <Picker.Item label='LAN' value={InterfaceType.Lan} />
                     <Picker.Item label='Bluetooth' value={InterfaceType.Bluetooth}/>
+                    <Picker.Item label='Bluetooth LE' value={InterfaceType.BluetoothLE}/>
                     <Picker.Item label='USB' value={InterfaceType.Usb} />
                 </Picker>
                 </View>

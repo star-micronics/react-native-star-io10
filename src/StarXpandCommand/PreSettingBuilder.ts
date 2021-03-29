@@ -1,5 +1,6 @@
 import { NativeModules } from 'react-native';
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
+import { StarIO10ErrorFactory } from '../StarIO10ErrorFactory';
 import { StarXpandCommand } from '../../index';
 
 export class PreSettingBuilder extends BaseStarXpandCommandBuilder {
@@ -7,7 +8,11 @@ export class PreSettingBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.PreSettingBuilderWrapper.addPresenterSetting(this._nativeObject, builder._nativeObject);
+            await NativeModules.PreSettingBuilderWrapper.addPresenterSetting(this._nativeObject, builder._nativeObject)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });;
         });
 
         return this;
@@ -17,7 +22,11 @@ export class PreSettingBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.PreSettingBuilderWrapper.addBezelSetting(this._nativeObject, builder._nativeObject);
+            await NativeModules.PreSettingBuilderWrapper.addBezelSetting(this._nativeObject, builder._nativeObject)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;

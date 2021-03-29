@@ -77,8 +77,7 @@ RCT_REMAP_METHOD(settingTopMargin,
 
 RCT_REMAP_METHOD(settingBlackMark,
                  settingBlackMarkWithObjectIdentifier:(nonnull NSString *)objID
-                 start:(BOOL)start
-                 end:(BOOL)end
+                 enable:(BOOL)enable
                  position:(nonnull NSString *)position
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
@@ -90,7 +89,7 @@ RCT_REMAP_METHOD(settingBlackMark,
         return;
     }
     
-    STARIO10StarXpandCommandPrinterBlackMarkParameter *param = [StarIO10ValueConverter toPrinterBlackMarkParameterWithStart:start end:end position:position];
+    STARIO10StarXpandCommandPrinterBlackMarkParameter *param = [StarIO10ValueConverter toPrinterBlackMarkParameterWithStart:enable position:position];
 
     [builder settingBlackMark:param];
     
@@ -99,8 +98,7 @@ RCT_REMAP_METHOD(settingBlackMark,
 
 RCT_REMAP_METHOD(settingLabel,
                  settingLabelWithObjectIdentifier:(nonnull NSString *)objID
-                 start:(BOOL)start
-                 end:(BOOL)end
+                 enable:(BOOL)enable
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -111,7 +109,7 @@ RCT_REMAP_METHOD(settingLabel,
         return;
     }
     
-    STARIO10StarXpandCommandPrinterLabelParameter *param = [StarIO10ValueConverter toPrinterLabelParameterWithStart:start end:end];
+    STARIO10StarXpandCommandPrinterLabelParameter *param = [StarIO10ValueConverter toPrinterLabelParameterWithStart:enable];
     
     [builder settingLabel:param];
     
@@ -134,6 +132,8 @@ RCT_REMAP_METHOD(settingHoldPrint,
     STARIO10StarXpandCommandPrinterHoldPrintParameter *param = [StarIO10ValueConverter toPrinterHoldPrintParameterWithEnable:enable];
     
     [builder settingHoldPrint:param];
+    
+    resolve(nil);
 }
 
 RCT_REMAP_METHOD(settingPrintableArea,
@@ -247,6 +247,30 @@ RCT_REMAP_METHOD(addMelodySpeaker,
     }
     
     [builder addMelodySpeaker:melodySpeakerBuilder];
+    
+    resolve(nil);
+}
+
+RCT_REMAP_METHOD(addDisplay,
+                 addDisplayWithObjectIdentifier:(nonnull NSString *)objID
+                 displayBuilderIdentifier:(nonnull NSString *)displayBuilderID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarXpandCommandDocumentBuilder *builder = [_objManager getObject:objID];
+    
+    if (builder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10StarXpandCommandDisplayBuilder *displayBuilder = [_objManager getObject:displayBuilderID];
+    if (displayBuilder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    [builder addDisplay:displayBuilder];
     
     resolve(nil);
 }

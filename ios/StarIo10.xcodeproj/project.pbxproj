@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		88AB8713251B23BF00245D2A /* StarIO10.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AB8712251B23BF00245D2A /* StarIO10.xcframework */; platformFilter = ios; };
+		8893EDD925D3C138006114B2 /* StarIO10LoggerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8893EDD725D3C138006114B2 /* StarIO10LoggerWrapper.m */; };
+		88EC0F2E2589CD1000BA09C4 /* StarIO10.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AB8712251B23BF00245D2A /* StarIO10.xcframework */; };
 		B3E7B58A1CC2AC0600A0062D /* StarIo10.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* StarIo10.m */; };
 		E3414398254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3414396254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m */; };
+		E37F6B08258C8D2E001DBB30 /* DisplayBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E37F6B07258C8D2E001DBB30 /* DisplayBuilderWrapper.m */; };
 		E3951A43254FD9FF003A9953 /* StarIO10ErrorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A42254FD9FF003A9953 /* StarIO10ErrorWrapper.m */; };
 		E3951A5C254FDA55003A9953 /* BuzzerBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A47254FDA54003A9953 /* BuzzerBuilderWrapper.m */; };
-		E3951A5D254FDA55003A9953 /* LedSettingBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A48254FDA54003A9953 /* LedSettingBuilderWrapper.m */; };
 		E3951A5E254FDA55003A9953 /* DocumentBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A49254FDA54003A9953 /* DocumentBuilderWrapper.m */; };
 		E3951A5F254FDA55003A9953 /* PageModeBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A4A254FDA54003A9953 /* PageModeBuilderWrapper.m */; };
 		E3951A60254FDA55003A9953 /* DrawerBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A4D254FDA54003A9953 /* DrawerBuilderWrapper.m */; };
@@ -43,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libStarIo10.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libStarIo10.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8893EDD725D3C138006114B2 /* StarIO10LoggerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarIO10LoggerWrapper.m; sourceTree = "<group>"; };
+		8893EDD825D3C138006114B2 /* StarIO10LoggerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarIO10LoggerWrapper.h; sourceTree = "<group>"; };
 		88AB8712251B23BF00245D2A /* StarIO10.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = StarIO10.xcframework; path = libs/StarIO10.xcframework; sourceTree = "<group>"; };
 		88AB8714251B23F700245D2A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		88AB8716251B243600245D2A /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
@@ -52,11 +55,12 @@
 		B3E7B5891CC2AC0600A0062D /* StarIo10.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarIo10.m; sourceTree = "<group>"; };
 		E3414396254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDeviceDiscoveryManagerWrapper.m; sourceTree = "<group>"; };
 		E3414397254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDeviceDiscoveryManagerWrapper.h; sourceTree = "<group>"; };
+		E37F6B06258C8D2E001DBB30 /* DisplayBuilderWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisplayBuilderWrapper.h; sourceTree = "<group>"; };
+		E37F6B07258C8D2E001DBB30 /* DisplayBuilderWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisplayBuilderWrapper.m; sourceTree = "<group>"; };
 		E3951A41254FD9FF003A9953 /* StarIO10ErrorWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarIO10ErrorWrapper.h; sourceTree = "<group>"; };
 		E3951A42254FD9FF003A9953 /* StarIO10ErrorWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarIO10ErrorWrapper.m; sourceTree = "<group>"; };
 		E3951A46254FDA54003A9953 /* DrawerBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerBuilderWrapper.h; sourceTree = "<group>"; };
 		E3951A47254FDA54003A9953 /* BuzzerBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzerBuilderWrapper.m; sourceTree = "<group>"; };
-		E3951A48254FDA54003A9953 /* LedSettingBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedSettingBuilderWrapper.m; sourceTree = "<group>"; };
 		E3951A49254FDA54003A9953 /* DocumentBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentBuilderWrapper.m; sourceTree = "<group>"; };
 		E3951A4A254FDA54003A9953 /* PageModeBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageModeBuilderWrapper.m; sourceTree = "<group>"; };
 		E3951A4B254FDA54003A9953 /* StarXpandCommandBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarXpandCommandBuilderWrapper.h; sourceTree = "<group>"; };
@@ -69,7 +73,6 @@
 		E3951A52254FDA54003A9953 /* BezelSettingBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezelSettingBuilderWrapper.m; sourceTree = "<group>"; };
 		E3951A53254FDA54003A9953 /* BuzzerBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzerBuilderWrapper.h; sourceTree = "<group>"; };
 		E3951A54254FDA54003A9953 /* PreSettingBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreSettingBuilderWrapper.h; sourceTree = "<group>"; };
-		E3951A55254FDA54003A9953 /* LedSettingBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LedSettingBuilderWrapper.h; sourceTree = "<group>"; };
 		E3951A56254FDA54003A9953 /* MelodySpeakerBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodySpeakerBuilderWrapper.h; sourceTree = "<group>"; };
 		E3951A57254FDA54003A9953 /* PresenterSettingBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenterSettingBuilderWrapper.h; sourceTree = "<group>"; };
 		E3951A58254FDA54003A9953 /* PrinterBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinterBuilderWrapper.h; sourceTree = "<group>"; };
@@ -93,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88AB8713251B23BF00245D2A /* StarIO10.xcframework in Frameworks */,
+				88EC0F2E2589CD1000BA09C4 /* StarIO10.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +119,8 @@
 				E35D4B14254FD92700E242A3 /* StarDeviceDiscoveryManager */,
 				B3E7B5881CC2AC0600A0062D /* StarIo10.h */,
 				B3E7B5891CC2AC0600A0062D /* StarIo10.m */,
+				8893EDD825D3C138006114B2 /* StarIO10LoggerWrapper.h */,
+				8893EDD725D3C138006114B2 /* StarIO10LoggerWrapper.m */,
 				E3951A3F254FD9B0003A9953 /* StarIO10Error */,
 				E3951A68254FDA68003A9953 /* StarPrinter */,
 				E3951A45254FDA0E003A9953 /* StarXpandCommand */,
@@ -160,12 +165,12 @@
 				E3951A52254FDA54003A9953 /* BezelSettingBuilderWrapper.m */,
 				E3951A53254FDA54003A9953 /* BuzzerBuilderWrapper.h */,
 				E3951A47254FDA54003A9953 /* BuzzerBuilderWrapper.m */,
+				E37F6B06258C8D2E001DBB30 /* DisplayBuilderWrapper.h */,
+				E37F6B07258C8D2E001DBB30 /* DisplayBuilderWrapper.m */,
 				E3951A4C254FDA54003A9953 /* DocumentBuilderWrapper.h */,
 				E3951A49254FDA54003A9953 /* DocumentBuilderWrapper.m */,
 				E3951A46254FDA54003A9953 /* DrawerBuilderWrapper.h */,
 				E3951A4D254FDA54003A9953 /* DrawerBuilderWrapper.m */,
-				E3951A55254FDA54003A9953 /* LedSettingBuilderWrapper.h */,
-				E3951A48254FDA54003A9953 /* LedSettingBuilderWrapper.m */,
 				E3951A56254FDA54003A9953 /* MelodySpeakerBuilderWrapper.h */,
 				E3951A51254FDA54003A9953 /* MelodySpeakerBuilderWrapper.m */,
 				E3951A5B254FDA55003A9953 /* PageModeBuilderWrapper.h */,
@@ -281,8 +286,9 @@
 				E3951A6D254FDA80003A9953 /* StarPrinterStatusWrapper.m in Sources */,
 				E3951A65254FDA55003A9953 /* PrinterBuilderWrapper.m in Sources */,
 				E3951A60254FDA55003A9953 /* DrawerBuilderWrapper.m in Sources */,
-				E3951A5D254FDA55003A9953 /* LedSettingBuilderWrapper.m in Sources */,
+				E37F6B08258C8D2E001DBB30 /* DisplayBuilderWrapper.m in Sources */,
 				E3951A6E254FDA80003A9953 /* StarPrinterWrapper.m in Sources */,
+				8893EDD925D3C138006114B2 /* StarIO10LoggerWrapper.m in Sources */,
 				E3951A77254FDAA6003A9953 /* StarObjectManager.m in Sources */,
 				E3951A64254FDA55003A9953 /* BezelSettingBuilderWrapper.m in Sources */,
 			);
@@ -295,6 +301,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -346,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = arm64;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

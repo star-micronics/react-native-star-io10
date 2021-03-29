@@ -1,11 +1,30 @@
 import { NativeModules } from 'react-native';
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
+import { StarIO10ErrorFactory } from '../StarIO10ErrorFactory';
 import { StarXpandCommand } from '../../index';
 
 export class PrinterBuilder extends BaseStarXpandCommandBuilder {
     styleAlignment(alignment: StarXpandCommand.Printer.Alignment): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleAlignment(this._nativeObject, alignment);
+            await NativeModules.PrinterBuilderWrapper.styleAlignment(this._nativeObject, alignment)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
+        });
+
+        return this;
+    }
+
+    addPageMode(parameter: StarXpandCommand.Printer.PageModeAreaParameter, builder: StarXpandCommand.PageModeBuilder): PrinterBuilder {
+        this._addChild(builder);
+
+        this._addAction(async() => {
+            await NativeModules.PrinterBuilderWrapper.addPageMode(this._nativeObject, parameter.x, parameter.y, parameter.width, parameter.height, builder._nativeObject)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -13,31 +32,47 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     styleFont(type: StarXpandCommand.Printer.FontType): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleFont(this._nativeObject, type);
+            await NativeModules.PrinterBuilderWrapper.styleFont(this._nativeObject, type)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
     }
 
-    styleBold(enable: Boolean): PrinterBuilder {
+    styleBold(enable: boolean): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleBold(this._nativeObject, enable);
+            await NativeModules.PrinterBuilderWrapper.styleBold(this._nativeObject, enable)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
     }
 
-    styleInvert(enable: Boolean): PrinterBuilder {
+    styleInvert(enable: boolean): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleInvert(this._nativeObject, enable);
+            await NativeModules.PrinterBuilderWrapper.styleInvert(this._nativeObject, enable)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
     }
 
-    styleUnderLine(enable: Boolean): PrinterBuilder {
+    styleUnderLine(enable: boolean): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleUnderLine(this._nativeObject, enable);
+            await NativeModules.PrinterBuilderWrapper.styleUnderLine(this._nativeObject, enable)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -45,7 +80,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     styleMagnification(parameter: StarXpandCommand.MagnificationParameter): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleMagnification(this._nativeObject, parameter.width, parameter.height);
+            await NativeModules.PrinterBuilderWrapper.styleMagnification(this._nativeObject, parameter.width, parameter.height)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -53,7 +92,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     styleCharacterSpace(width: number): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleCharacterSpace(this._nativeObject, width);
+            await NativeModules.PrinterBuilderWrapper.styleCharacterSpace(this._nativeObject, width)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -61,7 +104,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     styleLineSpace(height: number): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleLineSpace(this._nativeObject, height);
+            await NativeModules.PrinterBuilderWrapper.styleLineSpace(this._nativeObject, height)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -69,7 +116,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     styleHorizontalPositionTo(position: number): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleHorizontalPositionTo(this._nativeObject, position);
+            await NativeModules.PrinterBuilderWrapper.styleHorizontalPositionTo(this._nativeObject, position)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -77,7 +128,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     styleHorizontalPositionBy(position: number): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleHorizontalPositionBy(this._nativeObject, position);
+            await NativeModules.PrinterBuilderWrapper.styleHorizontalPositionBy(this._nativeObject, position)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -85,7 +140,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     styleHorizontalTabPositions(positions: Array<number>): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleHorizontalTabPositions(this._nativeObject, positions);
+            await NativeModules.PrinterBuilderWrapper.styleHorizontalTabPositions(this._nativeObject, positions)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -93,7 +152,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     styleInternationalCharacter(type: StarXpandCommand.Printer.InternationalCharacterType): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleInternationalCharacter(this._nativeObject, type);
+            await NativeModules.PrinterBuilderWrapper.styleInternationalCharacter(this._nativeObject, type)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -101,7 +164,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     styleSecondPriorityCharacterEncoding(type: StarXpandCommand.Printer.CharacterEncodingType): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleSecondPriorityCharacterEncoding(this._nativeObject, type);
+            await NativeModules.PrinterBuilderWrapper.styleSecondPriorityCharacterEncoding(this._nativeObject, type)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -109,7 +176,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     styleCjkCharacterPriority(types: Array<StarXpandCommand.Printer.CjkCharacterType>): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.styleCjkCharacterPriority(this._nativeObject, types);
+            await NativeModules.PrinterBuilderWrapper.styleCjkCharacterPriority(this._nativeObject, types)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -117,7 +188,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     actionCut(type: StarXpandCommand.Printer.CutType): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.actionCut(this._nativeObject, type);
+            await NativeModules.PrinterBuilderWrapper.actionCut(this._nativeObject, type)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -125,7 +200,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     actionFeed(height: number): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.actionFeed(this._nativeObject, height);
+            await NativeModules.PrinterBuilderWrapper.actionFeed(this._nativeObject, height)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -133,7 +212,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     actionFeedLine(lines: number): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.actionFeedLine(this._nativeObject, lines);
+            await NativeModules.PrinterBuilderWrapper.actionFeedLine(this._nativeObject, lines)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -141,7 +224,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintText(content: string): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.actionPrintText(this._nativeObject, content);
+            await NativeModules.PrinterBuilderWrapper.actionPrintText(this._nativeObject, content)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -149,7 +236,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintLogo(parameter: StarXpandCommand.Printer.LogoParameter): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.actionPrintLogo(this._nativeObject, parameter.keyCode);
+            await NativeModules.PrinterBuilderWrapper.actionPrintLogo(this._nativeObject, parameter.keyCode)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -157,7 +248,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintBarcode(parameter: StarXpandCommand.Printer.BarcodeParameter): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.actionPrintBarcode(this._nativeObject, parameter.content, parameter.symbology, parameter.printHri, parameter.barDots, parameter.barRatioLevel, parameter.height);
+            await NativeModules.PrinterBuilderWrapper.actionPrintBarcode(this._nativeObject, parameter.content, parameter.symbology, parameter.printHri, parameter.barDots, parameter.barRatioLevel, parameter.height)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -165,7 +260,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintPdf417(parameter: StarXpandCommand.Printer.Pdf417Parameter): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.actionPrintPdf417(this._nativeObject, parameter.content, parameter.column, parameter.line, parameter.module, parameter.aspect, parameter.level);
+            await NativeModules.PrinterBuilderWrapper.actionPrintPdf417(this._nativeObject, parameter.content, parameter.column, parameter.line, parameter.module, parameter.aspect, parameter.level)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -173,7 +272,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintQRCode(parameter: StarXpandCommand.Printer.QRCodeParameter): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.actionPrintQRCode(this._nativeObject, parameter.content, parameter.model, parameter.level, parameter.cellSize);
+            await NativeModules.PrinterBuilderWrapper.actionPrintQRCode(this._nativeObject, parameter.content, parameter.model, parameter.level, parameter.cellSize)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -181,7 +284,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintImage(parameter: StarXpandCommand.Printer.ImageParameter): PrinterBuilder {
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.actionPrintImage(this._nativeObject, parameter.source, parameter.width, parameter.effectDiffusion, parameter.threshold);
+            await NativeModules.PrinterBuilderWrapper.actionPrintImage(this._nativeObject, parameter.source, parameter.width, parameter.effectDiffusion, parameter.threshold)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;
@@ -191,7 +298,11 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.add(this._nativeObject, builder._nativeObject);
+            await NativeModules.PrinterBuilderWrapper.add(this._nativeObject, builder._nativeObject)
+            .catch(async (nativeError: Error) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
         });
 
         return this;

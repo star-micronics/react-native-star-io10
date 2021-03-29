@@ -19,10 +19,16 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
             typeList.add(StarIO10ValueConverter.toInterfaceType(type))
         }
 
-        val manager = StarDeviceDiscoveryManagerFactory.create(typeList, reactApplicationContext)
-        val identifier = InstanceManager.set(manager)
+        try {
+            val manager = StarDeviceDiscoveryManagerFactory.create(typeList, reactApplicationContext)
+            val identifier = InstanceManager.set(manager)
 
-        promise.resolve(identifier)
+            promise.resolve(identifier)
+        }
+        catch (e: StarIO10Exception) {
+            val exceptionIdentifier = InstanceManager.set(e)
+            promise.reject(exceptionIdentifier, e)
+        }
     }
 
     @ReactMethod
@@ -47,6 +53,7 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
                         params.putString(EventParameter.KEY_CONNECTION_IDENTIFIER, printer.connectionSettings.identifier)
                         params.putString(EventParameter.KEY_MODEL, StarIO10ValueConverter.toString(printer.information?.model ?: StarPrinterModel.Unknown))
                         params.putString(EventParameter.KEY_EMULATION, StarIO10ValueConverter.toString(printer.information?.emulation ?: StarPrinterEmulation.Unknown))
+                        params.putMap(EventParameter.KEY_RESERVED, StarIO10ValueConverter.toWritableMap(printer.information?.reserved ?: mapOf<String, Any>()))
 
                         sendEvent(EventParameter.NAME_PRINTER_FOUND, params)
                     }

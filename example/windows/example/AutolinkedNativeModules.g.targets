@@ -4,7 +4,7 @@
   <ItemGroup>
     <!-- Projects from react-native-star-io10 -->
     <ProjectReference Include="$(ProjectDir)..\..\node_modules\react-native-star-io10\windows\StarIO10\StarIO10.csproj">
-      <Project>{1EC44C11-86A0-43EE-B591-5592883ABBC4}</Project>
+      <Project>{7FB29169-C0D3-427E-A025-ACA364164F6D}</Project>
     </ProjectReference>
   </ItemGroup>
 </Project>

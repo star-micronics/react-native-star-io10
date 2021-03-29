@@ -1,11 +1,13 @@
+- [日本語](docs/README_JP.md)
+
 # Example - react-native-star-io10
 
 These samples includes following functions.
 
-* [printing](https://github.com/star-micronics/react-native-star-io10/tree/master/example/samples/printing) - To print by the printer
-* [discovery](https://github.com/star-micronics/react-native-star-io10/tree/master/example/samples/discovery) - To discover devices
-* [status](https://github.com/star-micronics/react-native-star-io10/tree/master/example/samples/status) - To get the status of the device
-* [monitor](https://github.com/star-micronics/react-native-star-io10/tree/master/example/samples/monitor) - To monitor the device
+* [printing](samples/printing/App.tsx) - To print by the printer
+* [discovery](samples/discovery/App.tsx) - To discover devices
+* [status](samples/status/App.tsx) - To get the status of the device
+* [monitor](samples/monitor/App.tsx) - To monitor the device
 
 ## Usage
 
@@ -33,13 +35,6 @@ npx react-native run-android
 
 ### Windows
 
-1. Execute the following command
-
 ```
-windows\example.sln
-yarn start
+npx react-native run-windows
 ```
-
-2. After Visual Studio starts, select the Debug configuration and the x64 platform from the combo box controls to the left of the Run button.
-
-3. Click the Run button to the right of the platform combo box control.

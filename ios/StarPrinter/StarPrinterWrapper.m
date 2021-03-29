@@ -109,6 +109,21 @@ RCT_REMAP_METHOD(activateInputDeviceDelegate,
     printer.inputDeviceDelegate = self;
 }
 
+RCT_REMAP_METHOD(activateDisplayDelegate,
+                 activateDisplayDelegateWithObjectIdentifier:(nonnull NSString *)objID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    printer.displayDelegate = self;
+}
+
 #pragma mark -
 
 RCT_REMAP_METHOD(getModel,
@@ -143,6 +158,21 @@ RCT_REMAP_METHOD(getEmulation,
     NSString *result = [StarIO10ValueConverter toStringFromStarPrinterEmulation:printer.information.emulation];
     
     resolve(result);
+}
+
+RCT_REMAP_METHOD(getReserved,
+                 getReservedWithObjectIdentifier:(nonnull NSString *)objID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+
+    resolve([StarIO10ValueConverter toJSNamingDictionary:printer.information.reserved]);
 }
 
 #pragma mark -
@@ -430,6 +460,34 @@ RCT_REMAP_METHOD(close,
         NSArray<NSNumber *> *numberArray = [StarIO10ValueConverter toNumberArray:data];
         
         [self sendEventWithName:kNameInputDeviceDelegateDataReceived body:@{kKeyIdentifier: objID, kKeyInputDeviceData: numberArray}];
+    }
+}
+
+- (void)displayWithPrinter:(STARIO10StarPrinter * _Nonnull)printer communicationErrorDidOccur:(NSError * _Nonnull)error
+{
+    NSString *objID = [_objManager getExsitingIdentifier:printer];
+    NSString *errorID = [self->_objManager add:error];
+    
+    if (objID) {
+        [self sendEventWithName:kNameDisplayDelegateCommunicationError body:@{kKeyIdentifier: objID, kKeyErrorIdentifier: errorID}];
+    }
+}
+
+- (void)displayDidConnectWithPrinter:(STARIO10StarPrinter * _Nonnull)printer
+{
+    NSString *objID = [_objManager getExsitingIdentifier:printer];
+    
+    if (objID) {
+        [self sendEventWithName:kNameDisplayDelegateConnected body:@{kKeyIdentifier: objID}];
+    }
+}
+
+- (void)displayDidDisconnectWithPrinter:(STARIO10StarPrinter * _Nonnull)printer
+{
+    NSString *objID = [_objManager getExsitingIdentifier:printer];
+    
+    if (objID) {
+        [self sendEventWithName:kNameDisplayDelegateDisconnected body:@{kKeyIdentifier: objID}];
     }
 }
 

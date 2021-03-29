@@ -10,7 +10,7 @@ export class BuzzerBuilder extends BaseStarXpandCommandBuilder {
 
         return this;
     }
-    
+
     protected async _initNativeObjectImpl(): Promise<string> {
         return await NativeModules.BuzzerBuilderWrapper.init();
     }

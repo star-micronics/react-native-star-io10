@@ -2,11 +2,11 @@ import { Pdf417Level } from './Pdf417Level';
 
 export class Pdf417Parameter {
     private _content: string;
-    private _column: number = 5;
+    private _column: number = 3;
     private _line: number = 0;
     private _module: number = 3;
     private _aspect: number = 3;
-    private _level: Pdf417Level = Pdf417Level.Ecc0;
+    private _level: Pdf417Level = Pdf417Level.Ecc1;
 
     get content(): string {
         return this._content;

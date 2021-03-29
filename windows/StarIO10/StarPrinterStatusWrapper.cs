@@ -1,5 +1,6 @@
 ﻿using Microsoft.ReactNative.Managed;
 using StarMicronics.StarIO10;
+using System.Collections.Generic;
 
 namespace StarMicronics.ReactNative.StarIO10
 {
@@ -77,6 +78,19 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             promise.Resolve(nativeObject.PaperNearEmpty);
+        }
+
+        [ReactMethod("getReserved")]
+        public void GetReserved(string objectIdentifier, IReactPromise<IReadOnlyDictionary<string, JSValue>> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinterStatus nativeObject) ||
+                nativeObject == null)
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            promise.Resolve(StarIO10ValueConverter.ToJSDictionary(nativeObject.Reserved));
         }
     }
 }
