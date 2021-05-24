@@ -303,10 +303,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/StarIO10/StarIO10.framework/StarIO10",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarIO10.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,10 +367,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL/OpenSSL.framework/OpenSSL",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/StarIO10/StarIO10.framework/StarIO10",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarIO10.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -505,7 +509,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MWPD5A288Z;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/node_modules/react-native-star-io10/ios/libs";
+				FRAMEWORK_SEARCH_PATH = (
+					"$(inherited)",
+					"$(SRCROOT)/node_modules/react-native-star-io10/ios/libs",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-star-io10/ios",
@@ -551,6 +558,7 @@
 					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
 					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -574,7 +582,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MWPD5A288Z;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/node_modules/react-native-star-io10/ios/libs";
+				FRAMEWORK_SEARCH_PATH = (
+					"$(inherited)",
+					"$(SRCROOT)/node_modules/react-native-star-io10/ios/libs",
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/node_modules/react-native-star-io10/ios/libs",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-star-io10/ios",
@@ -614,6 +629,7 @@
 					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
 					"\"$(SRCROOT)\"",
 				);
+				MARKETING_VERSION = 1.0.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
