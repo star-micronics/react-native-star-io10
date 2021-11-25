@@ -40,7 +40,7 @@ npm install react-native-star-io10 --save
 
 #### In case of setting targetSdkVersion to 31 or later
 
-- Refer to [sample code](../example/samples) and request BLUETOOTH_CONNECT permission before starting to communicate with or search for the printer.
+- Refer to [sample code](example/samples) and request BLUETOOTH_CONNECT permission before starting to communicate with or search for the printer.
 
 ### Windows
 
