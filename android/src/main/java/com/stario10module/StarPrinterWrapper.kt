@@ -24,6 +24,16 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
     }
 
     @ReactMethod
+    fun addListener(eventName: String) {
+        // Set up any upstream listeners or background tasks as necessary
+    }
+
+    @ReactMethod
+    fun removeListeners(count: Int) {
+        // Remove upstream listeners, stop unnecessary background tasks
+    }
+
+    @ReactMethod
     fun activatePrinterDelegate(identifier: String, promise: Promise) {
         val printer = InstanceManager.get(identifier)
 

@@ -58,7 +58,7 @@ class StarXpandCommandBuilderWrapper internal constructor(context: ReactApplicat
         val builder           = InstanceManager.get(identifier)
 
         if (builder is StarXpandCommandBuilder) {
-            promise.resolve(builder.getCommand())
+            promise.resolve(builder.getCommands())
         }
         else {
             promise.reject(ReactNoCrashSoftException("Not found native instance"))

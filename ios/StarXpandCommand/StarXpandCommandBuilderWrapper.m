@@ -115,7 +115,7 @@ RCT_REMAP_METHOD(getCommands,
         return;
     }
 
-    NSString *command = [builder getCommand];
+    NSString *command = [builder getCommands];
 
     resolve(command);
 }

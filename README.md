@@ -16,11 +16,11 @@ This library is included in StarXpand SDK.
 
 ## Requirements
 
-| Platform | Version |
-| --- | --- |
-| iOS | iOS 12.0 or later |
-| Android | Android 6.0 or later |
-| Windows | Windows 10 1909 or later |
+| Platform | Version | Arch |
+| --- | --- | --- |
+| iOS | iOS 12.0 or later | Device: arm64<br> Simulator: x86_64, arm64 |
+| Android | Android 6.0 or later | arm64-v8a, armeabi-v7a, x86, x86_64 |
+| Windows | Windows 10 1909 or later | x86, x64 |
 
 ## Installation
 
@@ -38,7 +38,9 @@ npm install react-native-star-io10 --save
 
 ### Android
 
-- No setup needed.
+#### In case of setting targetSdkVersion to 31 or later
+
+- Refer to [sample code](../example/samples) and request BLUETOOTH_CONNECT permission before starting to communicate with or search for the printer.
 
 ### Windows
 
@@ -46,11 +48,22 @@ npm install react-native-star-io10 --save
   - Bluetooth
   - Internet (Client)
   - Private Networks (Client & Server)
-- Disable `Compile with .NET Native tool chain`.
+- Add "Visual C++ 2015-2019 UWP Desktop Runtime for native apps" to the project "References".
 
 ## Documentation
 
 [Please refer here.](https://www.star-m.jp/react-native-stario10-oml.html)
+
+## Limitations 
+
+### When using Android device, an image specified by URL is sometimes printed in a low resolution
+
+In Android, when an image file size is large, and its URL is specified as the source of the ImageParameter which is the argument of the actionPrintImage method, the image may be printed in low resolution. 
+
+This can be solved by either of the following methods: 
+
+- Reduce a file size of an image by lowering the resolution beforehand. 
+- Download an image in the app and specify the image file directly as the source. 
 
 ## Examples
 

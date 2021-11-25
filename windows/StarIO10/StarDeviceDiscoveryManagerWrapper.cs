@@ -80,6 +80,18 @@ namespace StarMicronics.ReactNative.StarIO10
             promise.Resolve();
         }
 
+        [ReactMethod("addListener")]
+        public void AddListener(string objectIdentifier, string eventName, IReactPromise<JSValue.Void> promise)
+        {
+            promise.Resolve();
+        }
+
+        [ReactMethod("removeListeners")]
+        public void RemoveListeners(string objectIdentifier, int count, IReactPromise<JSValue.Void> promise)
+        {
+            promise.Resolve();
+        }
+
         [ReactMethod("startDiscovery")]
         public void StartDiscovery(string objectIdentifier, int discoveryTime, IReactPromise<JSValue.Void> promise)
         {

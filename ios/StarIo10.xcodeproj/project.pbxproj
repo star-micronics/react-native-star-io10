@@ -397,9 +397,23 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"EXCLUDED_ARCHS[sdk=iphoneos*]" = x86_64;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64_x86_64-simulator/*.*";
+				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64/*.*";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/libs/**",
 					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/**",
+				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
+					"$(SRCROOT)/libs/**",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64",
+				);
+				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = (
+					"$(SRCROOT)/libs/**",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64_x86_64-simulator",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -418,9 +432,12 @@
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				EXCLUDED_ARCHS = x86_64;
+				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64_x86_64-simulator/*.*";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/libs/**",
-					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/**",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

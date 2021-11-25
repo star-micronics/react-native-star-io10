@@ -4,8 +4,8 @@ export abstract class NativeObject {
     _nativeObject?: string;
     private _lock: Lock = new Lock();
 
-    protected abstract async _initNativeObjectImpl(): Promise<string>;
-    protected abstract async _disposeNativeObjectImpl(nativeObject: string): Promise<void>;
+    protected abstract _initNativeObjectImpl(): Promise<string>;
+    protected abstract _disposeNativeObjectImpl(nativeObject: string): Promise<void>;
 
     protected async _initNativeObject(): Promise<void> {
         await this._lock.lock();

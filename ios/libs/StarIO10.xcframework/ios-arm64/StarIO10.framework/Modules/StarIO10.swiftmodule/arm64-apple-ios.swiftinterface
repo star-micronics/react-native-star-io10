@@ -1,13 +1,13 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
+// swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)
 // swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name StarIO10
 import CoreBluetooth
 import ExternalAccessory
 import Foundation
 import Network
 @_exported import StarIO10
-import StarLoggerWrapper
-import StarXpandCommandParserWrapper
+import StarIO10.StarLogger
+import StarIO10.StarXpandCommandParserWrapper
 import Swift
 import UIKit
 @objc(STARIO10StarPrinterEmulation) public enum StarPrinterEmulation : Swift.Int, Swift.CustomStringConvertible {
@@ -535,7 +535,7 @@ extension StarXpandCommand {
   @_inheritsConvenienceInitializers @objcMembers @objc(STARIO10StarXpandCommandBuilder) public class StarXpandCommandBuilder : ObjectiveC.NSObject {
     @objc public var preSetting: StarIO10.StarXpandCommand.PreSettingBuilder?
     @objc public func addDocument(_ builder: StarIO10.StarXpandCommand.DocumentBuilder) -> Self
-    @objc public func getCommand() -> Swift.String
+    @objc public func getCommands() -> Swift.String
     @objc deinit
     @objc override dynamic public init()
   }
@@ -708,7 +708,7 @@ extension StarXpandCommand.Printer {
     @objc public var printHRI: Swift.Bool {
       @objc get
     }
-    @objc public func setPrintHRI(_ enable: Swift.Bool) -> Self
+    @objc public func setPrintHRI(_ printHRI: Swift.Bool) -> Self
     @objc public var barDots: Swift.Int {
       @objc get
     }
@@ -755,6 +755,7 @@ extension StarXpandCommand {
   @objc(STARIO10StarPrinterModelTSP100IIILAN) case tsp100IIILAN
   @objc(STARIO10StarPrinterModelTSP100IIIBI) case tsp100IIIBI
   @objc(STARIO10StarPrinterModelTSP100IIIU) case tsp100IIIU
+  @objc(STARIO10StarPrinterModelTSP100IV) case tsp100IV
   @objc(STARIO10StarPrinterModelmPOP) case mPOP
   @objc(STARIO10StarPrinterModelmC_Print2) case mC_Print2
   @objc(STARIO10StarPrinterModelmC_Print3) case mC_Print3
@@ -812,15 +813,15 @@ extension StarXpandCommand.Presenter {
     @objc public var loop: Swift.Bool {
       @objc get
     }
-    @objc public func setLoop(_ enable: Swift.Bool) -> Self
+    @objc public func setLoop(_ loop: Swift.Bool) -> Self
     @objc public var hold: Swift.Bool {
       @objc get
     }
-    @objc public func setHold(_ enable: Swift.Bool) -> Self
+    @objc public func setHold(_ hold: Swift.Bool) -> Self
     @objc public var retract: Swift.Bool {
       @objc get
     }
-    @objc public func setRetract(_ enable: Swift.Bool) -> Self
+    @objc public func setRetract(_ retract: Swift.Bool) -> Self
     @objc public var holdTime: Swift.Int {
       @objc get
     }

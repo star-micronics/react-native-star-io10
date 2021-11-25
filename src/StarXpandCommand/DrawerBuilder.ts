@@ -7,7 +7,7 @@ export class DrawerBuilder extends BaseStarXpandCommandBuilder {
     actionOpen(parameter: StarXpandCommand.Drawer.OpenParameter): DrawerBuilder {
         this._addAction(async() => {
             await NativeModules.DrawerBuilderWrapper.actionOpen(this._nativeObject, parameter.channel, parameter.onTime)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });

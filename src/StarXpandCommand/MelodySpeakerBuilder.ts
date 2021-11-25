@@ -7,7 +7,7 @@ export class MelodySpeakerBuilder extends BaseStarXpandCommandBuilder {
     actionDriveRegisteredSound(parameter: StarXpandCommand.MelodySpeaker.DriveRegisteredSoundParameter): MelodySpeakerBuilder {
         this._addAction(async() => {
             await NativeModules.MelodySpeakerBuilderWrapper.actionDriveRegisteredSound(this._nativeObject, parameter.area, parameter.number, parameter.volume)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -19,7 +19,7 @@ export class MelodySpeakerBuilder extends BaseStarXpandCommandBuilder {
     actionDriveOneTimeSound(parameter: StarXpandCommand.MelodySpeaker.DriveOneTimeSoundParameter): MelodySpeakerBuilder {
         this._addAction(async() => {
             await NativeModules.MelodySpeakerBuilderWrapper.actionDriveOneTimeSound(this._nativeObject, parameter.source, parameter.volume)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });

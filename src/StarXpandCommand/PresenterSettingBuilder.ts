@@ -7,7 +7,7 @@ export class PresenterSettingBuilder extends BaseStarXpandCommandBuilder {
     settingMode(parameter: StarXpandCommand.Presenter.ModeParameter): PresenterSettingBuilder {
         this._addAction(async() => {
             await NativeModules.PresenterSettingBuilderWrapper.settingMode(this._nativeObject, parameter.loop, parameter.hold, parameter.retract, parameter.holdTime)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -19,7 +19,7 @@ export class PresenterSettingBuilder extends BaseStarXpandCommandBuilder {
     settingLedAutomaticBlink(parameter: StarXpandCommand.Presenter.LedAutomaticBlinkParameter): PresenterSettingBuilder {
         this._addAction(async() => {
             await NativeModules.PresenterSettingBuilderWrapper.settingLedAutomaticBlink(this._nativeObject, parameter.type, parameter.onTime, parameter.offTime)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });

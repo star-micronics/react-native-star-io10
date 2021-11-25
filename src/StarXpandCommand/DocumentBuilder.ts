@@ -7,7 +7,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
     settingTopMargin(height: number): DocumentBuilder {
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.settingTopMargin(this._nativeObject, height)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -19,7 +19,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
     settingBlackMark(parameter: StarXpandCommand.Printer.BlackMarkParameter): DocumentBuilder {
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.settingBlackMark(this._nativeObject, parameter.enable, parameter.position)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -31,7 +31,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
     settingLabel(parameter: StarXpandCommand.Printer.LabelParameter): DocumentBuilder {
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.settingLabel(this._nativeObject, parameter.enable)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -43,7 +43,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
     settingHoldPrint(parameter: StarXpandCommand.Printer.HoldPrintParameter): DocumentBuilder {
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.settingHoldPrint(this._nativeObject, parameter.enable)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -55,7 +55,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
     settingPrintableArea(width: number): DocumentBuilder {
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.settingPrintableArea(this._nativeObject, width)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -69,7 +69,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.addPrinter(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -83,7 +83,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.addDrawer(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -97,7 +97,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.addBuzzer(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -111,7 +111,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.addMelodySpeaker(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -125,7 +125,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.addDisplay(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -137,7 +137,7 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
     addRaw(content: Array<number>): DocumentBuilder {
         this._addAction(async() => {
             await NativeModules.DocumentBuilderWrapper.addRaw(this._nativeObject, content)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });

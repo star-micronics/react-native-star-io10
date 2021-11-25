@@ -7,7 +7,7 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
     styleInternationalCharacter(type: StarXpandCommand.Display.InternationalCharacterType): DisplayBuilder {
         this._addAction(async() => {
             await NativeModules.DisplayBuilderWrapper.styleInternationalCharacter(this._nativeObject, type)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -19,7 +19,7 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
     styleCharacterEncoding(type: StarXpandCommand.Display.CharacterEncodingType): DisplayBuilder {
         this._addAction(async() => {
             await NativeModules.DisplayBuilderWrapper.styleCharacterEncoding(this._nativeObject, type)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -31,7 +31,7 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
     styleCursorPositionTo(parameter: StarXpandCommand.Display.PositionParameter): DisplayBuilder {
         this._addAction(async() => {
             await NativeModules.DisplayBuilderWrapper.styleCursorPositionTo(this._nativeObject, parameter.x, parameter.y)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -43,7 +43,7 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
     actionClearLine(): DisplayBuilder {
         this._addAction(async() => {
             await NativeModules.DisplayBuilderWrapper.actionClearLine(this._nativeObject)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -55,7 +55,7 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
     actionClearAll(): DisplayBuilder {
         this._addAction(async() => {
             await NativeModules.DisplayBuilderWrapper.actionClearAll(this._nativeObject)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -67,7 +67,7 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
     actionSetBackLightState(on: boolean): DisplayBuilder {
         this._addAction(async() => {
             await NativeModules.DisplayBuilderWrapper.actionSetBackLightState(this._nativeObject, on)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -79,7 +79,7 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
     actionSetCursorState(state: StarXpandCommand.Display.CursorState): DisplayBuilder {
         this._addAction(async() => {
             await NativeModules.DisplayBuilderWrapper.actionSetCursorState(this._nativeObject, state)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -91,7 +91,7 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
     actionSetContrast(value: StarXpandCommand.Display.Contrast): DisplayBuilder {
         this._addAction(async() => {
             await NativeModules.DisplayBuilderWrapper.actionSetContrast(this._nativeObject, value)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -103,7 +103,7 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
     actionShowText(content: string): DisplayBuilder {
         this._addAction(async() => {
             await NativeModules.DisplayBuilderWrapper.actionShowText(this._nativeObject, content)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
@@ -115,7 +115,7 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
     actionShowImage(parameter: StarXpandCommand.Display.ImageParameter): DisplayBuilder {
         this._addAction(async() => {
             await NativeModules.DisplayBuilderWrapper.actionShowImage(this._nativeObject, parameter.source, parameter.effectDiffusion, parameter.threshold)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });

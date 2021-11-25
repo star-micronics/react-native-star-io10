@@ -36,7 +36,7 @@ export class StarDeviceDiscoveryManager extends NativeObject {
 
         if(this._eventSubscriptions.length == 0) {
             this._eventSubscriptions.push(
-                eventEmitter.addListener('PrinterFound', (params) => {
+                eventEmitter.addListener('PrinterFound', (params: any) => {
                     var actualPrams = NativeObject._getEventParams(params);
                     if(this._nativeObject === actualPrams.identifier) {
                         var settings = new StarConnectionSettings();
@@ -56,7 +56,7 @@ export class StarDeviceDiscoveryManager extends NativeObject {
                 }, this)
             );
             this._eventSubscriptions.push(
-                eventEmitter.addListener('DiscoveryFinished', async (params) => {
+                eventEmitter.addListener('DiscoveryFinished', async (params: any) => {
                     var actualPrams = NativeObject._getEventParams(params);
                     if(this._nativeObject === actualPrams.identifier) {
                         this.onDiscoveryFinished();
@@ -76,7 +76,7 @@ export class StarDeviceDiscoveryManager extends NativeObject {
         }
 
         await NativeModules.StarDeviceDiscoveryManagerWrapper.startDiscovery(this._nativeObject, this.discoveryTime)
-        .catch(async (nativeError: Error) => {
+        .catch(async (nativeError: any) => {
             this._discoveryStarting = false;
 
             var error = await StarIO10ErrorFactory.create(nativeError.code);
@@ -90,7 +90,7 @@ export class StarDeviceDiscoveryManager extends NativeObject {
         await this._initNativeObject();
 
         await NativeModules.StarDeviceDiscoveryManagerWrapper.stopDiscovery(this._nativeObject)
-        .catch(async (nativeError: Error) => {
+        .catch(async (nativeError: any) => {
             var error = await StarIO10ErrorFactory.create(nativeError.code);
             throw error;
         });

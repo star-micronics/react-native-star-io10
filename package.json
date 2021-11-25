@@ -1,8 +1,9 @@
 {
   "name": "react-native-star-io10",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "react-native-star-io10 is a library for supporting application development for Star Micronics devices.",
   "main": "index.ts",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -35,8 +36,9 @@
     "react-native": ">=0.60.0-rc.0 <1.0.x"
   },
   "devDependencies": {
-    "react": "16.13.1",
-    "react-native": "0.63.2",
-    "react-native-windows": "^0.63.23"
+    "@types/react-native": "^0.66.0",
+    "react": "17.0.2",
+    "react-native": "0.66",
+    "react-native-windows": "0.66"
   }
 }

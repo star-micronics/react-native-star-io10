@@ -16,11 +16,11 @@
 
 ## 動作環境
 
-| Platform | Version |
-| --- | --- |
-| iOS | iOS 12.0 以降 |
-| Android | Android 6.0 以降 |
-| Windows | Windows 10 1909 以降 |
+| Platform | OS Version | Arch |
+| --- | --- | --- |
+| iOS | iOS 12.0 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | 
+| Android | Android 6.0 以降 | arm64-v8a, armeabi-v7a, x86, x86_64 |
+| Windows | Windows 10 1909 以降 | x86, x64 |
 
 ## 導入
 
@@ -38,19 +38,32 @@ npm install react-native-star-io10 --save
 
 ### Android
 
-- 設定不要です.
+#### targetSdkVersionを31以降に設定する場合
+
+- [サンプルコード](../example/samples)を参考にして、プリンターとの通信や検索を開始する前に、BLUETOOTH_CONNECTパーミッションを要求してください。
 
 ### Windows
 
 - 機能を`Package.appxmanifest`に追加してください。
   - Bluetooth
-  - Internet (Client)
-  - Private Networks (Client & Server)
-- `.NETネイティブツールチェーンでコンパイルする`を無効にしてください。
+  - インターネット(クライアント)
+  - プライベート ネットワーク (クライアントとサーバー)
+- プロジェクトの「参照」に"Visual C++ 2015-2019 UWP Desktop Runtime for native apps"を追加してください。
 
 ## ドキュメント
 
 [ここを参照ください。](https://www.star-m.jp/react-native-stario10-oml.html)
+
+## 制限事項
+
+### Android端末を使用する場合、URLで指定した画像が低い解像度で印字されることがある
+
+actionPrintImageメソッドの引数ImageParameterのsourceにある程度サイズが大きい画像ファイルのURLを指定した場合、Android端末から印刷データが送付されると、画像が粗く印字されることがあります。
+
+下記いずれかの方法により回避することができます。 
+
+- あらかじめ画像の解像度を下げるなどして画像のデータ量を下げる 
+- アプリ内で画像をダウンロードし、sourceには画像ファイルを直接指定する 
 
 ## Examples
 

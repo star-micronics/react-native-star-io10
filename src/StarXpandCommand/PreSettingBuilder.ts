@@ -9,7 +9,7 @@ export class PreSettingBuilder extends BaseStarXpandCommandBuilder {
 
         this._addAction(async() => {
             await NativeModules.PreSettingBuilderWrapper.addPresenterSetting(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });;
@@ -23,7 +23,7 @@ export class PreSettingBuilder extends BaseStarXpandCommandBuilder {
 
         this._addAction(async() => {
             await NativeModules.PreSettingBuilderWrapper.addBezelSetting(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: Error) => {
+            .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });

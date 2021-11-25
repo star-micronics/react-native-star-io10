@@ -3,7 +3,9 @@ import {
     View,
     Text,
     Button,
-    TextInput
+    TextInput,
+    PermissionsAndroid,
+    Platform
 } from 'react-native';
 
 import {
@@ -35,6 +37,20 @@ class App extends React.Component<AppProps, AppState> {
         settings.interfaceType = this.state.interfaceType;
         settings.identifier = this.state.identifier;
         // settings.autoSwitchInterface = true;
+
+        // If you are using Android 12 and targetSdkVersion is 31 or later,
+        // you have to request Bluetooth permission (Nearby devices permission) to use the Bluetooth printer.
+        // https://developer.android.com/about/versions/12/features/bluetooth-permissions
+        if (Platform.OS == 'android' && 31 <= Platform.Version) {
+            if (this.state.interfaceType == InterfaceType.Bluetooth || settings.autoSwitchInterface == true) {
+                var hasPermission = await this._confirmBluetoothPermission();
+
+                if (!hasPermission) {
+                    console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the Bluetooth printer`);
+                    return;
+                }
+            }
+        }
 
         this._printer = new StarPrinter(settings);
 
@@ -100,6 +116,25 @@ class App extends React.Component<AppProps, AppState> {
         catch(error) {
             console.log(`Error: ${String(error)}`);
         }
+    }
+
+    private async _confirmBluetoothPermission(): Promise<boolean> {
+        var hasPermission = false;
+
+        try {
+            hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
+    
+            if (!hasPermission) {
+                const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
+                    
+                hasPermission = status == PermissionsAndroid.RESULTS.GRANTED;
+            }
+        }
+        catch (err) {
+            console.warn(err);
+        }
+
+        return hasPermission;
     }
 
     constructor(props: any) {

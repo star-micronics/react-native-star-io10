@@ -66,10 +66,12 @@ class StarIO10ValueConverter {
             "TSP650II" to StarPrinterModel.TSP650II,
             "TSP700II" to StarPrinterModel.TSP700II,
             "TSP800II" to StarPrinterModel.TSP800II,
+            "TSP100IIU_Plus" to StarPrinterModel.TSP100IIU_Plus,
             "TSP100IIIW" to StarPrinterModel.TSP100IIIW,
             "TSP100IIILAN" to StarPrinterModel.TSP100IIILAN,
             "TSP100IIIBI" to StarPrinterModel.TSP100IIIBI,
             "TSP100IIIU" to StarPrinterModel.TSP100IIIU,
+            "TSP100IV" to StarPrinterModel.TSP100IV, 
             "mPOP" to StarPrinterModel.mPOP,
             "mC_Print2" to StarPrinterModel.mC_Print2,
             "mC_Print3" to StarPrinterModel.mC_Print3,
@@ -677,7 +679,7 @@ class StarIO10ValueConverter {
                     finish = true
                 }
 
-                override fun onFailureImpl(dataSource: DataSource<CloseableReference<CloseableImage>>?) {
+                override fun onFailureImpl(dataSource: DataSource<CloseableReference<CloseableImage>>) {
                     finish = true
                 }
             }, executor)
@@ -726,9 +728,9 @@ class StarIO10ValueConverter {
                 val client = OkHttpClient()
                 val request = Request.Builder().url(uri).build()
                 val response = client.newCall(request).execute()
-                response.body()?.bytes()?.let { responseBytes ->
+                response.body?.bytes()?.let { responseBytes ->
                     bytes = responseBytes.toList()
-                    response.body()?.close()
+                    response.body?.close()
                 }
             } catch (e: Exception){}
 

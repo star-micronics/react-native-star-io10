@@ -26,7 +26,7 @@ export class StarIO10Logger extends NativeObject {
         await this._initNativeObject();
 
         await NativeModules.StarIO10LoggerWrapper.start()
-        .catch(async (nativeError: Error) => {
+        .catch(async (nativeError: any) => {
             var error = await StarIO10ErrorFactory.create(nativeError.code);
             throw error;
         });
@@ -36,7 +36,7 @@ export class StarIO10Logger extends NativeObject {
         await this._initNativeObject();
 
         await NativeModules.StarIO10LoggerWrapper.stop()
-        .catch(async (nativeError: Error) => {
+        .catch(async (nativeError: any) => {
             var error = await StarIO10ErrorFactory.create(nativeError.code);
             throw error;
         });
