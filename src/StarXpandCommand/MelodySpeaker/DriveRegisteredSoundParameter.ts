@@ -1,7 +1,7 @@
-import { SoundStorageArea } from './SoundStorageArea';
+import type { SoundStorageArea } from './SoundStorageArea';
 
 export class DriveRegisteredSoundParameter {
-    private _area: SoundStorageArea; 
+    private _area: SoundStorageArea;
     private _number: number;
     private _volume: number = -1;
 

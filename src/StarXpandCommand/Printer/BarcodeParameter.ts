@@ -1,4 +1,4 @@
-import { BarcodeSymbology } from './BarcodeSymbology';
+import type { BarcodeSymbology } from './BarcodeSymbology';
 import { BarcodeBarRatioLevel } from './BarcodeBarRatioLevel';
 
 export class BarcodeParameter {
@@ -49,7 +49,7 @@ export class BarcodeParameter {
 
         return this;
     }
-    
+
     setBarRatioLevel(barRatioLevel: BarcodeBarRatioLevel): BarcodeParameter {
         this._barRatioLevel = barRatioLevel;
 

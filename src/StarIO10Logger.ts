@@ -48,5 +48,5 @@ export class StarIO10Logger extends NativeObject {
         return `dammy`;
     }
 
-    protected async _disposeNativeObjectImpl(nativeObject: string): Promise<void> {}
+    protected async _disposeNativeObjectImpl(): Promise<void> {}
 }

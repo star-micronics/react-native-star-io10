@@ -1,4 +1,4 @@
-import { LedType } from './LedType';
+import type { LedType } from './LedType';
 
 export class LedAutomaticBlinkParameter {
     private _type: LedType;

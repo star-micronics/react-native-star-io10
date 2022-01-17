@@ -1,5 +1,5 @@
 import { StarIO10Error } from './StarIO10Error';
-import { StarPrinterStatus } from './StarPrinterStatus';
+import type { StarPrinterStatus } from './StarPrinterStatus';
 
 export class StarIO10UnprintableError extends StarIO10Error {
     private _status: StarPrinterStatus | undefined;

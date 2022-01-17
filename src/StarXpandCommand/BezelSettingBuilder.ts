@@ -1,6 +1,6 @@
 import { NativeModules } from 'react-native';
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
-import { StarXpandCommand } from '../../index';
+import type { StarXpandCommand } from '../../index';
 
 export class BezelSettingBuilder extends BaseStarXpandCommandBuilder {
     settingAutomaticPageLength(enable: boolean): BezelSettingBuilder {

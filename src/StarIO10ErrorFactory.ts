@@ -9,8 +9,8 @@ import { StarIO10NotFoundError } from './StarIO10NotFoundError';
 import { StarIO10UnknownError } from './StarIO10UnknownError';
 import { StarIO10UnprintableError } from './StarIO10UnprintableError';
 import { StarPrinterStatusFactory } from './StarPrinterStatusFactory';
-import { StarIO10Error } from './StarIO10Error';
-import { StarPrinterStatus } from './StarPrinterStatus';
+import type { StarIO10Error } from './StarIO10Error';
+import type { StarPrinterStatus } from './StarPrinterStatus';
 
 export class StarIO10ErrorFactory {
     static async create(identifier: String): Promise<StarIO10Error> {
