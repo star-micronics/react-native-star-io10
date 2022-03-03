@@ -145,7 +145,7 @@ RCT_REMAP_METHOD(stopDiscovery,
 - (void)managerDidFinishDiscovery:(id<STARIO10StarDeviceDiscoveryManager> _Nonnull)manager {
     NSString* objID = [_objManager getExsitingIdentifier:manager];
     
-    if (objID) {
+    if (objID && [self bridge] != nil) {
         [self sendEventWithName:kNameDiscoveryFinished body:@{kKeyIdentifier: objID}];
     }
 }
