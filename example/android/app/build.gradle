@@ -217,6 +217,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation files('../../node_modules/react-native-star-io10/android/src/lib/stario10.aar')
 }
 
 // Run this once to be able to run the application with BUCK
