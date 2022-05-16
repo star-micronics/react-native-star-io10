@@ -145,17 +145,6 @@ class StarIO10ValueConverter {
             return presenterLedTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
-        private val printerPageModePrintDirectionMap = mapOf(
-            "BottomToTop" to PageModePrintDirection.BottomToTop,
-            "LeftToRight" to PageModePrintDirection.LeftToRight,
-            "RightToLeft" to PageModePrintDirection.RightToLeft,
-            "TopToBottom" to PageModePrintDirection.TopToBottom
-        )
-
-        fun toPrinterPageModePrintDirection(value: String) : PageModePrintDirection {
-            return printerPageModePrintDirectionMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
-        }
-
         private val printerBlackMarkPositionMap = mapOf(
             "Front" to BlackMarkPosition.Front,
             "Back" to BlackMarkPosition.Back
@@ -435,14 +424,6 @@ class StarIO10ValueConverter {
             return parameter
         }
 
-        fun toPrinterPageModeAreaParameter(x: Double, y: Double, width: Double, height: Double): PageModeAreaParameter {
-            val parameter = PageModeAreaParameter(width, height)
-            parameter.setX(x)
-            parameter.setY(y)
-
-            return parameter
-        }
-
         fun toPrinterHoldPrintParameter(enable: Boolean): HoldPrintParameter {
             return HoldPrintParameter(enable)
         }
@@ -704,32 +685,31 @@ class StarIO10ValueConverter {
             return bitmap
         }
 
-        private fun sourceToBytes(source: String, context: Context): List<Byte> {
-            return  httpToBytes(source) ?: fileUriToBytes(source, context) ?: resourceFileToBytes(source, context) ?: base64ToBytes(source)?: throw StarIO10ArgumentException(
+        private fun sourceToBytes(source: String, context: Context): ByteArray {
+            return  httpToBytes(source) ?: resourceFileToBytes(source, context) ?: base64ToBytes(source)?: throw StarIO10ArgumentException(
                 "Invalid source."
             )
         }
 
-        private fun base64ToBytes(uri: String): List<Byte>? {
-            var bytes: List<Byte>? = null
+        private fun base64ToBytes(uri: String): ByteArray? {
+            var bytes: ByteArray? = null
 
             try {
-                val base64Bytes = Base64.decode(uri, 0)
-                bytes = base64Bytes.toList()
+                bytes = Base64.decode(uri, 0)
             } catch (e: Exception) {}
 
             return bytes
         }
 
-        private fun httpToBytes(uri: String): List<Byte>? {
-            var bytes: List<Byte>? = null
+        private fun httpToBytes(uri: String): ByteArray? {
+            var bytes: ByteArray? = null
 
             try {
                 val client = OkHttpClient()
                 val request = Request.Builder().url(uri).build()
                 val response = client.newCall(request).execute()
                 response.body?.bytes()?.let { responseBytes ->
-                    bytes = responseBytes.toList()
+                    bytes = responseBytes
                     response.body?.close()
                 }
             } catch (e: Exception){}
@@ -737,22 +717,8 @@ class StarIO10ValueConverter {
             return bytes
         }
 
-        private fun fileUriToBytes(uri: String, context: Context): List<Byte>? {
-            var bytes: List<Byte>? = null
-
-            try {
-                context.contentResolver.openInputStream(Uri.parse(uri))?.let { stream ->
-                    bytes = getBytesFromStream(stream)
-                    stream.close()
-                }
-            } catch (e: Exception){}
-
-
-            return bytes
-        }
-
-        private fun resourceFileToBytes(fileName: String, context: Context): List<Byte>? {
-            var bytes: List<Byte>? = null
+        private fun resourceFileToBytes(fileName: String, context: Context): ByteArray? {
+            var bytes: ByteArray? = null
 
             val resources = context.resources
             val resourceId = resources.getIdentifier(getPrefix(fileName), "raw", context.packageName)
@@ -767,7 +733,7 @@ class StarIO10ValueConverter {
             return bytes
         }
 
-        private fun getBytesFromStream(inputStream: InputStream): List<Byte> {
+        private fun getBytesFromStream(inputStream: InputStream): ByteArray {
             val result = mutableListOf<Byte>()
 
             while (true) {
@@ -781,7 +747,7 @@ class StarIO10ValueConverter {
                 result.addAll(buffer.toList())
             }
 
-            return result
+            return result.toByteArray()
         }
 
         private fun getPrefix(fileName: String): String {

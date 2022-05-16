@@ -63,7 +63,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("init")]
         public void Init(IReactPromise<string> promise)
         {
-            StarPrinter nativeObject = new StarPrinter(new StarConnectionSettings());
+            StarPrinter nativeObject = new StarPrinter(new StarConnectionSettings(InterfaceType.Unknown));
 
             SetObject(nativeObject, out string objectIdentifier);
 

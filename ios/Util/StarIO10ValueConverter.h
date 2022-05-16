@@ -28,7 +28,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (STARIO10StarXpandCommandPrinterCutType)toPrinterCutType:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterFontType)toPrinterFontType:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterAlignment)toPrinterAlignment:(NSString *)value;
-+ (STARIO10StarXpandCommandPrinterPageModePrintDirection)toPrinterPageModePrintDirection:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterBlackMarkPosition)toPrinterBlackMarkPosition:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterBarcodeSymbology)toPrinterBarcodeSymbology:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterBarcodeBarRatioLevel)toPrinterBarcodeBarRatioLevel:(NSString *)value;
@@ -53,10 +52,6 @@ NS_ASSUME_NONNULL_BEGIN
                                                                                 hold:(BOOL)hold
                                                                              retract:(BOOL)retract
                                                                             holdTime:(nonnull NSNumber *)holdTime;
-+ (STARIO10StarXpandCommandPrinterPageModeAreaParameter *)toPrinterPageModeAreaParameterWithX:(nonnull NSNumber *)x
-                                                                                            y:(nonnull NSNumber *)y
-                                                                                        width:(nonnull NSNumber *)width
-                                                                                       height:(nonnull NSNumber *)height;
 
 + (STARIO10StarXpandCommandPrinterBlackMarkParameter *)toPrinterBlackMarkParameterWithStart:(BOOL)enable
                                                                                    position:(nonnull NSString *)position;

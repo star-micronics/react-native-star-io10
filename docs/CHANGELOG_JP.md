@@ -2,6 +2,15 @@
 
 # 変更点
 
+## 1.2.0 (2022/05/10)
+
+* POP10CI に対応
+* SM-L200のBluetoothモジュール情報を新規追加
+* React Native のバージョンを0.67.2に更新
+* Android: StarDeviceDiscoveryManagerクラスを利用した際かつ、一部のプリンター(TSP100IIIBI、mPOP、mC-Print2/3、SM-L200/300)のBluetoothデバイス名が初期値の場合において、モデルを推定し取得できる仕様を追加
+* Android: 不要な部分まで難読化されないように修正
+* Windows: Microsoft Storeからインストールしたアプリにおいて、本ライブラリのいずれかのAPI呼び出しによりクラッシュする問題を修正
+
 ## 1.1.0 (2021/11/19)
 
 * TSP100IV に対応

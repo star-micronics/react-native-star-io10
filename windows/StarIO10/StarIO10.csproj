@@ -158,6 +158,25 @@
       <HintPath>..\libs\StarIO10.UWP.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="..\libs\NativeLibraries\x64\StarIO10CP.dll" Condition="'$(Platform)' == 'x64'">
+      <Link>NativeLibraries\x64\StarIO10CP.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\libs\NativeLibraries\x64\StarIO10LG.dll" Condition="'$(Platform)' == 'x64'">
+      <Link>NativeLibraries\x64\StarIO10LG.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\libs\NativeLibraries\x86\StarIO10CP.dll" Condition="'$(Platform)' == 'x86'">
+      <Link>NativeLibraries\x86\StarIO10CP.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\libs\NativeLibraries\x86\StarIO10LG.dll" Condition="'$(Platform)' == 'x86'">
+      <Link>NativeLibraries\x86\StarIO10LG.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

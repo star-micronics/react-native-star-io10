@@ -2,7 +2,6 @@ import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
 import { StarXpandCommand } from '../../index';
 export declare class PrinterBuilder extends BaseStarXpandCommandBuilder {
     styleAlignment(alignment: StarXpandCommand.Printer.Alignment): PrinterBuilder;
-    addPageMode(parameter: StarXpandCommand.Printer.PageModeAreaParameter, builder: StarXpandCommand.PageModeBuilder): PrinterBuilder;
     styleFont(type: StarXpandCommand.Printer.FontType): PrinterBuilder;
     styleBold(enable: boolean): PrinterBuilder;
     styleInvert(enable: boolean): PrinterBuilder;

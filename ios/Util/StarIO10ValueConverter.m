@@ -15,7 +15,6 @@ NSDictionary<NSNumber *, NSString *> *kInterfaceTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kPresenterLEDTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kBezelLEDTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterAlignmentDictionary;
-NSDictionary<NSNumber *, NSString *> *kPrinterPageModePrintDirectionDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterBlackMarkPositionDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterFontTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterInternationalCharacterTypeDictionary;
@@ -97,13 +96,6 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10StarXpandCommandPrinterAlignmentLeft): @"Left",
             @(STARIO10StarXpandCommandPrinterAlignmentCenter): @"Center",
             @(STARIO10StarXpandCommandPrinterAlignmentRight): @"Right"
-        };
-        
-        kPrinterPageModePrintDirectionDictionary = @{
-            @(STARIO10StarXpandCommandPrinterPageModePrintDirectionBottomToTop): @"BottomToTop",
-            @(STARIO10StarXpandCommandPrinterPageModePrintDirectionLeftToRight): @"LeftToRight",
-            @(STARIO10StarXpandCommandPrinterPageModePrintDirectionRightToLeft): @"RightToLeft",
-            @(STARIO10StarXpandCommandPrinterPageModePrintDirectionTopToBottom): @"TopToBottom"
         };
         
         kPrinterBlackMarkPositionDictionary = @{
@@ -393,17 +385,6 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
     return [[allKeys objectAtIndex:0] intValue];
 }
 
-+ (STARIO10StarXpandCommandPrinterPageModePrintDirection)toPrinterPageModePrintDirection:(NSString *)value
-{
-    NSArray<NSNumber *> *allKeys = [kPrinterPageModePrintDirectionDictionary allKeysForObject:value];
-    
-    if (allKeys == nil) {
-        return STARIO10StarXpandCommandPrinterPageModePrintDirectionLeftToRight;
-    }
-    
-    return [[allKeys objectAtIndex:0] intValue];
-}
-
 + (STARIO10StarXpandCommandPrinterBlackMarkPosition)toPrinterBlackMarkPosition:(NSString *)value
 {
     NSArray<NSNumber *> *allKeys = [kPrinterBlackMarkPositionDictionary allKeysForObject:value];
@@ -613,19 +594,6 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
     param = [param setHold:hold];
     param = [param setRetract:retract];
     param = [param setHoldTime:holdTime.intValue];
-    
-    return param;
-}
-
-+ (STARIO10StarXpandCommandPrinterPageModeAreaParameter *)toPrinterPageModeAreaParameterWithX:(nonnull NSNumber *)x
-                                                                                            y:(nonnull NSNumber *)y
-                                                                                        width:(nonnull NSNumber *)width
-                                                                                       height:(nonnull NSNumber *)height
-{
-    STARIO10StarXpandCommandPrinterPageModeAreaParameter *param = [[STARIO10StarXpandCommandPrinterPageModeAreaParameter alloc] initWithWidth:width.doubleValue
-                                                                                                                               height:height.doubleValue];
-    param = [param setX:x.doubleValue];
-    param = [param setY:y.doubleValue];
     
     return param;
 }

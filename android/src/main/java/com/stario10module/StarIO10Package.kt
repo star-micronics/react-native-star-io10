@@ -16,7 +16,6 @@ class StarIO10Package : ReactPackage {
         modules.add(DocumentBuilderWrapper(reactContext))
         modules.add(DrawerBuilderWrapper(reactContext))
         modules.add(MelodySpeakerBuilderWrapper(reactContext))
-        modules.add(PageModeBuilderWrapper(reactContext))
         modules.add(PresenterSettingBuilderWrapper(reactContext))
         modules.add(PreSettingBuilderWrapper(reactContext))
         modules.add(PrinterBuilderWrapper(reactContext))

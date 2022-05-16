@@ -39,21 +39,6 @@ class PrinterBuilderWrapper internal constructor(context: ReactApplicationContex
     }
 
     @ReactMethod
-    fun addPageMode(identifier: String, x: Double, y: Double, width: Double, height: Double, pageModeBuilderIdentifier: String, promise: Promise) {
-        val builder = InstanceManager.get(identifier)
-        val pageModeBuilder = InstanceManager.get(pageModeBuilderIdentifier)
-
-        if (builder is PrinterBuilder && pageModeBuilder is PageModeBuilder) {
-            builder.addPageMode(StarIO10ValueConverter.toPrinterPageModeAreaParameter(x, y, width, height), pageModeBuilder)
-            promise.resolve(true)
-        }
-        else {
-            promise.reject(ReactNoCrashSoftException("Not found native instance"))
-        }
-    }
-
-
-    @ReactMethod
     fun styleFont(identifier: String, type: String, promise: Promise) {
         val builder = InstanceManager.get(identifier)
 

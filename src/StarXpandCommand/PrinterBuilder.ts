@@ -16,20 +16,6 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
-    addPageMode(parameter: StarXpandCommand.Printer.PageModeAreaParameter, builder: StarXpandCommand.PageModeBuilder): PrinterBuilder {
-        this._addChild(builder);
-
-        this._addAction(async() => {
-            await NativeModules.PrinterBuilderWrapper.addPageMode(this._nativeObject, parameter.x, parameter.y, parameter.width, parameter.height, builder._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
-        });
-
-        return this;
-    }
-
     styleFont(type: StarXpandCommand.Printer.FontType): PrinterBuilder {
         this._addAction(async() => {
             await NativeModules.PrinterBuilderWrapper.styleFont(this._nativeObject, type)

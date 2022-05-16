@@ -21,6 +21,7 @@ NSString * const kSTARIO10ErrorTypeInUse = @"InUse";
 NSString * const kSTARIO10ErrorTypeInvalidOperation = @"InvalidOperation";
 NSString * const kSTARIO10ErrorTypeNotFound = @"NotFound";
 NSString * const kSTARIO10ErrorTypeUnprintable = @"Unprintable";
+NSString * const kSTARIO10ErrorTypeUnsupportedModel = @"UnsupportedModel";
 NSString * const kSTARIO10ErrorTypeUnknown = @"Unknown";
 
 - (instancetype)init
@@ -94,6 +95,10 @@ RCT_REMAP_METHOD(getType,
             
         case STARIO10ErrorUnprintable:
             type = kSTARIO10ErrorTypeUnprintable;
+            break;
+            
+        case STARIO10ErrorUnsupportedModel:
+            type = kSTARIO10ErrorTypeUnsupportedModel;
             break;
             
         case STARIO10ErrorUnknown:

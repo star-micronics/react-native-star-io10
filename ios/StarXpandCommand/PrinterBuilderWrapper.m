@@ -75,40 +75,6 @@ RCT_REMAP_METHOD(styleAlignment,
      resolve(nil);
 }
 
-RCT_REMAP_METHOD(addPageMode,
-                 addPageModeWithObjectIdentifier:(nonnull NSString *)objID
-                 x:(nonnull NSNumber *)x
-                 y:(nonnull NSNumber *)y
-                 width:(nonnull NSNumber *)width
-                 height:(nonnull NSNumber *)height
-                 pageModeBuilderID:(nonnull NSString *)pageModeBuilderID
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandPrinterBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-    
-    STARIO10StarXpandCommandPageModeBuilder *pageModeBuilder = [_objManager getObject:pageModeBuilderID];
-    
-    if (pageModeBuilder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-    
-    STARIO10StarXpandCommandPrinterPageModeAreaParameter *param = [StarIO10ValueConverter toPrinterPageModeAreaParameterWithX:x
-                                                                                                                    y:y
-                                                                                                                width:width
-                                                                                                               height:height];
-    
-    [builder addPageModeWithParameter:param builder:pageModeBuilder];
-     
-    resolve(nil);
-}
-
 RCT_REMAP_METHOD(styleFont,
                  styleFontWithObjectIdentifier:(nonnull NSString *)objID
                  type:(nonnull NSString *)type

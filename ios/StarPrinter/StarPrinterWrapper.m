@@ -42,7 +42,10 @@ RCT_REMAP_METHOD(init,
                  createWithResolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-    STARIO10StarPrinter *printer = [[STARIO10StarPrinter alloc] initWithConnectionSettings:[[STARIO10StarConnectionSettings alloc] init]];
+    STARIO10StarPrinter *printer = [[STARIO10StarPrinter alloc] initWithConnectionSettings:[[STARIO10StarConnectionSettings alloc]
+                                                                                            initWithInterfaceType:STARIO10InterfaceTypeUnknown
+                                                                                            identifier:STARIO10StarConnectionSettingsFirstFoundDevice
+                                                                                            autoSwitchInterface:false]];
     
     if (printer == nil) {
         reject(@"Error", @"Fail to create object.", nil);

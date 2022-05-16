@@ -24,4 +24,5 @@ export { StarIO10InvalidOperationError } from './src/StarIO10InvalidOperationErr
 export { StarIO10NotFoundError } from './src/StarIO10NotFoundError';
 export { StarIO10UnknownError } from './src/StarIO10UnknownError';
 export { StarIO10UnprintableError } from './src/StarIO10UnprintableError';
+export { StarIO10UnsupportedModelError } from './src/StarIO10UnsupportedModelError';
 export { StarPrinterStatus } from './src/StarPrinterStatus';

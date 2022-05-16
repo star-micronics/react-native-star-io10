@@ -29,18 +29,75 @@ npm install react-native-star-io10 --save
 ```
 
 ### iOS
+Some settings and approvals are required depending on the printer interface.  
+Please check the table below and take action.
 
-- Add key and value in `info.plist`.
-  - NSBluetoothAlwaysUsageDescription (iOS 13.0 or later)
-  - NSLocalNetworkUsageDescription (iOS 14.0 or later)
-  - UISupportedExternalAccessoryProtocols (Add the following value to the array)
-    - `jp.star-m.starpro`
+| Interface of the printer  | Necessary actions                                                                       |
+|---------------------------|-----------------------------------------------------------------------------------------|
+| Bluetooth                 | [1.](#SupportedEAProtocols) & [2.](#BluetoothAlwaysUsageDescription) & [4.](#MFi) |
+| Bluetooth Low Energy      | [2.](#BluetoothAlwaysUsageDescription)                                                |
+| Ethernet (iOS14 or later) | [3.](#LocalNetworkUsageDescription)                                                   |
+| Lightning USB             | [1.](#SupportedEAProtocols) & [4.](#MFi)                                            |
+
+<a id="SupportedEAProtocols"></a>
+#### 1. Set `Supported external accessory protocols` 
+
+1. Click on the information property list file (default : “Info.plist”).
+2. Add the `Supported external accessory protocols` Key.
+3. Click the triangle of this key and set the value for the “Item 0” to `jp.star-m.starpro`.
+
+> :warning: If you do not use the printer concerned, do not configure this setting.
+
+<a id="BluetoothAlwaysUsageDescription"></a>
+#### 2. Set `Bluetooth Always Usage Description` and `Bluetooth Peripheral Usage Description`
+
+1. Click on the information property list file (default : “Info.plist”).
+2. Add the `Privacy – Bluetooth Always Usage Description` Key.
+3. If you set `Deployment Target` to iOS12, add the `Privacy – Bluetooth Peripheral Usage Description` Key.
+4. Set the reason for using Bluetooth in Value (e.g. `Use Bluetooth for communication with the printer.`)
+5. When communicating with the Bluetooth printer on iOS 13 or later, an alert requesting permission to access Bluetooth is displayed. The string set in Value is displayed in the alert as the reason for using Bluetooth.
+
+For more information, please refer to the following URL.
+
+https://developer.apple.com/documentation/bundleresources/information_property_list/nsbluetoothperipheralusagedescription
+
+<a id="LocalNetworkUsageDescription"></a>
+#### 3. Set `Local Network Usage Description`
+
+1. Click on the information property list file (default : “Info.plist”).
+2. Add the `Privacy - Local Network Usage Description` Key.
+3. Set the reason for using Local Network in Value (e.g. `Use Local Network for communication with the printer or discovery the printers.`)
+4. When communicating with the Ethernet printer on iOS 14 or later, an alert requesting permission to access Local Network is displayed. The string set in Value is displayed in the alert as the reason for using Local Network.
+
+<a id="MFi"></a>
+#### 4. Apple Approval Process for STAR MFi Applications
+
+In order to offer your application that communicates a MFi certified printer on the Apple iTunes App Store, your application needs to be approved by the Apple MFi program before you submit it to the Apple iTunes App Store. Please follow the steps described in the URL below to obtain the app approval. This procedure must be completed before the app is reviewed by Apple.
+
+https://star-m.jp/eng/products/s_print/apple_app_mfi.html
+
+> :warning: In case of a Bluetooth Low Energy printer, you do not need to obtain this app approval.
 
 ### Android
-
 #### In case of setting targetSdkVersion to 31 or later
+Refer to [sample code](example/samples) and request BLUETOOTH_CONNECT permission before starting to communicate with or search for the printer.
 
-- Refer to [sample code](example/samples) and request BLUETOOTH_CONNECT permission before starting to communicate with or search for the printer.
+#### In case of setting targetSdkVersion to 30 or earlier
+The `react-native-star-io10` library contains the BLUETOOTH_CONNECT permission, which was added at API level 31. Please make the following two settings in AndroidManifest.xml to remove the BLUETOOTH_CONNECT permission.
+
+* Add the `xmlns:tools="http://schemas.android.com/tools"` attribute to the `manifest` element.
+* Add the `<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" tools:node="remove"/>` element.
+
+```xml
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.starmicronics.starxpandsdk">
+
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" tools:node="remove"/>
+    ...
+</manifest>
+```
 
 ### Windows
 

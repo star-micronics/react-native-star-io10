@@ -17,7 +17,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
 
     @ReactMethod
     fun init(promise: Promise) {
-        val printer = StarPrinter(StarConnectionSettings(), reactApplicationContext)
+        val printer = StarPrinter(StarConnectionSettings(InterfaceType.Unknown), reactApplicationContext)
         val identifier = InstanceManager.set(printer)
 
         promise.resolve(identifier)
