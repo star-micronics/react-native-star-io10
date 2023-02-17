@@ -1,9 +1,9 @@
 ---
 name: Bug report
 about: Please create a report to help us improve.
-title: "[BUG]"
-labels: bug
-assignees: bandit-ibayashi
+title: ''
+labels: triage
+assignees: ''
 
 ---
 
