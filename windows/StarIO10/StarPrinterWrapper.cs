@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+#nullable enable
+
 namespace StarMicronics.ReactNative.StarIO10
 {
     [ReactModule]
@@ -133,7 +135,7 @@ namespace StarMicronics.ReactNative.StarIO10
         {
             promise.Resolve();
         }
-        
+
         [ReactMethod("activatePrinterDelegate")]
         public void ActivatePrinterDelegate(string objectIdentifier, IReactPromise<JSValue.Void> promise)
         {
@@ -376,6 +378,32 @@ namespace StarMicronics.ReactNative.StarIO10
             }
         }
 
+        [ReactMethod("spoolPrint")]
+        public async void SpoolPrint(string objectIdentifier, string command, bool isRetryEnabled, int retryTimeout, string note, int printTimeout, IReactPromise<int> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.PrintTimeout = printTimeout;
+
+            var jobSettings = new StarSpoolJobSettings(isRetryEnabled, retryTimeout, note);
+
+            try
+            {
+                var jobId = await nativeObject.PrintAsync(command, jobSettings);
+                promise.Resolve(jobId);
+            }
+            catch (StarIO10Exception e)
+            {
+                StarIO10ErrorWrapper.SetObject(e, out string exceptionIdentifier);
+                promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
+            }
+        }
+
+
         [ReactMethod("printRawData")]
         public async void PrintRawData(string objectIdentifier, byte[] data, int timeout, IReactPromise<JSValue.Void> promise)
         {
@@ -415,6 +443,131 @@ namespace StarMicronics.ReactNative.StarIO10
                 StarPrinterStatus status = await nativeObject.GetStatusAsync();
                 StarPrinterStatusWrapper.SetObject(status, out string statusIdentifier);
                 promise.Resolve(statusIdentifier);
+            }
+            catch (StarIO10Exception e)
+            {
+                StarIO10ErrorWrapper.SetObject(e, out string exceptionIdentifier);
+                promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
+            }
+        }
+
+        [ReactMethod("getSpoolJobStatus")]
+        public async void GetSpoolJobStatus(string objectIdentifier, int jobId, int timeout, IReactPromise<string> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.GetStatusTimeout = timeout;
+
+            try
+            {
+                StarSpoolJobStatus status = await nativeObject.GetSpoolJobStatusAsync(jobId);
+
+                StarSpoolJobStatusWrapper.SetObject(status, out string statusIdentifier);
+
+                promise.Resolve(statusIdentifier);
+            }
+            catch (StarIO10Exception e)
+            {
+                StarIO10ErrorWrapper.SetObject(e, out string exceptionIdentifier);
+                promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
+            }
+        }
+
+
+        [ReactMethod("getSpoolJobStatusList")]
+        public async void GetSpoolJobStatusList(string objectIdentifier, int size, int timeout, IReactPromise<string> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.GetStatusTimeout = timeout;
+
+            try
+            {
+                List<StarSpoolJobStatus> statusList = await nativeObject.GetSpoolJobStatusListAsync(size);
+
+                StarSpoolJobStatusListWrapper.SetObject(statusList, out string statusListIdentifier);
+
+                promise.Resolve(statusListIdentifier);
+            }
+            catch (StarIO10Exception e)
+            {
+                StarIO10ErrorWrapper.SetObject(e, out string exceptionIdentifier);
+                promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
+            }
+        }
+
+        [ReactMethod("getStarConfiguration")]
+        public async void GetStarConfiguration(string objectIdentifier, string? password, int timeout, IReactPromise<string> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.StarConfigurationTimeout = timeout;
+
+            try
+            {
+                string starConfiguration = await nativeObject.GetStarConfigurationAsync(password);
+                promise.Resolve(starConfiguration);
+            }
+            catch (StarIO10Exception e)
+            {
+                StarIO10ErrorWrapper.SetObject(e, out string exceptionIdentifier);
+                promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
+            }
+        }
+
+        [ReactMethod("getDefaultStarConfiguration")]
+        public async void GetDefaultStarConfiguration(string objectIdentifier, int timeout, IReactPromise<string> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.StarConfigurationTimeout = timeout;
+
+            try
+            {
+                string starConfiguration = await nativeObject.GetDefaultStarConfigurationAsync();
+                promise.Resolve(starConfiguration);
+            }
+            catch (StarIO10Exception e)
+            {
+                StarIO10ErrorWrapper.SetObject(e, out string exceptionIdentifier);
+                promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
+            }
+        }
+
+        [ReactMethod("setStarConfiguration")]
+        public async void SetStarConfiguration(string objectIdentifier, string starConfiguration, int timeout, IReactPromise<string> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.StarConfigurationTimeout = timeout;
+
+            try
+            {
+                StarConfigurationSetResult starConfigurationSetResult = await nativeObject.SetStarConfigurationAsync(starConfiguration);
+
+                StarIO10ValueConverter.ToString(starConfigurationSetResult, out string result);
+
+                promise.Resolve(result);
             }
             catch (StarIO10Exception e)
             {

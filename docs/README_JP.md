@@ -14,13 +14,19 @@
 
 本ライブラリはStarXpand SDKに含まれます。
 
+## ドキュメント
+
+StarXpand SDKのドキュメントは[こちら](https://www.star-m.jp/react-native-stario10-oml.html)を参照ください。
+
+ドキュメントにはSDKの概要、サンプルアプリのビルド方法、APIの使用方法、APIリファレンスなどが含まれます。
+
 ## 動作環境
 
 | Platform | OS Version | Arch |
 | --- | --- | --- |
 | iOS | iOS 12.0 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | 
 | Android | Android 6.0 以降 | arm64-v8a, armeabi-v7a, x86, x86_64 |
-| Windows | Windows 10 1909 以降 | x86, x64 |
+| Windows | Windows 11 / Windows 10 1909 以降 | x86, x64 |
 
 ## 導入
 
@@ -79,25 +85,7 @@ https://star-m.jp/products/s_print/apple_app_mfi/index.html
 > :warning: Bluetooth Low Energyプリンターを使用する場合は、このアプリ認証を行う必要はありません。
 
 ### Android
-#### targetSdkVersionを31以降に設定する場合
 [サンプルコード](../example/samples)を参考にして、プリンターとの通信や検索を開始する前に、BLUETOOTH_CONNECTパーミッションを要求してください。
-
-#### targetSdkVersionを30以前に設定する場合
-`react-native-star-io10` ライブラリには、APIレベル 31にて追加されたBLUETOOTH_CONNECTパーミッションが含まれています。AndroidManifest.xmlに下記二つの設定を行い、BLUETOOTH_CONNECTパーミッションを削除してください。
-
-* `manifest` 要素に `xmlns:tools="http://schemas.android.com/tools"` 属性を追加します。
-* `<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" tools:node="remove"/>` 要素を追加します。
-
-```xml
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.starmicronics.starxpandsdk">
-
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" tools:node="remove"/>
-    ...
-</manifest>
-```
 
 ### Windows
 - 機能を`Package.appxmanifest`に追加してください。
@@ -106,11 +94,11 @@ https://star-m.jp/products/s_print/apple_app_mfi/index.html
   - プライベート ネットワーク (クライアントとサーバー)
 - プロジェクトの「参照」に"Visual C++ 2015-2019 UWP Desktop Runtime for native apps"を追加してください。
 
-## ドキュメント
-
-[ここを参照ください。](https://www.star-m.jp/react-native-stario10-oml.html)
-
 ## 制限事項
+
+### Windowsのx86向けビルドが出来ない
+
+React Native for Windows V0.71.3を利用するStarXpand SDK V1.3.0では、Windowsのx86アーキテクチャ向けビルドは出来ません。x64アーキテクチャのみ利用可能です。
 
 ### Android端末を使用する場合、URLで指定した画像が低い解像度で印字されることがある
 
@@ -123,153 +111,25 @@ actionPrintImageメソッドの引数ImageParameterのsourceにある程度サ�
 
 ## Examples
 
-### Discover devices
+StarXpand SDKにはプリンターと組み合わせて動作を確認できる[サンプルアプリ](../example)が含まれています。リンク先の各機能の解説と合わせてご利用ください。
 
-```typescript
-manager: StarDeviceDiscoveryManager;
+#### 1. [プリンターの検索](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/searchPrinter.html)
 
-async discover(): Promise<void> {
-    try {
-        // Specify your printer interface types.
-        manager = await StarDeviceDiscoveryManagerFactory.create([
-            InterfaceType.Lan,
-            InterfaceType.Bluetooth,
-            InterfaceType.BluetoothLE,
-            InterfaceType.Usb
-        ]);
+#### 2. [印刷データの生成](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/basic-step1.html)
 
-        // Set discovery time. (option)
-        manager.discoveryTime = 10000;
+ラベル用の印刷レイアウトを作成するのに活用できる各業態の[印刷サンプル](../example/samples/printing_samples/PrintingSamples.md)（サンプルコードと印刷結果画像）もご利用ください。
 
-        // Callback for printer found.
-        manager.onPrinterFound = (printer: StarPrinter) => {
-            console.log(printer);
-        };
+> :warning: プリンターのモデルによっては印刷できないサンプルがあります。また、ご利用の際は適宜レイアウトを調節してください。
 
-        // Callback for discovery finished. (option)
-        manager.onDiscoveryFinished = () => {
-            console.log(`Discovery finished.`);
-        };
+#### 3. [印刷データの送信](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/basic-step2.html)
 
-        // Start discovery.
-        await manager.startDiscovery();
+#### 4. [スプーラー機能を利用した印刷データの送信](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/spooler.html)
 
-        // Stop discovery.
-        // await manager.stopDiscovery()
-    }
-    catch(error) {
-        // Error.
-        console.log(error);
-    }
-}
-```
+#### 5. [プリンターステータスの取得](#GetPrinterStatus)
 
-### Print
+#### 6. [プリンターステータスの監視](#MonitorPrinter)
 
-```typescript
-async print(): Promise<void> {
-    // Specify your printer connection settings.
-    var settings = new StarConnectionSettings();
-    settings.interfaceType = InterfaceType.Lan;
-    settings.identifier = '00:11:62:00:00:00';
-    var printer = new StarPrinter(settings);
-
-    try {
-        // Connect to the printer.
-        await printer.open();
-
-        // create printing data. (Please refer to 'Create Printing data')
-        var builder = new StarXpandCommand.StarXpandCommandBuilder();
-        // ...
-        var commands = await builder.getCommands();
-
-        // Print.
-        await printer.print(commands);
-    }
-    catch(error) {
-        // Error.
-        console.log(error);
-    }
-    finally {
-        // Disconnect from the printer and dispose object.
-        await printer.close();
-        await printer.dispose();
-    }
-}
-```
-
-### Create printing data
-
-```typescript
-// Create printing data using StarXpandCommandBuilder object.
-var builder = new StarXpandCommand.StarXpandCommandBuilder();
-builder.addDocument(new StarXpandCommand.DocumentBuilder()
-.addPrinter(new StarXpandCommand.PrinterBuilder()
-    .actionPrintImage(new StarXpandCommand.Printer.ImageParameter("logo_01.png", 406))
-    .styleInternationalCharacter(StarXpandCommand.Printer.InternationalCharacterType.Usa)
-    .styleCharacterSpace(0)
-    .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
-    .actionPrintText("Star Clothing Boutique\n" +
-                    "123 Star Road\n" +
-                    "City, State 12345\n" +
-                    "\n")
-    .styleAlignment(StarXpandCommand.Printer.Alignment.Left)
-    .actionPrintText("Date:MM/DD/YYYY    Time:HH:MM PM\n" +
-                    "--------------------------------\n" +
-                    "\n")
-    .actionPrintText("SKU         Description    Total\n" +
-                    "300678566   PLAIN T-SHIRT  10.99\n" +
-                    "300692003   BLACK DENIM    29.99\n" +
-                    "300651148   BLUE DENIM     29.99\n" +
-                    "300642980   STRIPED DRESS  49.99\n" +
-                    "300638471   BLACK BOOTS    35.99\n" +
-                    "\n" +
-                    "Subtotal                  156.95\n" +
-                    "Tax                         0.00\n" +
-                    "--------------------------------\n")
-    .actionPrintText("Total     ")
-    .add(new StarXpandCommand.PrinterBuilder()
-        .styleMagnification(new StarXpandCommand.MagnificationParameter(2, 2))
-        .actionPrintText("   $156.95\n")
-    )
-    .actionPrintText("--------------------------------\n" +
-                    "\n" +
-                    "Charge\n" +
-                    "156.95\n" +
-                    "Visa XXXX-XXXX-XXXX-0123\n" +
-                    "\n")
-    .add(new StarXpandCommand.PrinterBuilder()
-        .styleInvert(true)
-        .actionPrintText("Refunds and Exchanges\n")
-    )
-    .actionPrintText("Within ")
-    .add(new StarXpandCommand.PrinterBuilder()
-        .styleUnderLine(true)
-        .actionPrintText("30 days")
-    )
-    .actionPrintText(" with receipt\n")
-    .actionPrintText("And tags attached\n" +
-                    "\n")
-    .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
-    .actionPrintBarcode(new StarXpandCommand.Printer.BarcodeParameter('0123456',
-                        StarXpandCommand.Printer.BarcodeSymbology.Jan8)
-                        .setBarDots(3)
-                        .setBarRatioLevel(StarXpandCommand.Printer.BarcodeBarRatioLevel.Level0)
-                        .setHeight(5)
-                        .setPrintHri(true))
-    .actionFeedLine(1)
-    .actionPrintQRCode(new StarXpandCommand.Printer.QRCodeParameter('Hello World.\n')
-                        .setModel(StarXpandCommand.Printer.QRCodeModel.Model2)
-                        .setLevel(StarXpandCommand.Printer.QRCodeLevel.L)
-                        .setCellSize(8))
-    .actionCut(StarXpandCommand.Printer.CutType.Partial)
-    )
-);
-
-// Get printing data from StarXpandCommandBuilder object.
-var commands = await builder.getCommands();
-```
-
+<a id="GetPrinterStatus"></a>
 ### Get printer status
 
 ```typescript
@@ -300,6 +160,7 @@ async getStatus(): Promise<void> {
 }
 ```
 
+<a id="MonitorPrinter"></a>
 ### Monitor printer
 
 ```typescript
@@ -338,8 +199,6 @@ async monitor(): Promise<void> {
     }
 }
 ```
-
-- [`example`プロジェクトはここを参照ください。](../example)
 
 ## Copyright
 

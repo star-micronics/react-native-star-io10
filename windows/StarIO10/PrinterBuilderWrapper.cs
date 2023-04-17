@@ -43,22 +43,6 @@ namespace StarMicronics.ReactNative.StarIO10
             promise.Resolve();
         }
 
-        [ReactMethod("addPageMode")]
-        public void AddPageMode(string objectIdentifier, double x, double y, double width, double height, string pageModeBuilderIdentifier, IReactPromise<JSValue.Void> promise)
-        {
-            if (!GetObject(objectIdentifier, out PrinterBuilder nativeObject) ||
-                !PageModeBuilderWrapper.GetObject(pageModeBuilderIdentifier, out PageModeBuilder pageModeBuilder) ||
-                !StarIO10ValueConverter.ToPrinterPageModeAreaParameter(x, y, width, height, out PageModeAreaParameter nativeParameter))
-            {
-                promise.Reject(new ReactError());
-                return;
-            }
-
-            nativeObject.AddPageMode(nativeParameter, pageModeBuilder);
-
-            promise.Resolve();
-        }
-
         [ReactMethod("styleFont")]
         public void StyleFont(string objectIdentifier, string type, IReactPromise<JSValue.Void> promise)
         {
@@ -400,6 +384,21 @@ namespace StarMicronics.ReactNative.StarIO10
             }
         }
 
+        [ReactMethod("actionPrintRuledLine")]
+        public void ActionPrintRuledLine(string objectIdentifier, double width, double x, double thickness, string lineStyle, IReactPromise<JSValue.Void> promise)
+        {
+            if (!GetObject(objectIdentifier, out PrinterBuilder nativeObject) ||
+                !StarIO10ValueConverter.ToPrinterRuledLineParameter(width, x, thickness, lineStyle, out RuledLineParameter parameter))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.ActionPrintRuledLine(parameter);
+
+            promise.Resolve();
+        }
+
         [ReactMethod("add")]
         public void Add(string objectIdentifier, string printerBuilderIdentifier, IReactPromise<JSValue.Void> promise)
         {
@@ -411,6 +410,22 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             nativeObject.Add(printerBuilder);
+
+            promise.Resolve();
+        }
+
+        [ReactMethod("addPageMode")]
+        public void AddPageMode(string objectIdentifier, double x, double y, double width, double height, string pageModeBuilderIdentifier, IReactPromise<JSValue.Void> promise)
+        {
+            if (!GetObject(objectIdentifier, out PrinterBuilder nativeObject) ||
+                !PageModeBuilderWrapper.GetObject(pageModeBuilderIdentifier, out PageModeBuilder pageModeBuilder) ||
+                !StarIO10ValueConverter.ToPrinterPageModeAreaParameter(x, y, width, height, out PageModeAreaParameter nativeParameter))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.AddPageMode(nativeParameter, pageModeBuilder);
 
             promise.Resolve();
         }

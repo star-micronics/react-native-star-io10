@@ -280,6 +280,18 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
+    actionPrintRuledLine(parameter: StarXpandCommand.Printer.RuledLineParameter): PrinterBuilder {
+        this._addAction(async() => {
+            await NativeModules.PrinterBuilderWrapper.actionPrintRuledLine(this._nativeObject, parameter.width, parameter.x, parameter.thickness, parameter.lineStyle)
+            .catch(async (nativeError: any) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
+        });
+
+        return this;
+    }
+
     add(builder: PrinterBuilder): PrinterBuilder {
         this._addChild(builder);
 
@@ -294,6 +306,20 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
+    addPageMode(parameter: StarXpandCommand.Printer.PageModeAreaParameter, builder: StarXpandCommand.PageModeBuilder): PrinterBuilder {
+        this._addChild(builder);
+
+        this._addAction(async() => {
+            await NativeModules.PrinterBuilderWrapper.addPageMode(this._nativeObject, parameter.x, parameter.y, parameter.width, parameter.height, builder._nativeObject)
+            .catch(async (nativeError: any) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
+        });
+
+        return this;
+    }
+    
     protected async _initNativeObjectImpl(): Promise<string> {
         return await NativeModules.PrinterBuilderWrapper.init();
     }

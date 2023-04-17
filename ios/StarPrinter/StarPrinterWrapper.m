@@ -267,6 +267,39 @@ RCT_REMAP_METHOD(print,
     }];
 }
 
+RCT_REMAP_METHOD(spoolPrint,
+                 spoolPrintWithObjectIdentifier:(nonnull NSString *)objID
+                 code:(nonnull NSString *)code
+                 isRetryEnabled:(BOOL)isRetryEnabled
+                 retryTimeout:(nonnull NSNumber *)retryTimeout
+                 note:(NSString *)note
+                 printTimeout:(nonnull NSNumber *)printTimeout
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    printer.printTimeout = printTimeout.integerValue;
+
+    STARIO10StarSpoolJobSettings *jobSettings = [[STARIO10StarSpoolJobSettings alloc] initWithIsRetryEnabled:isRetryEnabled
+                                                                                                     timeout:retryTimeout.integerValue
+                                                                                                        note:note];
+        
+    [printer printWithCommand:code starSpoolJobSettings:jobSettings completionHandler:^(NSInteger jobId, NSError *error) {
+        if (error) {
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+        } else {
+            resolve([NSNumber numberWithInteger:jobId]);
+        }
+    }];
+}
+
 RCT_REMAP_METHOD(getStatus,
                  getStatusWithObjectIdentifier:(nonnull NSString *)objID
                  getStatusTimeout:(nonnull NSNumber *)getStatusTimeout
@@ -293,6 +326,136 @@ RCT_REMAP_METHOD(getStatus,
     }];
 }
 
+RCT_REMAP_METHOD(getSpoolJobStatus,
+                 getSpoolJobStatusWithObjectIdentifier:(nonnull NSString *)objID
+                 jobId:(nonnull NSNumber *)jobId
+                 getStatusTimeout:(nonnull NSNumber *)getStatusTimeout
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    printer.getStatusTimeout = getStatusTimeout.integerValue;
+    
+    [printer getSpoolJobStatusWithJobId:jobId.integerValue completionHandler:^(STARIO10StarSpoolJobStatus *status, NSError *error) {
+        if (error) {
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+        } else {
+            NSString *statusID = [self.objManager add:status];
+            resolve(statusID);
+        }
+    }];
+}
+
+RCT_REMAP_METHOD(getSpoolJobStatusList,
+                 getSpoolJobStatusListWithObjectIdentifier:(nonnull NSString *)objID
+                 size:(nonnull NSNumber *)size
+                 getStatusTimeout:(nonnull NSNumber *)getStatusTimeout
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    printer.getStatusTimeout = getStatusTimeout.integerValue;
+    
+    [printer getSpoolJobStatusListWithSize:size.integerValue completionHandler:^(NSArray<STARIO10StarSpoolJobStatus *> *statusList, NSError *error) {
+        if (error) {
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+        } else {
+            NSString *statusListID = [self.objManager add:statusList];
+            resolve(statusListID);
+        }
+    }];
+}
+
+RCT_REMAP_METHOD(getStarConfiguration,
+                 getStarConfigurationWithObjectIdentifier:(nonnull NSString *)objID
+                 password:(NSString *)password
+                 starConfigurationTimeout:(nonnull NSNumber *)starConfigurationTimeout
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    printer.starConfigurationTimeout = starConfigurationTimeout.integerValue;
+    
+    [printer getStarConfigurationWithPassword:password completion:^(NSString *starConfig, NSError *error) {
+        if (error) {
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+        } else {
+            resolve(starConfig);
+        }
+    }];
+}
+
+RCT_REMAP_METHOD(getDefaultStarConfiguration,
+                 getDefaultStarConfigurationWithObjectIdentifier:(nonnull NSString *)objID
+                 starConfigurationTimeout:(nonnull NSNumber *)starConfigurationTimeout
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    printer.starConfigurationTimeout = starConfigurationTimeout.integerValue;
+    
+    [printer getDefaultStarConfigurationWithCompletion:^(NSString *starConfig, NSError *error) {
+        if (error) {
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+        } else {
+            resolve(starConfig);
+        }
+    }];
+}
+
+RCT_REMAP_METHOD(setStarConfiguration,
+                 setStarConfigurationWithObjectIdentifier:(nonnull NSString *)objID
+                 starConfiguration:(nonnull NSString *)starConfiguration
+                 starConfigurationTimeout:(nonnull NSNumber *)starConfigurationTimeout
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    printer.starConfigurationTimeout = starConfigurationTimeout.integerValue;
+    
+    [printer setStarConfigurationWithStarConfiguration:starConfiguration completionHandler:^(STARIO10StarConfigurationSetResult result, NSError *error) {
+        if (error) {
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+        } else {
+            resolve([StarIO10ValueConverter toStringFromStarConfigurationSetResult:result]);
+        }
+    }];
+}
 
 RCT_REMAP_METHOD(close,
                  closeWithObjectIdentifier:(nonnull NSString *)objID

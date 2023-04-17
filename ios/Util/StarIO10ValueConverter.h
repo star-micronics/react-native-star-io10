@@ -17,6 +17,17 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)toStringFromStarPrinterModel:(STARIO10StarPrinterModel)value;
 + (NSString *)toStringFromStarPrinterEmulation:(STARIO10StarPrinterEmulation)value;
 + (NSString *)toStringFromInterfaceType:(STARIO10InterfaceType)value;
+
++ (NSString *)toStringFromDrawerOpenedMethod:(STARIO10DrawerOpenedMethod)value;
+
++ (NSString *)toStringFromStarConfigurationSetResult:(STARIO10StarConfigurationSetResult)value;
+
++ (NSDictionary<NSString *, id> *)toStarSpoolJobStatusDictionary:(nonnull STARIO10StarSpoolJobStatus *)status;
++ (NSDictionary<NSString *, id> *)toStarSpoolJobStatusDictionaryArray:(nonnull NSArray<STARIO10StarSpoolJobStatus *> *)statusList;
+
++ (NSString *)toStringFromSpoolJobState:(STARIO10SpoolJobState)value;
++ (NSString *)toStringFromSpoolJobReceivedInterface:(STARIO10SpoolJobReceivedInterface)value;
+
 + (NSArray<NSNumber *> *)toPrinterCJKCharacterPriorityTypes:(nonnull NSArray<NSString *> *)types;
 + (STARIO10StarPrinterModel)toStarPrinterModel:(NSString *)value;
 + (STARIO10InterfaceType)toInterfaceType:(NSString *)value;
@@ -28,12 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
 + (STARIO10StarXpandCommandPrinterCutType)toPrinterCutType:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterFontType)toPrinterFontType:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterAlignment)toPrinterAlignment:(NSString *)value;
++ (STARIO10StarXpandCommandPrinterPageModePrintDirection)toPrinterPageModePrintDirection:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterBlackMarkPosition)toPrinterBlackMarkPosition:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterBarcodeSymbology)toPrinterBarcodeSymbology:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterBarcodeBarRatioLevel)toPrinterBarcodeBarRatioLevel:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterPDF417Level)toPrinterPDF417Level:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterQRCodeModel)toPrinterQRCodeModel:(NSString *)value;
 + (STARIO10StarXpandCommandPrinterQRCodeLevel)toPrinterQRCodeLevel:(NSString *)value;
++ (STARIO10StarXpandCommandPrinterLineStyle)toPrinterLineStyle:(NSString *)value;
 + (STARIO10StarXpandCommandDrawerChannel)toDrawerChannel:(NSString *)value;
 + (STARIO10StarXpandCommandBuzzerChannel)toBuzzerChannel:(NSString *)value;
 + (STARIO10StarXpandCommandMelodySpeakerSoundStorageArea)toMelodySpeakerSoundStorageArea:(NSString *)value;
@@ -52,6 +65,10 @@ NS_ASSUME_NONNULL_BEGIN
                                                                                 hold:(BOOL)hold
                                                                              retract:(BOOL)retract
                                                                             holdTime:(nonnull NSNumber *)holdTime;
++ (STARIO10StarXpandCommandPrinterPageModeAreaParameter *)toPrinterPageModeAreaParameterWithX:(nonnull NSNumber *)x
+                                                                                            y:(nonnull NSNumber *)y
+                                                                                        width:(nonnull NSNumber *)width
+                                                                                       height:(nonnull NSNumber *)height;
 
 + (STARIO10StarXpandCommandPrinterBlackMarkParameter *)toPrinterBlackMarkParameterWithStart:(BOOL)enable
                                                                                    position:(nonnull NSString *)position;
@@ -80,6 +97,30 @@ NS_ASSUME_NONNULL_BEGIN
                                                                                 width:(nonnull NSNumber *)width
                                                                                 effectDiffusion:(BOOL)effectDiffusion
                                                                            threshold:(nonnull NSNumber *)threshold;
++ (STARIO10StarXpandCommandPrinterPageModeImageParameter *)toPrinterPageModeImageParameterWithSource:(nonnull NSString *)source
+                                                                                                   x:(nonnull NSNumber *)x
+                                                                                                   y:(nonnull NSNumber *)y
+                                                                                               width:(nonnull NSNumber *)width
+                                                                                     effectDiffusion:(BOOL)effectDiffusion
+                                                                                           threshold:(nonnull NSNumber *)threshold;
++ (STARIO10StarXpandCommandPrinterPageModeRuledLineParameter *)toPrinterPageModeRuledLineParameterWithXStart:(nonnull NSNumber *)xStart
+                                                                                                      yStart:(nonnull NSNumber *)yStart
+                                                                                                        xEnd:(nonnull NSNumber *)xEnd
+                                                                                                        yEnd:(nonnull NSNumber *)yEnd
+                                                                                                   thickness:(nonnull NSNumber *)thickness
+                                                                                                   lineStyle:(nonnull NSString *)lineStyle;
++ (STARIO10StarXpandCommandPrinterPageModeRectangleParameter *)toPrinterPageModeRectangleParameterWithX:(nonnull NSNumber *)x
+                                                                                                      y:(nonnull NSNumber *)y
+                                                                                                  width:(nonnull NSNumber *)width
+                                                                                                 height:(nonnull NSNumber *)height
+                                                                                              thickness:(nonnull NSNumber *)thickness
+                                                                                            roundCorner:(BOOL)roundCorner
+                                                                                           cornerRadius:(nonnull NSNumber *)cornerRadius
+                                                                                              lineStyle:(nonnull NSString *)lineStyle;
++ (STARIO10StarXpandCommandPrinterRuledLineParameter *)toPrinterRuledLineParameterWithWidth:(nonnull NSNumber *)width
+                                                                                          x:(nonnull NSNumber *)x
+                                                                                  thickness:(nonnull NSNumber *)thickness
+                                                                                  lineStyle:(nonnull NSString *)lineStyle;
 + (STARIO10StarXpandCommandDrawerOpenParameter *)toDrawerOpenParameterWithChannel:(nonnull NSString *)channel
                                                                            onTime:(nonnull NSNumber *)onTime;
 + (STARIO10StarXpandCommandBuzzerDriveParameter *)toBuzzerDriveParameterWithChannel:(nonnull NSString *)channel

@@ -163,7 +163,7 @@ class App extends React.Component<AppProps, AppState> {
         this.state = {
             interfaceType: InterfaceType.Lan,
             identifier: '00:11:62:00:00:00',
-            statusText: '',
+            statusText: '\n',
         };
 
         var settings = new StarConnectionSettings();

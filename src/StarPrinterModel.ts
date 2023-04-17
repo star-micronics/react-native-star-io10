@@ -11,6 +11,7 @@ export enum StarPrinterModel {
     mPOP = 'mPOP',
     mC_Print2 = 'mC_Print2',
     mC_Print3 = 'mC_Print3',
+    mC_Label3 = 'mC_Label3',
     SM_S210i = 'SM_S210i',
     SM_S230i = 'SM_S230i',
     SM_T300 = 'SM_T300',

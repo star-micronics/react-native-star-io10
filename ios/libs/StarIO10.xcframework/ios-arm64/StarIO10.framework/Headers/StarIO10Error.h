@@ -20,7 +20,8 @@ typedef NS_ENUM(NSInteger, STARIO10Error) {
     STARIO10ErrorNotFound = 7,
     STARIO10ErrorUnprintable = 8,
     STARIO10ErrorUnsupportedModel = 9,
-    STARIO10ErrorUnsupportedOSVersion = 10
+    STARIO10ErrorUnsupportedOSVersion = 10,
+    STARIO10ErrorAuthentication = 11
 };
 
 @interface StarIO10Error : NSObject

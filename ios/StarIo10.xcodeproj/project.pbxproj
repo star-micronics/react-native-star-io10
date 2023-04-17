@@ -10,6 +10,8 @@
 		8893EDD925D3C138006114B2 /* StarIO10LoggerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8893EDD725D3C138006114B2 /* StarIO10LoggerWrapper.m */; };
 		88EC0F2E2589CD1000BA09C4 /* StarIO10.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AB8712251B23BF00245D2A /* StarIO10.xcframework */; };
 		B3E7B58A1CC2AC0600A0062D /* StarIo10.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* StarIo10.m */; };
+		DD80853028DABCB3005B3D27 /* StarSpoolJobStatusWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD80852F28DABCAA005B3D27 /* StarSpoolJobStatusWrapper.m */; };
+		DD9C5ADA28DC2BB200E6571F /* StarSpoolJobStatusListWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD9C5AD928DC2BB200E6571F /* StarSpoolJobStatusListWrapper.m */; };
 		E3414398254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3414396254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m */; };
 		E37F6B08258C8D2E001DBB30 /* DisplayBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E37F6B07258C8D2E001DBB30 /* DisplayBuilderWrapper.m */; };
 		E3951A43254FD9FF003A9953 /* StarIO10ErrorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A42254FD9FF003A9953 /* StarIO10ErrorWrapper.m */; };
@@ -53,6 +55,10 @@
 		88AB871A251B246400245D2A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B3E7B5881CC2AC0600A0062D /* StarIo10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarIo10.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* StarIo10.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarIo10.m; sourceTree = "<group>"; };
+		DD80852E28DABC8E005B3D27 /* StarSpoolJobStatusWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StarSpoolJobStatusWrapper.h; sourceTree = "<group>"; };
+		DD80852F28DABCAA005B3D27 /* StarSpoolJobStatusWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarSpoolJobStatusWrapper.m; sourceTree = "<group>"; };
+		DD9C5AD828DC2B9800E6571F /* StarSpoolJobStatusListWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StarSpoolJobStatusListWrapper.h; sourceTree = "<group>"; };
+		DD9C5AD928DC2BB200E6571F /* StarSpoolJobStatusListWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarSpoolJobStatusListWrapper.m; sourceTree = "<group>"; };
 		E3414396254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarDeviceDiscoveryManagerWrapper.m; sourceTree = "<group>"; };
 		E3414397254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarDeviceDiscoveryManagerWrapper.h; sourceTree = "<group>"; };
 		E37F6B06258C8D2E001DBB30 /* DisplayBuilderWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisplayBuilderWrapper.h; sourceTree = "<group>"; };
@@ -194,6 +200,10 @@
 				E3951A6B254FDA80003A9953 /* StarPrinterStatusWrapper.m */,
 				E3951A6A254FDA80003A9953 /* StarPrinterWrapper.h */,
 				E3951A6C254FDA80003A9953 /* StarPrinterWrapper.m */,
+				DD9C5AD828DC2B9800E6571F /* StarSpoolJobStatusListWrapper.h */,
+				DD9C5AD928DC2BB200E6571F /* StarSpoolJobStatusListWrapper.m */,
+				DD80852E28DABC8E005B3D27 /* StarSpoolJobStatusWrapper.h */,
+				DD80852F28DABCAA005B3D27 /* StarSpoolJobStatusWrapper.m */,
 			);
 			path = StarPrinter;
 			sourceTree = "<group>";
@@ -281,6 +291,7 @@
 				B3E7B58A1CC2AC0600A0062D /* StarIo10.m in Sources */,
 				E3951A61254FDA55003A9953 /* PresenterSettingBuilderWrapper.m in Sources */,
 				E3951A79254FDAA6003A9953 /* StarIO10ValueConverter.m in Sources */,
+				DD80853028DABCB3005B3D27 /* StarSpoolJobStatusWrapper.m in Sources */,
 				E3951A66254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m in Sources */,
 				E3951A5C254FDA55003A9953 /* BuzzerBuilderWrapper.m in Sources */,
 				E3951A6D254FDA80003A9953 /* StarPrinterStatusWrapper.m in Sources */,
@@ -289,6 +300,7 @@
 				E37F6B08258C8D2E001DBB30 /* DisplayBuilderWrapper.m in Sources */,
 				E3951A6E254FDA80003A9953 /* StarPrinterWrapper.m in Sources */,
 				8893EDD925D3C138006114B2 /* StarIO10LoggerWrapper.m in Sources */,
+				DD9C5ADA28DC2BB200E6571F /* StarSpoolJobStatusListWrapper.m in Sources */,
 				E3951A77254FDAA6003A9953 /* StarObjectManager.m in Sources */,
 				E3951A64254FDA55003A9953 /* BezelSettingBuilderWrapper.m in Sources */,
 			);

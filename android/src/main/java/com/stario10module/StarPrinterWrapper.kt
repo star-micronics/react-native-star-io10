@@ -345,6 +345,34 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
     }
 
     @ReactMethod
+    fun spoolPrint(identifier: String, code: String, isRetryEnabled: Boolean, retryTimeout: Int, note: String, printTimeout: Int, promise: Promise) {
+        val job = SupervisorJob()
+        val scope = CoroutineScope(Dispatchers.Default + job)
+
+        scope.launch {
+            val printer = InstanceManager.get(identifier)
+
+            if (printer is StarPrinter) {
+                printer.printTimeout = printTimeout
+
+                val jobSettings = StarSpoolJobSettings(isRetryEnabled, retryTimeout, note)
+
+                try {
+                    val jobId = printer.printAsync(code, jobSettings).await()
+                    promise.resolve(jobId)
+                }
+                catch (e: StarIO10Exception) {
+                    val exceptionIdentifier = InstanceManager.set(e)
+                    promise.reject(exceptionIdentifier, e)
+                }
+            }
+            else {
+                promise.reject(StarIO10Exception("Identifier error"))
+            }
+        }
+    }
+
+    @ReactMethod
     fun getStatus(identifier: String, timeout: Int, promise: Promise) {
         val job = SupervisorJob()
         val scope = CoroutineScope(Dispatchers.Default + job)
@@ -360,6 +388,140 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                     val statusIdentifier = InstanceManager.set(status)
 
                     promise.resolve(statusIdentifier)
+                }
+                catch (e: StarIO10Exception) {
+                    val exceptionIdentifier = InstanceManager.set(e)
+                    promise.reject(exceptionIdentifier, e)
+                }
+            }
+            else {
+                promise.reject(StarIO10Exception("Identifier error"))
+            }
+        }
+    }
+
+    @ReactMethod
+    fun getSpoolJobStatus(identifier: String, jobId: Int, timeout: Int, promise: Promise) {
+        val job = SupervisorJob()
+        val scope = CoroutineScope(Dispatchers.Default + job)
+
+        scope.launch {
+            val printer = InstanceManager.get(identifier)
+
+            if (printer is StarPrinter) {
+                printer.getStatusTimeout = timeout
+
+                try {
+                    val status = printer.getSpoolJobStatusAsync(jobId).await()
+                    val statusIdentifier = InstanceManager.set(status)
+
+                    promise.resolve(statusIdentifier)
+                }
+                catch (e: StarIO10Exception) {
+                    val exceptionIdentifier = InstanceManager.set(e)
+                    promise.reject(exceptionIdentifier, e)
+                }
+            }
+            else {
+                promise.reject(StarIO10Exception("Identifier error"))
+            }
+        }
+    }
+
+    @ReactMethod
+    fun getSpoolJobStatusList(identifier: String, size: Int, timeout: Int, promise: Promise) {
+        val job = SupervisorJob()
+        val scope = CoroutineScope(Dispatchers.Default + job)
+
+        scope.launch {
+            val printer = InstanceManager.get(identifier)
+
+            if (printer is StarPrinter) {
+                printer.getStatusTimeout = timeout
+
+                try {
+                    val statusList = printer.getSpoolJobStatusListAsync(size).await()
+                    val statusListIdentifier = InstanceManager.set(statusList)
+
+                    promise.resolve(statusListIdentifier)
+                }
+                catch (e: StarIO10Exception) {
+                    val exceptionIdentifier = InstanceManager.set(e)
+                    promise.reject(exceptionIdentifier, e)
+                }
+            }
+            else {
+                promise.reject(StarIO10Exception("Identifier error"))
+            }
+        }
+    }
+
+    @ReactMethod
+    fun setStarConfiguration(identifier: String, starConfiguration: String, timeout: Int, promise: Promise) {
+        val job = SupervisorJob()
+        val scope = CoroutineScope(Dispatchers.Default + job)
+
+        scope.launch {
+            val printer = InstanceManager.get(identifier)
+
+            if (printer is StarPrinter) {
+                printer.starConfigurationTimeout = timeout
+
+                try {
+                    val starConfigurationSetResult = printer.setStarConfigurationAsync(starConfiguration).await()
+                    promise.resolve(StarIO10ValueConverter.toString(starConfigurationSetResult))
+                }
+                catch (e: StarIO10Exception) {
+                    val exceptionIdentifier = InstanceManager.set(e)
+                    promise.reject(exceptionIdentifier, e)
+                }
+            }
+            else {
+                promise.reject(StarIO10Exception("Identifier error"))
+            }
+        }
+    }
+
+    @ReactMethod
+    fun getStarConfiguration(identifier: String, password: String?, timeout: Int, promise: Promise) {
+        val job = SupervisorJob()
+        val scope = CoroutineScope(Dispatchers.Default + job)
+
+        scope.launch {
+            val printer = InstanceManager.get(identifier)
+
+            if (printer is StarPrinter) {
+                printer.starConfigurationTimeout = timeout
+
+                try {
+                    val starConfiguration = printer.getStarConfigurationAsync(password).await()
+                    promise.resolve(starConfiguration)
+                }
+                catch (e: StarIO10Exception) {
+                    val exceptionIdentifier = InstanceManager.set(e)
+                    promise.reject(exceptionIdentifier, e)
+                }
+            }
+            else {
+                promise.reject(StarIO10Exception("Identifier error"))
+            }
+        }
+    }
+
+    @ReactMethod
+    fun getDefaultStarConfiguration(identifier: String, timeout: Int, promise: Promise) {
+        val job = SupervisorJob()
+        val scope = CoroutineScope(Dispatchers.Default + job)
+
+        scope.launch {
+            val printer = InstanceManager.get(identifier)
+
+            if (printer is StarPrinter) {
+                printer.starConfigurationTimeout = timeout
+
+                try {
+                    val starConfiguration = printer.getDefaultStarConfigurationAsync().await()
+                    promise.resolve(starConfiguration)
                 }
                 catch (e: StarIO10Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)

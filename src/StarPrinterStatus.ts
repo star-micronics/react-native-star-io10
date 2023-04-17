@@ -1,9 +1,12 @@
+import { StarPrinterStatusDetail } from "./StarPrinterStatusDetail";
+
 export class StarPrinterStatus {
     _hasError: boolean = true;
     _coverOpen: boolean = false;
     _drawerOpenCloseSignal: boolean = false;
     _paperEmpty: boolean = false;
     _paperNearEmpty: boolean = false;
+    _detail: StarPrinterStatusDetail = new StarPrinterStatusDetail();
     _reserved: Map<string, any | undefined> = new Map<string, any | undefined>()
 
     get hasError(): boolean {
@@ -24,6 +27,10 @@ export class StarPrinterStatus {
 
     get paperNearEmpty(): boolean {
         return this._paperNearEmpty;
+    }
+
+    get detail(): StarPrinterStatusDetail {
+        return this._detail;
     }
 
     get reserved(): ReadonlyMap<string, any | undefined> {

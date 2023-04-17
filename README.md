@@ -14,13 +14,19 @@
 
 This library is included in StarXpand SDK.
 
+## Documentation
+
+Please refer [here](https://www.star-m.jp/react-native-stario10-oml.html) for StarXpand SDK documentation.
+
+Documentation includes an overview of the SDK, how to build a sample application, how to use the API, and a API reference.
+
 ## Requirements
 
 | Platform | Version | Arch |
 | --- | --- | --- |
 | iOS | iOS 12.0 or later | Device: arm64<br> Simulator: x86_64, arm64 |
 | Android | Android 6.0 or later | arm64-v8a, armeabi-v7a, x86, x86_64 |
-| Windows | Windows 10 1909 or later | x86, x64 |
+| Windows | Windows 11 / Windows 10 1909 or later | x86, x64 |
 
 ## Installation
 
@@ -79,25 +85,8 @@ https://star-m.jp/eng/products/s_print/apple_app_mfi.html
 > :warning: In case of a Bluetooth Low Energy printer, you do not need to obtain this app approval.
 
 ### Android
-#### In case of setting targetSdkVersion to 31 or later
+
 Refer to [sample code](example/samples) and request BLUETOOTH_CONNECT permission before starting to communicate with or search for the printer.
-
-#### In case of setting targetSdkVersion to 30 or earlier
-The `react-native-star-io10` library contains the BLUETOOTH_CONNECT permission, which was added at API level 31. Please make the following two settings in AndroidManifest.xml to remove the BLUETOOTH_CONNECT permission.
-
-* Add the `xmlns:tools="http://schemas.android.com/tools"` attribute to the `manifest` element.
-* Add the `<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" tools:node="remove"/>` element.
-
-```xml
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.starmicronics.starxpandsdk">
-
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" tools:node="remove"/>
-    ...
-</manifest>
-```
 
 ### Windows
 
@@ -107,11 +96,11 @@ The `react-native-star-io10` library contains the BLUETOOTH_CONNECT permission, 
   - Private Networks (Client & Server)
 - Add "Visual C++ 2015-2019 UWP Desktop Runtime for native apps" to the project "References".
 
-## Documentation
-
-[Please refer here.](https://www.star-m.jp/react-native-stario10-oml.html)
-
 ## Limitations 
+
+### Cannot build for Windows x86
+
+StarXpand SDK V1.3.0 using React Native for Windows V0.71.3 cannot be built for Windows x86 architecture, available only for x64 architecture.
 
 ### When using Android device, an image specified by URL is sometimes printed in a low resolution
 
@@ -124,153 +113,25 @@ This can be solved by either of the following methods:
 
 ## Examples
 
-### Discover devices
+StarXpand SDK includes an [example](example) application that can be used in combination with the printer to check its operation. Please use it in conjunction with the explanations of each function in the linked pages.
 
-```typescript
-manager: StarDeviceDiscoveryManager;
+#### 1. [Discover printers](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/searchPrinter.html)
 
-async discover(): Promise<void> {
-    try {
-        // Specify your printer interface types.
-        manager = await StarDeviceDiscoveryManagerFactory.create([
-            InterfaceType.Lan,
-            InterfaceType.Bluetooth,
-            InterfaceType.BluetoothLE,
-            InterfaceType.Usb
-        ]);
+#### 2. [Create printing data](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/basic-step1.html)
 
-        // Set discovery time. (option)
-        manager.discoveryTime = 10000;
+Printing samples of labels (sample code and print results) for each type of business that you can use for your print layouts are [also available](example/samples/printing_samples/PrintingSamples.md).
 
-        // Callback for printer found.
-        manager.onPrinterFound = (printer: StarPrinter) => {
-            console.log(printer);
-        };
+> :warning: Some printer models may not be able to print some samples. Please adjust the layout accordingly when using this samples.
 
-        // Callback for discovery finished. (option)
-        manager.onDiscoveryFinished = () => {
-            console.log(`Discovery finished.`);
-        };
+#### 3. [Send printing data](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/basic-step2.html)
 
-        // Start discovery.
-        await manager.startDiscovery();
+#### 4. [Send printing data using spooler function](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/spooler.html)
 
-        // Stop discovery.
-        // await manager.stopDiscovery()
-    }
-    catch(error) {
-        // Error.
-        console.log(error);
-    }
-}
-```
+#### 5. [Get printer status](#GetPrinterStatus)
 
-### Print
+#### 6. [Monitor printer](#MonitorPrinter)
 
-```typescript
-async print(): Promise<void> {
-    // Specify your printer connection settings.
-    var settings = new StarConnectionSettings();
-    settings.interfaceType = InterfaceType.Lan;
-    settings.identifier = '00:11:62:00:00:00';
-    var printer = new StarPrinter(settings);
-
-    try {
-        // Connect to the printer.
-        await printer.open();
-
-        // create printing data. (Please refer to 'Create Printing data')
-        var builder = new StarXpandCommand.StarXpandCommandBuilder();
-        // ...
-        var commands = await builder.getCommands();
-
-        // Print.
-        await printer.print(commands);
-    }
-    catch(error) {
-        // Error.
-        console.log(error);
-    }
-    finally {
-        // Disconnect from the printer and dispose object.
-        await printer.close();
-        await printer.dispose();
-    }
-}
-```
-
-### Create printing data
-
-```typescript
-// Create printing data using StarXpandCommandBuilder object.
-var builder = new StarXpandCommand.StarXpandCommandBuilder();
-builder.addDocument(new StarXpandCommand.DocumentBuilder()
-.addPrinter(new StarXpandCommand.PrinterBuilder()
-    .actionPrintImage(new StarXpandCommand.Printer.ImageParameter("logo_01.png", 406))
-    .styleInternationalCharacter(StarXpandCommand.Printer.InternationalCharacterType.Usa)
-    .styleCharacterSpace(0)
-    .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
-    .actionPrintText("Star Clothing Boutique\n" +
-                    "123 Star Road\n" +
-                    "City, State 12345\n" +
-                    "\n")
-    .styleAlignment(StarXpandCommand.Printer.Alignment.Left)
-    .actionPrintText("Date:MM/DD/YYYY    Time:HH:MM PM\n" +
-                    "--------------------------------\n" +
-                    "\n")
-    .actionPrintText("SKU         Description    Total\n" +
-                    "300678566   PLAIN T-SHIRT  10.99\n" +
-                    "300692003   BLACK DENIM    29.99\n" +
-                    "300651148   BLUE DENIM     29.99\n" +
-                    "300642980   STRIPED DRESS  49.99\n" +
-                    "300638471   BLACK BOOTS    35.99\n" +
-                    "\n" +
-                    "Subtotal                  156.95\n" +
-                    "Tax                         0.00\n" +
-                    "--------------------------------\n")
-    .actionPrintText("Total     ")
-    .add(new StarXpandCommand.PrinterBuilder()
-        .styleMagnification(new StarXpandCommand.MagnificationParameter(2, 2))
-        .actionPrintText("   $156.95\n")
-    )
-    .actionPrintText("--------------------------------\n" +
-                    "\n" +
-                    "Charge\n" +
-                    "156.95\n" +
-                    "Visa XXXX-XXXX-XXXX-0123\n" +
-                    "\n")
-    .add(new StarXpandCommand.PrinterBuilder()
-        .styleInvert(true)
-        .actionPrintText("Refunds and Exchanges\n")
-    )
-    .actionPrintText("Within ")
-    .add(new StarXpandCommand.PrinterBuilder()
-        .styleUnderLine(true)
-        .actionPrintText("30 days")
-    )
-    .actionPrintText(" with receipt\n")
-    .actionPrintText("And tags attached\n" +
-                    "\n")
-    .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
-    .actionPrintBarcode(new StarXpandCommand.Printer.BarcodeParameter('0123456',
-                        StarXpandCommand.Printer.BarcodeSymbology.Jan8)
-                        .setBarDots(3)
-                        .setBarRatioLevel(StarXpandCommand.Printer.BarcodeBarRatioLevel.Level0)
-                        .setHeight(5)
-                        .setPrintHri(true))
-    .actionFeedLine(1)
-    .actionPrintQRCode(new StarXpandCommand.Printer.QRCodeParameter('Hello World.\n')
-                        .setModel(StarXpandCommand.Printer.QRCodeModel.Model2)
-                        .setLevel(StarXpandCommand.Printer.QRCodeLevel.L)
-                        .setCellSize(8))
-    .actionCut(StarXpandCommand.Printer.CutType.Partial)
-    )
-);
-
-// Get printing data from StarXpandCommandBuilder object.
-var commands = await builder.getCommands();
-```
-
+<a id="GetPrinterStatus"></a>
 ### Get printer status
 
 ```typescript
@@ -301,6 +162,7 @@ async getStatus(): Promise<void> {
 }
 ```
 
+<a id="MonitorPrinter"></a>
 ### Monitor printer
 
 ```typescript
@@ -339,8 +201,6 @@ async monitor(): Promise<void> {
     }
 }
 ```
-
-- [`example` project is located in this directory.](example)
 
 ## Copyright
 

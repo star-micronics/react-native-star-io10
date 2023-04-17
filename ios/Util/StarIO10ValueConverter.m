@@ -12,9 +12,18 @@
 NSDictionary<NSNumber *, NSString *> *kStarPrinterModelDictionary;
 NSDictionary<NSNumber *, NSString *> *kStarPrinterEmulationDictionary;
 NSDictionary<NSNumber *, NSString *> *kInterfaceTypeDictionary;
+
+NSDictionary<NSNumber *, NSString *> *kDrawerOpenedMethodDictionary;
+
+NSDictionary<NSNumber *, NSString *> *kStarConfigurationSetResultDictionary;
+
+NSDictionary<NSNumber *, NSString *> *kSpoolJobStateDictionary;
+NSDictionary<NSNumber *, NSString *> *kSpoolJobReceivedInterfaceDictionary;
+
 NSDictionary<NSNumber *, NSString *> *kPresenterLEDTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kBezelLEDTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterAlignmentDictionary;
+NSDictionary<NSNumber *, NSString *> *kPrinterPageModePrintDirectionDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterBlackMarkPositionDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterFontTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterInternationalCharacterTypeDictionary;
@@ -26,6 +35,7 @@ NSDictionary<NSNumber *, NSString *> *kPrinterBarcodeBarRatioLevelDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterPDF417LevelDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterQRCodeModelDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterQRCodeLevelDictionary;
+NSDictionary<NSNumber *, NSString *> *kPrinterLineStyleDictionary;
 NSDictionary<NSNumber *, NSString *> *kDrawerChannelDictionary;
 NSDictionary<NSNumber *, NSString *> *kBuzzerChannelDictionary;
 NSDictionary<NSNumber *, NSString *> *kMelodySpeakerSoundStorageAreaDictionary;
@@ -47,10 +57,11 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10StarPrinterModelTSP100IIILAN): @"TSP100IIILAN",
             @(STARIO10StarPrinterModelTSP100IIIBI): @"TSP100IIIBI",
             @(STARIO10StarPrinterModelTSP100IIIU): @"TSP100IIIU",
-            @(STARIO10StarPrinterModelTSP100IV): @"TSP100IV", 
+            @(STARIO10StarPrinterModelTSP100IV): @"TSP100IV",
             @(STARIO10StarPrinterModelmPOP): @"mPOP",
             @(STARIO10StarPrinterModelmC_Print2): @"mC_Print2",
             @(STARIO10StarPrinterModelmC_Print3): @"mC_Print3",
+            @(STARIO10StarPrinterModelmC_Label3): @"mC_Label3",
             @(STARIO10StarPrinterModelSM_S210i): @"SM_S210i",
             @(STARIO10StarPrinterModelSM_S230i): @"SM_S230i",
             @(STARIO10StarPrinterModelSM_T300i): @"SM_T300i",
@@ -80,6 +91,41 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10InterfaceTypeUSB): @"Usb"
         };
         
+        kDrawerOpenedMethodDictionary = @{
+            @(STARIO10DrawerOpenedMethodByHand): @"ByHand",
+            @(STARIO10DrawerOpenedMethodByCommand): @"ByCommand",
+        };
+        
+        kStarConfigurationSetResultDictionary = @{
+            @(STARIO10StarConfigurationSetResultApplied): @"Applied",
+            @(STARIO10StarConfigurationSetResultAccepted): @"Accepted",
+        };
+        
+        kSpoolJobStateDictionary = @{
+            @(STARIO10SpoolJobStateUnknown): @"Unknown",
+            @(STARIO10SpoolJobStateAccepted): @"Accepted",
+            @(STARIO10SpoolJobStatePrintFailedByTimeoutBeforePrinting): @"PrintFailedByTimeoutBeforePrinting",
+            @(STARIO10SpoolJobStatePrinting): @"Printing",
+            @(STARIO10SpoolJobStateWaitingPaperTaken): @"WaitingPaperTaken",
+            @(STARIO10SpoolJobStateWaitingPrinterReady): @"WaitingPrinterReady",
+            @(STARIO10SpoolJobStatePrintSucceeded): @"PrintSucceeded",
+            @(STARIO10SpoolJobStatePrintFailedByPrinterError): @"PrintFailedByPrinterError",
+            @(STARIO10SpoolJobStatePrintFailedByTimeout): @"PrintFailedByTimeout",
+            @(STARIO10SpoolJobStatePrintFailedByPowerOff): @"PrintFailedByPowerOff"
+        };
+        
+        kSpoolJobReceivedInterfaceDictionary = @{
+            @(STARIO10SpoolJobReceivedInterfaceUnknown): @"Unknown",
+            @(STARIO10SpoolJobReceivedInterfaceUsbPrinterClass): @"UsbPrinterClass",
+            @(STARIO10SpoolJobReceivedInterfaceUsbAOA): @"UsbAOA",
+            @(STARIO10SpoolJobReceivedInterfaceUsbiAP): @"UsbiAP",
+            @(STARIO10SpoolJobReceivedInterfaceBluetooth): @"Bluetooth",
+            @(STARIO10SpoolJobReceivedInterfaceLan): @"Lan",
+            @(STARIO10SpoolJobReceivedInterfaceCloudPRNT): @"CloudPRNT",
+            @(STARIO10SpoolJobReceivedInterfaceWebPRNT): @"WebPRNT",
+            @(STARIO10SpoolJobReceivedInterfaceSmcs): @"SMCS"
+        };
+        
         kPresenterLEDTypeDictionary = @{
             @(STARIO10StarXpandCommandPresenterLEDTypeHolding): @"Holding",
             @(STARIO10StarXpandCommandPresenterLEDTypeError): @"Error",
@@ -96,6 +142,13 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10StarXpandCommandPrinterAlignmentLeft): @"Left",
             @(STARIO10StarXpandCommandPrinterAlignmentCenter): @"Center",
             @(STARIO10StarXpandCommandPrinterAlignmentRight): @"Right"
+        };
+        
+        kPrinterPageModePrintDirectionDictionary = @{
+            @(STARIO10StarXpandCommandPrinterPageModePrintDirectionBottomToTop): @"BottomToTop",
+            @(STARIO10StarXpandCommandPrinterPageModePrintDirectionLeftToRight): @"LeftToRight",
+            @(STARIO10StarXpandCommandPrinterPageModePrintDirectionRightToLeft): @"RightToLeft",
+            @(STARIO10StarXpandCommandPrinterPageModePrintDirectionTopToBottom): @"TopToBottom"
         };
         
         kPrinterBlackMarkPositionDictionary = @{
@@ -196,6 +249,11 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10StarXpandCommandPrinterQRCodeLevelM): @"M",
             @(STARIO10StarXpandCommandPrinterQRCodeLevelQ): @"Q",
             @(STARIO10StarXpandCommandPrinterQRCodeLevelH): @"H"
+        };
+        
+        kPrinterLineStyleDictionary = @{
+            @(STARIO10StarXpandCommandPrinterLineStyleSingle): @"Single",
+            @(STARIO10StarXpandCommandPrinterLineStyleDouble): @"Double"
         };
         
         kDrawerChannelDictionary = @{
@@ -318,6 +376,53 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
     return kInterfaceTypeDictionary[@(value)];
 }
 
++ (NSString *)toStringFromDrawerOpenedMethod:(STARIO10DrawerOpenedMethod)value
+{
+    return kDrawerOpenedMethodDictionary[@(value)];
+}
+
++ (NSString *)toStringFromStarConfigurationSetResult:(STARIO10StarConfigurationSetResult)value
+{
+    return kStarConfigurationSetResultDictionary[@(value)];
+}
+
++ (NSDictionary<NSString *, id> *)toStarSpoolJobStatusDictionary:(nonnull STARIO10StarSpoolJobStatus *)status
+{
+    return @{@"jobId": [NSNumber numberWithInteger:status.jobId],
+             @"jobState": [StarIO10ValueConverter toStringFromSpoolJobState:status.jobState],
+             @"elapsedTime": [NSNumber numberWithInteger:status.elapsedTime],
+             @"jobReceivedInterface": [StarIO10ValueConverter toStringFromSpoolJobReceivedInterface:status.jobReceivedInterface],
+             @"appInfo": status.appInfo,
+             @"hostModel": status.hostModel,
+             @"hostOS": status.hostOS,
+             @"hostIpAddress": status.hostIpAddress,
+             @"jobSettingsIsRetryEnabled": [NSNumber numberWithBool:status.jobSettings.isRetryEnabled],
+             @"jobSettingsTimeout": [NSNumber numberWithInteger:status.jobSettings.timeout],
+             @"jobSettingsNote": status.jobSettings.note};
+}
+
+
++ (NSArray<NSDictionary<NSString *, id> *> *)toStarSpoolJobStatusDictionaryArray:(nonnull NSArray<STARIO10StarSpoolJobStatus *> *)statusList
+{
+    NSMutableArray<NSDictionary<NSString *, id> *> *array = [NSMutableArray new];
+    
+    for (STARIO10StarSpoolJobStatus *status in statusList) {
+        [array addObject:[StarIO10ValueConverter toStarSpoolJobStatusDictionary:status]];
+    }
+    
+    return array;
+}
+
++ (NSString *)toStringFromSpoolJobState:(STARIO10SpoolJobState)value
+{
+    return kSpoolJobStateDictionary[@(value)];
+}
+
++ (NSString *)toStringFromSpoolJobReceivedInterface:(STARIO10SpoolJobReceivedInterface)value
+{
+    return kSpoolJobReceivedInterfaceDictionary[@(value)];
+}
+
 + (NSArray<NSNumber *> *)toPrinterCJKCharacterPriorityTypes:(nonnull NSArray<NSString *> *)types
 {
     NSMutableArray<NSNumber *> *numberArray = [[NSMutableArray alloc] init];
@@ -380,6 +485,17 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
     
     if (allKeys == nil) {
         return STARIO10StarXpandCommandPrinterAlignmentLeft;
+    }
+    
+    return [[allKeys objectAtIndex:0] intValue];
+}
+
++ (STARIO10StarXpandCommandPrinterPageModePrintDirection)toPrinterPageModePrintDirection:(NSString *)value
+{
+    NSArray<NSNumber *> *allKeys = [kPrinterPageModePrintDirectionDictionary allKeysForObject:value];
+    
+    if (allKeys == nil) {
+        return STARIO10StarXpandCommandPrinterPageModePrintDirectionLeftToRight;
     }
     
     return [[allKeys objectAtIndex:0] intValue];
@@ -506,6 +622,16 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
     return [[allKeys objectAtIndex:0] intValue];
 }
 
++ (STARIO10StarXpandCommandPrinterLineStyle)toPrinterLineStyle:(NSString *)value
+{
+    NSArray<NSNumber *> *allKeys = [kPrinterLineStyleDictionary allKeysForObject:value];
+    
+    if (allKeys == nil) {
+        return STARIO10StarXpandCommandPrinterLineStyleSingle;
+    }
+    
+    return [[allKeys objectAtIndex:0] intValue];
+}
 
 + (STARIO10StarXpandCommandDrawerChannel)toDrawerChannel:(NSString *)value
 {
@@ -594,6 +720,19 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
     param = [param setHold:hold];
     param = [param setRetract:retract];
     param = [param setHoldTime:holdTime.intValue];
+    
+    return param;
+}
+
++ (STARIO10StarXpandCommandPrinterPageModeAreaParameter *)toPrinterPageModeAreaParameterWithX:(nonnull NSNumber *)x
+                                                                                            y:(nonnull NSNumber *)y
+                                                                                        width:(nonnull NSNumber *)width
+                                                                                       height:(nonnull NSNumber *)height
+{
+    STARIO10StarXpandCommandPrinterPageModeAreaParameter *param = [[STARIO10StarXpandCommandPrinterPageModeAreaParameter alloc] initWithWidth:width.doubleValue
+                                                                                                                               height:height.doubleValue];
+    param = [param setX:x.doubleValue];
+    param = [param setY:y.doubleValue];
     
     return param;
 }
@@ -708,6 +847,70 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
     STARIO10StarXpandCommandPrinterImageParameter *param = [[STARIO10StarXpandCommandPrinterImageParameter alloc] initWithImage:image width:width.integerValue];
     param = [param setEffectDiffusion:effectDiffusion];
     param = [param setThreshold:threshold.integerValue];
+    
+    return param;
+}
+
++ (STARIO10StarXpandCommandPrinterPageModeImageParameter *)toPrinterPageModeImageParameterWithSource:(nonnull NSString *)source
+                                                                                                   x:(nonnull NSNumber *)x
+                                                                                                   y:(nonnull NSNumber *)y
+                                                                                               width:(nonnull NSNumber *)width
+                                                                                     effectDiffusion:(BOOL)effectDiffusion
+                                                                                           threshold:(nonnull NSNumber *)threshold
+{
+    UIImage *image = [self sourceToImage:source];
+    if (image == nil) {
+        return nil;
+    }
+    
+    STARIO10StarXpandCommandPrinterPageModeImageParameter *param = [[STARIO10StarXpandCommandPrinterPageModeImageParameter alloc] initWithImage:image x:x.doubleValue y:y.doubleValue width:width.integerValue];
+    param = [param setEffectDiffusion:effectDiffusion];
+    param = [param setThreshold:threshold.integerValue];
+    
+    return param;
+}
+
++ (STARIO10StarXpandCommandPrinterPageModeRuledLineParameter *)toPrinterPageModeRuledLineParameterWithXStart:(nonnull NSNumber *)xStart
+                                                                                                      yStart:(nonnull NSNumber *)yStart
+                                                                                                        xEnd:(nonnull NSNumber *)xEnd
+                                                                                                        yEnd:(nonnull NSNumber *)yEnd
+                                                                                                   thickness:(nonnull NSNumber *)thickness
+                                                                                                   lineStyle:(nonnull NSString *)lineStyle
+{
+    STARIO10StarXpandCommandPrinterPageModeRuledLineParameter *param = [[STARIO10StarXpandCommandPrinterPageModeRuledLineParameter alloc] initWithXStart:xStart.doubleValue yStart:yStart.doubleValue xEnd:xEnd.doubleValue yEnd:yEnd.doubleValue];
+    param = [param setThickness:thickness.doubleValue];
+    param = [param setLineStyle:[StarIO10ValueConverter toPrinterLineStyle:lineStyle]];
+    
+    return param;
+}
+
++ (STARIO10StarXpandCommandPrinterPageModeRectangleParameter *)toPrinterPageModeRectangleParameterWithX:(nonnull NSNumber *)x
+                                                                                                      y:(nonnull NSNumber *)y
+                                                                                                  width:(nonnull NSNumber *)width
+                                                                                                 height:(nonnull NSNumber *)height
+                                                                                              thickness:(nonnull NSNumber *)thickness
+                                                                                            roundCorner:(BOOL)roundCorner
+                                                                                           cornerRadius:(nonnull NSNumber *)cornerRadius
+                                                                                              lineStyle:(nonnull NSString *)lineStyle
+{
+    STARIO10StarXpandCommandPrinterPageModeRectangleParameter *param = [[STARIO10StarXpandCommandPrinterPageModeRectangleParameter alloc] initWithX:x.doubleValue y:y.doubleValue width:width.doubleValue height:height.doubleValue];
+    param = [param setThickness:thickness.doubleValue];
+    param = [param setRoundCorner:roundCorner];
+    param = [param setCornerRadius:cornerRadius.doubleValue];
+    param = [param setLineStyle:[StarIO10ValueConverter toPrinterLineStyle:lineStyle]];
+    
+    return param;
+}
+
++ (STARIO10StarXpandCommandPrinterRuledLineParameter *)toPrinterRuledLineParameterWithWidth:(nonnull NSNumber *)width
+                                                                                          x:(nonnull NSNumber *)x
+                                                                                  thickness:(nonnull NSNumber *)thickness
+                                                                                  lineStyle:(nonnull NSString *)lineStyle
+{
+    STARIO10StarXpandCommandPrinterRuledLineParameter *param = [[STARIO10StarXpandCommandPrinterRuledLineParameter alloc] initWithWidth:width.doubleValue];
+    param = [param setX:x.doubleValue];
+    param = [param setThickness:thickness.doubleValue];
+    param = [param setLineStyle:[StarIO10ValueConverter toPrinterLineStyle:lineStyle]];
     
     return param;
 }

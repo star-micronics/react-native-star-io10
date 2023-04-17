@@ -20,6 +20,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <AllowCrossPlatformRetargeting>false</AllowCrossPlatformRetargeting>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -126,6 +127,8 @@
   <ItemGroup>
     <Compile Include="BezelSettingBuilderWrapper.cs" />
     <Compile Include="BuzzerBuilderWrapper.cs" />
+    <Compile Include="StarSpoolJobStatusListWrapper.cs" />
+    <Compile Include="StarSpoolJobStatusWrapper.cs" />
     <Compile Include="DisplayBuilderWrapper.cs" />
     <Compile Include="DocumentBuilderWrapper.cs" />
     <Compile Include="DrawerBuilderWrapper.cs" />

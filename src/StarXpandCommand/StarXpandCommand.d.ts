@@ -12,6 +12,7 @@ export * from './PreSettingBuilder';
 export * from './PresenterSettingBuilder';
 export * from './BezelSettingBuilder';
 export * from './PrinterBuilder';
+export * from './PageModeBuilder';
 export * from './DrawerBuilder';
 export * from './BuzzerBuilder';
 export * from './MelodySpeakerBuilder';

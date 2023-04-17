@@ -21,6 +21,8 @@ using Windows.Graphics.Imaging;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
+#nullable enable
+
 namespace StarMicronics.ReactNative.StarIO10
 {
     internal class StarIO10ValueConverter
@@ -47,6 +49,7 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarPrinterModel.mPOP, "mPOP" },
             { StarPrinterModel.mCPrint2, "mC_Print2" },
             { StarPrinterModel.mCPrint3, "mC_Print3" },
+            { StarPrinterModel.mCLabel3, "mC_Label3" },
             { StarPrinterModel.SMS210i, "SM_S210i" },
             { StarPrinterModel.SMS230i, "SM_S230i" },
             { StarPrinterModel.SMT300,  "SM_T300" },
@@ -71,6 +74,45 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarPrinterEmulation.StarPRNT, "StarPRNT" },
             { StarPrinterEmulation.EscPos, "EscPos" },
             { StarPrinterEmulation.EscPosMobile, "EscPosMobile" }
+        };
+
+        private static readonly IReadOnlyDictionary<DrawerOpenedMethod, string> DrawerOpenedMethodDictionary = new Dictionary<DrawerOpenedMethod, string>()
+        {
+            { DrawerOpenedMethod.ByHand, "ByHand" },
+            { DrawerOpenedMethod.ByCommand, "ByCommand" }
+        };
+
+        private static readonly IReadOnlyDictionary<StarConfigurationSetResult, string> StarConfigurationSetResultDictionary = new Dictionary<StarConfigurationSetResult, string>()
+        {
+            { StarConfigurationSetResult.Applied, "Applied" },
+            { StarConfigurationSetResult.Accepted, "Accepted" }
+        };
+
+        private static readonly IReadOnlyDictionary<SpoolJobState, string> SpoolJobStateDictionary = new Dictionary<SpoolJobState, string>()
+        {
+            { SpoolJobState.Unknown, "Unknown" },
+            { SpoolJobState.Accepted, "Accepted" },
+            { SpoolJobState.PrintFailedByTimeoutBeforePrinting, "PrintFailedByTimeoutBeforePrinting" },
+            { SpoolJobState.Printing, "Printing" },
+            { SpoolJobState.WaitingPaperTaken, "WaitingPaperTaken" },
+            { SpoolJobState.WaitingPrinterReady, "WaitingPrinterReady" },
+            { SpoolJobState.PrintSucceeded, "PrintSucceeded" },
+            { SpoolJobState.PrintFailedByPrinterError, "PrintFailedByPrinterError" },
+            { SpoolJobState.PrintFailedByTimeout, "PrintFailedByTimeout" },
+            { SpoolJobState.PrintFailedByPowerOff, "PrintFailedByPowerOff" }
+        };
+
+        private static readonly IReadOnlyDictionary<SpoolJobReceivedInterface, string> SpoolJobReceivedInterfaceDictionary = new Dictionary<SpoolJobReceivedInterface, string>()
+        {
+            { SpoolJobReceivedInterface.Unknown, "Unknown" },
+            { SpoolJobReceivedInterface.UsbPrinterClass, "UsbPrinterClass" },
+            { SpoolJobReceivedInterface.UsbAOA, "UsbAOA" },
+            { SpoolJobReceivedInterface.UsbiAP, "UsbiAP" },
+            { SpoolJobReceivedInterface.Bluetooth, "Bluetooth" },
+            { SpoolJobReceivedInterface.Lan, "Lan" },
+            { SpoolJobReceivedInterface.CloudPRNT, "CloudPRNT" },
+            { SpoolJobReceivedInterface.WebPRNT, "WebPRNT" },
+            { SpoolJobReceivedInterface.SMCS, "SMCS" }
         };
 
         private static readonly IReadOnlyDictionary<StarMicronics.StarIO10.StarXpandCommand.Bezel.LedType, string> BezelLedTypeDictionary = new Dictionary<StarMicronics.StarIO10.StarXpandCommand.Bezel.LedType, string>()
@@ -213,6 +255,12 @@ namespace StarMicronics.ReactNative.StarIO10
             { QRCodeLevel.H, "H" },
         };
 
+        private static readonly IReadOnlyDictionary<LineStyle, string> PrinterLineStyleDictionary = new Dictionary<LineStyle, string>()
+        {
+            { LineStyle.Single, "Single" },
+            { LineStyle.Double, "Double" },
+        };
+
         private static readonly IReadOnlyDictionary<StarMicronics.StarIO10.StarXpandCommand.Buzzer.Channel, string> BuzzerChannelDictionary = new Dictionary<StarMicronics.StarIO10.StarXpandCommand.Buzzer.Channel, string>()
         {
             { StarMicronics.StarIO10.StarXpandCommand.Buzzer.Channel.No1, "No1" },
@@ -279,6 +327,41 @@ namespace StarMicronics.ReactNative.StarIO10
         public static bool ToInterfaceType(string value, out InterfaceType output)
         {
             return InterfaceTypeDictionary.TryGetKey(value, out output);
+        }
+
+        public static IReadOnlyDictionary<string, JSValue> ToStarSpoolJobStatusDictionary(StarSpoolJobStatus status)
+        {
+            return ToJSDictionary(ToDictionary(status));
+        }
+
+        public static ReadOnlyCollection<JSValue> ToStarSpoolJobStatusDictionaryList(List<StarSpoolJobStatus> statusList)
+        {
+            List<IDictionary<string, dynamic>> list = new List<IDictionary<string, dynamic>>();
+
+            foreach (StarSpoolJobStatus status in statusList)
+            {
+                list.Add(ToDictionary(status));
+            }
+
+            return ToJSCollection(list);
+        }
+
+        public static IDictionary<string, dynamic> ToDictionary(StarSpoolJobStatus status)
+        {
+            return new Dictionary<string, dynamic>()
+            {
+                { "jobId", status.JobId },
+                { "jobState", ToString(status.JobState) },
+                { "elapsedTime", status.ElapsedTime },
+                { "jobReceivedInterface", ToString(status.JobReceivedInterface) },
+                { "appInfo", status.AppInfo },
+                { "hostModel", status.HostModel },
+                { "hostOS", status.HostOS },
+                { "hostIpAddress", status.HostIpAddress },
+                { "jobSettingsIsRetryEnabled", status.JobSettings.IsRetryEnabled },
+                { "jobSettingsTimeout", status.JobSettings.Timeout },
+                { "jobSettingsNote", status.JobSettings.Note }
+            };
         }
 
         public static bool ToBezelLedType(string value, out StarMicronics.StarIO10.StarXpandCommand.Bezel.LedType output)
@@ -356,6 +439,11 @@ namespace StarMicronics.ReactNative.StarIO10
             return PrinterQRCodeLevelDictionary.TryGetKey(value, out output);
         }
 
+        public static bool ToPrinterLineStyle(string value, out LineStyle output)
+        {
+            return PrinterLineStyleDictionary.TryGetKey(value, out output);
+        }
+
         public static bool ToBuzzerChannel(string value, out StarMicronics.StarIO10.StarXpandCommand.Buzzer.Channel output)
         {
             return BuzzerChannelDictionary.TryGetKey(value, out output);
@@ -418,6 +506,55 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             return true;
+        }
+
+        public static bool ToString(DrawerOpenedMethod? value, out string? output)
+        {
+            if (value != null)
+            {
+                return DrawerOpenedMethodDictionary.TryGetValue((DrawerOpenedMethod)value, out output);
+            }
+            else
+            {
+                output = null;
+                return false;
+            }
+        }
+
+        public static bool ToString(StarConfigurationSetResult value, out string output)
+        {
+            bool result = StarConfigurationSetResultDictionary.TryGetValue(value, out output);
+
+            if (!result)
+            {
+                output = "";
+            }
+
+            return true;
+        }
+
+        public static string ToString(SpoolJobState value)
+        {
+            bool result = SpoolJobStateDictionary.TryGetValue(value, out string output);
+
+            if (!result)
+            {
+                output = "Unknown";
+            }
+
+            return output;
+        }
+
+        public static string ToString(SpoolJobReceivedInterface value)
+        {
+            bool result = SpoolJobReceivedInterfaceDictionary.TryGetValue(value, out string output);
+
+            if (!result)
+            {
+                output = "Unknown";
+            }
+
+            return output;
         }
 
         public static bool ToPresenterModeParameter(bool loop, bool hold, bool retract, int holdTime, out ModeParameter parameter)
@@ -582,6 +719,68 @@ namespace StarMicronics.ReactNative.StarIO10
             parameter.SetThreshold(threshold);
 
             return parameter;
+        }
+
+        public static async Task<StarMicronics.StarIO10.StarXpandCommand.Printer.PageModeImageParameter> ToPrinterPageModeImageParameterAsync(string source, double x, double y, int width, bool effectDiffusion, int threshold)
+        {
+            SoftwareBitmap image = await SourceToImageAsync(source);
+
+            StarMicronics.StarIO10.StarXpandCommand.Printer.PageModeImageParameter parameter = new StarMicronics.StarIO10.StarXpandCommand.Printer.PageModeImageParameter(image, x, y, width);
+            parameter.SetEffectDiffusion(effectDiffusion);
+            parameter.SetThreshold(threshold);
+
+            return parameter;
+        }
+
+        public static bool ToPrinterPageModeRuledLineParameter(double xStart, double yStart, double xEnd, double yEnd, double thickness, string lineStyle, out PageModeRuledLineParameter parameter)
+        {
+            parameter = null;
+
+            if (!ToPrinterLineStyle(lineStyle, out LineStyle nativeLineStyle))
+            {
+                return false;
+            }
+
+            parameter = new PageModeRuledLineParameter(xStart, yStart, xEnd, yEnd);
+            parameter.SetThickness(thickness);
+            parameter.SetLineStyle(nativeLineStyle);
+
+            return true;
+        }
+
+        public static bool ToPrinterPageModeRectangleParameter(double x, double y, double width, double height, double thickness, bool roundCorner, double cornerRadius, string lineStyle, out PageModeRectangleParameter parameter)
+        {
+            parameter = null;
+
+            if (!ToPrinterLineStyle(lineStyle, out LineStyle nativeLineStyle))
+            {
+                return false;
+            }
+
+            parameter = new PageModeRectangleParameter(x, y, width, height);
+            parameter.SetThickness(thickness);
+            parameter.SetRoundCorner(roundCorner);
+            parameter.SetCornerRadius(cornerRadius);
+            parameter.SetLineStyle(nativeLineStyle);
+
+            return true;
+        }
+
+        public static bool ToPrinterRuledLineParameter(double width, double x, double thickness, string lineStyle, out RuledLineParameter parameter)
+        {
+            parameter = null;
+
+            if (!ToPrinterLineStyle(lineStyle, out LineStyle nativeLineStyle))
+            {
+                return false;
+            }
+
+            parameter = new RuledLineParameter(width);
+            parameter.SetX(x);
+            parameter.SetThickness(thickness);
+            parameter.SetLineStyle(nativeLineStyle);
+
+            return true;
         }
 
         public static bool ToBuzzerDriveParameter(string channel, int repeat, int onTime, int offTime, out DriveParameter parameter)
@@ -971,22 +1170,22 @@ namespace StarMicronics.ReactNative.StarIO10
 
             char[] characters = value.ToCharArray();
 
-            for(int i = 0; i < characters.Length; i++)
+            for (int i = 0; i < characters.Length; i++)
             {
                 char character = characters[i];
 
-                if(char.IsUpper(character))
+                if (char.IsUpper(character))
                 {
                     StringBuilder upperWord = new StringBuilder();
                     upperWord.Append(character);
 
-                    for(int j = i + 1; j < characters.Length; j++)
+                    for (int j = i + 1; j < characters.Length; j++)
                     {
                         i = j;
 
                         char nextCharacter = characters[j];
 
-                        if(char.IsUpper(nextCharacter))
+                        if (char.IsUpper(nextCharacter))
                         {
                             upperWord.Append(nextCharacter);
                         }
@@ -997,13 +1196,13 @@ namespace StarMicronics.ReactNative.StarIO10
                         }
                     }
 
-                    if(2 <= upperWord.Length && i != characters.Length - 1)
+                    if (2 <= upperWord.Length && i != characters.Length - 1)
                     {
                         upperWord.Remove(upperWord.Length - 1, 1);
                         i--;
                     }
 
-                    if(result.Length == 0)
+                    if (result.Length == 0)
                     {
                         result.Append(upperWord.ToString().ToLower());
                     }

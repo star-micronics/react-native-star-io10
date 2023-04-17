@@ -3,7 +3,6 @@ package com.stario10module
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.util.Base64
 import com.facebook.common.references.CloseableReference
 import com.facebook.datasource.DataSource
@@ -15,11 +14,17 @@ import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.bridge.WritableArray
 import com.facebook.react.bridge.WritableMap
+import com.starmicronics.stario10.DrawerOpenedMethod
 import com.starmicronics.stario10.InterfaceType
 import com.starmicronics.stario10.StarIO10ArgumentException
 import com.starmicronics.stario10.StarPrinterEmulation
 import com.starmicronics.stario10.StarPrinterModel
+import com.starmicronics.stario10.StarSpoolJobStatus
+import com.starmicronics.stario10.SpoolJobState
+import com.starmicronics.stario10.SpoolJobReceivedInterface
+import com.starmicronics.stario10.StarConfigurationSetResult
 import com.starmicronics.stario10.starxpandcommand.MagnificationParameter
+import com.starmicronics.stario10.starxpandcommand.PageModeBuilder
 import com.starmicronics.stario10.starxpandcommand.display.Contrast
 import com.starmicronics.stario10.starxpandcommand.display.CursorState
 import com.starmicronics.stario10.starxpandcommand.melodyspeaker.DriveOneTimeSoundParameter
@@ -71,10 +76,11 @@ class StarIO10ValueConverter {
             "TSP100IIILAN" to StarPrinterModel.TSP100IIILAN,
             "TSP100IIIBI" to StarPrinterModel.TSP100IIIBI,
             "TSP100IIIU" to StarPrinterModel.TSP100IIIU,
-            "TSP100IV" to StarPrinterModel.TSP100IV, 
+            "TSP100IV" to StarPrinterModel.TSP100IV,
             "mPOP" to StarPrinterModel.mPOP,
             "mC_Print2" to StarPrinterModel.mC_Print2,
             "mC_Print3" to StarPrinterModel.mC_Print3,
+            "mC_Label3" to StarPrinterModel.mC_Label3,
             "SM_S210i" to StarPrinterModel.SM_S210i,
             "SM_S230i" to StarPrinterModel.SM_S230i,
             "SM_T300" to StarPrinterModel.SM_T300,
@@ -125,6 +131,126 @@ class StarIO10ValueConverter {
             return result
         }
 
+        private val drawerOpenedMethodMap = mapOf(
+            "ByHand" to DrawerOpenedMethod.ByHand,
+            "ByCommand" to DrawerOpenedMethod.ByCommand
+        )
+
+        fun toString(value: DrawerOpenedMethod?) : String? {
+            var result: String? = null
+
+            for(item in drawerOpenedMethodMap) {
+                if(item.value == value) {
+                    result = item.key
+                    break
+                }
+            }
+            return result
+        }
+
+        private val starConfigurationSetResultMap = mapOf(
+            "Applied" to StarConfigurationSetResult.Applied,
+            "Accepted" to StarConfigurationSetResult.Accepted
+        )
+
+        fun toString(value: StarConfigurationSetResult?) : String? {
+            var result: String? = null
+
+            for(item in starConfigurationSetResultMap) {
+                if(item.value == value) {
+                    result = item.key
+                    break
+                }
+            }
+            return result
+        }
+
+        fun toWritableMap(status: StarSpoolJobStatus) : WritableMap {
+            return toWritableMap(toMap(status))
+        }
+
+        fun toWritableArray(statusList: List<Any?>) : WritableArray {
+            val array: Array<Any?> = arrayOfNulls(statusList.size)
+
+            for (i in statusList.indices) {
+                val status = statusList[i]
+
+                if (status is StarSpoolJobStatus) {
+                    array[i] = toMap(status)
+                }
+                else {
+                    throw StarIO10ArgumentException("Undefined parameter '$statusList'")
+                }
+            }
+
+            return toWritableArray(array)
+        }
+
+        private fun toMap(status: StarSpoolJobStatus): Map<String, Any> {
+            return mapOf<String, Any>(
+                "jobId" to status.jobId,
+                "jobState" to toString(status.jobState),
+                "elapsedTime" to status.elapsedTime,
+                "jobReceivedInterface" to toString(status.jobReceivedInterface),
+                "appInfo" to status.appInfo,
+                "hostModel" to status.hostModel,
+                "hostOS" to status.hostOS,
+                "hostIpAddress" to status.hostIpAddress,
+                "jobSettingsIsRetryEnabled" to status.jobSettings.isRetryEnabled,
+                "jobSettingsTimeout" to status.jobSettings.timeout,
+                "jobSettingsNote" to status.jobSettings.note
+            )
+        }
+
+        private fun toString(value: SpoolJobState) : String {
+            var result: String? = null
+
+            for(item in spoolJobStateMap) {
+                if(item.value == value) {
+                    result = item.key
+                    break
+                }
+            }
+            return result ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        }
+
+        private val spoolJobStateMap = mapOf(
+            "Unknown" to SpoolJobState.Unknown,
+            "Accepted" to SpoolJobState.Accepted,
+            "PrintFailedByTimeoutBeforePrinting" to SpoolJobState.PrintFailedByTimeoutBeforePrinting,
+            "Printing" to SpoolJobState.Printing,
+            "WaitingPaperTaken" to SpoolJobState.WaitingPaperTaken,
+            "WaitingPrinterReady" to SpoolJobState.WaitingPrinterReady,
+            "PrintSucceeded" to SpoolJobState.PrintSucceeded,
+            "PrintFailedByPrinterError" to SpoolJobState.PrintFailedByPrinterError,
+            "PrintFailedByTimeout" to SpoolJobState.PrintFailedByTimeout,
+            "PrintFailedByPowerOff" to SpoolJobState.PrintFailedByPowerOff
+        )
+
+        private fun toString(value: SpoolJobReceivedInterface) : String {
+            var result: String? = null
+
+            for(item in spoolJobReceivedInterfaceMap) {
+                if(item.value == value) {
+                    result = item.key
+                    break
+                }
+            }
+            return result ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        }
+
+        private val spoolJobReceivedInterfaceMap = mapOf(
+            "Unknown" to SpoolJobReceivedInterface.Unknown,
+            "UsbPrinterClass" to SpoolJobReceivedInterface.UsbPrinterClass,
+            "UsbAOA" to SpoolJobReceivedInterface.UsbAOA,
+            "UsbiAP" to SpoolJobReceivedInterface.UsbiAP,
+            "Bluetooth" to SpoolJobReceivedInterface.Bluetooth,
+            "Lan" to SpoolJobReceivedInterface.Lan,
+            "CloudPRNT" to SpoolJobReceivedInterface.CloudPRNT,
+            "WebPRNT" to SpoolJobReceivedInterface.WebPRNT,
+            "SMCS" to SpoolJobReceivedInterface.SMCS
+        )
+
         private val bezelLedTypeMap = mapOf(
             "Holding" to com.starmicronics.stario10.starxpandcommand.bezel.LedType.Holding,
             "Error" to com.starmicronics.stario10.starxpandcommand.bezel.LedType.Error,
@@ -143,6 +269,17 @@ class StarIO10ValueConverter {
 
         fun toPresenterLedType(value: String) : com.starmicronics.stario10.starxpandcommand.presenter.LedType {
             return presenterLedTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        }
+
+        private val printerPageModePrintDirectionMap = mapOf(
+            "BottomToTop" to PageModePrintDirection.BottomToTop,
+            "LeftToRight" to PageModePrintDirection.LeftToRight,
+            "RightToLeft" to PageModePrintDirection.RightToLeft,
+            "TopToBottom" to PageModePrintDirection.TopToBottom
+        )
+
+        fun toPrinterPageModePrintDirection(value: String) : PageModePrintDirection {
+            return printerPageModePrintDirectionMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val printerBlackMarkPositionMap = mapOf(
@@ -299,6 +436,15 @@ class StarIO10ValueConverter {
             return printerQRCodeModelMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
+        private val printerLineStyleMap = mapOf(
+            "Single" to LineStyle.Single,
+            "Double" to LineStyle.Double
+        )
+
+        fun toPrinterLineStyle(value: String) : LineStyle {
+            return printerLineStyleMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        }
+
         private val buzzerChannelMap = mapOf(
             "No1" to com.starmicronics.stario10.starxpandcommand.buzzer.Channel.No1,
             "No2" to com.starmicronics.stario10.starxpandcommand.buzzer.Channel.No2
@@ -424,6 +570,14 @@ class StarIO10ValueConverter {
             return parameter
         }
 
+        fun toPrinterPageModeAreaParameter(x: Double, y: Double, width: Double, height: Double): PageModeAreaParameter {
+            val parameter = PageModeAreaParameter(width, height)
+            parameter.setX(x)
+            parameter.setY(y)
+
+            return parameter
+        }
+
         fun toPrinterHoldPrintParameter(enable: Boolean): HoldPrintParameter {
             return HoldPrintParameter(enable)
         }
@@ -492,6 +646,72 @@ class StarIO10ValueConverter {
             val parameter = ImageParameter(bitmap, width)
             parameter.setEffectDiffusion(effectDiffusion)
             parameter.setThreshold(threshold)
+
+            return parameter
+        }
+
+        fun toPrinterPageModeImageParameter(
+            source: String,
+            x: Double,
+            y: Double,
+            width: Int,
+            effectDiffusion: Boolean,
+            threshold: Int,
+            context: Context
+        ): PageModeImageParameter {
+            val bitmap = sourceToBitmap(source, context)
+
+            val parameter = PageModeImageParameter(bitmap, x, y, width)
+            parameter.setEffectDiffusion(effectDiffusion)
+            parameter.setThreshold(threshold)
+
+            return parameter
+        }
+
+        fun toPrinterPageModeRuledLineParameter(
+            xStart: Double,
+            yStart: Double,
+            xEnd: Double,
+            yEnd: Double,
+            thickness: Double,
+            lineStyle: LineStyle
+        ): PageModeRuledLineParameter {
+            val parameter = PageModeRuledLineParameter(xStart, yStart, xEnd, yEnd)
+            parameter.setThickness(thickness)
+            parameter.setLineStyle(lineStyle)
+
+            return parameter
+        }
+
+        fun toPrinterPageModeRectangleParameter(
+            x: Double,
+            y: Double,
+            width: Double,
+            height: Double,
+            thickness: Double,
+            roundCorner: Boolean,
+            cornerRaduis: Double,
+            lineStyle: LineStyle
+        ): PageModeRectangleParameter {
+            val parameter = PageModeRectangleParameter(x, y, width, height)
+            parameter.setThickness(thickness)
+            parameter.setRoundCorner(roundCorner)
+            parameter.setCornerRadius(cornerRaduis)
+            parameter.setLineStyle(lineStyle)
+
+            return parameter
+        }
+
+        fun toPrinterRuledLineParameter(
+            width: Double,
+            x: Double,
+            thickness: Double,
+            lineStyle: LineStyle
+        ): RuledLineParameter {
+            val parameter = RuledLineParameter(width)
+            parameter.setX(x)
+            parameter.setThickness(thickness)
+            parameter.setLineStyle(lineStyle)
 
             return parameter
         }

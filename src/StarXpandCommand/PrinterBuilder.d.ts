@@ -24,7 +24,9 @@ export declare class PrinterBuilder extends BaseStarXpandCommandBuilder {
     actionPrintPdf417(parameter: StarXpandCommand.Printer.Pdf417Parameter): PrinterBuilder;
     actionPrintQRCode(parameter: StarXpandCommand.Printer.QRCodeParameter): PrinterBuilder;
     actionPrintImage(parameter: StarXpandCommand.Printer.ImageParameter): PrinterBuilder;
+    actionPrintRuledLine(parameter: StarXpandCommand.Printer.RuledLineParameter): PrinterBuilder;
     add(builder: PrinterBuilder): PrinterBuilder;
+    addPageMode(parameter: StarXpandCommand.Printer.PageModeAreaParameter, builder: StarXpandCommand.PageModeBuilder): PrinterBuilder;
     protected _initNativeObjectImpl(): Promise<string>;
     protected _disposeNativeObjectImpl(nativeObject: string): Promise<void>;
 }

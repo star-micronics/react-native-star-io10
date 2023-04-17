@@ -537,6 +537,32 @@ RCT_REMAP_METHOD(actionPrintImage,
     resolve(nil);
 }
 
+RCT_REMAP_METHOD(actionPrintRuledLine,
+                 actionPrintRuledLineWithObjectIdentifier:(nonnull NSString *)objID
+                 width:(nonnull NSNumber *)width
+                 x:(nonnull NSNumber *)x
+                 thickness:(nonnull NSNumber *)thickness
+                 lineStyle:(nonnull NSString *)lineStyle
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarXpandCommandPageModeBuilder *builder = [_objManager getObject:objID];
+    
+    if (builder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10StarXpandCommandPrinterRuledLineParameter *param = [StarIO10ValueConverter toPrinterRuledLineParameterWithWidth:width
+                                                                                                                          x:x
+                                                                                                                  thickness:thickness
+                                                                                                                  lineStyle:lineStyle];
+
+    [builder actionPrintRuledLine:param];
+    
+    resolve(nil);
+}
+
 RCT_REMAP_METHOD(add,
                  addWithObjectIdentifier:(nonnull NSString *)objID
                  printerBuilderIdentifier:(nonnull NSString *)printerBuilderID
@@ -560,6 +586,40 @@ RCT_REMAP_METHOD(add,
     [builder add:childPrinterBuilder];
 
      resolve(nil);
+}
+
+RCT_REMAP_METHOD(addPageMode,
+                 addPageModeWithObjectIdentifier:(nonnull NSString *)objID
+                 x:(nonnull NSNumber *)x
+                 y:(nonnull NSNumber *)y
+                 width:(nonnull NSNumber *)width
+                 height:(nonnull NSNumber *)height
+                 pageModeBuilderID:(nonnull NSString *)pageModeBuilderID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarXpandCommandPrinterBuilder *builder = [_objManager getObject:objID];
+    
+    if (builder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10StarXpandCommandPageModeBuilder *chlidPageModeBuilder = [_objManager getObject:pageModeBuilderID];
+    
+    if (chlidPageModeBuilder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10StarXpandCommandPrinterPageModeAreaParameter *param = [StarIO10ValueConverter toPrinterPageModeAreaParameterWithX:x
+                                                                                                                            y:y
+                                                                                                                        width:width
+                                                                                                                       height:height];
+    
+    [builder addPageModeWithParameter:param builder:chlidPageModeBuilder];
+     
+    resolve(nil);
 }
 
 @end

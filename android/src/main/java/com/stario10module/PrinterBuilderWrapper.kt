@@ -345,12 +345,41 @@ class PrinterBuilderWrapper internal constructor(context: ReactApplicationContex
     }
 
     @ReactMethod
+    fun actionPrintRuledLine(identifier: String, width: Double, x: Double, thickness: Double, lineStyle: String, promise: Promise) {
+        val builder = InstanceManager.get(identifier)
+
+        if (builder is PrinterBuilder) {
+            val parameter = StarIO10ValueConverter.toPrinterRuledLineParameter(width, x, thickness, StarIO10ValueConverter.toPrinterLineStyle(lineStyle))
+
+            builder.actionPrintRuledLine(parameter)
+            promise.resolve(0)
+        }
+        else {
+            promise.reject(ReactNoCrashSoftException("Not found native instance"))
+        }
+    }
+
+    @ReactMethod
     fun add(identifier: String, printerBuilderIdentifier: String, promise: Promise) {
         val builder = InstanceManager.get(identifier)
         val printerBuilder = InstanceManager.get(printerBuilderIdentifier)
 
         if (builder is PrinterBuilder && printerBuilder is PrinterBuilder) {
             builder.add(printerBuilder)
+            promise.resolve(true)
+        }
+        else {
+            promise.reject(ReactNoCrashSoftException("Not found native instance"))
+        }
+    }
+
+    @ReactMethod
+    fun addPageMode(identifier: String, x: Double, y: Double, width: Double, height: Double, pageModeBuilderIdentifier: String, promise: Promise) {
+        val builder = InstanceManager.get(identifier)
+        val pageModeBuilder = InstanceManager.get(pageModeBuilderIdentifier)
+
+        if (builder is PrinterBuilder && pageModeBuilder is PageModeBuilder) {
+            builder.addPageMode(StarIO10ValueConverter.toPrinterPageModeAreaParameter(x, y, width, height), pageModeBuilder)
             promise.resolve(true)
         }
         else {

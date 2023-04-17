@@ -2,6 +2,28 @@
 
 # Change Log
 
+## 1.3.0 (2023/03/31)
+
+* Added mC-Label3 support.
+* Added internal processing required for Bluetooth changes of SM-S210i, SM-S230i, SM-T300i and SM-T400i.
+* Updated React Native version to 0.71.4.
+* Added API for spooler function.
+* Added API for Page Mode.
+* Added API for setting/getting Star Configuration.
+* Added API for getting detailed status.
+* Added printing samples of the spooler function and several samples of printing patterns for labels to the example app.
+* iOS: Supported for Xcode 14.
+  * Changed to not include Bitcode based on Apple policy.
+* Windows: Supported for Visual Studio 2022.
+* Windows: Added a specification that the model can be estimated and acquired for some printers with Bluetooth device name set to the initial value (TSP100IIIBI, mPOP, mC-Print2/3, mC-Label3 and SM-L200/300) when using the StarDeviceDiscoveryManager class.
+
+* Bug Fix:
+  * Fixed an issue that command generation does not execute when adding a Builder immediately after instantiation. [#72](https://github.com/star-micronics/react-native-star-io10/issues/72)
+
+  * Android
+    * Fixed a rare crash while performing a discovery.
+    * Fixed an issue that printing may fail via USB in certain devices and will not recover after failure without the USB cable removal and insertion.
+
 ## 1.2.0 (2022/05/10)
 
 * Added POP10CI support.
