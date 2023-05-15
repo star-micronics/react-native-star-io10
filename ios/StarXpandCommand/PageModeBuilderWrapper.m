@@ -462,6 +462,8 @@ RCT_REMAP_METHOD(actionPrintQRCode,
 RCT_REMAP_METHOD(actionPrintImage,
                  actionPrintImageWithObjectIdentifier:(nonnull NSString *)objID
                  source:(nonnull NSString *)source
+                 x:(nonnull NSNumber *)x
+                 y:(nonnull NSNumber *)y
                  width:(nonnull NSNumber *)width
                  effectDiffusion:(BOOL)effectDiffusion
                  threshold:(nonnull NSNumber *)threshold
@@ -475,10 +477,12 @@ RCT_REMAP_METHOD(actionPrintImage,
         return;
     }
     
-    STARIO10StarXpandCommandPrinterImageParameter *param = [StarIO10ValueConverter toPrinterImageParameterWithSource:source
-                                                                                                               width:width
-                                                                                                     effectDiffusion:effectDiffusion
-                                                                                                           threshold:threshold];
+    STARIO10StarXpandCommandPrinterPageModeImageParameter *param = [StarIO10ValueConverter toPrinterPageModeImageParameterWithSource:source
+                                                                                                                                   x:x
+                                                                                                                                   y:y
+                                                                                                                               width:width
+                                                                                                                     effectDiffusion:effectDiffusion
+                                                                                                                           threshold:threshold];
     
     if (param == nil) {
         NSDictionary *info = @{
@@ -496,6 +500,67 @@ RCT_REMAP_METHOD(actionPrintImage,
     resolve(nil);
 }
 
+RCT_REMAP_METHOD(actionPrintRuledLine,
+                 actionPrintRuledLineWithObjectIdentifier:(nonnull NSString *)objID
+                 xStart:(nonnull NSNumber *)xStart
+                 yStart:(nonnull NSNumber *)yStart
+                 xEnd:(nonnull NSNumber *)xEnd
+                 yEnd:(nonnull NSNumber *)yEnd
+                 thickness:(nonnull NSNumber *)thickness
+                 lineStyle:(nonnull NSString *)lineStyle
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarXpandCommandPageModeBuilder *builder = [_objManager getObject:objID];
+    
+    if (builder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10StarXpandCommandPrinterPageModeRuledLineParameter *param = [StarIO10ValueConverter toPrinterPageModeRuledLineParameterWithXStart:xStart
+                                                                                                                                      yStart:yStart
+                                                                                                                                        xEnd:xEnd
+                                                                                                                                        yEnd:yEnd
+                                                                                                                                   thickness:thickness
+                                                                                                                                   lineStyle:lineStyle];
+
+    [builder actionPrintRuledLine:param];
+    
+    resolve(nil);
+}
+
+RCT_REMAP_METHOD(actionPrintRectangle,
+                 actionPrintRectangleWithObjectIdentifier:(nonnull NSString *)objID
+                 size:(nonnull NSArray<NSNumber *> *)size
+                 thickness:(nonnull NSNumber *)thickness
+                 roundCorner:(BOOL)roundCorner
+                 cornerRadius:(nonnull NSNumber *)cornerRadius
+                 lineStyle:(nonnull NSString *)lineStyle
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarXpandCommandPageModeBuilder *builder = [_objManager getObject:objID];
+    
+    if (builder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10StarXpandCommandPrinterPageModeRectangleParameter *param = [StarIO10ValueConverter toPrinterPageModeRectangleParameterWithX:[size objectAtIndex:0]
+                                                                                                                                      y:[size objectAtIndex:1]
+                                                                                                                                  width:[size objectAtIndex:2]
+                                                                                                                                 height:[size objectAtIndex:3]
+                                                                                                                              thickness:thickness
+                                                                                                                            roundCorner:roundCorner
+                                                                                                                           cornerRadius:cornerRadius
+                                                                                                                              lineStyle:lineStyle];
+
+    [builder actionPrintRectangle:param];
+    
+    resolve(nil);
+}
+
 RCT_REMAP_METHOD(add,
                  addWithObjectIdentifier:(nonnull NSString *)objID
                  pageModeBuilderIdentifier:(nonnull NSString *)pageModeBuilderID
@@ -508,15 +573,51 @@ RCT_REMAP_METHOD(add,
         reject(@"Error", @"Fail to get object.", nil);
         return;
     }
+        
+    STARIO10StarXpandCommandPageModeBuilder *childPageModeBuilder = [_objManager getObject:pageModeBuilderID];
     
-    STARIO10StarXpandCommandPageModeBuilder *pageModeBuilder = [_objManager getObject:pageModeBuilderID];
-    if (pageModeBuilder == nil) {
+    if (childPageModeBuilder == nil) {
         reject(@"Error", @"Fail to get object.", nil);
         return;
     }
 
-    [builder add:pageModeBuilder];
+    [builder add:childPageModeBuilder];
+
+     resolve(nil);
+}
+
+RCT_REMAP_METHOD(addPageMode,
+                 addPageModeWithObjectIdentifier:(nonnull NSString *)objID
+                 x:(nonnull NSNumber *)x
+                 y:(nonnull NSNumber *)y
+                 width:(nonnull NSNumber *)width
+                 height:(nonnull NSNumber *)height
+                 pageModeBuilderIdentifier:(nonnull NSString *)pageModeBuilderID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarXpandCommandPageModeBuilder *builder = [_objManager getObject:objID];
+    
+    if (builder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10StarXpandCommandPageModeBuilder *childPageModeBuilder = [_objManager getObject:pageModeBuilderID];
+    
+    if (childPageModeBuilder == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+
+    STARIO10StarXpandCommandPrinterPageModeAreaParameter *param = [StarIO10ValueConverter toPrinterPageModeAreaParameterWithX:x
+                                                                                                                            y:y
+                                                                                                                        width:width
+                                                                                                                       height:height];
+    
+    [builder addPageModeWithParameter:param builder:childPageModeBuilder];
     
     resolve(nil);
 }
+
 @end

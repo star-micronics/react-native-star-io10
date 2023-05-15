@@ -330,7 +330,7 @@ namespace StarMicronics.ReactNative.StarIO10
         }
 
         [ReactMethod("actionPrintImage")]
-        public async void ActionPrintImage(string objectIdentifier, string source, int width, bool effectDiffusion, int threshold, IReactPromise<JSValue.Void> promise)
+        public async void ActionPrintImage(string objectIdentifier, string source, double x, double y, int width, bool effectDiffusion, int threshold, IReactPromise<JSValue.Void> promise)
         {
             try
             {
@@ -340,7 +340,7 @@ namespace StarMicronics.ReactNative.StarIO10
                     return;
                 }
 
-                ImageParameter parameter = await StarIO10ValueConverter.ToPrinterImageParameterAsync(source, width, effectDiffusion, threshold);
+                PageModeImageParameter parameter = await StarIO10ValueConverter.ToPrinterPageModeImageParameterAsync(source, x, y, width, effectDiffusion, threshold);
 
                 nativeObject.ActionPrintImage(parameter);
 
@@ -354,6 +354,37 @@ namespace StarMicronics.ReactNative.StarIO10
             }
         }
 
+        [ReactMethod("actionPrintRuledLine")]
+        public void ActionPrintRuledLine(string objectIdentifier, double xStart, double yStart, double xEnd, double yEnd, double thickness, string lineStyle, IReactPromise<JSValue.Void> promise)
+        {
+            if (!GetObject(objectIdentifier, out PageModeBuilder nativeObject) ||
+                !StarIO10ValueConverter.ToPrinterPageModeRuledLineParameter(xStart, yStart, xEnd, yEnd, thickness, lineStyle, out PageModeRuledLineParameter parameter))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.ActionPrintRuledLine(parameter);
+
+            promise.Resolve();
+        }
+
+        [ReactMethod("actionPrintRectangle")]
+        public void ActionPrintRectangle(string objectIdentifier, double[] size, double thickness, bool roundCorner, double cornerRadius, string lineStyle, IReactPromise<JSValue.Void> promise)
+        {
+            if (!GetObject(objectIdentifier, out PageModeBuilder nativeObject) ||
+                size.Length != 4 ||
+                !StarIO10ValueConverter.ToPrinterPageModeRectangleParameter(size[0], size[1], size[2], size[3], thickness, roundCorner, cornerRadius, lineStyle, out PageModeRectangleParameter parameter))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.ActionPrintRectangle(parameter);
+
+            promise.Resolve();
+        }
+
         [ReactMethod("add")]
         public void Add(string objectIdentifier, string pageModeBuilderIdentifier, IReactPromise<JSValue.Void> promise)
         {
@@ -365,6 +396,22 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             nativeObject.Add(pageModeBuilder);
+
+            promise.Resolve();
+        }
+
+        [ReactMethod("addPageMode")]
+        public void AddPageMode(string objectIdentifier, double x, double y, double width, double height, string pageModeBuilderIdentifier, IReactPromise<JSValue.Void> promise)
+        {
+            if (!GetObject(objectIdentifier, out PageModeBuilder nativeObject) ||
+                !GetObject(pageModeBuilderIdentifier, out PageModeBuilder pageModeBuilder) ||
+                !StarIO10ValueConverter.ToPrinterPageModeAreaParameter(x, y, width, height, out PageModeAreaParameter nativeParameter))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            nativeObject.AddPageMode(nativeParameter, pageModeBuilder);
 
             promise.Resolve();
         }

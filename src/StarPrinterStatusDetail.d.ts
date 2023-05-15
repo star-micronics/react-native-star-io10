@@ -1,0 +1,35 @@
+import { DrawerOpenedMethod } from './DrawerOpenedMethod';
+export declare class StarPrinterStatusDetail {
+    _cutterError: boolean | undefined;
+    _paperSeparatorError: boolean | undefined;
+    _paperJamError: boolean | undefined;
+    _rollPositionError: boolean | undefined;
+    _paperPresent: boolean | undefined;
+    _drawerOpenError: boolean | undefined;
+    _printUnitOpen: boolean | undefined;
+    _drawer1OpenedMethod: DrawerOpenedMethod | undefined;
+    _drawer1OpenCloseSignal: boolean | undefined;
+    _drawer2OpenedMethod: DrawerOpenedMethod | undefined;
+    _drawer2OpenCloseSignal: boolean | undefined;
+    _externalDevice1Connected: boolean | undefined;
+    _externalDevice2Connected: boolean | undefined;
+    _partsReplacementNotification: boolean | undefined;
+    _cleaningNotification: boolean | undefined;
+    _detectedPaperWidth: number | undefined;
+    get cutterError(): boolean | undefined;
+    get paperSeparatorError(): boolean | undefined;
+    get paperJamError(): boolean | undefined;
+    get rollPositionError(): boolean | undefined;
+    get paperPresent(): boolean | undefined;
+    get drawerOpenError(): boolean | undefined;
+    get printUnitOpen(): boolean | undefined;
+    get drawer1OpenedMethod(): DrawerOpenedMethod | undefined;
+    get drawer1OpenCloseSignal(): boolean | undefined;
+    get drawer2OpenedMethod(): DrawerOpenedMethod | undefined;
+    get drawer2OpenCloseSignal(): boolean | undefined;
+    get externalDevice1Connected(): boolean | undefined;
+    get externalDevice2Connected(): boolean | undefined;
+    get partsReplacementNotification(): boolean | undefined;
+    get cleaningNotification(): boolean | undefined;
+    get detectedPaperWidth(): number | undefined;
+}

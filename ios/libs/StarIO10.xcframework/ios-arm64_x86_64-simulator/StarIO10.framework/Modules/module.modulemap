@@ -23,6 +23,6 @@ framework module StarIO10 {
 }
 
 module StarIO10.Swift {
-    header "StarIO10-Swift.h"
-    requires objc
+  header "StarIO10-Swift.h"
+  requires objc
 }

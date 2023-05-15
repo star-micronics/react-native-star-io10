@@ -14,6 +14,11 @@ import { PrinterDelegate } from './PrinterDelegate';
 import { DrawerDelegate } from './DrawerDelegate';
 import { InputDeviceDelegate } from './InputDeviceDelegate';
 import { DisplayDelegate } from './DisplayDelegate';
+import { StarSpoolJobSettings } from './StarSpoolJobSettings';
+import { StarSpoolJobStatus } from './StarSpoolJobStatus';
+import { StarSpoolJobStatusFactory } from './StarSpoolJobStatusFactory';
+import { StarSpoolJobStatusListFactory } from './StarSpoolJobStatusListFactory';
+import { StarConfigurationSetResult } from './StarConfigurationSetResult';
 
 const eventEmitter = new NativeEventEmitter(NativeModules.StarPrinterWrapper);
 
@@ -30,6 +35,7 @@ export class StarPrinter extends NativeObject {
     openTimeout: number = 10000;
     printTimeout: number = 30000;
     getStatusTimeout: number = 5000;
+    starConfigurationTimeout: number = 90000;
 
     get information(): StarPrinterInformation | undefined {
         return this._information;
@@ -249,14 +255,36 @@ export class StarPrinter extends NativeObject {
         this._information._reserved = new Map(Object.entries(await NativeModules.StarPrinterWrapper.getReserved(this._nativeObject)));
     }
 
-    async print(command: string): Promise<void> {
+    async print(command: string): Promise<void>;
+    async print(command: string, starSpoolJobSettings: StarSpoolJobSettings): Promise<number>;
+
+    async print(
+        ...args:
+          | [command: string]
+          | [command: string, starSpoolJobSettings: StarSpoolJobSettings]
+      ): Promise<void | number> {
         await this._initNativeObject();
 
-        await NativeModules.StarPrinterWrapper.print(this._nativeObject, command, this.printTimeout)
-        .catch(async (nativeError: any) => {
-            var error = await StarIO10ErrorFactory.create(nativeError.code);
-            throw error;
-        });
+        if (args.length === 1) {
+            const [command] = args;
+
+            await NativeModules.StarPrinterWrapper.print(this._nativeObject, command, this.printTimeout)
+            .catch(async (nativeError: any) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
+        }
+        if (args.length === 2) {
+            const [command, starSpoolJobSettings] = args;
+
+            var jobId = await NativeModules.StarPrinterWrapper.spoolPrint(this._nativeObject, command, starSpoolJobSettings.isRetryEnabled, starSpoolJobSettings.timeout, starSpoolJobSettings.note, this.printTimeout)
+            .catch(async (nativeError: any) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
+
+            return jobId;
+        }
     }
 
     async printRawData(data: Array<number>): Promise<void> {
@@ -279,6 +307,66 @@ export class StarPrinter extends NativeObject {
         });
 
         return await StarPrinterStatusFactory.create(nativeStatus);
+    }
+
+    async getSpoolJobStatus(jobId: number): Promise<StarSpoolJobStatus> {
+        await this._initNativeObject();
+
+        var nativeStatus = await NativeModules.StarPrinterWrapper.getSpoolJobStatus(this._nativeObject, jobId, this.getStatusTimeout)
+        .catch(async (nativeError: any) => {
+            var error = await StarIO10ErrorFactory.create(nativeError.code);
+            throw error;
+        });
+
+        return await StarSpoolJobStatusFactory.create(nativeStatus);
+    }
+
+    async getSpoolJobStatusList(size: number): Promise<Array<StarSpoolJobStatus>> {
+        await this._initNativeObject();
+
+        var nativeStatusList = await NativeModules.StarPrinterWrapper.getSpoolJobStatusList(this._nativeObject, size, this.getStatusTimeout)
+        .catch(async (nativeError: any) => {
+            var error = await StarIO10ErrorFactory.create(nativeError.code);
+            throw error;
+        });
+
+        return await StarSpoolJobStatusListFactory.create(nativeStatusList);
+    }
+
+    async setStarConfiguration(starConfiguration: string): Promise<StarConfigurationSetResult> {
+        await this._initNativeObject();
+
+        var starConfigurationSetResult = await NativeModules.StarPrinterWrapper.setStarConfiguration(this._nativeObject, starConfiguration, this.starConfigurationTimeout)
+        .catch(async (nativeError: any) => {
+            var error = await StarIO10ErrorFactory.create(nativeError.code);
+            throw error;
+        });
+
+        return starConfigurationSetResult;
+    }
+
+    async getStarConfiguration(password: string | undefined = undefined): Promise<string> {
+        await this._initNativeObject();
+
+        var starConfiguration = await NativeModules.StarPrinterWrapper.getStarConfiguration(this._nativeObject, password, this.starConfigurationTimeout)
+        .catch(async (nativeError: any) => {
+            var error = await StarIO10ErrorFactory.create(nativeError.code);
+            throw error;
+        });
+
+        return starConfiguration;
+    }
+
+    async getDefaultStarConfiguration(): Promise<string> {
+        await this._initNativeObject();
+
+        var starConfiguration = await NativeModules.StarPrinterWrapper.getDefaultStarConfiguration(this._nativeObject, this.starConfigurationTimeout)
+        .catch(async (nativeError: any) => {
+            var error = await StarIO10ErrorFactory.create(nativeError.code);
+            throw error;
+        });
+
+        return starConfiguration;
     }
 
     async close(): Promise<void> {

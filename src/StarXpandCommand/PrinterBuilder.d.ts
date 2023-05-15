@@ -2,7 +2,6 @@ import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
 import { StarXpandCommand } from '../../index';
 export declare class PrinterBuilder extends BaseStarXpandCommandBuilder {
     styleAlignment(alignment: StarXpandCommand.Printer.Alignment): PrinterBuilder;
-    addPageMode(parameter: StarXpandCommand.Printer.PageModeAreaParameter, builder: StarXpandCommand.PageModeBuilder): PrinterBuilder;
     styleFont(type: StarXpandCommand.Printer.FontType): PrinterBuilder;
     styleBold(enable: boolean): PrinterBuilder;
     styleInvert(enable: boolean): PrinterBuilder;
@@ -25,7 +24,9 @@ export declare class PrinterBuilder extends BaseStarXpandCommandBuilder {
     actionPrintPdf417(parameter: StarXpandCommand.Printer.Pdf417Parameter): PrinterBuilder;
     actionPrintQRCode(parameter: StarXpandCommand.Printer.QRCodeParameter): PrinterBuilder;
     actionPrintImage(parameter: StarXpandCommand.Printer.ImageParameter): PrinterBuilder;
+    actionPrintRuledLine(parameter: StarXpandCommand.Printer.RuledLineParameter): PrinterBuilder;
     add(builder: PrinterBuilder): PrinterBuilder;
+    addPageMode(parameter: StarXpandCommand.Printer.PageModeAreaParameter, builder: StarXpandCommand.PageModeBuilder): PrinterBuilder;
     protected _initNativeObjectImpl(): Promise<string>;
     protected _disposeNativeObjectImpl(nativeObject: string): Promise<void>;
 }

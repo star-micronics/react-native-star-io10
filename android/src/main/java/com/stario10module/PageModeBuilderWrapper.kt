@@ -4,6 +4,7 @@ import com.facebook.react.bridge.*
 import com.starmicronics.stario10.StarIO10ArgumentException
 import com.starmicronics.stario10.starxpandcommand.PageModeBuilder
 import com.starmicronics.stario10.starxpandcommand.printer.CjkCharacterType
+import com.starmicronics.stario10.starxpandcommand.printer.LineStyle
 
 class PageModeBuilderWrapper internal constructor(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {
     override fun getName(): String {
@@ -297,12 +298,12 @@ class PageModeBuilderWrapper internal constructor(context: ReactApplicationConte
     }
 
     @ReactMethod
-    fun actionPrintImage(identifier: String, source: String, width: Int, effectDiffusion: Boolean, threshold: Int, promise: Promise) {
+    fun actionPrintImage(identifier: String, source: String, x: Double, y: Double, width: Int, effectDiffusion: Boolean, threshold: Int, promise: Promise) {
         val builder = InstanceManager.get(identifier)
 
         if (builder is PageModeBuilder) {
             try {
-                val parameter = StarIO10ValueConverter.toPrinterImageParameter(source, width, effectDiffusion, threshold, reactApplicationContext)
+                val parameter = StarIO10ValueConverter.toPrinterPageModeImageParameter(source, x, y, width, effectDiffusion, threshold, reactApplicationContext)
                 builder.actionPrintImage(parameter)
                 promise.resolve(0)
             }
@@ -318,12 +319,57 @@ class PageModeBuilderWrapper internal constructor(context: ReactApplicationConte
     }
 
     @ReactMethod
+    fun actionPrintRuledLine(identifier: String, xStart: Double, yStart: Double, xEnd: Double, yEnd: Double, thickness: Double, lineStyle: String, promise: Promise) {
+        val builder = InstanceManager.get(identifier)
+
+        if (builder is PageModeBuilder) {
+            val parameter = StarIO10ValueConverter.toPrinterPageModeRuledLineParameter(xStart, yStart, xEnd, yEnd, thickness, StarIO10ValueConverter.toPrinterLineStyle(lineStyle))
+
+            builder.actionPrintRuledLine(parameter)
+            promise.resolve(0)
+        }
+        else {
+            promise.reject(ReactNoCrashSoftException("Not found native instance"))
+        }
+    }
+
+    @ReactMethod
+    fun actionPrintRectangle(identifier: String, size: ReadableArray, thickness: Double, roundCorner: Boolean, cornerRadius: Double, lineStyle: String, promise: Promise) {
+        val builder = InstanceManager.get(identifier)
+
+        if (builder is PageModeBuilder) {
+            val sizeArray = StarIO10ValueConverter.toList<Double>(size)
+            val parameter = StarIO10ValueConverter.toPrinterPageModeRectangleParameter(sizeArray[0], sizeArray[1], sizeArray[2], sizeArray[3], thickness, roundCorner, cornerRadius, StarIO10ValueConverter.toPrinterLineStyle(lineStyle))
+
+            builder.actionPrintRectangle(parameter)
+            promise.resolve(0)
+        }
+        else {
+            promise.reject(ReactNoCrashSoftException("Not found native instance"))
+        }
+    }
+
+    @ReactMethod
     fun add(identifier: String, pageModeBuilderIdentifier: String, promise: Promise) {
         val builder = InstanceManager.get(identifier)
         val pageModeBuilder = InstanceManager.get(pageModeBuilderIdentifier)
 
         if (builder is PageModeBuilder && pageModeBuilder is PageModeBuilder) {
             builder.add(pageModeBuilder)
+            promise.resolve(true)
+        }
+        else {
+            promise.reject(ReactNoCrashSoftException("Not found native instance"))
+        }
+    }
+
+    @ReactMethod
+    fun addPageMode(identifier: String, x: Double, y: Double, width: Double, height: Double, pageModeBuilderIdentifier: String, promise: Promise) {
+        val builder = InstanceManager.get(identifier)
+        val pageModeBuilder = InstanceManager.get(pageModeBuilderIdentifier)
+
+        if (builder is PageModeBuilder && pageModeBuilder is PageModeBuilder) {
+            builder.addPageMode(StarIO10ValueConverter.toPrinterPageModeAreaParameter(x, y, width, height), pageModeBuilder)
             promise.resolve(true)
         }
         else {

@@ -2,7 +2,7 @@
 //  StarXpandCommandParserWrapper.h
 //  StarIO10
 //
-//  Created by 上田　雄磨 on 2020/10/19.
+//  Copyright 2021 Star Micronics Co., Ltd. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
