@@ -95,11 +95,6 @@ https://star-m.jp/products/s_print/apple_app_mfi/index.html
 - プロジェクトの「参照」に"Visual C++ 2015-2019 UWP Desktop Runtime for native apps"を追加してください。
 
 ## 制限事項
-
-### Windowsのx86向けビルドが出来ない
-
-React Native for Windows V0.71.3を利用するStarXpand SDK V1.3.0では、Windowsのx86アーキテクチャ向けビルドは出来ません。x64アーキテクチャのみ利用可能です。
-
 ### Android端末を使用する場合、URLで指定した画像が低い解像度で印字されることがある
 
 actionPrintImageメソッドの引数ImageParameterのsourceにある程度サイズが大きい画像ファイルのURLを指定した場合、Android端末から印刷データが送付されると、画像が粗く印字されることがあります。

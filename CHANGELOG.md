@@ -2,6 +2,11 @@
 
 # Change Log
 
+## 1.3.0 (2023/05/29)
+
+* Updated React Native version to 0.71.6 to fix an issue that the example app cannot be built in Xcode14.3. ([Detail here](https://github.com/facebook/react-native/issues/36739))
+* Updated React Native for Windows version to 0.71.6 to resolve build failure for x86 architecture and React Native CodeGen build failure on Windows.
+
 ## 1.3.0 (2023/03/31)
 
 * Added mC-Label3 support.

@@ -97,11 +97,6 @@ Refer to [sample code](example/samples) and request BLUETOOTH_CONNECT permission
 - Add "Visual C++ 2015-2019 UWP Desktop Runtime for native apps" to the project "References".
 
 ## Limitations 
-
-### Cannot build for Windows x86
-
-StarXpand SDK V1.3.0 using React Native for Windows V0.71.3 cannot be built for Windows x86 architecture, available only for x64 architecture.
-
 ### When using Android device, an image specified by URL is sometimes printed in a low resolution
 
 In Android, when an image file size is large, and its URL is specified as the source of the ImageParameter which is the argument of the actionPrintImage method, the image may be printed in low resolution. 

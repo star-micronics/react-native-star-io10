@@ -13,12 +13,12 @@
     "postinstall": "npm run bundle:ios"
   },
   "dependencies": {
-    "react": "18.2.0",
-    "react-native": "0.71.4",
-    "react-native-windows": "0.71.3",
     "@react-native-community/checkbox": "^0.5.15",
     "@react-native-picker/picker": "^2.4.8",
-    "react-native-star-io10": "file:.."
+    "react": "18.2.0",
+    "react-native": "0.71.6",
+    "react-native-star-io10": "file:..",
+    "react-native-windows": "0.71.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

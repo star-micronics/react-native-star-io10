@@ -2,6 +2,11 @@
 
 # 変更点
 
+## 1.3.0 (2023/05/29)
+
+* Xcode14.3においてexampleアプリがビルドできない問題を修正するため、React Native のバージョンを0.71.6に更新([詳細](https://github.com/facebook/react-native/issues/36739))
+* Windowsにおいて、x86アーキテクチャ向けビルドに失敗する問題とReact Native CodeGenのビルドに失敗する問題を解消するため、React Native for Windows のバージョンを0.71.6に更新
+
 ## 1.3.0 (2023/03/31)
 
 * mC-Label3 に対応
