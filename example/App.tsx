@@ -52,8 +52,16 @@ class App extends React.Component<AppProps, AppState> {
         var printer = new StarPrinter(settings);
 
         try {
+            // TSP100III series and TSP100IIU+ do not support actionPrintText because these products are graphics-only printers.
+            // Please use the actionPrintImage method to create printing data for these products.
+            // For other available methods, please also refer to "Supported Model" of each method.
+            // https://www.star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/api-reference/star-xpand-command/printer-builder/action-print-image.html
             var builder = new StarXpandCommand.StarXpandCommandBuilder();
             builder.addDocument(new StarXpandCommand.DocumentBuilder()
+            // To open a cash drawer, comment out the following code.
+//          .addDrawer(new StarXpandCommand.DrawerBuilder()
+//              .actionOpen(new StarXpandCommand.Drawer.OpenParameter())
+//          )
             .addPrinter(new StarXpandCommand.PrinterBuilder()
                 .actionPrintImage(new StarXpandCommand.Printer.ImageParameter("logo_01.png", 406))
                 .styleInternationalCharacter(StarXpandCommand.Printer.InternationalCharacterType.Usa)

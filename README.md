@@ -24,9 +24,9 @@ Documentation includes an overview of the SDK, how to build a sample application
 
 | Platform | Version | Arch |
 | --- | --- | --- |
-| iOS | iOS 12.0 or later | Device: arm64<br> Simulator: x86_64, arm64 |
-| Android | Android 6.0 or later | arm64-v8a, armeabi-v7a, x86, x86_64 |
-| Windows | Windows 11 / Windows 10 1909 or later | x86, x64 |
+| iOS | iOS 13.0 or later | Device: arm64<br> Simulator: x86_64, arm64 |
+| Android | Android 9.0 or later | arm64-v8a, armeabi-v7a, x86, x86_64 |
+| Windows | Windows 11 / Windows 10 22H2 | x86, x64 |
 
 ## Installation
 

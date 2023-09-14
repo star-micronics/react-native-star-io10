@@ -1,13 +1,15 @@
+const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+
 /**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
+ * Metro configuration
+ * https://facebook.github.io/metro/docs/configuration
  *
- * @format
+ * @type {import('metro-config').MetroConfig}
  */
 const path = require('path');
 const blacklist = require('metro-config/src/defaults/exclusionlist');
 
-module.exports = {
+const config = {
   resolver: {
     blacklistRE: blacklist([
       // This stops "react-native run-windows" from causing the metro server to crash if its already running
@@ -17,13 +19,7 @@ module.exports = {
       // This prevents "react-native run-windows" from hitting: EBUSY: resource busy or locked, open msbuild.ProjectImports.zip
       /.*\.ProjectImports\.zip/,
     ]),
-  },
-  transformer: {
-    getTransformOptions: async () => ({
-      transform: {
-        experimentalImportSupport: false,
-        inlineRequires: false,
-      },
-    }),
-  },
+  }
 };
+
+module.exports = mergeConfig(getDefaultConfig(__dirname), config);

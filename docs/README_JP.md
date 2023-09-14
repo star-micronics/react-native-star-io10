@@ -24,9 +24,9 @@ StarXpand SDKのドキュメントは[こちら](https://www.star-m.jp/react-nat
 
 | Platform | OS Version | Arch |
 | --- | --- | --- |
-| iOS | iOS 12.0 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | 
-| Android | Android 6.0 以降 | arm64-v8a, armeabi-v7a, x86, x86_64 |
-| Windows | Windows 11 / Windows 10 1909 以降 | x86, x64 |
+| iOS | iOS 13.0 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | 
+| Android | Android 9.0 以降 | arm64-v8a, armeabi-v7a, x86, x86_64 |
+| Windows | Windows 11 / Windows 10 22H2 | x86, x64 |
 
 ## 導入
 
