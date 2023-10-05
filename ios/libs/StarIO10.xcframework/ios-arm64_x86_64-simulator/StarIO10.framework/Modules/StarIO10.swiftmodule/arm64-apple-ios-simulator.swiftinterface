@@ -915,6 +915,7 @@ extension StarIO10.StarXpandCommand {
   @objc(STARIO10StarPrinterModelTSP100IIILAN) case tsp100IIILAN
   @objc(STARIO10StarPrinterModelTSP100IIIBI) case tsp100IIIBI
   @objc(STARIO10StarPrinterModelTSP100IIIU) case tsp100IIIU
+  @objc(STARIO10StarPrinterModelTSP100IV_SK) case tsp100IV_SK
   @objc(STARIO10StarPrinterModelTSP100IV) case tsp100IV
   @objc(STARIO10StarPrinterModelmPOP) case mPOP
   @objc(STARIO10StarPrinterModelmC_Print2) case mC_Print2

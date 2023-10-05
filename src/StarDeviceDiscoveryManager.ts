@@ -8,7 +8,7 @@ import { NativeObject } from './NativeObject';
 import { StarConnectionSettings } from './StarConnectionSettings';
 import { StarPrinter } from './StarPrinter';
 import { StarIO10ErrorFactory } from './StarIO10ErrorFactory';
-import { InterfaceType } from './InterfaceType';
+import type { InterfaceType } from './InterfaceType';
 import { StarPrinterInformation } from './StarPrinterInformation';
 
 const eventEmitter = new NativeEventEmitter(NativeModules.StarDeviceDiscoveryManagerWrapper);

@@ -24,9 +24,9 @@ StarXpand SDKのドキュメントは[こちら](https://www.star-m.jp/react-nat
 
 | Platform | OS Version | Arch |
 | --- | --- | --- |
-| iOS | iOS 12.0 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | 
-| Android | Android 6.0 以降 | arm64-v8a, armeabi-v7a, x86, x86_64 |
-| Windows | Windows 11 / Windows 10 1909 以降 | x86, x64 |
+| iOS | iOS 13.0 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | 
+| Android | Android 9.0 以降 | arm64-v8a, armeabi-v7a, x86, x86_64 |
+| Windows | Windows 11 / Windows 10 22H2 | x86, x64 |
 
 ## 導入
 
@@ -95,11 +95,6 @@ https://star-m.jp/products/s_print/apple_app_mfi/index.html
 - プロジェクトの「参照」に"Visual C++ 2015-2019 UWP Desktop Runtime for native apps"を追加してください。
 
 ## 制限事項
-
-### Windowsのx86向けビルドが出来ない
-
-React Native for Windows V0.71.3を利用するStarXpand SDK V1.3.0では、Windowsのx86アーキテクチャ向けビルドは出来ません。x64アーキテクチャのみ利用可能です。
-
 ### Android端末を使用する場合、URLで指定した画像が低い解像度で印字されることがある
 
 actionPrintImageメソッドの引数ImageParameterのsourceにある程度サイズが大きい画像ファイルのURLを指定した場合、Android端末から印刷データが送付されると、画像が粗く印字されることがあります。

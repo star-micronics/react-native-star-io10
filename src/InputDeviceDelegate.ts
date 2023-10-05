@@ -1,4 +1,4 @@
-import { StarIO10Error } from "./StarIO10Error";
+import type { StarIO10Error } from "./StarIO10Error";
 
 export class InputDeviceDelegate {
     _onEventSet: () => void = () => {};

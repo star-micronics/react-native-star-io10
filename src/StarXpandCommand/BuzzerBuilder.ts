@@ -1,6 +1,6 @@
 import { NativeModules } from 'react-native';
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
-import { StarXpandCommand } from '../../index';
+import type { StarXpandCommand } from '../../index';
 
 export class BuzzerBuilder extends BaseStarXpandCommandBuilder {
     actionDrive(parameter: StarXpandCommand.Buzzer.DriveParameter): BuzzerBuilder {

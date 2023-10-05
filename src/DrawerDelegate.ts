@@ -1,4 +1,4 @@
-import { StarIO10Error } from "./StarIO10Error";
+import type { StarIO10Error } from "./StarIO10Error";
 
 export class DrawerDelegate {
     _onEventSet: () => void = () => {};
@@ -6,7 +6,7 @@ export class DrawerDelegate {
     private _onOpenCloseSignalSwitched: (openCloseSignal: boolean) => void = () => {};
 
     onCommunicationError: (error: StarIO10Error) => void = () => {};
-    
+
     set onOpenCloseSignalSwitched(value: (openCloseSignal: boolean) => void) {
         this._onOpenCloseSignalSwitched = value;
 

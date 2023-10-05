@@ -24,9 +24,9 @@ Documentation includes an overview of the SDK, how to build a sample application
 
 | Platform | Version | Arch |
 | --- | --- | --- |
-| iOS | iOS 12.0 or later | Device: arm64<br> Simulator: x86_64, arm64 |
-| Android | Android 6.0 or later | arm64-v8a, armeabi-v7a, x86, x86_64 |
-| Windows | Windows 11 / Windows 10 1909 or later | x86, x64 |
+| iOS | iOS 13.0 or later | Device: arm64<br> Simulator: x86_64, arm64 |
+| Android | Android 9.0 or later | arm64-v8a, armeabi-v7a, x86, x86_64 |
+| Windows | Windows 11 / Windows 10 22H2 | x86, x64 |
 
 ## Installation
 
@@ -105,11 +105,6 @@ Refer to [sample code](example/samples) and request BLUETOOTH_CONNECT permission
 - Add "Visual C++ 2015-2019 UWP Desktop Runtime for native apps" to the project "References".
 
 ## Limitations 
-
-### Cannot build for Windows x86
-
-StarXpand SDK V1.3.0 using React Native for Windows V0.71.3 cannot be built for Windows x86 architecture, available only for x64 architecture.
-
 ### When using Android device, an image specified by URL is sometimes printed in a low resolution
 
 In Android, when an image file size is large, and its URL is specified as the source of the ImageParameter which is the argument of the actionPrintImage method, the image may be printed in low resolution. 

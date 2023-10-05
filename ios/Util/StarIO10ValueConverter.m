@@ -57,6 +57,7 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10StarPrinterModelTSP100IIILAN): @"TSP100IIILAN",
             @(STARIO10StarPrinterModelTSP100IIIBI): @"TSP100IIIBI",
             @(STARIO10StarPrinterModelTSP100IIIU): @"TSP100IIIU",
+            @(STARIO10StarPrinterModelTSP100IV_SK): @"TSP100IV_SK",
             @(STARIO10StarPrinterModelTSP100IV): @"TSP100IV",
             @(STARIO10StarPrinterModelmPOP): @"mPOP",
             @(STARIO10StarPrinterModelmC_Print2): @"mC_Print2",

@@ -2,6 +2,21 @@
 
 # Change Log
 
+## 1.4.0 (2023/09/08)
+
+* Added TSP100IV SK support.
+* Updated React Native version to 0.72.4.
+* Updated React Native for Windows version to 0.72.7.
+* iOS: Changed minimum supported OS version from 12 to 13.
+* Android: Changed minimum supported OS version from 6 to 9.
+* Windows: Changed minimum supported OS version from Windows 10 1909 to 22H2.
+* Android/Windows: Updated Bluetooth module information for SM-L200.
+
+## 1.3.0 (2023/05/29)
+
+* Updated React Native version to 0.71.6 to fix an issue that the example app cannot be built in Xcode14.3. ([Detail here](https://github.com/facebook/react-native/issues/36739))
+* Updated React Native for Windows version to 0.71.6 to resolve build failure for x86 architecture and React Native CodeGen build failure on Windows.
+
 ## 1.3.0 (2023/03/31)
 
 * Added mC-Label3 support.

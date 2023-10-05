@@ -5601,6 +5601,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "StarIO10",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "NullableDrawerOpenedMethod",
         "printedName": "NullableDrawerOpenedMethod",
@@ -11890,6 +11900,48 @@
           },
           {
             "kind": "Var",
+            "name": "tsp100IV_SK",
+            "printedName": "tsp100IV_SK",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(StarIO10.StarPrinterModel.Type) -> StarIO10.StarPrinterModel",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "StarPrinterModel",
+                    "printedName": "StarIO10.StarPrinterModel",
+                    "usr": "c:@M@StarIO10@E@STARIO10StarPrinterModel"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "StarIO10.StarPrinterModel.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "StarPrinterModel",
+                        "printedName": "StarIO10.StarPrinterModel",
+                        "usr": "c:@M@StarIO10@E@STARIO10StarPrinterModel"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "c:@M@StarIO10@E@STARIO10StarPrinterModel@STARIO10StarPrinterModelTSP100IV_SK",
+            "mangledName": "$s8StarIO100A12PrinterModelO11tsp100IV_SKyA2CmF",
+            "moduleName": "StarIO10",
+            "objc_name": "STARIO10StarPrinterModelTSP100IV_SK",
+            "declAttributes": [
+              "ObjC"
+            ],
+            "fixedbinaryorder": 10
+          },
+          {
+            "kind": "Var",
             "name": "tsp100IV",
             "printedName": "tsp100IV",
             "children": [
@@ -11928,7 +11980,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 10
+            "fixedbinaryorder": 11
           },
           {
             "kind": "Var",
@@ -11970,7 +12022,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 11
+            "fixedbinaryorder": 12
           },
           {
             "kind": "Var",
@@ -12012,7 +12064,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 12
+            "fixedbinaryorder": 13
           },
           {
             "kind": "Var",
@@ -12054,7 +12106,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 13
+            "fixedbinaryorder": 14
           },
           {
             "kind": "Var",
@@ -12096,7 +12148,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 14
+            "fixedbinaryorder": 15
           },
           {
             "kind": "Var",
@@ -12138,7 +12190,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 15
+            "fixedbinaryorder": 16
           },
           {
             "kind": "Var",
@@ -12180,7 +12232,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 16
+            "fixedbinaryorder": 17
           },
           {
             "kind": "Var",
@@ -12222,7 +12274,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 17
+            "fixedbinaryorder": 18
           },
           {
             "kind": "Var",
@@ -12264,7 +12316,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 18
+            "fixedbinaryorder": 19
           },
           {
             "kind": "Var",
@@ -12306,7 +12358,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 19
+            "fixedbinaryorder": 20
           },
           {
             "kind": "Var",
@@ -12348,7 +12400,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 20
+            "fixedbinaryorder": 21
           },
           {
             "kind": "Var",
@@ -12390,7 +12442,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 21
+            "fixedbinaryorder": 22
           },
           {
             "kind": "Var",
@@ -12432,7 +12484,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 22
+            "fixedbinaryorder": 23
           },
           {
             "kind": "Var",
@@ -12474,7 +12526,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 23
+            "fixedbinaryorder": 24
           },
           {
             "kind": "Var",
@@ -12516,7 +12568,7 @@
             "declAttributes": [
               "ObjC"
             ],
-            "fixedbinaryorder": 24
+            "fixedbinaryorder": 25
           },
           {
             "kind": "Var",
@@ -35877,57 +35929,64 @@
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpec.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1099,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpec.swift",
       "kind": "Array",
-      "offset": 635,
+      "offset": 1490,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpec.swift",
       "kind": "BooleanLiteral",
-      "offset": 1302,
+      "offset": 2157,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpec.swift",
       "kind": "BooleanLiteral",
-      "offset": 1357,
+      "offset": 2212,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpec.swift",
       "kind": "BooleanLiteral",
-      "offset": 1404,
+      "offset": 2259,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpec.swift",
       "kind": "BooleanLiteral",
-      "offset": 1447,
+      "offset": 2302,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpec.swift",
       "kind": "BooleanLiteral",
-      "offset": 1773,
+      "offset": 2628,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpec.swift",
       "kind": "BooleanLiteral",
-      "offset": 1818,
+      "offset": 2673,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpec.swift",
       "kind": "BooleanLiteral",
-      "offset": 1864,
+      "offset": 2719,
       "length": 5,
       "value": "false"
     },
@@ -36709,6 +36768,41 @@
       "value": "\"StarIO10.PositionParameter\""
     },
     {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/ModelDetectionInformation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 311,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/ModelDetectionInformation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 356,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/ModelDetectionInformation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 445,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/ModelDetectionInformation.swift",
+      "kind": "BooleanLiteral",
+      "offset": 488,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/ModelDetectionInformation.swift",
+      "kind": "StringLiteral",
+      "offset": 85,
+      "length": 25,
+      "value": "\"StarIO10.ModelDetectionInformation\""
+    },
+    {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/NullableClass\/NullableDrawerOpenedMethod.swift",
       "kind": "StringLiteral",
       "offset": 197,
@@ -36844,674 +36938,422 @@
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 459,
-      "length": 10,
-      "value": "\"TSP650II\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 516,
-      "length": 10,
-      "value": "\"TSP650II\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 561,
+      "offset": 754,
       "length": 13,
-      "value": "\"^TSP650II.*\""
+      "value": "\"TSP100IV_SK\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 608,
-      "length": 30,
-      "value": "\"^TSP65[0-9] \\(STR_T-001\\)$\""
+      "offset": 827,
+      "length": 23,
+      "value": "\"^TSP1[0-9]{2}IV.*SK.*\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 802,
+      "offset": 879,
+      "length": 21,
+      "value": "\"^TSP1[0-9]{2}.*SK.*\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 960,
+      "length": 33,
+      "value": "\"^TSP1[0-9]{2}IV.*\\(STR-001\\)$\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 1022,
+      "length": 31,
+      "value": "\"^TSP1[0-9]{2}.*\\(STR-001\\)$\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 1113,
+      "length": 23,
+      "value": "\"^TSP1[0-9]{2}IV.*SK.*\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 1165,
+      "length": 21,
+      "value": "\"^TSP1[0-9]{2}.*SK.*\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1227,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 1366,
+      "length": 23,
+      "value": "\"^TSP1[0-9]{2}IV.*SK.*\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 1418,
+      "length": 21,
+      "value": "\"^TSP1[0-9]{2}.*SK.*\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1539,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1577,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1611,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 1755,
       "length": 10,
-      "value": "\"TSP700II\""
+      "value": "\"TSP100IV\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 859,
-      "length": 10,
-      "value": "\"TSP700II\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 904,
-      "length": 13,
-      "value": "\"^TSP700II.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 951,
-      "length": 34,
-      "value": "\"^TSP7[0-9]{2}II \\(STR_T-001\\)$\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 1149,
-      "length": 10,
-      "value": "\"TSP800II\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 1206,
-      "length": 10,
-      "value": "\"TSP800II\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 1251,
-      "length": 13,
-      "value": "\"^TSP800II.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 1298,
-      "length": 34,
-      "value": "\"^TSP8[0-9]{2}II \\(STR_T-001\\)$\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 1501,
-      "length": 12,
-      "value": "\"TSP100IIIW\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 1560,
-      "length": 12,
-      "value": "\"TSP100IIIW\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 1607,
-      "length": 15,
-      "value": "\"^TSP100IIIW.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 1656,
-      "length": 36,
-      "value": "\"^TSP1[0-9]{2}IIIW \\(STR_T-001\\)$\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 1812,
-      "length": 14,
-      "value": "\"TSP100IIILAN\""
+      "offset": 1825,
+      "length": 19,
+      "value": "\"^TSP1[0-9]{2}IV.*\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
       "offset": 1873,
+      "length": 17,
+      "value": "\"^TSP1[0-9]{2}.*\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 1950,
+      "length": 33,
+      "value": "\"^TSP1[0-9]{2}IV.*\\(STR-001\\)$\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 2012,
+      "length": 31,
+      "value": "\"^TSP1[0-9]{2}.*\\(STR-001\\)$\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 2103,
+      "length": 19,
+      "value": "\"^TSP1[0-9]{2}IV.*\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 2151,
+      "length": 17,
+      "value": "\"^TSP1[0-9]{2}.*\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2209,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 2348,
+      "length": 19,
+      "value": "\"^TSP1[0-9]{2}IV.*\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 2396,
+      "length": 17,
+      "value": "\"^TSP1[0-9]{2}.*\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2513,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2551,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2585,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 2729,
+      "length": 10,
+      "value": "\"TSP650II\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 3158,
+      "length": 10,
+      "value": "\"TSP700II\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 3591,
+      "length": 10,
+      "value": "\"TSP800II\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 4029,
+      "length": 12,
+      "value": "\"TSP100IIIW\""
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
+      "kind": "StringLiteral",
+      "offset": 4424,
       "length": 14,
       "value": "\"TSP100IIILAN\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 1922,
-      "length": 17,
-      "value": "\"^TSP100IIILAN.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 1973,
-      "length": 38,
-      "value": "\"^TSP1[0-9]{2}IIILAN \\(STR_T-001\\)$\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2130,
+      "offset": 4824,
       "length": 13,
       "value": "\"TSP100IIIBI\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2190,
-      "length": 13,
-      "value": "\"TSP100IIIBI\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2238,
-      "length": 15,
-      "value": "\"^TSP100IIIB.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2296,
-      "length": 16,
-      "value": "\"^TSP143IIIBI.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2481,
+      "offset": 5258,
       "length": 12,
       "value": "\"TSP100IIIU\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2540,
-      "length": 12,
-      "value": "\"TSP100IIIU\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2587,
-      "length": 15,
-      "value": "\"^TSP100IIIU.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2645,
-      "length": 15,
-      "value": "\"^TSP143IIIU.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 2735,
+      "offset": 5569,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 2852,
-      "length": 10,
-      "value": "\"TSP100IV\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2909,
-      "length": 10,
-      "value": "\"TSP100IV\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 2954,
-      "length": 13,
-      "value": "\"^TSP100IV.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 3001,
-      "length": 32,
-      "value": "\"^TSP1[0-9]{2}IV \\(STR-001\\)$\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "BooleanLiteral",
-      "offset": 3067,
-      "length": 4,
-      "value": "true"
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "BooleanLiteral",
-      "offset": 3101,
-      "length": 4,
-      "value": "true"
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 3214,
-      "length": 7,
-      "value": "\"POP10\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 3268,
+      "offset": 5709,
       "length": 6,
       "value": "\"mPOP\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 3309,
-      "length": 10,
-      "value": "\"^POP10.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 3362,
-      "length": 10,
-      "value": "\"^POP10.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 3519,
+      "offset": 6088,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 3553,
+      "offset": 6122,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 3671,
-      "length": 11,
-      "value": "\"mC-Print2\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 3729,
+      "offset": 6267,
       "length": 11,
       "value": "\"mC_Print2\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 3775,
-      "length": 14,
-      "value": "\"^mC-Print2.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 3823,
-      "length": 27,
-      "value": "\"^MCP2[0-9] \\(STR-001\\)$\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 3893,
-      "length": 14,
-      "value": "\"^MCP2[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 4006,
+      "offset": 6719,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 4044,
+      "offset": 6757,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 4078,
+      "offset": 6791,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 4196,
-      "length": 11,
-      "value": "\"mC-Print3\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 4254,
+      "offset": 6936,
       "length": 11,
       "value": "\"mC_Print3\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 4300,
-      "length": 14,
-      "value": "\"^mC-Print3.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 4348,
-      "length": 27,
-      "value": "\"^MCP3[0-9] \\(STR-001\\)$\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 4418,
-      "length": 14,
-      "value": "\"^MCP3[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 4531,
+      "offset": 7388,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 4569,
+      "offset": 7426,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 4603,
+      "offset": 7460,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 4721,
-      "length": 11,
-      "value": "\"mC-Label3\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 4779,
+      "offset": 7605,
       "length": 11,
       "value": "\"mC_Label3\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 4825,
-      "length": 14,
-      "value": "\"^mC-Label3.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 4873,
-      "length": 27,
-      "value": "\"^MCL3[0-9] \\(STR-001\\)$\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 4943,
-      "length": 14,
-      "value": "\"^MCL3[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 5051,
+      "offset": 8052,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 5097,
+      "offset": 8098,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 5135,
+      "offset": 8136,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 5169,
+      "offset": 8170,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 5206,
+      "offset": 8207,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "BooleanLiteral",
-      "offset": 5243,
+      "offset": 8244,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 5359,
-      "length": 10,
-      "value": "\"SM-S210i\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 5416,
+      "offset": 8387,
       "length": 10,
       "value": "\"SM_S210i\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 5461,
-      "length": 17,
-      "value": "\"^SM-S21[0-9]I.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 5521,
-      "length": 16,
-      "value": "\"^SM-S21[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 5700,
-      "length": 10,
-      "value": "\"SM-S230i\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 5757,
+      "offset": 8814,
       "length": 10,
       "value": "\"SM_S230i\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 5802,
-      "length": 17,
-      "value": "\"^SM-S23[0-9]I.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 5862,
-      "length": 16,
-      "value": "\"^SM-S23[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 6041,
-      "length": 10,
-      "value": "\"SM-T300i\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 6098,
+      "offset": 9241,
       "length": 10,
       "value": "\"SM_T300i\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 6143,
-      "length": 17,
-      "value": "\"^SM-T30[0-9]I.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 6203,
-      "length": 16,
-      "value": "\"^SM-T30[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 6382,
-      "length": 10,
-      "value": "\"SM-T400i\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 6439,
+      "offset": 9668,
       "length": 10,
       "value": "\"SM_T400i\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 6484,
-      "length": 17,
-      "value": "\"^SM-T40[0-9]I.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 6544,
-      "length": 16,
-      "value": "\"^SM-T40[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 6723,
-      "length": 9,
-      "value": "\"SM-L200\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 6779,
+      "offset": 10095,
       "length": 9,
       "value": "\"SM_L200\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 6823,
-      "length": 16,
-      "value": "\"^SM-L20[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 6876,
-      "length": 16,
-      "value": "\"^SM-L20[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 7004,
-      "length": 9,
-      "value": "\"SM-L300\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 7060,
+      "offset": 10463,
       "length": 9,
       "value": "\"SM_L300\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
       "kind": "StringLiteral",
-      "offset": 7104,
-      "length": 16,
-      "value": "\"^SM-L30[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 7157,
-      "length": 16,
-      "value": "\"^SM-L30[0-9].*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 7282,
+      "offset": 10828,
       "length": 7,
       "value": "\"SP700\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 7336,
-      "length": 7,
-      "value": "\"SP700\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 7378,
-      "length": 7,
-      "value": "\"^S7.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/PrinterSpec\/PrinterSpecConstants.swift",
-      "kind": "StringLiteral",
-      "offset": 7419,
-      "length": 29,
-      "value": "\"^SP7[0-9]{2} \\(STR-001\\)$\""
+      "kind": "Array",
+      "offset": 11773,
+      "length": 66,
+      "value": "[\"TSP143 (STR_T-001)\", \"TSP113 (STR_T-001)\"]"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/Util\/BitmapPixel.swift",
@@ -39203,121 +39045,37 @@
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
       "kind": "StringLiteral",
-      "offset": 692,
+      "offset": 719,
       "length": 7,
       "value": "\"FVP10\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 746,
-      "length": 7,
-      "value": "\"FVP10\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 788,
-      "length": 10,
-      "value": "\"^FVP10.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 832,
-      "length": 25,
-      "value": "\"^FVP10 \\(STR_T-001\\)$\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
       "kind": "BooleanLiteral",
-      "offset": 939,
+      "offset": 1028,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
       "kind": "StringLiteral",
-      "offset": 1052,
+      "offset": 1168,
       "length": 7,
       "value": "\"BSC10\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
       "kind": "StringLiteral",
-      "offset": 1106,
-      "length": 7,
-      "value": "\"BSC10\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 1148,
-      "length": 10,
-      "value": "\"^BSC10.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 1192,
-      "length": 23,
-      "value": "\"^BSC10 \\(ESP-001\\)$\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 1324,
+      "offset": 1536,
       "length": 8,
       "value": "\"TSP043\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
       "kind": "StringLiteral",
-      "offset": 1379,
-      "length": 8,
-      "value": "\"TSP043\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 1422,
-      "length": 11,
-      "value": "\"^TSP043.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 1467,
-      "length": 24,
-      "value": "\"^TSP043 \\(ESP-001\\)$\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 1606,
+      "offset": 1906,
       "length": 8,
       "value": "\"TUP500\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 1661,
-      "length": 8,
-      "value": "\"TUP500\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 1704,
-      "length": 11,
-      "value": "\"^TUP500.*\""
-    },
-    {
-      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/PrinterSpec+SpecificModel.swift",
-      "kind": "StringLiteral",
-      "offset": 1749,
-      "length": 32,
-      "value": "\"^TUP5[0-9]{2} \\(STR_T-001\\)$\""
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/StarXpandCommand\/Printer\/PDF417Level.swift",
@@ -39805,107 +39563,114 @@
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 903,
-      "length": 8,
+      "offset": 906,
+      "length": 11,
       "value": "10"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 957,
-      "length": 4,
+      "offset": 967,
+      "length": 8,
       "value": "11"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1012,
-      "length": 9,
+      "offset": 1021,
+      "length": 4,
       "value": "12"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1072,
+      "offset": 1076,
       "length": 9,
       "value": "13"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1132,
+      "offset": 1136,
       "length": 9,
       "value": "14"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1191,
-      "length": 8,
+      "offset": 1196,
+      "length": 9,
       "value": "15"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1249,
+      "offset": 1255,
       "length": 8,
       "value": "16"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1307,
+      "offset": 1313,
       "length": 8,
       "value": "17"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1365,
+      "offset": 1371,
       "length": 8,
       "value": "18"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1422,
-      "length": 7,
+      "offset": 1429,
+      "length": 8,
       "value": "19"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1478,
+      "offset": 1486,
       "length": 7,
       "value": "20"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1532,
-      "length": 5,
+      "offset": 1542,
+      "length": 7,
       "value": "21"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1585,
-      "length": 6,
+      "offset": 1596,
+      "length": 5,
       "value": "22"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1638,
-      "length": 5,
+      "offset": 1649,
+      "length": 6,
       "value": "23"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1691,
-      "length": 6,
+      "offset": 1702,
+      "length": 5,
       "value": "24"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1755,
+      "length": 6,
+      "value": "25"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
@@ -39973,107 +39738,114 @@
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 903,
-      "length": 8,
+      "offset": 906,
+      "length": 11,
       "value": "10"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 957,
-      "length": 4,
+      "offset": 967,
+      "length": 8,
       "value": "11"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1012,
-      "length": 9,
+      "offset": 1021,
+      "length": 4,
       "value": "12"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1072,
+      "offset": 1076,
       "length": 9,
       "value": "13"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1132,
+      "offset": 1136,
       "length": 9,
       "value": "14"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1191,
-      "length": 8,
+      "offset": 1196,
+      "length": 9,
       "value": "15"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1249,
+      "offset": 1255,
       "length": 8,
       "value": "16"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1307,
+      "offset": 1313,
       "length": 8,
       "value": "17"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1365,
+      "offset": 1371,
       "length": 8,
       "value": "18"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1422,
-      "length": 7,
+      "offset": 1429,
+      "length": 8,
       "value": "19"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1478,
+      "offset": 1486,
       "length": 7,
       "value": "20"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1532,
-      "length": 5,
+      "offset": 1542,
+      "length": 7,
       "value": "21"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1585,
-      "length": 6,
+      "offset": 1596,
+      "length": 5,
       "value": "22"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1638,
-      "length": 5,
+      "offset": 1649,
+      "length": 6,
       "value": "23"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
       "kind": "IntegerLiteral",
-      "offset": 1691,
-      "length": 6,
+      "offset": 1702,
+      "length": 5,
       "value": "24"
+    },
+    {
+      "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10ForReactNative\/StarPrinterModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1755,
+      "length": 6,
+      "value": "25"
     },
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/Command\/DiscoveryCommand.swift",
@@ -41058,7 +40830,7 @@
     {
       "filePath": "\/Users\/smjbuildpc\/builds\/hkeWdnaZ\/0\/Software\/Library\/stario10\/stario10_ios\/StarIO10\/Util\/OrderedDictionary.swift",
       "kind": "IntegerLiteral",
-      "offset": 2167,
+      "offset": 2879,
       "length": 1,
       "value": "0"
     },

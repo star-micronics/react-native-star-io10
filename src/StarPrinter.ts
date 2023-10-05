@@ -5,10 +5,10 @@ import {
 } from 'react-native';
 
 import { NativeObject } from './NativeObject';
-import { StarConnectionSettings } from './StarConnectionSettings';
+import type { StarConnectionSettings } from './StarConnectionSettings';
 import { StarPrinterInformation } from './StarPrinterInformation';
 import { StarIO10ErrorFactory } from './StarIO10ErrorFactory';
-import { StarPrinterStatus } from './StarPrinterStatus';
+import type { StarPrinterStatus } from './StarPrinterStatus';
 import { StarPrinterStatusFactory } from './StarPrinterStatusFactory';
 import { PrinterDelegate } from './PrinterDelegate';
 import { DrawerDelegate } from './DrawerDelegate';

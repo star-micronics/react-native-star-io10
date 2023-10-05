@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/StarIO10-Swift.h</key>
 		<data>
-		1nYvHTsqKO4c9WgZjRhyg2btUZk=
+		AEMhVToyXSKzff1d0HDi3GlbxWU=
 		</data>
 		<key>Headers/StarIO10.h</key>
 		<data>
@@ -22,15 +22,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		M7+lDPB5R3rFKOTi399aVp/2Fdw=
+		9bs+A09an0gAY9GeUYmEJ5kWlEI=
 		</data>
 		<key>Modules/StarIO10.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		wUBk8qoVB1bpfKL3VUhRad3cexM=
+		CG9m3yRUABgZBfnX7CIHZik4o1Q=
 		</data>
 		<key>Modules/StarIO10.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		aVaOAofqmhCWOKL+sXgrUQGlV9Y=
+		e9KQYULSEN+64tMRhI5mz2mqHB4=
 		</data>
 		<key>Modules/StarIO10.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -38,19 +38,19 @@
 		</data>
 		<key>Modules/StarIO10.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		aVaOAofqmhCWOKL+sXgrUQGlV9Y=
+		e9KQYULSEN+64tMRhI5mz2mqHB4=
 		</data>
 		<key>Modules/StarIO10.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		K0eb6feWfmD0sCcksPIvMqOGvuE=
+		ZSu+aC7SBKIBL816qnhpqUSHrp8=
 		</data>
 		<key>Modules/StarIO10.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		wUBk8qoVB1bpfKL3VUhRad3cexM=
+		CG9m3yRUABgZBfnX7CIHZik4o1Q=
 		</data>
 		<key>Modules/StarIO10.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		8ZVMBTTv9DIEl94+lxaZxZkDW0Q=
+		jCVkchJ8f+F/uhY2hTQKNpN8wz0=
 		</data>
 		<key>Modules/StarIO10.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -58,11 +58,11 @@
 		</data>
 		<key>Modules/StarIO10.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		8ZVMBTTv9DIEl94+lxaZxZkDW0Q=
+		jCVkchJ8f+F/uhY2hTQKNpN8wz0=
 		</data>
 		<key>Modules/StarIO10.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		MSU3WCeE3+ldfqcAETTmWRKhtlw=
+		v5bLHZUV2cBPqaVvgsaLS6nJ3n4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -90,7 +90,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			wzrh+wWT2XIaW+lNgynl538rvSUTZk2po3Ujl+k8fDI=
+			HQ/4qu2piZalzgfuCNixoG+sNUnQlQ1ljU7DhDwHxWc=
 			</data>
 		</dict>
 		<key>Headers/StarIO10.h</key>
@@ -111,14 +111,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			C8HgPNhcWNo7At8+6Cm4/SY2xlB0jMSj7FO4mQqUzg8=
+			NyLdz0w+lDXKDn79M500E8ZuZYOT6gtbkNJWKtc8iE0=
 			</data>
 		</dict>
 		<key>Modules/StarIO10.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fr8x9IOa0BFUft/w+Km1TJzBIAPFz9Alywnq+Ae5JJA=
+			A4eB4i6BcDXdehG9xXR82iS0LLBjJ7Q/zaxt+RshO9I=
 			</data>
 		</dict>
 		<key>Modules/StarIO10.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -132,28 +132,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			fr8x9IOa0BFUft/w+Km1TJzBIAPFz9Alywnq+Ae5JJA=
+			A4eB4i6BcDXdehG9xXR82iS0LLBjJ7Q/zaxt+RshO9I=
 			</data>
 		</dict>
 		<key>Modules/StarIO10.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			UZtsHuAcgL7bN3KdSLfY2l8D3TXGxn9eTT90XgzoG6U=
+			oZ9rWXSOXDTEZeeq+XqlxfBRpS8w0x8Fd9CdcKxmuLk=
 			</data>
 		</dict>
 		<key>Modules/StarIO10.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			C8HgPNhcWNo7At8+6Cm4/SY2xlB0jMSj7FO4mQqUzg8=
+			NyLdz0w+lDXKDn79M500E8ZuZYOT6gtbkNJWKtc8iE0=
 			</data>
 		</dict>
 		<key>Modules/StarIO10.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			am767bCLulbkpVxwt2HdBwvkK5DRCSA+JM3JC+CoWp8=
+			V8Dv3gKIQcT6dcgp46TAT/JwvrKbnbcVMxnt3GOEEik=
 			</data>
 		</dict>
 		<key>Modules/StarIO10.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -167,14 +167,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			am767bCLulbkpVxwt2HdBwvkK5DRCSA+JM3JC+CoWp8=
+			V8Dv3gKIQcT6dcgp46TAT/JwvrKbnbcVMxnt3GOEEik=
 			</data>
 		</dict>
 		<key>Modules/StarIO10.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wz1sPU8IwcHBIysoeSxsdQ3T8tzxoLGsH4NEijpXspM=
+			ed+3qcMgJRnwmRHUuwensXSXTxp0HFHeFw8P7BtiqNk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

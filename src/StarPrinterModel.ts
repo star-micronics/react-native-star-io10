@@ -8,6 +8,7 @@ export enum StarPrinterModel {
     TSP100IIIBI = 'TSP100IIIBI',
     TSP100IIIU = 'TSP100IIIU',
     TSP100IV = 'TSP100IV',
+    TSP100IV_SK = 'TSP100IV_SK',
     mPOP = 'mPOP',
     mC_Print2 = 'mC_Print2',
     mC_Print3 = 'mC_Print3',

@@ -2,7 +2,7 @@ import {
     NativeModules
 } from 'react-native';
 import { StarDeviceDiscoveryManager } from './StarDeviceDiscoveryManager';
-import { InterfaceType } from './InterfaceType';
+import type { InterfaceType } from './InterfaceType';
 import { StarIO10ErrorFactory } from './StarIO10ErrorFactory';
 
 export class StarDeviceDiscoveryManagerFactory {
