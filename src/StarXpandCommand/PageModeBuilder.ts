@@ -244,9 +244,9 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
-    actionPrintImage(parameter: StarXpandCommand.Printer.ImageParameter): PageModeBuilder {
+    actionPrintImage(parameter: StarXpandCommand.Printer.PageModeImageParameter): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.actionPrintImage(this._nativeObject, parameter.source, parameter.width, parameter.effectDiffusion, parameter.threshold)
+            await NativeModules.PageModeBuilderWrapper.actionPrintImage(this._nativeObject, parameter.source, parameter.x, parameter.y, parameter.width, parameter.effectDiffusion, parameter.threshold)
             .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
@@ -256,11 +256,51 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
-    add(builder: PageModeBuilder): PageModeBuilder {
+    actionPrintRuledLine(parameter: StarXpandCommand.Printer.PageModeRuledLineParameter): PageModeBuilder {
+        this._addAction(async() => {
+            await NativeModules.PageModeBuilderWrapper.actionPrintRuledLine(this._nativeObject, parameter.xStart, parameter.yStart, parameter.xEnd, parameter.yEnd, parameter.thickness, parameter.lineStyle)
+            .catch(async (nativeError: any) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
+        });
+
+        return this;
+    }
+
+    actionPrintRectangle(parameter: StarXpandCommand.Printer.PageModeRectangleParameter): PageModeBuilder {
+        var size: number[] = [parameter.x, parameter.y, parameter.width, parameter.height];
+
+        this._addAction(async() => {
+            await NativeModules.PageModeBuilderWrapper.actionPrintRectangle(this._nativeObject, size, parameter.thickness, parameter.roundCorner, parameter.cornerRadius, parameter.lineStyle)
+            .catch(async (nativeError: any) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
+        });
+
+        return this;
+    }
+
+    add(builder: StarXpandCommand.PageModeBuilder): PageModeBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
             await NativeModules.PageModeBuilderWrapper.add(this._nativeObject, builder._nativeObject)
+            .catch(async (nativeError: any) => {
+                var error = await StarIO10ErrorFactory.create(nativeError.code);
+                throw error;
+            });
+        });
+
+        return this;
+    }
+
+    addPageMode(parameter: StarXpandCommand.Printer.PageModeAreaParameter, builder: StarXpandCommand.PageModeBuilder): PageModeBuilder {
+        this._addChild(builder);
+
+        this._addAction(async() => {
+            await NativeModules.PageModeBuilderWrapper.addPageMode(this._nativeObject, parameter.x, parameter.y, parameter.width, parameter.height, builder._nativeObject)
             .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;

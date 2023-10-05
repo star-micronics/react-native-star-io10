@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     View,
+    ScrollView,
     Text,
     Button,
     TextInput,
@@ -24,6 +25,7 @@ interface AppProps {
 interface AppState {
     interfaceType: InterfaceType;
     identifier: string;
+    statusText: string;
 }
 
 class App extends React.Component<AppProps, AppState> {
@@ -58,9 +60,20 @@ class App extends React.Component<AppProps, AppState> {
             console.log(`Paper Near Empty: ${String(status.paperNearEmpty)}`);
             console.log(`Cover Open: ${String(status.coverOpen)}`);
             console.log(`Drawer Open Close Signal: ${String(status.drawerOpenCloseSignal)}`);
+
+            const statusText =
+                this.state.statusText +
+                `Has Error: ${String(status.hasError)}\n` +
+                `Paper Empty: ${String(status.paperEmpty)}\n` +
+                `Paper Near Empty: ${String(status.paperNearEmpty)}\n` +
+                `Cover Open: ${String(status.coverOpen)}\n` +
+                `Drawer Open Close Signal: ${String(status.drawerOpenCloseSignal)}\n` +
+                '\n';
+            this.setState({statusText: statusText});
         }
         catch(error) {
             console.log(`Error: ${String(error)}`);
+            this.setState({statusText: this.state.statusText + `Error: ${String(error)}\n\n`});
         }
         finally {
             await printer.close();
@@ -73,10 +86,10 @@ class App extends React.Component<AppProps, AppState> {
 
         try {
             hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
-    
+
             if (!hasPermission) {
                 const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
-                    
+
                 hasPermission = status == PermissionsAndroid.RESULTS.GRANTED;
             }
         }
@@ -92,13 +105,14 @@ class App extends React.Component<AppProps, AppState> {
 
         this.state = {
             interfaceType: InterfaceType.Lan,
-            identifier: '00:11:62:00:00:00'
+            identifier: '00:11:62:00:00:00',
+            statusText: '\n',
         };
     }
 
     render() {
         return (
-            <View style={{ margin: 50 }}>
+            <View style={{ flex: 1, margin: 50 }}>
                 <View style={{ flexDirection: 'row' }}>
                 <Text style={{ width: 100 }}>Interface</Text>
                 <Picker
@@ -128,6 +142,11 @@ class App extends React.Component<AppProps, AppState> {
                     title="Get status"
                     onPress={this._onPressGetStatusButton}
                 />
+                </View>
+                <View style={{flex: 1, alignSelf: 'stretch', marginTop: 20}}>
+                    <ScrollView>
+                        <Text>{this.state.statusText}</Text>
+                    </ScrollView>
                 </View>
             </View>
         );

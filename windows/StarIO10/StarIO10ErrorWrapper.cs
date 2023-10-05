@@ -61,6 +61,14 @@ namespace StarMicronics.ReactNative.StarIO10
             {
                 type = "Unprintable";
             }
+            else if (nativeObject is StarIO10UnsupportedModelException)
+            {
+                type = "UnsupportedModel";
+            }
+            else if (nativeObject is StarIO10AuthenticationException)
+            {
+                type = "Authentication";
+            }
             else
             {
                 promise.Reject(new ReactError());

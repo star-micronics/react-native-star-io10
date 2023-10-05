@@ -21,8 +21,11 @@ export declare class PageModeBuilder extends BaseStarXpandCommandBuilder {
     actionPrintBarcode(parameter: StarXpandCommand.Printer.BarcodeParameter): PageModeBuilder;
     actionPrintPdf417(parameter: StarXpandCommand.Printer.Pdf417Parameter): PageModeBuilder;
     actionPrintQRCode(parameter: StarXpandCommand.Printer.QRCodeParameter): PageModeBuilder;
-    actionPrintImage(parameter: StarXpandCommand.Printer.ImageParameter): PageModeBuilder;
-    add(builder: PageModeBuilder): PageModeBuilder;
+    actionPrintImage(parameter: StarXpandCommand.Printer.PageModeImageParameter): PageModeBuilder;
+    actionPrintRuledLine(parameter: StarXpandCommand.Printer.PageModeRuledLineParameter): PageModeBuilder;
+    actionPrintRectangle(parameter: StarXpandCommand.Printer.PageModeRectangleParameter): PageModeBuilder;
+    add(builder: StarXpandCommand.PageModeBuilder): PageModeBuilder;
+    addPageMode(parameter: StarXpandCommand.Printer.PageModeAreaParameter, builder: StarXpandCommand.PageModeBuilder): PageModeBuilder;
     protected _initNativeObjectImpl(): Promise<string>;
     protected _disposeNativeObjectImpl(nativeObject: string): Promise<void>;
 }

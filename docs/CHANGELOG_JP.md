@@ -2,6 +2,52 @@
 
 # 変更点
 
+## 1.4.0 (2023/09/08)
+
+* TSP100IV SK に対応
+* React Native のバージョンを0.72.4に更新
+* React Native for Windows のバージョンを0.72.7に更新
+* iOS: 最低サポートOSバージョンを12から13に変更
+* Android: 最低サポートOSバージョンを6から9に変更
+* Windows: 最低サポートOSバージョンをWindows 10 1909から22H2に変更
+* Android/Windows: SM-L200のBluetoothモジュール情報を更新
+
+## 1.3.0 (2023/05/29)
+
+* Xcode14.3においてexampleアプリがビルドできない問題を修正するため、React Native のバージョンを0.71.6に更新([詳細](https://github.com/facebook/react-native/issues/36739))
+* Windowsにおいて、x86アーキテクチャ向けビルドに失敗する問題とReact Native CodeGenのビルドに失敗する問題を解消するため、React Native for Windows のバージョンを0.71.6に更新
+
+## 1.3.0 (2023/03/31)
+
+* mC-Label3 に対応
+* SM-S210i/SM-S230i/SM-T300i/SM-T400iのBluetooth変更に伴い必要な内部処理を追加
+* React Native のバージョンを0.71.4に更新
+* スプーラー機能APIを追加
+* ページモードAPIを追加
+* Star Configuration設定・読み込みAPIを追加
+* 詳細ステータス取得APIを追加
+* exampleにスプーラー機能の印刷サンプルと、ラベル用の印刷パターンのサンプルを複数追加
+* iOS: Xcode 14に対応
+  * Appleの指針に基づき、Bitcodeを含まないように変更
+* Windows: Visual Studio 2022に対応
+* Windows: StarDeviceDiscoveryManagerクラスを利用した際かつ、一部のプリンター(TSP100IIIBI、mPOP、mC-Print2/3、mC-Label3、SM-L200/300)のBluetoothデバイス名が初期値の場合において、モデルを推定し取得できる仕様を追加
+
+* 不具合修正
+  * インスタンス生成直後のBuilderをaddすると、コマンド生成が行われない問題を修正 [#72](https://github.com/star-micronics/react-native-star-io10/issues/72)
+
+  * Android
+    * 検索の実行中にまれにクラッシュする問題を修正
+    * 特定の端末においてUSBで印刷に失敗することがあり、失敗後はUSBケーブルの挿抜を行わないと復帰しない問題を修正
+
+## 1.2.0 (2022/05/10)
+
+* POP10CI に対応
+* SM-L200のBluetoothモジュール情報を新規追加
+* React Native のバージョンを0.67.2に更新
+* Android: StarDeviceDiscoveryManagerクラスを利用した際かつ、一部のプリンター(TSP100IIIBI、mPOP、mC-Print2/3、SM-L200/300)のBluetoothデバイス名が初期値の場合において、モデルを推定し取得できる仕様を追加
+* Android: 不要な部分まで難読化されないように修正
+* Windows: Microsoft Storeからインストールしたアプリにおいて、本ライブラリのいずれかのAPI呼び出しによりクラッシュする問題を修正
+
 ## 1.1.0 (2021/11/19)
 
 * TSP100IV に対応
