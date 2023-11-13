@@ -1,6 +1,8 @@
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
 import { StarXpandCommand } from '../../index';
 export declare class DisplayBuilder extends BaseStarXpandCommandBuilder {
+    _parameters: Map<string, any>;
+    constructor();
     styleInternationalCharacter(type: StarXpandCommand.Display.InternationalCharacterType): DisplayBuilder;
     styleCharacterEncoding(type: StarXpandCommand.Display.CharacterEncodingType): DisplayBuilder;
     styleCursorPositionTo(parameter: StarXpandCommand.Display.PositionParameter): DisplayBuilder;
@@ -10,7 +12,5 @@ export declare class DisplayBuilder extends BaseStarXpandCommandBuilder {
     actionSetCursorState(state: StarXpandCommand.Display.CursorState): DisplayBuilder;
     actionSetContrast(value: StarXpandCommand.Display.Contrast): DisplayBuilder;
     actionShowText(content: string): DisplayBuilder;
-    actionShowImage(parameter: StarXpandCommand.Display.ImageParameter): DisplayBuilder;
-    protected _initNativeObjectImpl(): Promise<string>;
-    protected _disposeNativeObjectImpl(nativeObject: string): Promise<void>;
+    actionShowImage(imageParameter: StarXpandCommand.Display.ImageParameter): DisplayBuilder;
 }

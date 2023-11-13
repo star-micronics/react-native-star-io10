@@ -2,15 +2,33 @@ import { NativeModules } from 'react-native';
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
 import { StarIO10ErrorFactory } from '../StarIO10ErrorFactory';
 import { StarXpandCommand } from '../../index';
+import { StarXpandCommandParameterConverter } from './StarXpandCommandParameterConverter';
 
 export class DisplayBuilder extends BaseStarXpandCommandBuilder {
+
+    public _parameters: Map<string, any>;
+
+    constructor() {
+        super();
+
+        this._parameters = new Map<string, any>([
+            ["category", "Display"],
+            ["contents", new Array<Map<string, any>>()]
+        ]);
+    }
+
     styleInternationalCharacter(type: StarXpandCommand.Display.InternationalCharacterType): DisplayBuilder {
         this._addAction(async() => {
-            await NativeModules.DisplayBuilderWrapper.styleInternationalCharacter(this._nativeObject, type)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Style.InternationalCharacter"],
+                    ["parameter", new Map([
+                        ["type", StarXpandCommandParameterConverter.convertDisplayInternationalCharacterType(type)]
+                    ])]
+                ])
+            );
         });
 
         return this;
@@ -18,11 +36,16 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
 
     styleCharacterEncoding(type: StarXpandCommand.Display.CharacterEncodingType): DisplayBuilder {
         this._addAction(async() => {
-            await NativeModules.DisplayBuilderWrapper.styleCharacterEncoding(this._nativeObject, type)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Style.CharacterEncoding"],
+                    ["parameter", new Map([
+                        ["type", StarXpandCommandParameterConverter.convertDisplayCharacterEncodingType(type)]
+                    ])]
+                ])
+            );
         });
 
         return this;
@@ -30,11 +53,17 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
 
     styleCursorPositionTo(parameter: StarXpandCommand.Display.PositionParameter): DisplayBuilder {
         this._addAction(async() => {
-            await NativeModules.DisplayBuilderWrapper.styleCursorPositionTo(this._nativeObject, parameter.x, parameter.y)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Style.CursorPositionTo"],
+                    ["parameter", new Map([
+                        ["x", Math.floor(parameter.x)],
+                        ["y", Math.floor(parameter.y)]
+                    ])]
+                ])
+            );
         });
 
         return this;
@@ -42,11 +71,14 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
 
     actionClearLine(): DisplayBuilder {
         this._addAction(async() => {
-            await NativeModules.DisplayBuilderWrapper.actionClearLine(this._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Action.Clear.Line"],
+                    ["parameter", new Map<string, any>()]
+                ])
+            );
         });
 
         return this;
@@ -54,11 +86,14 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
 
     actionClearAll(): DisplayBuilder {
         this._addAction(async() => {
-            await NativeModules.DisplayBuilderWrapper.actionClearAll(this._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Action.Clear.All"],
+                    ["parameter", new Map<string, any>()]
+                ])
+            );
         });
 
         return this;
@@ -66,11 +101,16 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
 
     actionSetBackLightState(on: boolean): DisplayBuilder {
         this._addAction(async() => {
-            await NativeModules.DisplayBuilderWrapper.actionSetBackLightState(this._nativeObject, on)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Action.Set.BackLightState"],
+                    ["parameter", new Map([
+                        ["on", on]
+                    ])]
+                ])
+            );
         });
 
         return this;
@@ -78,11 +118,16 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
 
     actionSetCursorState(state: StarXpandCommand.Display.CursorState): DisplayBuilder {
         this._addAction(async() => {
-            await NativeModules.DisplayBuilderWrapper.actionSetCursorState(this._nativeObject, state)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Action.Set.CursorState"],
+                    ["parameter", new Map([
+                        ["value", StarXpandCommandParameterConverter.convertCursorState(state)]
+                    ])]
+                ])
+            );
         });
 
         return this;
@@ -90,11 +135,16 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
 
     actionSetContrast(value: StarXpandCommand.Display.Contrast): DisplayBuilder {
         this._addAction(async() => {
-            await NativeModules.DisplayBuilderWrapper.actionSetContrast(this._nativeObject, value)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Action.Set.Contrast"],
+                    ["parameter", new Map([
+                        ["value", StarXpandCommandParameterConverter.convertContrast(value)]
+                    ])]
+                ])
+            );
         });
 
         return this;
@@ -102,33 +152,57 @@ export class DisplayBuilder extends BaseStarXpandCommandBuilder {
 
     actionShowText(content: string): DisplayBuilder {
         this._addAction(async() => {
-            await NativeModules.DisplayBuilderWrapper.actionShowText(this._nativeObject, content)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Action.Show.Text"],
+                    ["parameter", new Map([
+                        ["content", StarXpandCommandParameterConverter.convertString(content)]
+                    ])]
+                ])
+            );
         });
 
         return this;
     }
 
-    actionShowImage(parameter: StarXpandCommand.Display.ImageParameter): DisplayBuilder {
+    actionShowImage(imageParameter: StarXpandCommand.Display.ImageParameter): DisplayBuilder {
         this._addAction(async() => {
-            await NativeModules.DisplayBuilderWrapper.actionShowImage(this._nativeObject, parameter.source, parameter.effectDiffusion, parameter.threshold)
+            var result = await NativeModules.DisplayBuilderWrapper.actionShowImage(imageParameter.source, imageParameter.effectDiffusion, imageParameter.threshold)
             .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
-            });
+            });            
+
+             let displayImageObject = JSON.parse(result);
+
+            if (!displayImageObject.hasOwnProperty('parameter')) {
+                return;
+            }
+    
+            let parameter = displayImageObject.parameter;
+    
+            if (!parameter.hasOwnProperty('source') ||
+                !parameter.hasOwnProperty('width') ||
+                !parameter.hasOwnProperty('height')) {
+                return;
+            }
+
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+            
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Action.Show.Image"],
+                    ["parameter", new Map<string, any>([
+                        ["source", StarXpandCommandParameterConverter.convertString(parameter.source)],
+                        ["width",  parameter.width],
+                        ["height", parameter.height]
+                    ])]
+                ])
+            );
         });
 
         return this;
-    }
-
-    protected async _initNativeObjectImpl(): Promise<string> {
-        return await NativeModules.DisplayBuilderWrapper.init();
-    }
-
-    protected async _disposeNativeObjectImpl(nativeObject: string): Promise<void> {
-        await NativeModules.DisplayBuilderWrapper.dispose(nativeObject);
     }
 }

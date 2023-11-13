@@ -50,15 +50,16 @@ class StarIO10ValueConverter {
             "Usb" to InterfaceType.Usb
         )
 
-        fun toInterfaceType(value: String) : InterfaceType {
-            return interfaceTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toInterfaceType(value: String): InterfaceType {
+            return interfaceTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
-        fun toString(value: InterfaceType) : String {
+        fun toString(value: InterfaceType): String {
             var result: String? = null
 
-            for(item in interfaceTypeMap) {
-                if(item.value == value) {
+            for (item in interfaceTypeMap) {
+                if (item.value == value) {
                     result = item.key
                     break
                 }
@@ -97,11 +98,11 @@ class StarIO10ValueConverter {
             "SK1_3xx" to StarPrinterModel.SK1_3xx
         )
 
-        fun toString(value: StarPrinterModel) : String {
+        fun toString(value: StarPrinterModel): String {
             var result = "Unknown"
 
-            for(item in printerModelMap) {
-                if(item.value == value) {
+            for (item in printerModelMap) {
+                if (item.value == value) {
                     result = item.key
                     break
                 }
@@ -120,11 +121,11 @@ class StarIO10ValueConverter {
             "EscPosMobile" to StarPrinterEmulation.EscPosMobile
         )
 
-        fun toString(value: StarPrinterEmulation) : String {
+        fun toString(value: StarPrinterEmulation): String {
             var result = "Unknown"
 
-            for(item in printerEmulationMap) {
-                if(item.value == value) {
+            for (item in printerEmulationMap) {
+                if (item.value == value) {
                     result = item.key
                     break
                 }
@@ -137,11 +138,11 @@ class StarIO10ValueConverter {
             "ByCommand" to DrawerOpenedMethod.ByCommand
         )
 
-        fun toString(value: DrawerOpenedMethod?) : String? {
+        fun toString(value: DrawerOpenedMethod?): String? {
             var result: String? = null
 
-            for(item in drawerOpenedMethodMap) {
-                if(item.value == value) {
+            for (item in drawerOpenedMethodMap) {
+                if (item.value == value) {
                     result = item.key
                     break
                 }
@@ -154,11 +155,11 @@ class StarIO10ValueConverter {
             "Accepted" to StarConfigurationSetResult.Accepted
         )
 
-        fun toString(value: StarConfigurationSetResult?) : String? {
+        fun toString(value: StarConfigurationSetResult?): String? {
             var result: String? = null
 
-            for(item in starConfigurationSetResultMap) {
-                if(item.value == value) {
+            for (item in starConfigurationSetResultMap) {
+                if (item.value == value) {
                     result = item.key
                     break
                 }
@@ -166,11 +167,11 @@ class StarIO10ValueConverter {
             return result
         }
 
-        fun toWritableMap(status: StarSpoolJobStatus) : WritableMap {
+        fun toWritableMap(status: StarSpoolJobStatus): WritableMap {
             return toWritableMap(toMap(status))
         }
 
-        fun toWritableArray(statusList: List<Any?>) : WritableArray {
+        fun toWritableArray(statusList: List<Any?>): WritableArray {
             val array: Array<Any?> = arrayOfNulls(statusList.size)
 
             for (i in statusList.indices) {
@@ -178,8 +179,7 @@ class StarIO10ValueConverter {
 
                 if (status is StarSpoolJobStatus) {
                     array[i] = toMap(status)
-                }
-                else {
+                } else {
                     throw StarIO10ArgumentException("Undefined parameter '$statusList'")
                 }
             }
@@ -203,11 +203,11 @@ class StarIO10ValueConverter {
             )
         }
 
-        private fun toString(value: SpoolJobState) : String {
+        private fun toString(value: SpoolJobState): String {
             var result: String? = null
 
-            for(item in spoolJobStateMap) {
-                if(item.value == value) {
+            for (item in spoolJobStateMap) {
+                if (item.value == value) {
                     result = item.key
                     break
                 }
@@ -228,11 +228,11 @@ class StarIO10ValueConverter {
             "PrintFailedByPowerOff" to SpoolJobState.PrintFailedByPowerOff
         )
 
-        private fun toString(value: SpoolJobReceivedInterface) : String {
+        private fun toString(value: SpoolJobReceivedInterface): String {
             var result: String? = null
 
-            for(item in spoolJobReceivedInterfaceMap) {
-                if(item.value == value) {
+            for (item in spoolJobReceivedInterfaceMap) {
+                if (item.value == value) {
                     result = item.key
                     break
                 }
@@ -258,8 +258,9 @@ class StarIO10ValueConverter {
             "Idle" to com.starmicronics.stario10.starxpandcommand.bezel.LedType.Idle
         )
 
-        fun toBezelLedType(value: String) : com.starmicronics.stario10.starxpandcommand.bezel.LedType {
-            return bezelLedTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toBezelLedType(value: String): com.starmicronics.stario10.starxpandcommand.bezel.LedType {
+            return bezelLedTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val presenterLedTypeMap = mapOf(
@@ -268,8 +269,9 @@ class StarIO10ValueConverter {
             "Idle" to com.starmicronics.stario10.starxpandcommand.presenter.LedType.Idle
         )
 
-        fun toPresenterLedType(value: String) : com.starmicronics.stario10.starxpandcommand.presenter.LedType {
-            return presenterLedTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPresenterLedType(value: String): com.starmicronics.stario10.starxpandcommand.presenter.LedType {
+            return presenterLedTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val printerPageModePrintDirectionMap = mapOf(
@@ -279,8 +281,9 @@ class StarIO10ValueConverter {
             "TopToBottom" to PageModePrintDirection.TopToBottom
         )
 
-        fun toPrinterPageModePrintDirection(value: String) : PageModePrintDirection {
-            return printerPageModePrintDirectionMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterPageModePrintDirection(value: String): PageModePrintDirection {
+            return printerPageModePrintDirectionMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val printerBlackMarkPositionMap = mapOf(
@@ -288,8 +291,9 @@ class StarIO10ValueConverter {
             "Back" to BlackMarkPosition.Back
         )
 
-        fun toPrinterBlackMarkPosition(value: String) : BlackMarkPosition {
-            return printerBlackMarkPositionMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterBlackMarkPosition(value: String): BlackMarkPosition {
+            return printerBlackMarkPositionMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val cutTypeMap = mapOf(
@@ -299,8 +303,9 @@ class StarIO10ValueConverter {
             "PartialDirect" to CutType.PartialDirect
         )
 
-        fun toPrinterCutType(value: String) : CutType {
-            return cutTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterCutType(value: String): CutType {
+            return cutTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val alignmentMap = mapOf(
@@ -309,8 +314,9 @@ class StarIO10ValueConverter {
             "Right" to Alignment.Right
         )
 
-        fun toPrinterAlignment(value: String) : Alignment {
-            return alignmentMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterAlignment(value: String): Alignment {
+            return alignmentMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val printerCharacterEncodingTypeMap = mapOf(
@@ -321,8 +327,9 @@ class StarIO10ValueConverter {
             "CodePage" to com.starmicronics.stario10.starxpandcommand.printer.CharacterEncodingType.CodePage
         )
 
-        fun toPrinterCharacterEncodingType(value: String) : com.starmicronics.stario10.starxpandcommand.printer.CharacterEncodingType {
-            return printerCharacterEncodingTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterCharacterEncodingType(value: String): com.starmicronics.stario10.starxpandcommand.printer.CharacterEncodingType {
+            return printerCharacterEncodingTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val cjkCharacterTypeMap = mapOf(
@@ -332,8 +339,9 @@ class StarIO10ValueConverter {
             "Korean" to CjkCharacterType.Korean
         )
 
-        fun toPrinterCjkCharacterType(value: String) : CjkCharacterType {
-            return cjkCharacterTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterCjkCharacterType(value: String): CjkCharacterType {
+            return cjkCharacterTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val fontTypeMap = mapOf(
@@ -341,8 +349,9 @@ class StarIO10ValueConverter {
             "B" to FontType.B
         )
 
-        fun toPrinterFontType(value: String) : FontType {
-            return fontTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterFontType(value: String): FontType {
+            return fontTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val internationalCharacterTypeMap = mapOf(
@@ -369,8 +378,9 @@ class StarIO10ValueConverter {
             "Arabic" to InternationalCharacterType.Arabic
         )
 
-        fun toPrinterInternationalType(value: String) : InternationalCharacterType {
-            return internationalCharacterTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterInternationalType(value: String): InternationalCharacterType {
+            return internationalCharacterTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val barcodeSymbologyTypeMap = mapOf(
@@ -387,8 +397,9 @@ class StarIO10ValueConverter {
             "NW7" to BarcodeSymbology.NW7
         )
 
-        fun toPrinterBarcodeSymbology(value: String) : BarcodeSymbology {
-            return barcodeSymbologyTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterBarcodeSymbology(value: String): BarcodeSymbology {
+            return barcodeSymbologyTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val barcodeBarRatioLevelTypeMap = mapOf(
@@ -397,8 +408,9 @@ class StarIO10ValueConverter {
             "LevelPlus1" to BarcodeBarRatioLevel.LevelPlus1
         )
 
-        fun toPrinterBarcodeBarRatioLevel(value: String) : BarcodeBarRatioLevel {
-            return barcodeBarRatioLevelTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterBarcodeBarRatioLevel(value: String): BarcodeBarRatioLevel {
+            return barcodeBarRatioLevelTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val printerPdf417LevelMap = mapOf(
@@ -413,8 +425,9 @@ class StarIO10ValueConverter {
             "Ecc8" to Pdf417Level.Ecc8
         )
 
-        fun toPrinterPdf417Level(value: String) : Pdf417Level {
-            return printerPdf417LevelMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterPdf417Level(value: String): Pdf417Level {
+            return printerPdf417LevelMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val printerQRCodeLevelMap = mapOf(
@@ -424,8 +437,9 @@ class StarIO10ValueConverter {
             "H" to QRCodeLevel.H
         )
 
-        fun toPrinterQRCodeLevel(value: String) : QRCodeLevel {
-            return printerQRCodeLevelMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterQRCodeLevel(value: String): QRCodeLevel {
+            return printerQRCodeLevelMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val printerQRCodeModelMap = mapOf(
@@ -433,8 +447,9 @@ class StarIO10ValueConverter {
             "Model2" to QRCodeModel.Model2
         )
 
-        fun toPrinterQRCodeModel(value: String) : QRCodeModel {
-            return printerQRCodeModelMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterQRCodeModel(value: String): QRCodeModel {
+            return printerQRCodeModelMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val printerLineStyleMap = mapOf(
@@ -442,8 +457,9 @@ class StarIO10ValueConverter {
             "Double" to LineStyle.Double
         )
 
-        fun toPrinterLineStyle(value: String) : LineStyle {
-            return printerLineStyleMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toPrinterLineStyle(value: String): LineStyle {
+            return printerLineStyleMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val buzzerChannelMap = mapOf(
@@ -451,8 +467,9 @@ class StarIO10ValueConverter {
             "No2" to com.starmicronics.stario10.starxpandcommand.buzzer.Channel.No2
         )
 
-        fun toBuzzerChannel(value: String) : com.starmicronics.stario10.starxpandcommand.buzzer.Channel {
-            return buzzerChannelMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toBuzzerChannel(value: String): com.starmicronics.stario10.starxpandcommand.buzzer.Channel {
+            return buzzerChannelMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val drawerChannelMap = mapOf(
@@ -460,8 +477,9 @@ class StarIO10ValueConverter {
             "No2" to com.starmicronics.stario10.starxpandcommand.drawer.Channel.No2
         )
 
-        fun toDrawerChannel(value: String) : com.starmicronics.stario10.starxpandcommand.drawer.Channel {
-            return drawerChannelMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toDrawerChannel(value: String): com.starmicronics.stario10.starxpandcommand.drawer.Channel {
+            return drawerChannelMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val melodySpeakerSoundStorageAreaMap = mapOf(
@@ -469,8 +487,9 @@ class StarIO10ValueConverter {
             "Area2" to SoundStorageArea.Area2
         )
 
-        fun toMelodySpeakerSoundStorageArea(value: String) : SoundStorageArea {
-            return melodySpeakerSoundStorageAreaMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toMelodySpeakerSoundStorageArea(value: String): SoundStorageArea {
+            return melodySpeakerSoundStorageAreaMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val displayContrastMap = mapOf(
@@ -483,8 +502,9 @@ class StarIO10ValueConverter {
             "Minus3" to Contrast.Minus3
         )
 
-        fun toDisplayContrast(value: String) : Contrast {
-            return displayContrastMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toDisplayContrast(value: String): Contrast {
+            return displayContrastMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val displayCursorStateMap = mapOf(
@@ -493,8 +513,9 @@ class StarIO10ValueConverter {
             "Off" to CursorState.Off
         )
 
-        fun toDisplayCursorState(value: String) : CursorState {
-            return displayCursorStateMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toDisplayCursorState(value: String): CursorState {
+            return displayCursorStateMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val displayInternationalCharacterTypeMap = mapOf(
@@ -514,8 +535,9 @@ class StarIO10ValueConverter {
             "Korea" to com.starmicronics.stario10.starxpandcommand.display.InternationalCharacterType.Korea
         )
 
-        fun toDisplayInternationalCharacterType(value: String) : com.starmicronics.stario10.starxpandcommand.display.InternationalCharacterType {
-            return displayInternationalCharacterTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toDisplayInternationalCharacterType(value: String): com.starmicronics.stario10.starxpandcommand.display.InternationalCharacterType {
+            return displayInternationalCharacterTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
         private val displayCharacterEncodingTypeMap = mapOf(
@@ -526,11 +548,17 @@ class StarIO10ValueConverter {
             "CodePage" to com.starmicronics.stario10.starxpandcommand.display.CharacterEncodingType.CodePage
         )
 
-        fun toDisplayCharacterEncodingType(value: String) : com.starmicronics.stario10.starxpandcommand.display.CharacterEncodingType {
-            return displayCharacterEncodingTypeMap[value] ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
+        fun toDisplayCharacterEncodingType(value: String): com.starmicronics.stario10.starxpandcommand.display.CharacterEncodingType {
+            return displayCharacterEncodingTypeMap[value]
+                ?: throw StarIO10ArgumentException("Undefined parameter '$value'")
         }
 
-        fun toPresenterModeParameter(loop: Boolean, hold: Boolean, retract: Boolean, holdTime: Int): ModeParameter {
+        fun toPresenterModeParameter(
+            loop: Boolean,
+            hold: Boolean,
+            retract: Boolean,
+            holdTime: Int
+        ): ModeParameter {
             val parameter = ModeParameter()
             parameter.setLoop(loop)
             parameter.setHold(hold)
@@ -540,16 +568,30 @@ class StarIO10ValueConverter {
             return parameter
         }
 
-        fun toBezelLedAutomaticBlinkParameter(type: String, onTime: Int, offTime: Int): com.starmicronics.stario10.starxpandcommand.bezel.LedAutomaticBlinkParameter {
-            val parameter = com.starmicronics.stario10.starxpandcommand.bezel.LedAutomaticBlinkParameter(toBezelLedType(type))
+        fun toBezelLedAutomaticBlinkParameter(
+            type: String,
+            onTime: Int,
+            offTime: Int
+        ): com.starmicronics.stario10.starxpandcommand.bezel.LedAutomaticBlinkParameter {
+            val parameter =
+                com.starmicronics.stario10.starxpandcommand.bezel.LedAutomaticBlinkParameter(
+                    toBezelLedType(type)
+                )
             parameter.setOnTime(onTime)
             parameter.setOffTime(offTime)
 
             return parameter
         }
 
-        fun toPresenterLedAutomaticBlinkParameter(type: String, onTime: Int, offTime: Int): com.starmicronics.stario10.starxpandcommand.presenter.LedAutomaticBlinkParameter {
-            val parameter = com.starmicronics.stario10.starxpandcommand.presenter.LedAutomaticBlinkParameter(toPresenterLedType(type))
+        fun toPresenterLedAutomaticBlinkParameter(
+            type: String,
+            onTime: Int,
+            offTime: Int
+        ): com.starmicronics.stario10.starxpandcommand.presenter.LedAutomaticBlinkParameter {
+            val parameter =
+                com.starmicronics.stario10.starxpandcommand.presenter.LedAutomaticBlinkParameter(
+                    toPresenterLedType(type)
+                )
             parameter.setOnTime(onTime)
             parameter.setOffTime(offTime)
 
@@ -571,7 +613,12 @@ class StarIO10ValueConverter {
             return parameter
         }
 
-        fun toPrinterPageModeAreaParameter(x: Double, y: Double, width: Double, height: Double): PageModeAreaParameter {
+        fun toPrinterPageModeAreaParameter(
+            x: Double,
+            y: Double,
+            width: Double,
+            height: Double
+        ): PageModeAreaParameter {
             val parameter = PageModeAreaParameter(width, height)
             parameter.setX(x)
             parameter.setY(y)
@@ -626,7 +673,12 @@ class StarIO10ValueConverter {
             return parameter
         }
 
-        fun toPrinterQRCodeParameter(content: String, model: String, level: String, cellSize: Int): QRCodeParameter {
+        fun toPrinterQRCodeParameter(
+            content: String,
+            model: String,
+            level: String,
+            cellSize: Int
+        ): QRCodeParameter {
             val parameter = QRCodeParameter(content)
             parameter.setModel(toPrinterQRCodeModel(model))
             parameter.setLevel(toPrinterQRCodeLevel(level))
@@ -717,7 +769,12 @@ class StarIO10ValueConverter {
             return parameter
         }
 
-        fun toBuzzerDriveParameter(channel: String, repeat: Int, onTime: Int, offTime: Int): com.starmicronics.stario10.starxpandcommand.buzzer.DriveParameter {
+        fun toBuzzerDriveParameter(
+            channel: String,
+            repeat: Int,
+            onTime: Int,
+            offTime: Int
+        ): com.starmicronics.stario10.starxpandcommand.buzzer.DriveParameter {
             val parameter = com.starmicronics.stario10.starxpandcommand.buzzer.DriveParameter()
             parameter.setChannel(toBuzzerChannel(channel))
             parameter.setRepeat(repeat)
@@ -727,7 +784,10 @@ class StarIO10ValueConverter {
             return parameter
         }
 
-        fun toDrawerOpenParameter(channel: String, onTime: Int): com.starmicronics.stario10.starxpandcommand.drawer.OpenParameter {
+        fun toDrawerOpenParameter(
+            channel: String,
+            onTime: Int
+        ): com.starmicronics.stario10.starxpandcommand.drawer.OpenParameter {
             val parameter = com.starmicronics.stario10.starxpandcommand.drawer.OpenParameter()
             parameter.setChannel(toDrawerChannel(channel))
             parameter.setOnTime(onTime)
@@ -752,11 +812,18 @@ class StarIO10ValueConverter {
             return parameter
         }
 
-        fun toDisplayPositionParameter(x: Int, y: Int): com.starmicronics.stario10.starxpandcommand.display.PositionParameter {
+        fun toDisplayPositionParameter(
+            x: Int,
+            y: Int
+        ): com.starmicronics.stario10.starxpandcommand.display.PositionParameter {
             return com.starmicronics.stario10.starxpandcommand.display.PositionParameter(x, y)
         }
 
-        fun toMelodySpeakerDriveRegisteredSoundParameter(area: String, number: Int, volume: Int): DriveRegisteredSoundParameter {
+        fun toMelodySpeakerDriveRegisteredSoundParameter(
+            area: String,
+            number: Int,
+            volume: Int
+        ): DriveRegisteredSoundParameter {
             val parameter = DriveRegisteredSoundParameter(
                 toMelodySpeakerSoundStorageArea(area),
                 number
@@ -766,7 +833,11 @@ class StarIO10ValueConverter {
             return parameter
         }
 
-        fun toMelodySpeakerDriveOneTimeSoundParameter(source: String, volume: Int, context: Context): DriveOneTimeSoundParameter {
+        fun toMelodySpeakerDriveOneTimeSoundParameter(
+            source: String,
+            volume: Int,
+            context: Context
+        ): DriveOneTimeSoundParameter {
             val soundBytes = sourceToBytes(source, context)
 
             val parameter = DriveOneTimeSoundParameter(soundBytes)
@@ -793,21 +864,27 @@ class StarIO10ValueConverter {
                     value == null -> {
                         writableMap.putNull(key)
                     }
+
                     value is Boolean -> {
                         writableMap.putBoolean(key, (value as Boolean?)!!)
                     }
+
                     value is Double -> {
                         writableMap.putDouble(key, (value as Double?)!!)
                     }
+
                     value is Int -> {
                         writableMap.putInt(key, (value as Int?)!!)
                     }
+
                     value is String -> {
                         writableMap.putString(key, value as String?)
                     }
+
                     value is Map<*, *> -> {
                         writableMap.putMap(key, this.toWritableMap(value as Map<String, Any?>))
                     }
+
                     value.javaClass.isArray -> {
                         writableMap.putArray(key, this.toWritableArray(value as Array<Any?>))
                     }
@@ -827,21 +904,27 @@ class StarIO10ValueConverter {
                     value == null -> {
                         writableArray.pushNull()
                     }
+
                     value is Boolean -> {
                         writableArray.pushBoolean((value as Boolean?)!!)
                     }
+
                     value is Double -> {
                         writableArray.pushDouble((value as Double?)!!)
                     }
+
                     value is Int -> {
                         writableArray.pushInt((value as Int?)!!)
                     }
+
                     value is String -> {
                         writableArray.pushString(value as String?)
                     }
+
                     value is Map<*, *> -> {
                         writableArray.pushMap(this.toWritableMap(value as Map<String, Any?>))
                     }
+
                     value.javaClass.isArray -> {
                         writableArray.pushArray(this.toWritableArray(value as Array<Any?>))
                     }
@@ -852,7 +935,8 @@ class StarIO10ValueConverter {
         }
 
         private fun sourceToBitmap(source: String, context: Context): Bitmap {
-            return uriToBitmap(source, context) ?: resourceFileToBitmap(source, context) ?: base64ToBitmap(source)?: throw StarIO10ArgumentException(
+            return uriToBitmap(source, context) ?: resourceFileToBitmap(source, context)
+            ?: base64ToBitmap(source) ?: throw StarIO10ArgumentException(
                 "Invalid source."
             )
         }
@@ -863,7 +947,8 @@ class StarIO10ValueConverter {
             try {
                 val bytes = Base64.decode(value, 0)
                 bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-            } catch (e: Exception) {}
+            } catch (e: Exception) {
+            }
 
             return bitmap
         }
@@ -897,7 +982,8 @@ class StarIO10ValueConverter {
             var bitmap: Bitmap? = null
 
             val resources = context.resources
-            val resourceId = resources.getIdentifier(getPrefix(fileName), "drawable", context.packageName)
+            val resourceId =
+                resources.getIdentifier(getPrefix(fileName), "drawable", context.packageName)
 
             if (resourceId != 0) {
                 bitmap = BitmapFactory.decodeResource(resources, resourceId)
@@ -907,7 +993,9 @@ class StarIO10ValueConverter {
         }
 
         private fun sourceToBytes(source: String, context: Context): ByteArray {
-            return  httpToBytes(source) ?: resourceFileToBytes(source, context) ?: base64ToBytes(source)?: throw StarIO10ArgumentException(
+            return httpToBytes(source) ?: resourceFileToBytes(source, context) ?: base64ToBytes(
+                source
+            ) ?: throw StarIO10ArgumentException(
                 "Invalid source."
             )
         }
@@ -917,7 +1005,8 @@ class StarIO10ValueConverter {
 
             try {
                 bytes = Base64.decode(uri, 0)
-            } catch (e: Exception) {}
+            } catch (e: Exception) {
+            }
 
             return bytes
         }
@@ -933,7 +1022,8 @@ class StarIO10ValueConverter {
                     bytes = responseBytes
                     response.body?.close()
                 }
-            } catch (e: Exception){}
+            } catch (e: Exception) {
+            }
 
             return bytes
         }
@@ -942,7 +1032,8 @@ class StarIO10ValueConverter {
             var bytes: ByteArray? = null
 
             val resources = context.resources
-            val resourceId = resources.getIdentifier(getPrefix(fileName), "raw", context.packageName)
+            val resourceId =
+                resources.getIdentifier(getPrefix(fileName), "raw", context.packageName)
 
             if (resourceId != 0) {
                 resources.openRawResource(resourceId).let { stream ->
@@ -961,7 +1052,7 @@ class StarIO10ValueConverter {
                 val buffer = ByteArray(1024)
                 val read = inputStream.read(buffer)
 
-                if(read <= 0) {
+                if (read <= 0) {
                     break
                 }
 

@@ -13,252 +13,58 @@
 
 @implementation DisplayBuilderWrapper
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _objManager = StarObjectManager.sharedManager;
-    }
-    return self;
-}
-
-+ (BOOL)requiresMainQueueSetup
-{
-    return NO;
-}
-
 RCT_EXPORT_MODULE()
 
-RCT_REMAP_METHOD(init,
-                 createWithResolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandDisplayBuilder *builder = [[STARIO10StarXpandCommandDisplayBuilder alloc] init];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to create object.", nil);
-        return;
-    }
-    
-    NSString *objID = [_objManager add:builder];
-    
-    resolve(objID);
-}
-
-RCT_REMAP_METHOD(dispose,
-                 disposeWithObjectIdentifier:(nonnull NSString *)objID
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    [_objManager remove:objID];
-    
-    resolve(nil);
-}
-
-RCT_REMAP_METHOD(styleInternationalCharacter,
-                 styleInternationalCharacterWithObjectIdentifier:(nonnull NSString *)objID
-                 type:(nonnull NSString *)type
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandDisplayBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-    
-    STARIO10StarXpandCommandDisplayInternationalCharacterType nativeType = [StarIO10ValueConverter toDisplayInternationalCharacterType:type];
-    
-    [builder styleInternationalCharacter:nativeType];
-    
-    resolve(nil);
-}
-
-RCT_REMAP_METHOD(styleCharacterEncoding,
-                 styleCharacterEncodingWithObjectIdentifier:(nonnull NSString *)objID
-                 type:(nonnull NSString *)type
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandDisplayBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-    
-    STARIO10StarXpandCommandDisplayCharacterEncodingType nativeType = [StarIO10ValueConverter toDisplayCharacterEncodingType:type];
-    
-    [builder styleCharacterEncoding:nativeType];
-    
-    resolve(nil);
-}
-
-RCT_REMAP_METHOD(styleCursorPositionTo,
-                 styleCursorPositionToWithObjectIdentifier:(nonnull NSString *)objID
-                 x:(nonnull NSNumber *)x
-                 y:(nonnull NSNumber *)y
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandDisplayBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-    
-    STARIO10StarXpandCommandDisplayPositionParameter *param = [StarIO10ValueConverter toDisplayPositionParameterWithX:x y:y];
-    
-    [builder styleCursorPositionTo:param];
-    
-    resolve(nil);
-}
-
-RCT_REMAP_METHOD(actionClearLine,
-                 actionClearLineWithObjectIdentifier:(nonnull NSString *)objID
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandDisplayBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-    
-    [builder actionClearLine];
-    
-    resolve(nil);
-}
-
-RCT_REMAP_METHOD(actionClearAll,
-                 actionClearAllWithObjectIdentifier:(nonnull NSString *)objID
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandDisplayBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-    
-    [builder actionClearAll];
-    
-    resolve(nil);
-}
-
-RCT_REMAP_METHOD(actionSetBackLightState,
-                 actionSetBackLightStateWithObjectIdentifier:(nonnull NSString *)objID
-                 on:(BOOL)on
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandDisplayBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-    
-    [builder actionSetBackLightState:on];
-    
-    resolve(nil);
-}
-
-RCT_REMAP_METHOD(actionSetCursorState,
-                 actionSetCursorStateWithObjectIdentifier:(nonnull NSString *)objID
-                 state:(nonnull NSString *)state
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandDisplayBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-    
-    STARIO10StarXpandCommandDisplayCursorState nativeState = [StarIO10ValueConverter toDisplayCursorState:state];
-    
-    [builder actionSetCursorState:nativeState];
-    
-    resolve(nil);
-}
-
-RCT_REMAP_METHOD(actionSetContrast,
-                 actionSetContrastWithObjectIdentifier:(nonnull NSString *)objID
-                 value:(nonnull NSString *)value
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandDisplayBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-    
-    STARIO10StarXpandCommandDisplayContrast nativeValue = [StarIO10ValueConverter toDisplayContrast:value];
-    
-    [builder actionSetContrast:nativeValue];
-    
-    resolve(nil);
-}
-
-RCT_REMAP_METHOD(actionShowText,
-                 actionShowTextWithObjectIdentifier:(nonnull NSString *)objID
-                 content:(nonnull NSString *)content
-                 resolver:(RCTPromiseResolveBlock)resolve
-                 rejecter:(RCTPromiseRejectBlock)reject)
-{
-    STARIO10StarXpandCommandDisplayBuilder *builder = [_objManager getObject:objID];
-    
-    if (builder == nil) {
-        reject(@"Error", @"Fail to get object.", nil);
-        return;
-    }
-
-    [builder actionShowText:content];
-    
-    resolve(nil);
-}
-
 RCT_REMAP_METHOD(actionShowImage,
-                 actionShowImageWithObjectIdentifier:(nonnull NSString *)objID
                  source:(nonnull NSString *)source
                  effectDiffusion:(BOOL)effectDiffusion
                  threshold:(nonnull NSNumber *)threshold
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
-    STARIO10StarXpandCommandDisplayBuilder *builder = [_objManager getObject:objID];
+    @try{
+        
+        STARIO10StarXpandCommandDisplayImageParameter *parameter = [StarIO10ValueConverter toDisplayImageParameterWithSource:source
+                                                                                                             effectDiffusion:effectDiffusion
+                                                                                                                   threshold:threshold];
+        
+        STARIO10StarXpandCommandDisplayBuilder *displayBuilder =[[STARIO10StarXpandCommandDisplayBuilder alloc] init ];
+        displayBuilder = [displayBuilder actionShowImage:parameter];
+        
+        STARIO10StarXpandCommandDocumentBuilder *documentBuilder =[ [STARIO10StarXpandCommandDocumentBuilder alloc] init];
+        documentBuilder = [documentBuilder addDisplay:displayBuilder];
+        
+        STARIO10StarXpandCommandBuilder *commandBuilder = [[STARIO10StarXpandCommandBuilder alloc]init];
+        commandBuilder = [commandBuilder addDocument:documentBuilder];
+        
+        NSString *jsonString = [commandBuilder getCommands];
+        
+        NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+        
+        NSArray *contentsArray = [jsonObject objectForKey:@"contents"];
+        NSDictionary *contentsDictionary = [contentsArray objectAtIndex:0];
+        
+        NSArray *contentsArray2 = [contentsDictionary objectForKey:@"contents"];
+        NSDictionary *contentsDictionary2 = [contentsArray2 objectAtIndex:0];
+        
+        NSArray *contentsArray3 = [contentsDictionary2 objectForKey:@"contents"];
+        NSDictionary *contentsDictionary3 = [contentsArray3 objectAtIndex:0];
+        
+        NSError *error = nil;
+        NSData *parameterData = [NSJSONSerialization dataWithJSONObject:contentsDictionary3 options:0 error:&error];
+        if(error != nil){
+            reject(@"Error", @"Fail to get object.", nil);
+            return;
+        }
+        NSString *contents = [[NSString alloc]initWithData:parameterData encoding:NSUTF8StringEncoding];
     
-    if (builder == nil) {
+        resolve(contents);
+        
+    }
+    @catch(NSException *exception) {
+        
         reject(@"Error", @"Fail to get object.", nil);
-        return;
     }
-    
-    STARIO10StarXpandCommandDisplayImageParameter *param = [StarIO10ValueConverter toDisplayImageParameterWithSource:source
-                                                                                                     effectDiffusion:effectDiffusion
-                                                                                                           threshold:threshold];
-    
-    if (param == nil) {
-        NSDictionary *info = @{
-            NSLocalizedDescriptionKey: @"Invalid source.",
-            STARIO10ErrorDetailErrorCodeKey: [[NSNumber alloc] initWithInt:STARIO10ErrorCodeNone]
-        };
-        NSError *error = [[NSError alloc] initWithDomain:@"StarIO10.STARIO10Error" code:STARIO10ErrorArgument userInfo:info];
-        NSString *errorID = [self->_objManager add:error];
-        reject(errorID, error.localizedDescription, error);
-        return;
-    }
-    
-    [builder actionShowImage:param];
-     
-    resolve(nil);
 }
 
 @end

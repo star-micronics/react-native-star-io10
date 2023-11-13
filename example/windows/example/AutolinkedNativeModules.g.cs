@@ -11,6 +11,9 @@ using ReactNativePicker;
 // Namespaces from react-native-star-io10
 using StarMicronics.ReactNative.StarIO10;
 
+// Namespaces from react-native-webview
+using ReactNativeWebView;
+
 namespace Microsoft.ReactNative.Managed
 {
     internal static class AutolinkedNativeModules
@@ -23,6 +26,8 @@ namespace Microsoft.ReactNative.Managed
             packageProviders.Add(new ReactNativePicker.ReactPackageProvider());
             // IReactPackageProviders from react-native-star-io10
             packageProviders.Add(new StarMicronics.ReactNative.StarIO10.ReactPackageProvider());
+            // IReactPackageProviders from react-native-webview
+            packageProviders.Add(new ReactNativeWebView.ReactPackageProvider());
         }
     }
 }

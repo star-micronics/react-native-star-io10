@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -16,9 +16,11 @@
     "@react-native-community/checkbox": "^0.5.16",
     "@react-native-picker/picker": "^2.5.0",
     "react": "18.2.0",
-    "react-native": "0.72.4",
+    "react-native": "0.72.6",
+    "react-native-canvas": "^0.1.39",
     "react-native-star-io10": "file:..",
-    "react-native-windows": "0.72.7"
+    "react-native-webview": "^13.6.0",
+    "react-native-windows": "0.72.16"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
@@ -29,6 +31,7 @@
     "@tsconfig/react-native": "^3.0.0",
     "@types/jest": "^29.2.1",
     "@types/react": "^18.0.24",
+    "@types/react-native-canvas": "^0.1.10",
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.55.0",
     "@typescript-eslint/parser": "^5.55.0",

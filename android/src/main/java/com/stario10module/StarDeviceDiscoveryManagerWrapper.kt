@@ -6,7 +6,8 @@ import com.facebook.react.modules.core.DeviceEventManagerModule
 import com.starmicronics.stario10.*
 
 
-class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {
+class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactApplicationContext) :
+    ReactContextBaseJavaModule(context) {
     override fun getName(): String {
         return "StarDeviceDiscoveryManagerWrapper"
     }
@@ -15,17 +16,17 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
     fun init(interfaceTypes: ReadableArray, promise: Promise) {
         val typeList = mutableListOf<InterfaceType>()
 
-        for(type in StarIO10ValueConverter.toList<String>(interfaceTypes)) {
+        for (type in StarIO10ValueConverter.toList<String>(interfaceTypes)) {
             typeList.add(StarIO10ValueConverter.toInterfaceType(type))
         }
 
         try {
-            val manager = StarDeviceDiscoveryManagerFactory.create(typeList, reactApplicationContext)
+            val manager =
+                StarDeviceDiscoveryManagerFactory.create(typeList, reactApplicationContext)
             val identifier = InstanceManager.set(manager)
 
             promise.resolve(identifier)
-        }
-        catch (e: StarIO10Exception) {
+        } catch (e: StarIO10Exception) {
             val exceptionIdentifier = InstanceManager.set(e)
             promise.reject(exceptionIdentifier, e)
         }
@@ -55,15 +56,36 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
             manager.discoveryTime = discoveryTime
 
             try {
-                manager.callback = object: StarDeviceDiscoveryManager.Callback {
+                manager.callback = object : StarDeviceDiscoveryManager.Callback {
                     override fun onPrinterFound(printer: StarPrinter) {
                         val params = Arguments.createMap()
                         params.putString(EventParameter.KEY_IDENTIFIER, identifier)
-                        params.putString(EventParameter.KEY_INTERFACE_TYPE, StarIO10ValueConverter.toString(printer.connectionSettings.interfaceType))
-                        params.putString(EventParameter.KEY_CONNECTION_IDENTIFIER, printer.connectionSettings.identifier)
-                        params.putString(EventParameter.KEY_MODEL, StarIO10ValueConverter.toString(printer.information?.model ?: StarPrinterModel.Unknown))
-                        params.putString(EventParameter.KEY_EMULATION, StarIO10ValueConverter.toString(printer.information?.emulation ?: StarPrinterEmulation.Unknown))
-                        params.putMap(EventParameter.KEY_RESERVED, StarIO10ValueConverter.toWritableMap(printer.information?.reserved ?: mapOf<String, Any>()))
+                        params.putString(
+                            EventParameter.KEY_INTERFACE_TYPE,
+                            StarIO10ValueConverter.toString(printer.connectionSettings.interfaceType)
+                        )
+                        params.putString(
+                            EventParameter.KEY_CONNECTION_IDENTIFIER,
+                            printer.connectionSettings.identifier
+                        )
+                        params.putString(
+                            EventParameter.KEY_MODEL,
+                            StarIO10ValueConverter.toString(
+                                printer.information?.model ?: StarPrinterModel.Unknown
+                            )
+                        )
+                        params.putString(
+                            EventParameter.KEY_EMULATION,
+                            StarIO10ValueConverter.toString(
+                                printer.information?.emulation ?: StarPrinterEmulation.Unknown
+                            )
+                        )
+                        params.putMap(
+                            EventParameter.KEY_RESERVED,
+                            StarIO10ValueConverter.toWritableMap(
+                                printer.information?.reserved ?: mapOf<String, Any>()
+                            )
+                        )
 
                         sendEvent(EventParameter.NAME_PRINTER_FOUND, params)
                     }
@@ -79,13 +101,11 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
                 manager.startDiscovery()
 
                 promise.resolve(0)
-            }
-            catch (e: StarIO10Exception) {
+            } catch (e: StarIO10Exception) {
                 val exceptionIdentifier = InstanceManager.set(e)
                 promise.reject(exceptionIdentifier, e)
             }
-        }
-        else {
+        } else {
             promise.reject(StarIO10Exception("Identifier error"))
         }
     }
@@ -98,13 +118,11 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
             try {
                 manager.stopDiscovery()
                 promise.resolve(0)
-            }
-            catch (e: StarIO10Exception) {
+            } catch (e: StarIO10Exception) {
                 val exceptionIdentifier = InstanceManager.set(e)
                 promise.reject(exceptionIdentifier, e)
             }
-        }
-        else {
+        } else {
             promise.reject(StarIO10Exception("Identifier error"))
         }
     }

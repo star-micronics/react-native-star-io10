@@ -7,7 +7,8 @@ import com.facebook.react.bridge.ReactMethod
 import com.starmicronics.stario10.StarIO10Logger
 import com.starmicronics.stario10.internal.InternalInterface
 
-class StarIO10LoggerWrapper internal constructor(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {
+class StarIO10LoggerWrapper internal constructor(context: ReactApplicationContext) :
+    ReactContextBaseJavaModule(context) {
     override fun getName(): String {
         return "StarIO10LoggerWrapper"
     }

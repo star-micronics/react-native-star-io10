@@ -1,16 +1,39 @@
-import { NativeModules } from 'react-native';
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
-import { StarIO10ErrorFactory } from '../StarIO10ErrorFactory';
 import { StarXpandCommand } from '../../index';
+import { StarXpandCommandParameterConverter } from './StarXpandCommandParameterConverter';
+import { Buffer } from 'buffer';
 
 export class DocumentBuilder extends BaseStarXpandCommandBuilder {
+
+    public _parameters: Map<string, any>;
+
+    private topContentsIndex: number = 0;
+
+    constructor() {
+        super();
+
+        this._parameters = new Map<string, any>([
+            ["category", "Document"],
+            ["contents", new Array<Map<string, any>>()]
+        ]);
+    }
+
     settingTopMargin(height: number): DocumentBuilder {
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.settingTopMargin(this._nativeObject, height)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.splice(
+                this.topContentsIndex,
+                0,
+                new Map<string, any>([
+                    ["method", "Setting.TopMargin"],
+                    ["parameter", new Map([
+                        ["height", height]
+                    ])]
+                ])
+            );
+
+            this.topContentsIndex++;
         });
 
         return this;
@@ -18,11 +41,21 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
     settingBlackMark(parameter: StarXpandCommand.Printer.BlackMarkParameter): DocumentBuilder {
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.settingBlackMark(this._nativeObject, parameter.enable, parameter.position)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.splice(
+                this.topContentsIndex,
+                0,
+                new Map<string, any>([
+                    ["method", "Setting.BlackMark"],
+                    ["parameter", new Map<string, any>([
+                        ["enable", parameter.enable],
+                        ["position", StarXpandCommandParameterConverter.convertBlackMarkPosition(parameter.position)]
+                    ])]
+                ])
+            );
+
+            this.topContentsIndex++;
         });
 
         return this;
@@ -30,11 +63,20 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
     settingLabel(parameter: StarXpandCommand.Printer.LabelParameter): DocumentBuilder {
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.settingLabel(this._nativeObject, parameter.enable)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.splice(
+                this.topContentsIndex,
+                0,
+                new Map<string, any>([
+                    ["method", "Setting.Label"],
+                    ["parameter", new Map([
+                        ["enable", parameter.enable]
+                    ])]
+                ])
+            );
+
+            this.topContentsIndex++;
         });
 
         return this;
@@ -42,11 +84,20 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
     settingHoldPrint(parameter: StarXpandCommand.Printer.HoldPrintParameter): DocumentBuilder {
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.settingHoldPrint(this._nativeObject, parameter.enable)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.splice(
+                this.topContentsIndex,
+                0,
+                new Map<string, any>([
+                    ["method", "Setting.HoldPrint"],
+                    ["parameter", new Map([
+                        ["enable", parameter.enable]
+                    ])]
+                ])
+            );
+    
+            this.topContentsIndex++;
         });
 
         return this;
@@ -54,11 +105,20 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
     settingPrintableArea(width: number): DocumentBuilder {
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.settingPrintableArea(this._nativeObject, width)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.splice(
+                this.topContentsIndex,
+                0,
+                new Map<string, any>([
+                    ["method", "Setting.PrintableArea"],
+                    ["parameter", new Map([
+                        ["width", width]
+                    ])]
+                ])
+            );
+    
+            this.topContentsIndex++;
         });
 
         return this;
@@ -68,11 +128,9 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.addPrinter(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(builder._parameters);
         });
 
         return this;
@@ -82,11 +140,9 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.addDrawer(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(builder._parameters);
         });
 
         return this;
@@ -96,11 +152,9 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.addBuzzer(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(builder._parameters);
         });
 
         return this;
@@ -110,11 +164,9 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.addMelodySpeaker(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(builder._parameters);
         });
 
         return this;
@@ -124,11 +176,9 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.addDisplay(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(builder._parameters);
         });
 
         return this;
@@ -136,21 +186,21 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
     addRaw(content: Array<number>): DocumentBuilder {
         this._addAction(async() => {
-            await NativeModules.DocumentBuilderWrapper.addRaw(this._nativeObject, content)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            var numberArray = Uint8Array.from(content);
+            var base64String = Buffer.from(numberArray).toString("base64");
+
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Raw.Send"],
+                    ["parameter", new Map<string, any>([
+                        ["content", base64String]
+                    ])]
+                ])
+            );
         });
 
         return this;
-    }
-
-    protected async _initNativeObjectImpl(): Promise<string> {
-        return await NativeModules.DocumentBuilderWrapper.init();
-    }
-
-    protected async _disposeNativeObjectImpl(nativeObject: string): Promise<void> {
-        await NativeModules.DocumentBuilderWrapper.dispose(nativeObject);
     }
 }

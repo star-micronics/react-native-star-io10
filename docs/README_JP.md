@@ -112,7 +112,10 @@ StarXpand SDKにはプリンターと組み合わせて動作を確認できる[
 
 #### 2. [印刷データの生成](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/basic-step1.html)
 
-ラベル用の印刷レイアウトを作成するのに活用できる各業態の[印刷サンプル](../example/samples/printing_samples/PrintingSamples.md)（サンプルコードと印刷結果画像）もご利用ください。
+[こちら](../example/samples/printing_samples/PrintingSamples.md)のサンプルコードと印刷結果画像もご活用ください。
+
+- 各業態のラベル用の印刷レイアウトを作成するサンプル
+- テキストデータからレシート画像を生成するサンプル(iOS/Android)
 
 > :warning: プリンターのモデルによっては印刷できないサンプルがあります。また、ご利用の際は適宜レイアウトを調節してください。
 

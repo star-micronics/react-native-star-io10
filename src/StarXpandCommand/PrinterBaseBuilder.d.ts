@@ -1,0 +1,34 @@
+import { StarXpandCommand } from '../../index';
+export declare class PrinterBaseBuilder {
+    static styleAlignment(parameters: Map<string, any>, position: StarXpandCommand.Printer.Alignment): void;
+    static styleFont(parameters: Map<string, any>, type: StarXpandCommand.Printer.FontType): void;
+    static styleBold(parameters: Map<string, any>, enable: boolean): void;
+    static styleInvert(parameters: Map<string, any>, enable: boolean): void;
+    static styleUnderLine(parameters: Map<string, any>, enable: boolean): void;
+    static styleMagnification(parameters: Map<string, any>, parameter: StarXpandCommand.MagnificationParameter): void;
+    static styleCharacterSpace(parameters: Map<string, any>, width: number): void;
+    static styleLineSpace(parameters: Map<string, any>, height: number): void;
+    static styleHorizontalPositionTo(parameters: Map<string, any>, position: number): void;
+    static styleHorizontalPositionBy(parameters: Map<string, any>, position: number): void;
+    static styleHorizontalTabPositions(parameters: Map<string, any>, positions: Array<number>): void;
+    static styleVerticalPositionTo(parameters: Map<string, any>, position: number): void;
+    static styleVerticalPositionBy(parameters: Map<string, any>, position: number): void;
+    static styleInternationalCharacter(parameters: Map<string, any>, type: StarXpandCommand.Printer.InternationalCharacterType): void;
+    static styleSecondPriorityCharacterEncoding(parameters: Map<string, any>, type: StarXpandCommand.Printer.CharacterEncodingType): void;
+    static styleCjkCharacterPriority(parameters: Map<string, any>, types: Array<StarXpandCommand.Printer.CjkCharacterType>): void;
+    static stylePrintDirection(parameters: Map<string, any>, PageModePrintDirection: StarXpandCommand.Printer.PageModePrintDirection): void;
+    static actionCut(parameters: Map<string, any>, type: StarXpandCommand.Printer.CutType): void;
+    static actionFeed(parameters: Map<string, any>, height: number): void;
+    static actionFeedLine(parameters: Map<string, any>, lines: number): void;
+    static actionPrintText(parameters: Map<string, any>, content: string): void;
+    static actionPrintLogo(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.LogoParameter): void;
+    static actionPrintBarcode(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.BarcodeParameter): void;
+    static actionPrintPdf417(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.Pdf417Parameter): void;
+    static actionPrintQRCode(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.QRCodeParameter): void;
+    static actionPrintRuledLine(parameters: Map<string, any>, RuledLineParameter: StarXpandCommand.Printer.RuledLineParameter): void;
+    static stylePageModeArea(parameters: any, PageModeRectangleParameter: StarXpandCommand.Printer.PageModeAreaParameter): void;
+    static actionPrintPageModeRuledLine(parameters: Map<string, any>, PageModeRuledLineParameter: StarXpandCommand.Printer.PageModeRuledLineParameter): void;
+    static actionPrintRectangle(parameters: Map<string, any>, PageModeRectangleParameter: StarXpandCommand.Printer.PageModeRectangleParameter): void;
+    static actionPrintImage(parameters: Map<string, any>, source: string): void;
+    static actionPrintPageModeImage(parameters: Map<string, any>, source: string, x: number, y: number): void;
+}

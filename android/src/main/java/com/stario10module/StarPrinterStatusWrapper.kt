@@ -5,7 +5,8 @@ import com.starmicronics.stario10.StarIO10Exception
 import com.starmicronics.stario10.StarPrinterStatus
 
 
-class StarPrinterStatusWrapper internal constructor(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {
+class StarPrinterStatusWrapper internal constructor(context: ReactApplicationContext) :
+    ReactContextBaseJavaModule(context) {
     override fun getName(): String {
         return "StarPrinterStatusWrapper"
     }
@@ -16,8 +17,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.hasError)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -28,8 +28,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.paperEmpty)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -40,8 +39,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.paperNearEmpty)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -52,8 +50,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.coverOpen)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -64,8 +61,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.drawerOpenCloseSignal)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -76,8 +72,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.cutterError)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -88,8 +83,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.paperSeparatorError)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -100,8 +94,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.paperJamError)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -112,8 +105,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.rollPositionError)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -124,8 +116,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.paperPresent)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -136,8 +127,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.drawerOpenError)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -148,8 +138,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.printUnitOpen)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -160,8 +149,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(StarIO10ValueConverter.toString(status.detail.drawer1OpenedMethod))
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -172,8 +160,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.drawer1OpenCloseSignal)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -184,8 +171,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(StarIO10ValueConverter.toString(status.detail.drawer2OpenedMethod))
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -196,8 +182,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.drawer2OpenCloseSignal)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -208,8 +193,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.externalDevice1Connected)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -220,8 +204,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.externalDevice2Connected)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -232,8 +215,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.partsReplacementNotification)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -244,8 +226,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.cleaningNotification)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -256,8 +237,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(status.detail.detectedPaperWidth)
-        }
-        else {
+        } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
@@ -268,8 +248,7 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
 
         if (status is StarPrinterStatus) {
             promise.resolve(StarIO10ValueConverter.toWritableMap(status.reserved))
-        }
-        else {
+        } else {
             promise.reject(StarIO10Exception("Identifier error"))
         }
     }

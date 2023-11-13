@@ -1,6 +1,8 @@
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
 import { StarXpandCommand } from '../../index';
 export declare class PageModeBuilder extends BaseStarXpandCommandBuilder {
+    _parameters: Map<string, any>;
+    constructor();
     stylePrintDirection(direction: StarXpandCommand.Printer.PageModePrintDirection): PageModeBuilder;
     styleFont(type: StarXpandCommand.Printer.FontType): PageModeBuilder;
     styleBold(enable: boolean): PageModeBuilder;
@@ -26,6 +28,4 @@ export declare class PageModeBuilder extends BaseStarXpandCommandBuilder {
     actionPrintRectangle(parameter: StarXpandCommand.Printer.PageModeRectangleParameter): PageModeBuilder;
     add(builder: StarXpandCommand.PageModeBuilder): PageModeBuilder;
     addPageMode(parameter: StarXpandCommand.Printer.PageModeAreaParameter, builder: StarXpandCommand.PageModeBuilder): PageModeBuilder;
-    protected _initNativeObjectImpl(): Promise<string>;
-    protected _disposeNativeObjectImpl(nativeObject: string): Promise<void>;
 }

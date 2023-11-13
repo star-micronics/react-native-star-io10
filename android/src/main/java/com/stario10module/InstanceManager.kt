@@ -10,11 +10,11 @@ class InstanceManager {
 
         fun set(instance: Any): String {
             var identifier: String
-            
+
             while (true) {
                 identifier = UUID.randomUUID().toString()
 
-                if(this.instanceMap.putIfAbsent(identifier, instance) == null) {
+                if (this.instanceMap.putIfAbsent(identifier, instance) == null) {
                     break
                 }
 

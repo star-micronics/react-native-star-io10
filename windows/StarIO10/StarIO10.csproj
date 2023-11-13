@@ -125,20 +125,14 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="BezelSettingBuilderWrapper.cs" />
-    <Compile Include="BuzzerBuilderWrapper.cs" />
     <Compile Include="StarSpoolJobStatusListWrapper.cs" />
     <Compile Include="StarSpoolJobStatusWrapper.cs" />
     <Compile Include="DisplayBuilderWrapper.cs" />
-    <Compile Include="DocumentBuilderWrapper.cs" />
-    <Compile Include="DrawerBuilderWrapper.cs" />
     <Compile Include="EventParameter.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\TaskExtensions.cs" />
     <Compile Include="MelodySpeakerBuilderWrapper.cs" />
     <Compile Include="PageModeBuilderWrapper.cs" />
-    <Compile Include="PresenterSettingBuilderWrapper.cs" />
-    <Compile Include="PreSettingBuilderWrapper.cs" />
     <Compile Include="PrinterBuilderWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReactPackageProvider.cs" />
@@ -149,11 +143,13 @@
     <Compile Include="StarIO10ValueConverter.cs" />
     <Compile Include="StarPrinterStatusWrapper.cs" />
     <Compile Include="StarPrinterWrapper.cs" />
-    <Compile Include="StarXpandCommandBuilderWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>7.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

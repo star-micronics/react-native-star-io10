@@ -2,15 +2,24 @@ import { NativeModules } from 'react-native';
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
 import { StarIO10ErrorFactory } from '../StarIO10ErrorFactory';
 import { StarXpandCommand } from '../../index';
+import { PrinterBaseBuilder } from './PrinterBaseBuilder';
 
 export class PageModeBuilder extends BaseStarXpandCommandBuilder {
+
+    public _parameters: Map<string, any>;
+
+    constructor() {
+        super();
+
+        this._parameters = new Map<string, any>([
+            ["category", "PageMode"],
+            ["contents", new Array<Map<string, any>>()]
+        ]);
+    }
+
     stylePrintDirection(direction: StarXpandCommand.Printer.PageModePrintDirection): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.stylePrintDirection(this._nativeObject, direction)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.stylePrintDirection(this._parameters, direction);
         });
 
         return this;
@@ -18,11 +27,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleFont(type: StarXpandCommand.Printer.FontType): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleFont(this._nativeObject, type)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleFont(this._parameters, type);
         });
 
         return this;
@@ -30,11 +35,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleBold(enable: boolean): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleBold(this._nativeObject, enable)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleBold(this._parameters, enable);
         });
 
         return this;
@@ -42,11 +43,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleInvert(enable: boolean): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleInvert(this._nativeObject, enable)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleInvert(this._parameters, enable);
         });
 
         return this;
@@ -54,11 +51,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleUnderLine(enable: boolean): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleUnderLine(this._nativeObject, enable)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleUnderLine(this._parameters, enable);
         });
 
         return this;
@@ -66,11 +59,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleMagnification(parameter: StarXpandCommand.MagnificationParameter): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleMagnification(this._nativeObject, parameter.width, parameter.height)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleMagnification(this._parameters, parameter);
         });
 
         return this;
@@ -78,11 +67,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleCharacterSpace(width: number): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleCharacterSpace(this._nativeObject, width)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleCharacterSpace(this._parameters, width);
         });
 
         return this;
@@ -90,11 +75,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleLineSpace(height: number): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleLineSpace(this._nativeObject, height)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleLineSpace(this._parameters, height);
         });
 
         return this;
@@ -102,11 +83,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleVerticalPositionTo(position: number): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleVerticalPositionTo(this._nativeObject, position)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleVerticalPositionTo(this._parameters, position);
         });
 
         return this;
@@ -114,11 +91,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleVerticalPositionBy(position: number): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleVerticalPositionBy(this._nativeObject, position)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleVerticalPositionBy(this._parameters, position);
         });
 
         return this;
@@ -126,11 +99,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleHorizontalPositionTo(position: number): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleHorizontalPositionTo(this._nativeObject, position)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleHorizontalPositionTo(this._parameters, position);
         });
 
         return this;
@@ -138,11 +107,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleHorizontalPositionBy(position: number): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleHorizontalPositionBy(this._nativeObject, position)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleHorizontalPositionBy(this._parameters, position);
         });
 
         return this;
@@ -150,11 +115,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleHorizontalTabPositions(positions: Array<number>): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleHorizontalTabPositions(this._nativeObject, positions)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleHorizontalTabPositions(this._parameters, positions);
         });
 
         return this;
@@ -162,11 +123,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleInternationalCharacter(type: StarXpandCommand.Printer.InternationalCharacterType): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleInternationalCharacter(this._nativeObject, type)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleInternationalCharacter(this._parameters, type);
         });
 
         return this;
@@ -174,11 +131,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleSecondPriorityCharacterEncoding(type: StarXpandCommand.Printer.CharacterEncodingType): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleSecondPriorityCharacterEncoding(this._nativeObject, type)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleSecondPriorityCharacterEncoding(this._parameters, type);
         });
 
         return this;
@@ -186,11 +139,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     styleCjkCharacterPriority(types: Array<StarXpandCommand.Printer.CjkCharacterType>): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.styleCjkCharacterPriority(this._nativeObject, types)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.styleCjkCharacterPriority(this._parameters, types);
         });
 
         return this;
@@ -198,11 +147,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintText(content: string): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.actionPrintText(this._nativeObject, content)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.actionPrintText(this._parameters, content);
         });
 
         return this;
@@ -210,11 +155,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintBarcode(parameter: StarXpandCommand.Printer.BarcodeParameter): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.actionPrintBarcode(this._nativeObject, parameter.content, parameter.symbology, parameter.printHri, parameter.barDots, parameter.barRatioLevel, parameter.height)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.actionPrintBarcode(this._parameters, parameter);
         });
 
         return this;
@@ -222,11 +163,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintPdf417(parameter: StarXpandCommand.Printer.Pdf417Parameter): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.actionPrintPdf417(this._nativeObject, parameter.content, parameter.column, parameter.line, parameter.module, parameter.aspect, parameter.level)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.actionPrintPdf417(this._parameters, parameter);
         });
 
         return this;
@@ -234,11 +171,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintQRCode(parameter: StarXpandCommand.Printer.QRCodeParameter): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.actionPrintQRCode(this._nativeObject, parameter.content, parameter.model, parameter.level, parameter.cellSize)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.actionPrintQRCode(this._parameters, parameter);
         });
 
         return this;
@@ -246,11 +179,13 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintImage(parameter: StarXpandCommand.Printer.PageModeImageParameter): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.actionPrintImage(this._nativeObject, parameter.source, parameter.x, parameter.y, parameter.width, parameter.effectDiffusion, parameter.threshold)
+            var result = await NativeModules.PageModeBuilderWrapper.actionPrintImage(parameter.source,parameter.x,parameter.y,parameter.width,parameter.effectDiffusion,parameter.threshold)
             .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
             });
+
+            PrinterBaseBuilder.actionPrintPageModeImage(this._parameters, result,parameter.x,parameter.y);       
         });
 
         return this;
@@ -258,11 +193,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
     actionPrintRuledLine(parameter: StarXpandCommand.Printer.PageModeRuledLineParameter): PageModeBuilder {
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.actionPrintRuledLine(this._nativeObject, parameter.xStart, parameter.yStart, parameter.xEnd, parameter.yEnd, parameter.thickness, parameter.lineStyle)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.actionPrintPageModeRuledLine(this._parameters, parameter);
         });
 
         return this;
@@ -272,11 +203,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
         var size: number[] = [parameter.x, parameter.y, parameter.width, parameter.height];
 
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.actionPrintRectangle(this._nativeObject, size, parameter.thickness, parameter.roundCorner, parameter.cornerRadius, parameter.lineStyle)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.actionPrintRectangle(this._parameters, parameter);
         });
 
         return this;
@@ -286,11 +213,11 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.add(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                builder._parameters
+            )
         });
 
         return this;
@@ -300,21 +227,15 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.PageModeBuilderWrapper.addPageMode(this._nativeObject, parameter.x, parameter.y, parameter.width, parameter.height, builder._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            PrinterBaseBuilder.stylePageModeArea(builder._parameters, parameter)
+            
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(
+                builder._parameters
+            )
         });
 
         return this;
-    }
-
-    protected async _initNativeObjectImpl(): Promise<string> {
-        return await NativeModules.PageModeBuilderWrapper.init();
-    }
-
-    protected async _disposeNativeObjectImpl(nativeObject: string): Promise<void> {
-        await NativeModules.PageModeBuilderWrapper.dispose(nativeObject);
     }
 }

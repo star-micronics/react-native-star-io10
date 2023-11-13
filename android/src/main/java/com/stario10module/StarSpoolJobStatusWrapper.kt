@@ -4,7 +4,8 @@ import com.facebook.react.bridge.*
 import com.starmicronics.stario10.StarIO10Exception
 import com.starmicronics.stario10.StarSpoolJobStatus
 
-class StarSpoolJobStatusWrapper internal constructor(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {
+class StarSpoolJobStatusWrapper internal constructor(context: ReactApplicationContext) :
+    ReactContextBaseJavaModule(context) {
     override fun getName(): String {
         return "StarSpoolJobStatusWrapper"
     }
@@ -15,8 +16,7 @@ class StarSpoolJobStatusWrapper internal constructor(context: ReactApplicationCo
 
         if (status is StarSpoolJobStatus) {
             promise.resolve(StarIO10ValueConverter.toWritableMap(status))
-        }
-        else {
+        } else {
             promise.reject(StarIO10Exception("Identifier error"))
         }
     }

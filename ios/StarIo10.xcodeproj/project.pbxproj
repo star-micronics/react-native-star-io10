@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,16 +15,9 @@
 		E3414398254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3414396254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m */; };
 		E37F6B08258C8D2E001DBB30 /* DisplayBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E37F6B07258C8D2E001DBB30 /* DisplayBuilderWrapper.m */; };
 		E3951A43254FD9FF003A9953 /* StarIO10ErrorWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A42254FD9FF003A9953 /* StarIO10ErrorWrapper.m */; };
-		E3951A5C254FDA55003A9953 /* BuzzerBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A47254FDA54003A9953 /* BuzzerBuilderWrapper.m */; };
-		E3951A5E254FDA55003A9953 /* DocumentBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A49254FDA54003A9953 /* DocumentBuilderWrapper.m */; };
 		E3951A5F254FDA55003A9953 /* PageModeBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A4A254FDA54003A9953 /* PageModeBuilderWrapper.m */; };
-		E3951A60254FDA55003A9953 /* DrawerBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A4D254FDA54003A9953 /* DrawerBuilderWrapper.m */; };
-		E3951A61254FDA55003A9953 /* PresenterSettingBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A4E254FDA54003A9953 /* PresenterSettingBuilderWrapper.m */; };
-		E3951A62254FDA55003A9953 /* PreSettingBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A50254FDA54003A9953 /* PreSettingBuilderWrapper.m */; };
 		E3951A63254FDA55003A9953 /* MelodySpeakerBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A51254FDA54003A9953 /* MelodySpeakerBuilderWrapper.m */; };
-		E3951A64254FDA55003A9953 /* BezelSettingBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A52254FDA54003A9953 /* BezelSettingBuilderWrapper.m */; };
 		E3951A65254FDA55003A9953 /* PrinterBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A59254FDA55003A9953 /* PrinterBuilderWrapper.m */; };
-		E3951A66254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A5A254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m */; };
 		E3951A6D254FDA80003A9953 /* StarPrinterStatusWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A6B254FDA80003A9953 /* StarPrinterStatusWrapper.m */; };
 		E3951A6E254FDA80003A9953 /* StarPrinterWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A6C254FDA80003A9953 /* StarPrinterWrapper.m */; };
 		E3951A77254FDAA6003A9953 /* StarObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E3951A71254FDAA6003A9953 /* StarObjectManager.m */; };
@@ -65,25 +58,11 @@
 		E37F6B07258C8D2E001DBB30 /* DisplayBuilderWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisplayBuilderWrapper.m; sourceTree = "<group>"; };
 		E3951A41254FD9FF003A9953 /* StarIO10ErrorWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarIO10ErrorWrapper.h; sourceTree = "<group>"; };
 		E3951A42254FD9FF003A9953 /* StarIO10ErrorWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarIO10ErrorWrapper.m; sourceTree = "<group>"; };
-		E3951A46254FDA54003A9953 /* DrawerBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerBuilderWrapper.h; sourceTree = "<group>"; };
-		E3951A47254FDA54003A9953 /* BuzzerBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuzzerBuilderWrapper.m; sourceTree = "<group>"; };
-		E3951A49254FDA54003A9953 /* DocumentBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentBuilderWrapper.m; sourceTree = "<group>"; };
 		E3951A4A254FDA54003A9953 /* PageModeBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageModeBuilderWrapper.m; sourceTree = "<group>"; };
-		E3951A4B254FDA54003A9953 /* StarXpandCommandBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarXpandCommandBuilderWrapper.h; sourceTree = "<group>"; };
-		E3951A4C254FDA54003A9953 /* DocumentBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentBuilderWrapper.h; sourceTree = "<group>"; };
-		E3951A4D254FDA54003A9953 /* DrawerBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerBuilderWrapper.m; sourceTree = "<group>"; };
-		E3951A4E254FDA54003A9953 /* PresenterSettingBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PresenterSettingBuilderWrapper.m; sourceTree = "<group>"; };
-		E3951A4F254FDA54003A9953 /* BezelSettingBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezelSettingBuilderWrapper.h; sourceTree = "<group>"; };
-		E3951A50254FDA54003A9953 /* PreSettingBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreSettingBuilderWrapper.m; sourceTree = "<group>"; };
 		E3951A51254FDA54003A9953 /* MelodySpeakerBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MelodySpeakerBuilderWrapper.m; sourceTree = "<group>"; };
-		E3951A52254FDA54003A9953 /* BezelSettingBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BezelSettingBuilderWrapper.m; sourceTree = "<group>"; };
-		E3951A53254FDA54003A9953 /* BuzzerBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuzzerBuilderWrapper.h; sourceTree = "<group>"; };
-		E3951A54254FDA54003A9953 /* PreSettingBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreSettingBuilderWrapper.h; sourceTree = "<group>"; };
 		E3951A56254FDA54003A9953 /* MelodySpeakerBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MelodySpeakerBuilderWrapper.h; sourceTree = "<group>"; };
-		E3951A57254FDA54003A9953 /* PresenterSettingBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PresenterSettingBuilderWrapper.h; sourceTree = "<group>"; };
 		E3951A58254FDA54003A9953 /* PrinterBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrinterBuilderWrapper.h; sourceTree = "<group>"; };
 		E3951A59254FDA55003A9953 /* PrinterBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrinterBuilderWrapper.m; sourceTree = "<group>"; };
-		E3951A5A254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarXpandCommandBuilderWrapper.m; sourceTree = "<group>"; };
 		E3951A5B254FDA55003A9953 /* PageModeBuilderWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageModeBuilderWrapper.h; sourceTree = "<group>"; };
 		E3951A69254FDA80003A9953 /* StarPrinterStatusWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarPrinterStatusWrapper.h; sourceTree = "<group>"; };
 		E3951A6A254FDA80003A9953 /* StarPrinterWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarPrinterWrapper.h; sourceTree = "<group>"; };
@@ -167,28 +146,14 @@
 		E3951A45254FDA0E003A9953 /* StarXpandCommand */ = {
 			isa = PBXGroup;
 			children = (
-				E3951A4F254FDA54003A9953 /* BezelSettingBuilderWrapper.h */,
-				E3951A52254FDA54003A9953 /* BezelSettingBuilderWrapper.m */,
-				E3951A53254FDA54003A9953 /* BuzzerBuilderWrapper.h */,
-				E3951A47254FDA54003A9953 /* BuzzerBuilderWrapper.m */,
 				E37F6B06258C8D2E001DBB30 /* DisplayBuilderWrapper.h */,
 				E37F6B07258C8D2E001DBB30 /* DisplayBuilderWrapper.m */,
-				E3951A4C254FDA54003A9953 /* DocumentBuilderWrapper.h */,
-				E3951A49254FDA54003A9953 /* DocumentBuilderWrapper.m */,
-				E3951A46254FDA54003A9953 /* DrawerBuilderWrapper.h */,
-				E3951A4D254FDA54003A9953 /* DrawerBuilderWrapper.m */,
 				E3951A56254FDA54003A9953 /* MelodySpeakerBuilderWrapper.h */,
 				E3951A51254FDA54003A9953 /* MelodySpeakerBuilderWrapper.m */,
 				E3951A5B254FDA55003A9953 /* PageModeBuilderWrapper.h */,
 				E3951A4A254FDA54003A9953 /* PageModeBuilderWrapper.m */,
-				E3951A57254FDA54003A9953 /* PresenterSettingBuilderWrapper.h */,
-				E3951A4E254FDA54003A9953 /* PresenterSettingBuilderWrapper.m */,
-				E3951A54254FDA54003A9953 /* PreSettingBuilderWrapper.h */,
-				E3951A50254FDA54003A9953 /* PreSettingBuilderWrapper.m */,
 				E3951A58254FDA54003A9953 /* PrinterBuilderWrapper.h */,
 				E3951A59254FDA55003A9953 /* PrinterBuilderWrapper.m */,
-				E3951A4B254FDA54003A9953 /* StarXpandCommandBuilderWrapper.h */,
-				E3951A5A254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m */,
 			);
 			path = StarXpandCommand;
 			sourceTree = "<group>";
@@ -282,27 +247,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3951A63254FDA55003A9953 /* MelodySpeakerBuilderWrapper.m in Sources */,
-				E3951A62254FDA55003A9953 /* PreSettingBuilderWrapper.m in Sources */,
-				E3951A5E254FDA55003A9953 /* DocumentBuilderWrapper.m in Sources */,
 				E3414398254FD971001E40C3 /* StarDeviceDiscoveryManagerWrapper.m in Sources */,
 				E3951A78254FDAA6003A9953 /* EventParameter.m in Sources */,
 				E3951A5F254FDA55003A9953 /* PageModeBuilderWrapper.m in Sources */,
 				E3951A43254FD9FF003A9953 /* StarIO10ErrorWrapper.m in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* StarIo10.m in Sources */,
-				E3951A61254FDA55003A9953 /* PresenterSettingBuilderWrapper.m in Sources */,
 				E3951A79254FDAA6003A9953 /* StarIO10ValueConverter.m in Sources */,
 				DD80853028DABCB3005B3D27 /* StarSpoolJobStatusWrapper.m in Sources */,
-				E3951A66254FDA55003A9953 /* StarXpandCommandBuilderWrapper.m in Sources */,
-				E3951A5C254FDA55003A9953 /* BuzzerBuilderWrapper.m in Sources */,
 				E3951A6D254FDA80003A9953 /* StarPrinterStatusWrapper.m in Sources */,
 				E3951A65254FDA55003A9953 /* PrinterBuilderWrapper.m in Sources */,
-				E3951A60254FDA55003A9953 /* DrawerBuilderWrapper.m in Sources */,
 				E37F6B08258C8D2E001DBB30 /* DisplayBuilderWrapper.m in Sources */,
 				E3951A6E254FDA80003A9953 /* StarPrinterWrapper.m in Sources */,
 				8893EDD925D3C138006114B2 /* StarIO10LoggerWrapper.m in Sources */,
 				DD9C5ADA28DC2BB200E6571F /* StarSpoolJobStatusListWrapper.m in Sources */,
 				E3951A77254FDAA6003A9953 /* StarObjectManager.m in Sources */,
-				E3951A64254FDA55003A9953 /* BezelSettingBuilderWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

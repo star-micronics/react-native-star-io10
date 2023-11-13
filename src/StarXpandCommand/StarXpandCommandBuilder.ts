@@ -1,13 +1,14 @@
-import { NativeModules } from 'react-native';
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
-import { StarIO10ErrorFactory } from '../StarIO10ErrorFactory';
 import { StarXpandCommand } from '../../index';
+import { JsonBuilder } from './Json/JsonBuilder';
 
 export class StarXpandCommandBuilder extends BaseStarXpandCommandBuilder {
     private _preSetting?: StarXpandCommand.PreSettingBuilder;
 
+    private _parameters: Map<string, any>;
+
     set preSetting(preSetting: StarXpandCommand.PreSettingBuilder | undefined) {
-        if(this._preSetting != null) {
+        if (this._preSetting != null) {
             this._removeChild(this._preSetting);
         }
 
@@ -25,26 +26,20 @@ export class StarXpandCommandBuilder extends BaseStarXpandCommandBuilder {
     constructor() {
         super();
 
-        this._addAction(async() => {
-            if(this.preSetting != null) {
-                await NativeModules.StarXpandCommandBuilderWrapper.setPreSetting(this._nativeObject, this.preSetting._nativeObject)
-                .catch(async (nativeError: any) => {
-                    var error = await StarIO10ErrorFactory.create(nativeError.code);
-                    throw error;
-                });
-            }
-        });
+        this._parameters = new Map<string, any>([
+            ["title", "StarXpandCommand"],
+            ["version", "1.0.0"],
+            ["contents", new Array<Map<string, any>>()]
+        ]);
     }
 
     addDocument(builder: StarXpandCommand.DocumentBuilder): StarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            await NativeModules.StarXpandCommandBuilderWrapper.addDocument(this._nativeObject, builder._nativeObject)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            contents.push(builder._parameters);
         });
 
         return this;
@@ -52,23 +47,23 @@ export class StarXpandCommandBuilder extends BaseStarXpandCommandBuilder {
 
     async getCommands(): Promise<string> {
         try {
-            await this._initAllNativeObjects();
-
             await this._executeAllActions();
 
-            var result = await NativeModules.StarXpandCommandBuilderWrapper.getCommands(this._nativeObject)
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+
+            if (this.preSetting != null) {
+                contents.unshift(this.preSetting._parameters);
+            }
+
+            let result = JsonBuilder.serialize(this._parameters);
+
+            if (this.preSetting != null) {
+                contents.shift();
+            }
 
             return result;
         } finally {
-            await this._disposeAllNativeObjects();
+            
         }
-    }
-
-    protected async _initNativeObjectImpl(): Promise<string> {
-        return await NativeModules.StarXpandCommandBuilderWrapper.init();
-    }
-
-    protected async _disposeNativeObjectImpl(nativeObject: string): Promise<void> {
-        await NativeModules.StarXpandCommandBuilderWrapper.dispose(nativeObject);
     }
 }

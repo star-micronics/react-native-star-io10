@@ -10,24 +10,17 @@ class StarIO10Package : ReactPackage {
     override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
         val modules: MutableList<NativeModule> = ArrayList()
 
-        modules.add(BezelSettingBuilderWrapper(reactContext))
-        modules.add(BuzzerBuilderWrapper(reactContext))
         modules.add(DisplayBuilderWrapper(reactContext))
-        modules.add(DocumentBuilderWrapper(reactContext))
-        modules.add(DrawerBuilderWrapper(reactContext))
         modules.add(MelodySpeakerBuilderWrapper(reactContext))
-        modules.add(PageModeBuilderWrapper(reactContext))
-        modules.add(PresenterSettingBuilderWrapper(reactContext))
-        modules.add(PreSettingBuilderWrapper(reactContext))
         modules.add(PrinterBuilderWrapper(reactContext))
+        modules.add(PageModeBuilderWrapper(reactContext))
         modules.add(StarDeviceDiscoveryManagerWrapper(reactContext))
         modules.add(StarIO10ErrorWrapper(reactContext))
         modules.add(StarPrinterStatusWrapper(reactContext))
-        modules.add(StarPrinterWrapper(reactContext))
-        modules.add(StarIO10LoggerWrapper(reactContext))
         modules.add(StarSpoolJobStatusWrapper(reactContext))
         modules.add(StarSpoolJobStatusListWrapper(reactContext))
-        modules.add(StarXpandCommandBuilderWrapper(reactContext))
+        modules.add(StarPrinterWrapper(reactContext))
+        modules.add(StarIO10LoggerWrapper(reactContext))
 
         return modules
     }

@@ -1,26 +1,35 @@
-import { NativeModules } from 'react-native';
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
-import { StarIO10ErrorFactory } from '../StarIO10ErrorFactory';
 import { StarXpandCommand } from '../../index';
+import { StarXpandCommandParameterConverter } from './StarXpandCommandParameterConverter';
 
 export class DrawerBuilder extends BaseStarXpandCommandBuilder {
+
+    public _parameters: Map<string, any>;
+
+    constructor() {
+        super();
+
+        this._parameters = new Map<string, any>([
+            ["category", "Drawer"],
+            ["contents", new Array<Map<string, any>>()]
+        ]);
+    }
+    
     actionOpen(parameter: StarXpandCommand.Drawer.OpenParameter): DrawerBuilder {
         this._addAction(async() => {
-            await NativeModules.DrawerBuilderWrapper.actionOpen(this._nativeObject, parameter.channel, parameter.onTime)
-            .catch(async (nativeError: any) => {
-                var error = await StarIO10ErrorFactory.create(nativeError.code);
-                throw error;
-            });
+            let contents = this._parameters.get("contents") as Array<Map<string, any>>;
+          
+            contents.push(
+                new Map<string, any>([
+                    ["method", "Action.Open"],
+                    ["parameter", new Map<string, any>([
+                        ["channel", StarXpandCommandParameterConverter.convertDrawerChannel(parameter.channel)],
+                        ["on_time", Math.floor(parameter.onTime)]
+                    ])]
+                ])
+            );
         });
 
         return this;
-    }
-
-    protected async _initNativeObjectImpl(): Promise<string> {
-        return await NativeModules.DrawerBuilderWrapper.init();
-    }
-
-    protected async _disposeNativeObjectImpl(nativeObject: string): Promise<void> {
-        await NativeModules.DrawerBuilderWrapper.dispose(nativeObject);
     }
 }
