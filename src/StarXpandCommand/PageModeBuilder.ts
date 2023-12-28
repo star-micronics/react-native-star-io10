@@ -200,7 +200,6 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
     }
 
     actionPrintRectangle(parameter: StarXpandCommand.Printer.PageModeRectangleParameter): PageModeBuilder {
-        var size: number[] = [parameter.x, parameter.y, parameter.width, parameter.height];
 
         this._addAction(async() => {
             PrinterBaseBuilder.actionPrintRectangle(this._parameters, parameter);
