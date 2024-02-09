@@ -1,0 +1,13 @@
+{
+    "contents" : "28 Medicine Name 200mg tablets",
+    "number_of_tablet" : "ONE",
+    "number_of_times" : "THREE",
+    "dose_interval" : "a day",
+    "warning1" : "avoid alcoholic drink",
+    "warning2" : "Take with or after food",
+    "warning3" : "Take regularly and complete the course",
+    "name" : "John Smith",
+    "date" : "01 Jan 2018",
+    "for_advice" : "012 345 6789",
+    "address" : "123 HIGH STREET LONDON, SW1A 1AA"
+}

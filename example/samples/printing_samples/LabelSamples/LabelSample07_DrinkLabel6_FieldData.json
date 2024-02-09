@@ -1,0 +1,37 @@
+{
+    "order_types" : "Delivery:",
+    "order_types_detail" : "Star Eats",
+    "order_number" : 8026,
+    "number" : "*****7A9CE",
+    "time" : "9:29:11 AM",
+    "product_name" : "Star Cappuccino",
+    "item_list" : [
+        {
+            "detail" : "ButrPecn Swrl"
+        },
+        {
+            "detail" : "Caramel Swrl"
+        },
+        {
+            "detail" : "FrenchVanilla Swrl"
+        },
+        {
+            "detail" : "Vanilla Shot"
+        },
+        {
+            "detail" : "Hazelnut Shot"
+        },
+        {
+            "detail" : "Toastd Almond Shot"
+        },
+        {
+            "detail" : "Coconut Shot"
+        },
+        {
+            "detail" : "Liquid Cane Sugar"
+        },
+        {
+            "detail" : "Milk"
+        }
+    ]
+}

@@ -1,0 +1,61 @@
+{
+    "address" : "123 Star Road, City,\nState 12345",
+    "telephone_number" : "012-345-67890",
+    "datetime" : "01/24/2023 12:43 PM",
+    "staff_name" : "John Smith",
+    "rfn" : "0913-8279-2597-0104-2420",
+    "item_list1" : [
+        {
+            "name" : "STAR RAZOR",
+            "product_number" : "1111111111",
+            "tax_mark" : "A",
+            "price" : 13.49,
+            "remarks" : "",
+            "detail1" : "    RETURN VALUE 10.11\n"
+        },
+        {
+            "name" : "STAR RAZOR",
+            "product_number" : "1111111111",
+            "tax_mark" : "A",
+            "price" : 13.49,
+            "remarks" : "",
+            "detail1" : "    RETURN VALUE 10.11\n",
+            "detail2" : "    MYSTAR SAVINGS 6.75\n",
+            "detail3" : "    RETURN VALUE 10.12\n"
+        }
+    ],
+    "item_list2" : [
+        {
+            "name" : "STAR DIAPER",
+            "product_number" : "2222222222",
+            "tax_mark" : "A",
+            "price" : 6.49,
+            "remarks" : "SALE",
+            "detail1" : "    REGULAR PRICE 12.99 or 2/20.00\n",
+            "detail2" : "    SAVINGS 6.50\n",
+            "detail3" : "    RETURN VALUE 6.49\n"
+        },
+        {
+            "name" : "STAR WHITENING 4.80Z",
+            "product_number" : "3333333333",
+            "tax_mark" : "A",
+            "price" : 5.98,
+            "remarks" : "SALE",
+            "detail1" : "    2 @ 2.99\n",
+            "detail2" : "    REGULAR PRICE 3.79\n",
+            "detail3" : "    MYSTAR SAVINGS 1.60\n",
+            "detail4" : "    RETURN VALUE 2.99 ea\n"
+        }
+    ],
+    "subtotal" : 21.7,
+    "sales_tax" : 2.21,
+    "total_price" : 23.91,
+    "payment_method" : "CASH",
+    "payment_amount" : 23.91,
+    "change" : 0,
+    "my_serving" : 6.87,
+    "mfg_serving" : 15.0,
+    "barcode" : "0123456789012345678901234567890123456789",
+    "note" : "REDEEM $50 STAR CASH REWARDS ON YOUR NEXT PURCHASE! STAR CASH REWARDS CANNOT BE REDEEMED ON SOME ITEMS. FOR FULL DETAILS SEE MYSTAR.COM",
+    "rfn" : "1171-3217-8279-2101-2403"
+}

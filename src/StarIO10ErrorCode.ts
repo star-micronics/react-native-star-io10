@@ -13,5 +13,6 @@ export enum StarIO10ErrorCode {
     JsonFormatError = 5000,
     StarConfigurationFormatError = 6000,
     StarConfigurationParameterError = 6001,
-    StarConfigurationSpecifiedFileError = 6002
+    StarConfigurationSpecifiedFileError = 6002,
+    InvalidTemplate = 7000
 }

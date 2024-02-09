@@ -6,7 +6,8 @@
 
 * [印刷](../samples/printing/App.tsx) - プリンターで印刷
 * [印刷（スプーラー）](../samples/printing_spooler/App.tsx) - プリンターのスプーラー機能を利用して印刷
-* [印刷データのサンプル](../samples/printing_samples/PrintingSamples.md) - 各業態のラベル用印刷サンプル（サンプルコードと印刷結果画像）
+* [テンプレート印刷](../samples/template_print/App.tsx) - テンプレート印刷機能を利用して印刷
+* [印刷データのサンプル](../samples/printing_samples/README.md) - 各業態のレシートやラベル用印刷サンプル（サンプルコードと印刷結果画像）
 * [検索](../samples/discovery/App.tsx) - デバイスの検索
 * [ステータス](../samples/status/App.tsx) - デバイスのステータスを取得
 * [監視](../samples/monitor/App.tsx) - デバイスを監視

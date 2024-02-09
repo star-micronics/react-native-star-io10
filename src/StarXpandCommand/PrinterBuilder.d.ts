@@ -1,8 +1,10 @@
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
 import { StarXpandCommand } from '../../index';
 export declare class PrinterBuilder extends BaseStarXpandCommandBuilder {
+    _parameter: StarXpandCommand.Printer.PrinterParameter | undefined;
     _parameters: Map<string, any>;
     constructor();
+    constructor(parameter: StarXpandCommand.Printer.PrinterParameter | undefined);
     styleAlignment(alignment: StarXpandCommand.Printer.Alignment): PrinterBuilder;
     styleFont(type: StarXpandCommand.Printer.FontType): PrinterBuilder;
     styleBold(enable: boolean): PrinterBuilder;
@@ -17,10 +19,11 @@ export declare class PrinterBuilder extends BaseStarXpandCommandBuilder {
     styleInternationalCharacter(type: StarXpandCommand.Printer.InternationalCharacterType): PrinterBuilder;
     styleSecondPriorityCharacterEncoding(type: StarXpandCommand.Printer.CharacterEncodingType): PrinterBuilder;
     styleCjkCharacterPriority(types: Array<StarXpandCommand.Printer.CjkCharacterType>): PrinterBuilder;
+    styleAmbiguousCharacterWidthType(type: StarXpandCommand.Printer.AmbiguousCharacterWidthType): PrinterBuilder;
     actionCut(type: StarXpandCommand.Printer.CutType): PrinterBuilder;
     actionFeed(height: number): PrinterBuilder;
     actionFeedLine(lines: number): PrinterBuilder;
-    actionPrintText(content: string): PrinterBuilder;
+    actionPrintText(content: string, parameter?: StarXpandCommand.Printer.TextParameter | undefined): PrinterBuilder;
     actionPrintLogo(parameter: StarXpandCommand.Printer.LogoParameter): PrinterBuilder;
     actionPrintBarcode(parameter: StarXpandCommand.Printer.BarcodeParameter): PrinterBuilder;
     actionPrintPdf417(parameter: StarXpandCommand.Printer.Pdf417Parameter): PrinterBuilder;

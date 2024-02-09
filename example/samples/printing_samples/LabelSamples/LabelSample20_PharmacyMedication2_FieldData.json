@@ -1,0 +1,56 @@
+{
+    "patient_name" : "シズオカ タロウ",
+    "prescription_date" : "2018年01月10日",
+    "dispensing_date" : "2018年01月11日",
+    "hospital_name" : "ＳＴＡＲ総合病院",
+    "item_list1" : [
+        {
+            "name" : "スター錠",
+            "take_the_medicine" : "(1日)",
+            "dosage" : "3錠"
+        },
+        {
+            "name" : "ＡＢＣ２５０ｍｇ",
+            "take_the_medicine" : "(1日)",
+            "dosage" : "3Ｃ"
+        },
+        {
+            "name" : "スター散",
+            "take_the_medicine" : "(1日)",
+            "dosage" : "3ｇ"
+        },
+        {
+            "name" : "いろは錠",
+            "take_the_medicine" : "(1日)",
+            "dosage" : "1錠"
+        },
+        {
+            "name" : "スター顆粒",
+            "take_the_medicine" : "(1日)",
+            "dosage" : "1ｇ"
+        },
+        {
+            "name" : "あいう錠",
+            "take_the_medicine" : "(1日)",
+            "dosage" : "3Ｔ"
+        }
+    ],
+    "item_list2" : [
+        {
+            "name" : "Ｂ頭痛薬",
+            "take_the_medicine" : "(1日)",
+            "dosage" : "0.5Ｔ",
+            "note" : "　頭痛時にお飲みください。　　　　5回分"
+        }
+    ],
+    "item_list3" : [
+        {
+            "name" : "Ｉうがい薬",
+            "take_the_medicine" : "",
+            "dosage" : "",
+            "note" : "　　　　　　　　　　　　　　　　　1回分"
+        }
+    ],
+    "store_name" : "ラベル.STAR薬局",
+    "telephone_number" : "0123-456-789"
+}

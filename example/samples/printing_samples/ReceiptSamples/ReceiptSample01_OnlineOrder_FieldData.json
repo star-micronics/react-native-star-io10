@@ -1,0 +1,23 @@
+{
+    "store_name" : "Star Online",
+    "order_number" : "878289422",
+    "name" : "John Smith",
+    "date" : "October 6, 2020",
+    "time" : "9:46:32 AM",
+    "pickup_time" : "10:00 AM",
+    "item_list" : [
+        {
+            "name" : "Chai",
+            "quantity" : 1,
+            "detail" : "    16 oz\n    Whole\n"
+        },
+        {
+            "name" : "Tea",
+            "quantity" : 1,
+            "detail" : "    Star Tea(Black)\n    Tee Bag in Beverage\n    Whole\n"
+        }
+    ],
+    "note" : "Any black tea is fine if there's no Star tea. Thanks!",
+    "footer1" : "LxO8",
+    "footer2" : "Inman Register 2"
+}

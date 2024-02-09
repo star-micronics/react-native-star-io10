@@ -1,0 +1,19 @@
+{
+    "time" : "19:30",
+    "staff_name" : "静岡太郎",
+    "classification" : "新",
+    "table_number" : "A-2",
+    "visitors" : 4,
+    "item_list" : [
+        {
+            "name" : "生ビール",
+            "quantity" : "4"
+        },
+        {
+            "name" : "(中ジョッキ)"
+        },
+        {
+            "name" : "お急ぎ"
+        }
+    ]
+}

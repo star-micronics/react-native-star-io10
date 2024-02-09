@@ -1,0 +1,10 @@
+{
+    "name" : "ロールケーキ",
+    "classification" : "洋菓子",
+    "ingredients" : "卵、砂糖、小麦粉、ショートニング、油脂、ベーキングパウダー",
+    "contents" : "1個",
+    "expiry_date" : "2010年01月31日",
+    "preservation_method" : "直射日光・高温多湿を避けて、保存してください。",
+    "manufacturer" : "スターショップ\nXXX県XXX市XXX町123-1\nTEL 1234-567-890",
+    "sku" : "0123456789012"
+}

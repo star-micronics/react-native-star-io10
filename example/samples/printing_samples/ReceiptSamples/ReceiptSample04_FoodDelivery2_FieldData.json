@@ -1,0 +1,45 @@
+{
+    "store_name" : "Star Delivery",
+    "order_number" : "4053D",
+    "customer_name" : "John Smith",
+    "placed_at" : "30 June 2023 6:46 PM",
+    "due_at" : "30 June 2023 7:16 PM",
+    "order_types" : "DELIVERY",
+    "disposable_items" : "No",
+    "item_list" : [
+        {
+            "name" : "Nugget Kid",
+            "quantity" : 1,
+            "price" : 15.0
+        },
+        {
+            "name" : "Nugget Kid",
+            "quantity" : 1,
+            "price" : 15.0
+        },
+        {
+            "name" : "Salmon Avocado Mini Roll",
+            "quantity" : 2,
+            "price" : 13.60
+        },
+        {
+            "name" : "Salmon Teriyaki",
+            "quantity" : 1,
+            "price" : 38.0,
+            "detail1" : "  DIETARY SUBSTITUTION\n",
+            "detail2" : "    1x Gluten Free                            --\n",
+            "detail3" : "  CHOICE OF ADD ONS\n",
+            "detail4" : "    1x Rice                                $4.00\n"
+        },
+        {
+            "name" : "Wagyu Beef BBQ",
+            "quantity" : 1,
+            "price" : 44.0,
+            "detail1" : "  CHOICE OF ADD ONS\n",
+            "detail2" : "    1x Rice                                $4.00\n"
+        }
+    ],
+    "subtotal" : 133.6,
+    "total" : 133.6,
+    "note" : "Thank you for ordering from StarMicronics"
+}

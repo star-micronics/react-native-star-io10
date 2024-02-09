@@ -1,0 +1,37 @@
+{
+    "store_name" : "Starカフェ 丸の内店",
+    "address" : "東京都千代田区\n○○１丁目２－３",
+    "telephone_number" : "01-2345-6789",
+    "registration_number" : "T1234567890123",
+    "datetime" : "2022/01/01 12:34:56",
+    "register_number" : 1,
+    "staff_number" : 2,
+    "number_of_people" : 1,
+    "voucher_name" : "伝票00010001",
+    "transaction_number" : "000120160510111212345",
+    "item_list" : [
+        {
+            "name" : "ランチセットＡ",
+            "unit_price" : 1100,
+            "number_of_items" : 1,
+            "price" : 1100
+        },
+        {
+            "name" : "アイスコーヒー",
+            "unit_price" : 400,
+            "number_of_items" : 1,
+            "price" : 400
+        }
+    ],
+    "total_number_of_items" : 2,
+    "subtotal_price" : 1500,
+    "total_price" : 1500,
+    "total_tax" : 136,
+    "tax_rate_10_target" : 1500,
+    "tax_rate_10_tax" : 136,
+    "payment_method" : "現金",
+    "payment_amount" : 2000,
+    "deposit_amount" : 2000,
+    "change_amount" : 500,
+    "note" : "パート・アルバイト募集中！\nお気軽にお尋ねください。"
+}

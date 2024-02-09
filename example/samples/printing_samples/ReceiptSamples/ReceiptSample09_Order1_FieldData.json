@@ -1,0 +1,36 @@
+{
+    "header" : "C8",
+    "title" : "29",
+    "number" : 1,
+    "datetime" : "05/12/2022 09:48 AM",
+    "store_name" : "StarShop",
+    "order_number" : "152379515",
+    "customer_name" : "John Smith",
+    "item_list" : [
+        {
+            "quantity" : "1",
+            "name" : "Cobb Salad",
+            "cost" : "0"
+        },
+        {
+            "quantity" : "1",
+            "name" : "Pizza",
+            "cost" : "0"
+        },
+        {
+            "quantity" : "-1",
+            "name" : "Cornish Game Hen",
+            "cost" : "0"
+        },
+        {
+            "quantity" : "",
+            "name" : "*Extra toppings: El Atomico",
+            "cost" : ""
+        },
+        {
+            "quantity" : "1",
+            "name" : "Big Salad",
+            "cost" : "0"
+        }
+    ]
+}

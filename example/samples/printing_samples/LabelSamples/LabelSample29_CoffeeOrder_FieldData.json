@@ -1,0 +1,16 @@
+{
+    "store_name" : "STAR COFFEE",
+    "decaf" : "",
+    "shots" : "2",
+    "size" : "L",
+    "milk" : "N",
+    "syrup" : "C",
+    "custom" : "WC",
+    "drink" : "HC",
+    "iced" : "",
+    "customer_name" : "John Smith",
+    "item_number" : 1,
+    "total_items" : 2,
+    "order_number" : "SB038r1-0459138",
+    "time" : "6:25 PM"
+}

@@ -244,6 +244,7 @@ RCT_REMAP_METHOD(printRawData,
 RCT_REMAP_METHOD(print,
                  printWithObjectIdentifier:(nonnull NSString *)objID
                  code:(nonnull NSString *)code
+                 template:(nullable NSString *)template
                  printTimeout:(nonnull NSNumber *)printTimeout
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
@@ -255,6 +256,7 @@ RCT_REMAP_METHOD(print,
         return;
     }
     
+    printer.template = template;
     printer.printTimeout = printTimeout.integerValue;
 
     [printer printWithCommand:code completion:^(NSError *error) {
@@ -270,6 +272,7 @@ RCT_REMAP_METHOD(print,
 RCT_REMAP_METHOD(spoolPrint,
                  spoolPrintWithObjectIdentifier:(nonnull NSString *)objID
                  code:(nonnull NSString *)code
+                 template:(nullable NSString *)template
                  isRetryEnabled:(BOOL)isRetryEnabled
                  retryTimeout:(nonnull NSNumber *)retryTimeout
                  note:(NSString *)note
@@ -284,6 +287,7 @@ RCT_REMAP_METHOD(spoolPrint,
         return;
     }
     
+    printer.template = template;
     printer.printTimeout = printTimeout.integerValue;
 
     STARIO10StarSpoolJobSettings *jobSettings = [[STARIO10StarSpoolJobSettings alloc] initWithIsRetryEnabled:isRetryEnabled

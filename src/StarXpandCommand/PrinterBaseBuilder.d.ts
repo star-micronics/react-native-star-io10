@@ -1,5 +1,7 @@
 import { StarXpandCommand } from '../../index';
 export declare class PrinterBaseBuilder {
+    static addPrinterParameter(parameters: Map<string, any>, printerParameter: StarXpandCommand.Printer.PrinterParameter): void;
+    static addPageModeParameter(parameters: Map<string, any>, pageModeParameter: StarXpandCommand.Printer.PageModeParameter): void;
     static styleAlignment(parameters: Map<string, any>, position: StarXpandCommand.Printer.Alignment): void;
     static styleFont(parameters: Map<string, any>, type: StarXpandCommand.Printer.FontType): void;
     static styleBold(parameters: Map<string, any>, enable: boolean): void;
@@ -17,10 +19,11 @@ export declare class PrinterBaseBuilder {
     static styleSecondPriorityCharacterEncoding(parameters: Map<string, any>, type: StarXpandCommand.Printer.CharacterEncodingType): void;
     static styleCjkCharacterPriority(parameters: Map<string, any>, types: Array<StarXpandCommand.Printer.CjkCharacterType>): void;
     static stylePrintDirection(parameters: Map<string, any>, PageModePrintDirection: StarXpandCommand.Printer.PageModePrintDirection): void;
+    static styleAmbiguousCharacterWidthType(parameters: Map<string, any>, type: StarXpandCommand.Printer.AmbiguousCharacterWidthType): void;
     static actionCut(parameters: Map<string, any>, type: StarXpandCommand.Printer.CutType): void;
     static actionFeed(parameters: Map<string, any>, height: number): void;
     static actionFeedLine(parameters: Map<string, any>, lines: number): void;
-    static actionPrintText(parameters: Map<string, any>, content: string): void;
+    static actionPrintText(parameters: Map<string, any>, content: string, parameter: StarXpandCommand.Printer.TextParameter | undefined): void;
     static actionPrintLogo(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.LogoParameter): void;
     static actionPrintBarcode(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.BarcodeParameter): void;
     static actionPrintPdf417(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.Pdf417Parameter): void;

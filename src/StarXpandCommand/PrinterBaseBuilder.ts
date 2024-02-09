@@ -3,6 +3,37 @@ import { StarXpandCommandParameterConverter } from './StarXpandCommandParameterC
 
 export class PrinterBaseBuilder {
 
+    static addPrinterParameter(parameters: Map<string, any>, printerParameter: StarXpandCommand.Printer.PrinterParameter) {
+        let parameter = parameters.get("parameters")as Array<Map<string, any>>;
+
+        if (printerParameter.templateExtension !== undefined) {
+            parameter.push(
+                new Map<string, any>([
+                    ["method", "Setting.TemplateExtension"],
+                    ["parameter", new Map([
+                        ["enableArrayFieldData", printerParameter.templateExtension.enableArrayFieldData]
+                    ])]
+                ])
+            );
+        }
+    }
+
+    static addPageModeParameter(parameters: Map<string, any>, pageModeParameter: StarXpandCommand.Printer.PageModeParameter) {
+        let parameter = parameters.get("parameters")as Array<Map<string, any>>;
+
+        if (pageModeParameter.templateExtension !== undefined) {
+            parameter.push(
+                new Map<string, any>([
+                    ["method", "Setting.TemplateExtension"],
+                    ["parameter", new Map([
+                        ["enableArrayFieldData", pageModeParameter.templateExtension.enableArrayFieldData]
+                    ])]
+                ])
+            );
+        }
+    }
+
+
     static styleAlignment(parameters: Map<string, any>, position: StarXpandCommand.Printer.Alignment) {
         let contents = parameters.get("contents") as Array<Map<string, any>>;
 
@@ -225,6 +256,19 @@ export class PrinterBaseBuilder {
         );
     }
 
+    static styleAmbiguousCharacterWidthType(parameters: Map<string, any>, type: StarXpandCommand.Printer.AmbiguousCharacterWidthType) {
+        let contents = parameters.get("contents") as Array<Map<string, any>>;
+
+        contents.push(
+            new Map<string, any>([
+                ["method", "Style.AmbiguousCharacterWidthType"],
+                ["parameter", new Map<string, any>([
+                    ["type", StarXpandCommandParameterConverter.convertAmbiguousCharacterWidthType(type)]
+                ])]
+            ])
+        );
+    }
+
     static actionCut(parameters: Map<string, any>, type: StarXpandCommand.Printer.CutType) {
         let contents = parameters.get("contents") as Array<Map<string, any>>;
 
@@ -264,15 +308,28 @@ export class PrinterBaseBuilder {
         )
     }
 
-    static actionPrintText(parameters: Map<string, any>, content: string) {
+    static actionPrintText(parameters: Map<string, any>, content: string, parameter: StarXpandCommand.Printer.TextParameter | undefined) {
         let contents = parameters.get("contents") as Array<Map<string, any>>;
+
+        let parameterMap = new Map<string, any>([
+            ["content", StarXpandCommandParameterConverter.convertString(content)]
+        ]);
+
+        if (parameter?.width !== undefined) {
+            parameterMap.set("width", parameter?.width);
+
+            let widthParameter = parameter.widthParameter ?? new StarXpandCommand.Printer.TextWidthParameter()
+
+            parameterMap.set("widthType", StarXpandCommandParameterConverter.convertTextWidthType(widthParameter.widthType));
+            parameterMap.set("alignment", StarXpandCommandParameterConverter.convertTextAlignment(widthParameter.alignment));
+            parameterMap.set("ellipsizeType", StarXpandCommandParameterConverter.convertTextEllipsizeType(widthParameter.ellipsizeType));
+            parameterMap.set("printType", StarXpandCommandParameterConverter.convertTextPrintType(widthParameter.printType));
+        }
 
         contents.push(
             new Map<string, any>([
                 ["method", "Action.Print.Text"],
-                ["parameter", new Map([
-                    ["content", StarXpandCommandParameterConverter.convertString(content)]
-                ])]
+                ["parameter", parameterMap]
             ])
         );
     }
@@ -359,7 +416,7 @@ export class PrinterBaseBuilder {
     }
     
     static stylePageModeArea(parameters: any, PageModeRectangleParameter: StarXpandCommand.Printer.PageModeAreaParameter) {
-        let pageModeContents = parameters.get("contents") as Array<Map<string, any>>;
+        let pageModeContents = parameters.get("parameters") as Array<Map<string, any>>;
 
         pageModeContents.unshift(
             new Map<string, any>([
