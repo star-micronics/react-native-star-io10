@@ -35,11 +35,7 @@ npm install react-native-star-io10 --save
 ```
 
 ### iOS
-#### Privacy manifest file
-In accordance with Apple's guidelines, `react-native-star-io10` V1.6.0 or later includes a privacy manifest file. Please see [here](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files) for the Manifest file.
-However, `react-native-star-io10` does not use the Required Reason API from the first release. (As of January 29, 2024)
-
-#### Some settings and approvals are required depending on the printer interface
+Some settings and approvals are required depending on the printer interface.  
 Please check the table below and take action.
 
 | Interface of the printer  | Necessary actions                                                                       |
@@ -50,7 +46,7 @@ Please check the table below and take action.
 | Lightning USB             | [1.](#SupportedEAProtocols) & [4.](#MFi)                                            |
 
 <a id="SupportedEAProtocols"></a>
-##### 1. Set `Supported external accessory protocols` 
+#### 1. Set `Supported external accessory protocols` 
 
 1. Click on the information property list file (default : “Info.plist”).
 2. Add the `Supported external accessory protocols` Key.
@@ -59,7 +55,7 @@ Please check the table below and take action.
 > :warning: If you do not use the printer concerned, do not configure this setting.
 
 <a id="BluetoothAlwaysUsageDescription"></a>
-##### 2. Set `Bluetooth Always Usage Description` and `Bluetooth Peripheral Usage Description`
+#### 2. Set `Bluetooth Always Usage Description` and `Bluetooth Peripheral Usage Description`
 
 1. Click on the information property list file (default : “Info.plist”).
 2. Add the `Privacy – Bluetooth Always Usage Description` Key.
@@ -72,7 +68,7 @@ For more information, please refer to the following URL.
 https://developer.apple.com/documentation/bundleresources/information_property_list/nsbluetoothperipheralusagedescription
 
 <a id="LocalNetworkUsageDescription"></a>
-##### 3. Set `Local Network Usage Description`
+#### 3. Set `Local Network Usage Description`
 
 1. Click on the information property list file (default : “Info.plist”).
 2. Add the `Privacy - Local Network Usage Description` Key.
@@ -80,7 +76,7 @@ https://developer.apple.com/documentation/bundleresources/information_property_l
 4. When communicating with the Ethernet printer on iOS 14 or later, an alert requesting permission to access Local Network is displayed. The string set in Value is displayed in the alert as the reason for using Local Network.
 
 <a id="MFi"></a>
-##### 4. Apple Approval Process for STAR MFi Applications
+#### 4. Apple Approval Process for STAR MFi Applications
 
 In order to offer your application that communicates a MFi certified printer on the Apple iTunes App Store, your application needs to be approved by the Apple MFi program before you submit it to the Apple iTunes App Store. Please follow the steps described in the URL below to obtain the app approval. This procedure must be completed before the app is reviewed by Apple.
 
@@ -89,81 +85,8 @@ https://star-m.jp/eng/products/s_print/apple_app_mfi.html
 > :warning: In case of a Bluetooth Low Energy printer, you do not need to obtain this app approval.
 
 ### Android
-#### 1. Add settings for library dependencies
-
-Add the following configuration to the build.gradle of the app module of the app you wish to embed, which refers to the local Maven repository.
-
-```gradle
-allprojects {
-    repositories {
-        flatDir {
-            dirs "$rootDir/../node_modules/react-native-star-io10/android/src/lib"
-        }
-    }
-}
-```
-
-#### 2. When using a Bluetooth printer 
 
 Refer to [sample code](example/samples) and request BLUETOOTH_CONNECT permission before starting to communicate with or search for the printer.
-
-#### 3. To prevent the connection permission dialog from being displayed every time the USB cable is plugged in or unplugged
-
-When communicating with a USB printer, a dialog box will appear asking for connection permission. This permission is reset when the USB cable is plugged in or unplugged (including when the printer is turned on or off).
-
-If you do not want to display the connection permission dialog every time the USB cable is plugged in or unplugged, configure the following settings. This setting will also allow the application to start automatically when the USB cable is plugged.
-
-##### 2.1. Add settings to AndroidManifest.xml
-Add the following `<intent-filter>` and `<meta-data>` elements to AndroidManifest.xml.
-
-```xml
-<intent-filter>
-    <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" />
-    <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
-</intent-filter>
-
-<meta-data android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED" android:resource="@xml/device_filter" />
-<meta-data android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" android:resource="@xml/accessory_filter" />
-```
-
-##### 2.2. Add a resource file
-Store the following resource files under `res/xml` with the names `device_filter.xml` and `accessory_filter.xml`.
-
-- device_filter.xml
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <usb-device class="255" subclass="66" protocol="1" />
-
-    <usb-device vendor-id="1305" product-id="0003" />   <!--TSP100IIU+/IIIU/IV/IV SK-->
-    <usb-device vendor-id="1305" product-id="0071" />   <!--mC-Print3-->
-    <usb-device vendor-id="1305" product-id="0073" />   <!--mC-Print2-->
-    <usb-device vendor-id="1305" product-id="0025" />   <!--mC-Label3-->
-    <usb-device vendor-id="1305" product-id="0023" />   <!--mPOP-->
-    <usb-device vendor-id="1305" product-id="0001" />   <!--TSP650II/TSP650II SK/TSP700II/TSP800II/SP700/TUP500-->
-    <usb-device vendor-id="1305" product-id="0011" />   <!--BSC10-->
-    <usb-device vendor-id="1305" product-id="0015" />   <!--TSP043-->
-    <usb-device vendor-id="1305" product-id="0017" />   <!--BSC10BR-->
-    <usb-device vendor-id="1305" product-id="0075" />   <!--SK1-211/221/V211-->
-    <usb-device vendor-id="1305" product-id="0077" />   <!--SK1-311/321/V311-->
-    <usb-device vendor-id="1305" product-id="0067" />   <!--SM-S230i-->
-
-</resources>
-```
-
-- accessory_filter.xml
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <usb-accessory model="Star TSP143IV-UE" manufacturer="STAR"/>
-    <usb-accessory model="Star TSP143IV-UE SK" manufacturer="STAR"/>
-    <usb-accessory model="mC-Print3" manufacturer="Star Micronics"/>
-    <usb-accessory model="mC-Label3" manufacturer="Star Micronics"/>
-    <usb-accessory model="mPOP" manufacturer="Star Micronics"/>
-</resources>
-```
 
 ### Windows
 
@@ -191,22 +114,20 @@ StarXpand SDK includes an [example](example) application that can be used in com
 
 #### 2. [Create printing data](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/basic-step1.html)
 
-The sample code and printed result images are also [available here](example/samples/printing_samples/README.md).
+The sample code and printed result images are also [available here](example/samples/printing_samples/PrintingSamples.md).
 
-- Sample to create print layouts for receipts and labels for each type of business
+- Sample to create print layouts for labels for each type of business
 - Sample to generate receipt images from text data (iOS/Android)
 
 > :warning: Some printer models may not be able to print some samples. Please adjust the layout accordingly when using this samples.
 
-#### 3. [Create printing data using template printing function](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/template-step1.html)
+#### 3. [Send printing data](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/basic-step2.html)
 
-#### 4. [Send printing data](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/basic-step2.html)
+#### 4. [Send printing data using spooler function](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/spooler.html)
 
-#### 5. [Send printing data using spooler function](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/spooler.html)
+#### 5. [Get printer status](#GetPrinterStatus)
 
-#### 6. [Get printer status](#GetPrinterStatus)
-
-#### 7. [Monitor printer](#MonitorPrinter)
+#### 6. [Monitor printer](#MonitorPrinter)
 
 <a id="GetPrinterStatus"></a>
 ### Get printer status

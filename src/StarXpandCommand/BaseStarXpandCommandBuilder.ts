@@ -1,3 +1,5 @@
+import { NativeObject } from '../NativeObject';
+
 export abstract class BaseStarXpandCommandBuilder {
     protected _actions: Array<() => Promise<void>> = [];
     protected _children: Array<BaseStarXpandCommandBuilder> = [];

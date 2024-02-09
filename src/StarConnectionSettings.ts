@@ -7,5 +7,5 @@ export class StarConnectionSettings {
 
     identifier: string = StarConnectionSettings.FIRST_FOUND_DEVICE;
 
-    autoSwitchInterface: boolean = true;
+    autoSwitchInterface: boolean = false;
 }

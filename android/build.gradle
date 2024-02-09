@@ -27,13 +27,13 @@ def getExtOrIntegerDefault(name) {
 }
 
 android {
-    compileSdk getExtOrIntegerDefault('compileSdkVersion')
+    compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
     buildToolsVersion getExtOrDefault('buildToolsVersion')
     defaultConfig {
         minSdkVersion 28
         targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
         versionCode 1
-        versionName "1.6.0"
+        versionName "1.5.0"
     }
 
     buildTypes {
@@ -53,10 +53,6 @@ android {
 repositories {
     mavenCentral()
     google()
-
-    flatDir {
-        dirs "$rootDir/../node_modules/react-native-star-io10/android/src/lib"
-    }
 
     def found = false
     def defaultDir = null
@@ -130,7 +126,7 @@ dependencies {
     // noinspection GradleDynamicVersion
     api 'com.facebook.react:react-native:+'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation (name: 'stario10', ext: 'aar')
+    implementation files('src/lib/stario10.aar')
     def coroutines_version = '1.6.4' // Version of the library for Kotlin coroutines (async, await)
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version" // Library for Kotlin coroutines (async, await)
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"

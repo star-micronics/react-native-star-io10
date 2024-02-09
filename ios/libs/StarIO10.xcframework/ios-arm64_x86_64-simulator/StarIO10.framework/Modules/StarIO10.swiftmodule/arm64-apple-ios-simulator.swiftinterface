@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
+// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
 // swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name StarIO10
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 import CoreBluetooth
@@ -13,7 +13,6 @@ import Swift
 import UIKit
 import _Concurrency
 import _StringProcessing
-import _SwiftConcurrencyShims
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objcMembers @objc(STARIO10StarSpoolJobStatus) public class StarSpoolJobStatus : ObjectiveC.NSObject {
   @objc override dynamic public var description: Swift.String {
     @objc get
@@ -48,17 +47,17 @@ import _SwiftConcurrencyShims
   @objc deinit
 }
 extension StarIO10.StarPrinter {
-  @objc dynamic public func open(completion: @escaping ((any Swift.Error)?) -> Swift.Void)
+  @objc dynamic public func open(completion: @escaping (Swift.Error?) -> Swift.Void)
   @objc dynamic public func close(completion: @escaping () -> Swift.Void)
-  @objc dynamic public func print(raw: Foundation.Data, completion: @escaping ((any Swift.Error)?) -> Swift.Void)
-  @objc dynamic public func print(command: Swift.String, completion: @escaping ((any Swift.Error)?) -> Swift.Void)
-  public func print(command: Swift.String, starSpoolJobSettings: StarIO10.StarSpoolJobSettings, completion: @escaping (Swift.Int?, (any Swift.Error)?) -> Swift.Void)
-  @objc dynamic public func getStatus(completion: @escaping (StarIO10.StarPrinterStatus?, (any Swift.Error)?) -> Swift.Void)
-  @objc dynamic public func getSpoolJobStatus(jobId: Swift.Int, completion: @escaping (StarIO10.StarSpoolJobStatus?, (any Swift.Error)?) -> Swift.Void)
-  @objc dynamic public func getSpoolJobStatusList(size: Swift.Int, completion: @escaping ([StarIO10.StarSpoolJobStatus]?, (any Swift.Error)?) -> Swift.Void)
-  public func setStarConfiguration(starConfiguration: Swift.String, completion: @escaping (StarIO10.StarConfigurationSetResult?, (any Swift.Error)?) -> Swift.Void)
-  @objc dynamic public func getStarConfiguration(password: Swift.String? = nil, completion: @escaping (Swift.String?, (any Swift.Error)?) -> Swift.Void)
-  @objc dynamic public func getDefaultStarConfiguration(completion: @escaping (Swift.String?, (any Swift.Error)?) -> Swift.Void)
+  @objc dynamic public func print(raw: Foundation.Data, completion: @escaping (Swift.Error?) -> Swift.Void)
+  @objc dynamic public func print(command: Swift.String, completion: @escaping (Swift.Error?) -> Swift.Void)
+  public func print(command: Swift.String, starSpoolJobSettings: StarIO10.StarSpoolJobSettings, completion: @escaping (Swift.Int?, Swift.Error?) -> Swift.Void)
+  @objc dynamic public func getStatus(completion: @escaping (StarIO10.StarPrinterStatus?, Swift.Error?) -> Swift.Void)
+  @objc dynamic public func getSpoolJobStatus(jobId: Swift.Int, completion: @escaping (StarIO10.StarSpoolJobStatus?, Swift.Error?) -> Swift.Void)
+  @objc dynamic public func getSpoolJobStatusList(size: Swift.Int, completion: @escaping ([StarIO10.StarSpoolJobStatus]?, Swift.Error?) -> Swift.Void)
+  public func setStarConfiguration(starConfiguration: Swift.String, completion: @escaping (StarIO10.StarConfigurationSetResult?, Swift.Error?) -> Swift.Void)
+  @objc dynamic public func getStarConfiguration(password: Swift.String? = nil, completion: @escaping (Swift.String?, Swift.Error?) -> Swift.Void)
+  @objc dynamic public func getDefaultStarConfiguration(completion: @escaping (Swift.String?, Swift.Error?) -> Swift.Void)
 }
 @objc(STARIO10StarPrinterEmulation) public enum StarPrinterEmulation : Swift.Int, Swift.CustomStringConvertible {
   case unknown
@@ -131,28 +130,6 @@ extension StarIO10.StarXpandCommand {
   @objc var nullableCleaningNotification: StarIO10.NullableBool? { get }
   @objc var nullableDetectedPaperWidth: StarIO10.NullableInt? { get }
 }
-extension StarIO10.StarXpandCommand.Printer {
-  @objc(STARIO10StarXpandCommandPrinterTextAlignment) public enum TextAlignment : Swift.Int {
-    case left
-    case center
-    case right
-    public init?(rawValue: Swift.Int)
-    public typealias RawValue = Swift.Int
-    public var rawValue: Swift.Int {
-      get
-    }
-  }
-}
-extension StarIO10.StarXpandCommand {
-  @_inheritsConvenienceInitializers @objcMembers @objc(STARIO10StarXpandCommandTemplateExtensionParameter) public class TemplateExtensionParameter : ObjectiveC.NSObject {
-    @objc public var enableArrayFieldData: Swift.Bool {
-      @objc get
-    }
-    @objc public func setEnableArrayFieldData(_ enableArrayFieldData: Swift.Bool) -> Self
-    @objc override dynamic public init()
-    @objc deinit
-  }
-}
 @objcMembers @objc(STARIO10StarSpoolJobSettings) public class StarSpoolJobSettings : ObjectiveC.NSObject {
   @objc override dynamic public var description: Swift.String {
     @objc get
@@ -210,7 +187,7 @@ extension StarIO10.StarXpandCommand.Bezel {
   }
 }
 @objc(STARIO10DisplayDelegate) public protocol DisplayDelegate {
-  @objc func display(printer: StarIO10.StarPrinter, communicationErrorDidOccur error: any Swift.Error)
+  @objc func display(printer: StarIO10.StarPrinter, communicationErrorDidOccur error: Swift.Error)
   @objc func displayDidConnect(printer: StarIO10.StarPrinter)
   @objc func displayDidDisconnect(printer: StarIO10.StarPrinter)
 }
@@ -223,28 +200,6 @@ extension StarIO10.StarXpandCommand.MelodySpeaker {
     }
     @objc public func setVolume(_ volume: Swift.Int) -> Self
     @objc public init(area: StarIO10.StarXpandCommand.MelodySpeaker.SoundStorageArea, number: Swift.Int)
-    @objc deinit
-  }
-}
-extension StarIO10.StarXpandCommand.Printer {
-  @_inheritsConvenienceInitializers @objcMembers @objc(STARIO10StarXpandCommandPrinterTextWidthParameter) public class TextWidthParameter : ObjectiveC.NSObject {
-    @objc public var widthType: StarIO10.StarXpandCommand.Printer.TextWidthType {
-      @objc get
-    }
-    @objc public func setWidthType(_ widthType: StarIO10.StarXpandCommand.Printer.TextWidthType) -> Self
-    @objc public var alignment: StarIO10.StarXpandCommand.Printer.TextAlignment {
-      @objc get
-    }
-    @objc public func setAlignment(_ alignment: StarIO10.StarXpandCommand.Printer.TextAlignment) -> Self
-    @objc public var ellipsizeType: StarIO10.StarXpandCommand.Printer.TextEllipsizeType {
-      @objc get
-    }
-    @objc public func setEllipsizeType(_ ellipsizeType: StarIO10.StarXpandCommand.Printer.TextEllipsizeType) -> Self
-    @objc public var printType: StarIO10.StarXpandCommand.Printer.TextPrintType {
-      @objc get
-    }
-    @objc public func setPrintType(_ printType: StarIO10.StarXpandCommand.Printer.TextPrintType) -> Self
-    @objc override dynamic public init()
     @objc deinit
   }
 }
@@ -274,7 +229,7 @@ extension StarIO10.StarXpandCommand.Bezel {
   }
 }
 @objc(STARIO10PrinterDelegate) public protocol PrinterDelegate {
-  @objc func printer(_ printer: StarIO10.StarPrinter, communicationErrorDidOccur error: any Swift.Error)
+  @objc func printer(_ printer: StarIO10.StarPrinter, communicationErrorDidOccur error: Swift.Error)
   @objc func printerIsReady(_ printer: StarIO10.StarPrinter)
   @objc func printerDidHaveError(_ printer: StarIO10.StarPrinter)
   @objc func printerIsPaperReady(_ printer: StarIO10.StarPrinter)
@@ -282,16 +237,6 @@ extension StarIO10.StarXpandCommand.Bezel {
   @objc func printerIsPaperEmpty(_ printer: StarIO10.StarPrinter)
   @objc func printerIsCoverOpen(_ printer: StarIO10.StarPrinter)
   @objc func printerIsCoverClose(_ printer: StarIO10.StarPrinter)
-}
-extension StarIO10.StarXpandCommand.Printer {
-  @_inheritsConvenienceInitializers @objcMembers @objc(STARIO10StarXpandCommandPrinterParameter) public class PrinterParameter : ObjectiveC.NSObject {
-    @objc public var templateExtension: StarIO10.StarXpandCommand.TemplateExtensionParameter? {
-      @objc get
-    }
-    @objc public func setTemplateExtension(_ templateExtension: StarIO10.StarXpandCommand.TemplateExtensionParameter) -> Self
-    @objc override dynamic public init()
-    @objc deinit
-  }
 }
 extension StarIO10.StarXpandCommand.Printer {
   @_inheritsConvenienceInitializers @objcMembers @objc(STARIO10StarXpandCommandPrinterBlackMarkParameter) public class BlackMarkParameter : ObjectiveC.NSObject {
@@ -383,7 +328,7 @@ extension CoreBluetooth.CBManagerState : Swift.CustomStringConvertible {
   @objc public var reserved: Swift.Dictionary<Swift.String, Any> {
     @objc get
   }
-  @objc public var detail: any StarIO10.StarPrinterStatusDetail {
+  @objc public var detail: StarIO10.StarPrinterStatusDetail {
     @objc get
   }
   @objc deinit
@@ -400,7 +345,7 @@ extension StarIO10.StarXpandCommand.Drawer {
   }
 }
 @objc(STARIO10StarDeviceDiscoveryManager) public protocol StarDeviceDiscoveryManager {
-  @objc weak var delegate: (any StarIO10.StarDeviceDiscoveryManagerDelegate)? { get set }
+  @objc weak var delegate: StarIO10.StarDeviceDiscoveryManagerDelegate? { get set }
   @objc var discoveryTime: Swift.Int { get set }
   @objc(startDiscoveryWithError:) func startDiscovery() throws
   @objc func stopDiscovery()
@@ -469,7 +414,7 @@ extension StarIO10.StarXpandCommand {
   }
 }
 @objc(STARIO10InputDeviceDelegate) public protocol InputDeviceDelegate {
-  @objc func inputDevice(printer: StarIO10.StarPrinter, communicationErrorDidOccur error: any Swift.Error)
+  @objc func inputDevice(printer: StarIO10.StarPrinter, communicationErrorDidOccur error: Swift.Error)
   @objc func inputDeviceDidConnect(printer: StarIO10.StarPrinter)
   @objc func inputDeviceDidDisconnect(printer: StarIO10.StarPrinter)
   @objc func inputDevice(printer: StarIO10.StarPrinter, didReceive data: Foundation.Data)
@@ -574,9 +519,9 @@ extension StarIO10.StarXpandCommand.Printer {
   }
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc(STARIO10StarDeviceDiscoveryManagerFactory) public class StarDeviceDiscoveryManagerFactory : ObjectiveC.NSObject {
-  public static func create(interfaceTypes: [StarIO10.InterfaceType]) throws -> any StarIO10.StarDeviceDiscoveryManager
+  public static func create(interfaceTypes: [StarIO10.InterfaceType]) throws -> StarIO10.StarDeviceDiscoveryManager
   @available(swift, obsoleted: 0.1)
-  @objc(createWithInterfaceTypes:error:) public static func create(interfaceTypes: [Swift.Int]) throws -> any StarIO10.StarDeviceDiscoveryManager
+  @objc(createWithInterfaceTypes:error:) public static func create(interfaceTypes: [Swift.Int]) throws -> StarIO10.StarDeviceDiscoveryManager
   @objc deinit
 }
 extension StarIO10.StarXpandCommand.Presenter {
@@ -591,16 +536,6 @@ extension StarIO10.StarXpandCommand.Presenter {
       @objc get
     }
     @objc public func setOffTime(_ offTime: Swift.Int) -> Self
-    @objc deinit
-  }
-}
-extension StarIO10.StarXpandCommand.Printer {
-  @_inheritsConvenienceInitializers @objcMembers @objc(STARIO10StarXpandCommandPageModeParameter) public class PageModeParameter : ObjectiveC.NSObject {
-    @objc public var templateExtension: StarIO10.StarXpandCommand.TemplateExtensionParameter? {
-      @objc get
-    }
-    @objc public func setTemplateExtension(_ templateExtension: StarIO10.StarXpandCommand.TemplateExtensionParameter) -> Self
-    @objc override dynamic public init()
     @objc deinit
   }
 }
@@ -623,19 +558,19 @@ extension StarIO10.StarXpandCommand.Printer {
   @objc public var connectionSettings: StarIO10.StarConnectionSettings {
     get
   }
-  @objc public var printerDelegate: (any StarIO10.PrinterDelegate)? {
+  @objc public var printerDelegate: StarIO10.PrinterDelegate? {
     @objc get
     @objc set(value)
   }
-  @objc public var drawerDelegate: (any StarIO10.DrawerDelegate)? {
+  @objc public var drawerDelegate: StarIO10.DrawerDelegate? {
     @objc get
     @objc set(value)
   }
-  @objc public var inputDeviceDelegate: (any StarIO10.InputDeviceDelegate)? {
+  @objc public var inputDeviceDelegate: StarIO10.InputDeviceDelegate? {
     @objc get
     @objc set(value)
   }
-  @objc public var displayDelegate: (any StarIO10.DisplayDelegate)? {
+  @objc public var displayDelegate: StarIO10.DisplayDelegate? {
     @objc get
     @objc set(value)
   }
@@ -646,7 +581,6 @@ extension StarIO10.StarXpandCommand.Printer {
   @objc public var getStatusTimeout: Swift.Int
   @objc public var printTimeout: Swift.Int
   @objc public var starConfigurationTimeout: Swift.Int
-  @objc public var template: Swift.String?
   @objc(initWithConnectionSettings:) convenience public init(_ connectionSettings: StarIO10.StarConnectionSettings)
   @objc deinit
 }
@@ -673,19 +607,6 @@ extension StarIO10.StarXpandCommand.Printer {
     }
     @objc public func setLineStyle(_ lineStyle: StarIO10.StarXpandCommand.Printer.LineStyle) -> Self
     @objc public init(x: Swift.Double, y: Swift.Double, width: Swift.Double, height: Swift.Double)
-    @objc deinit
-  }
-}
-extension StarIO10.StarXpandCommand.Printer {
-  @_inheritsConvenienceInitializers @objcMembers @objc(STARIO10StarXpandCommandPrinterTextParameter) public class TextParameter : ObjectiveC.NSObject {
-    public var width: Swift.Int? {
-      get
-    }
-    @objc public var widthParameter: StarIO10.StarXpandCommand.Printer.TextWidthParameter? {
-      @objc get
-    }
-    @objc public func setWidth(_ width: Swift.Int, _ widthParameter: StarIO10.StarXpandCommand.Printer.TextWidthParameter? = nil) -> Self
-    @objc override dynamic public init()
     @objc deinit
   }
 }
@@ -736,7 +657,7 @@ extension StarIO10.StarXpandCommand.Printer {
   }
 }
 @objc(STARIO10DrawerDelegate) public protocol DrawerDelegate {
-  @objc func drawer(printer: StarIO10.StarPrinter, communicationErrorDidOccur error: any Swift.Error)
+  @objc func drawer(printer: StarIO10.StarPrinter, communicationErrorDidOccur error: Swift.Error)
   @objc func drawer(printer: StarIO10.StarPrinter, didSwitch openCloseSignal: Swift.Bool)
 }
 @objc(STARIO10StarConfigurationSetResult) public enum StarConfigurationSetResult : Swift.Int, Swift.CustomStringConvertible {
@@ -785,33 +706,11 @@ extension StarIO10.StarXpandCommand.Presenter {
   }
 }
 extension StarIO10.StarXpandCommand.Printer {
-  @objc(STARIO10StarXpandCommandPrinterTextPrintType) public enum TextPrintType : Swift.Int {
-    case goneWhenEmpty
-    case always
-    public init?(rawValue: Swift.Int)
-    public typealias RawValue = Swift.Int
-    public var rawValue: Swift.Int {
-      get
-    }
-  }
-}
-extension StarIO10.StarXpandCommand.Printer {
   @_inheritsConvenienceInitializers @objcMembers @objc(STARIO10StarXpandCommandPrinterLabelParameter) public class LabelParameter : ObjectiveC.NSObject {
     @objc public func enable() -> Swift.Bool
     @objc public func setEnable(_ enable: Swift.Bool) -> Self
     @objc override dynamic public init()
     @objc deinit
-  }
-}
-extension StarIO10.StarXpandCommand.Printer {
-  @objc(STARIO10StarXpandCommandPrinterTextWidthType) public enum TextWidthType : Swift.Int {
-    case half
-    case full
-    public init?(rawValue: Swift.Int)
-    public typealias RawValue = Swift.Int
-    public var rawValue: Swift.Int {
-      get
-    }
   }
 }
 extension StarIO10.StarXpandCommand.Display {
@@ -1042,17 +941,6 @@ extension StarIO10.StarXpandCommand {
   }
 }
 extension StarIO10.StarXpandCommand.Printer {
-  @objc(STARIO10StarXpandCommandPrinterAmbiguousCharacterWidthType) public enum AmbiguousCharacterWidthType : Swift.Int {
-    case half
-    case full
-    public init?(rawValue: Swift.Int)
-    public typealias RawValue = Swift.Int
-    public var rawValue: Swift.Int {
-      get
-    }
-  }
-}
-extension StarIO10.StarXpandCommand.Printer {
   @objcMembers @objc(STARIO10StarXpandCommandPrinterPageModeImageParameter) public class PageModeImageParameter : ObjectiveC.NSObject {
     @objc final public let image: UIKit.UIImage
     @objc final public let x: Swift.Double
@@ -1072,8 +960,6 @@ extension StarIO10.StarXpandCommand.Printer {
 }
 extension StarIO10.StarXpandCommand {
   @_inheritsConvenienceInitializers @objcMembers @objc(STARIO10StarXpandCommandPageModeBuilder) public class PageModeBuilder : ObjectiveC.NSObject {
-    @objc override dynamic public init()
-    @objc public init(_ parameter: StarIO10.StarXpandCommand.Printer.PageModeParameter)
     @objc public func stylePrintDirection(_ direction: StarIO10.StarXpandCommand.Printer.PageModePrintDirection) -> Self
     @objc public func styleFont(_ type: StarIO10.StarXpandCommand.Printer.FontType) -> Self
     @objc public func styleBold(_ enable: Swift.Bool) -> Self
@@ -1092,8 +978,7 @@ extension StarIO10.StarXpandCommand {
     public func styleCJKCharacterPriority(_ types: [StarIO10.StarXpandCommand.Printer.CJKCharacterType]) -> Self
     @available(swift, obsoleted: 0.1)
     @objc(styleCJKCharacterPriority:) public func styleCJKCharacterPriority(_ types: [Swift.Int]) -> Self
-    @objc public func styleAmbiguousCharacterWidthType(_ type: StarIO10.StarXpandCommand.Printer.AmbiguousCharacterWidthType) -> Self
-    @objc public func actionPrintText(_ content: Swift.String, _ parameter: StarIO10.StarXpandCommand.Printer.TextParameter? = nil) -> Self
+    @objc public func actionPrintText(_ content: Swift.String) -> Self
     @objc public func actionPrintBarcode(_ parameter: StarIO10.StarXpandCommand.Printer.BarcodeParameter) -> Self
     @objc public func actionPrintPDF417(_ parameter: StarIO10.StarXpandCommand.Printer.PDF417Parameter) -> Self
     @objc public func actionPrintQRCode(_ parameter: StarIO10.StarXpandCommand.Printer.QRCodeParameter) -> Self
@@ -1102,6 +987,7 @@ extension StarIO10.StarXpandCommand {
     @objc public func actionPrintRectangle(_ parameter: StarIO10.StarXpandCommand.Printer.PageModeRectangleParameter) -> Self
     @objc public func add(_ builder: StarIO10.StarXpandCommand.PageModeBuilder) -> Self
     @objc public func addPageMode(parameter: StarIO10.StarXpandCommand.Printer.PageModeAreaParameter, builder: StarIO10.StarXpandCommand.PageModeBuilder) -> Self
+    @objc override dynamic public init()
     @objc deinit
   }
 }
@@ -1140,8 +1026,6 @@ extension StarIO10.StarXpandCommand.Presenter {
 }
 extension StarIO10.StarXpandCommand {
   @_inheritsConvenienceInitializers @objcMembers @objc(STARIO10StarXpandCommandPrinterBuilder) public class PrinterBuilder : ObjectiveC.NSObject {
-    @objc override dynamic public init()
-    @objc public init(_ parameter: StarIO10.StarXpandCommand.Printer.PrinterParameter)
     @objc public func styleAlignment(_ position: StarIO10.StarXpandCommand.Printer.Alignment) -> Self
     @objc public func styleFont(_ type: StarIO10.StarXpandCommand.Printer.FontType) -> Self
     @objc public func styleBold(_ enable: Swift.Bool) -> Self
@@ -1158,11 +1042,10 @@ extension StarIO10.StarXpandCommand {
     public func styleCJKCharacterPriority(_ types: [StarIO10.StarXpandCommand.Printer.CJKCharacterType]) -> Self
     @available(swift, obsoleted: 0.1)
     @objc(styleCJKCharacterPriority:) public func styleCJKCharacterPriority(_ types: [Swift.Int]) -> Self
-    @objc public func styleAmbiguousCharacterWidthType(_ type: StarIO10.StarXpandCommand.Printer.AmbiguousCharacterWidthType) -> Self
     @objc public func actionCut(_ type: StarIO10.StarXpandCommand.Printer.CutType) -> Self
     @objc public func actionFeed(_ height: Swift.Double) -> Self
     @objc public func actionFeedLine(_ lines: Swift.Int) -> Self
-    @objc public func actionPrintText(_ content: Swift.String, _ parameter: StarIO10.StarXpandCommand.Printer.TextParameter? = nil) -> Self
+    @objc public func actionPrintText(_ content: Swift.String) -> Self
     @objc public func actionPrintLogo(_ parameter: StarIO10.StarXpandCommand.Printer.LogoParameter) -> Self
     @objc public func actionPrintBarcode(_ parameter: StarIO10.StarXpandCommand.Printer.BarcodeParameter) -> Self
     @objc public func actionPrintPDF417(_ parameter: StarIO10.StarXpandCommand.Printer.PDF417Parameter) -> Self
@@ -1171,6 +1054,7 @@ extension StarIO10.StarXpandCommand {
     @objc public func actionPrintRuledLine(_ parameter: StarIO10.StarXpandCommand.Printer.RuledLineParameter) -> Self
     @objc public func add(_ builder: StarIO10.StarXpandCommand.PrinterBuilder) -> Self
     @objc public func addPageMode(parameter: StarIO10.StarXpandCommand.Printer.PageModeAreaParameter, builder: StarIO10.StarXpandCommand.PageModeBuilder) -> Self
+    @objc override dynamic public init()
     @objc deinit
   }
 }
@@ -1227,21 +1111,8 @@ extension StarIO10.StarXpandCommand.Printer {
   }
 }
 @objc(STARIO10StarDeviceDiscoveryManagerDelegate) public protocol StarDeviceDiscoveryManagerDelegate {
-  @objc(manager:didFindPrinter:) func manager(_ manager: any StarIO10.StarDeviceDiscoveryManager, didFind printer: StarIO10.StarPrinter)
-  @objc func managerDidFinishDiscovery(_ manager: any StarIO10.StarDeviceDiscoveryManager)
-}
-extension StarIO10.StarXpandCommand.Printer {
-  @objc(STARIO10StarXpandCommandPrinterTextEllipsizeType) public enum TextEllipsizeType : Swift.Int {
-    case none
-    case start
-    case middle
-    case end
-    public init?(rawValue: Swift.Int)
-    public typealias RawValue = Swift.Int
-    public var rawValue: Swift.Int {
-      get
-    }
-  }
+  @objc(manager:didFindPrinter:) func manager(_ manager: StarIO10.StarDeviceDiscoveryManager, didFind printer: StarIO10.StarPrinter)
+  @objc func managerDidFinishDiscovery(_ manager: StarIO10.StarDeviceDiscoveryManager)
 }
 extension StarIO10.StarXpandCommand.Printer {
   @objc(STARIO10StarXpandCommandPrinterBarcodeSymbology) public enum BarcodeSymbology : Swift.Int {
@@ -1279,7 +1150,6 @@ extension StarIO10.StarXpandCommand.Printer {
   @objc(STARIO10ErrorCodeStarConfigurationFormatError) case starConfigurationFormatError = 6000
   @objc(STARIO10ErrorCodeStarConfigurationParameterError) case starConfigurationParameterError = 6001
   @objc(STARIO10ErrorCodeStarConfigurationSpecifiedFileError) case starConfigurationSpecifiedFileError = 6002
-  @objc(STARIO10ErrorCodeInvalidTemplate) case invalidTemplate = 7000
   public init?(rawValue: Swift.Int)
   public typealias AllCases = [StarIO10.StarIO10ErrorCode]
   public typealias RawValue = Swift.Int
@@ -1322,7 +1192,7 @@ extension StarIO10.StarXpandCommand.Printer {
   @objc public var interfaceType: StarIO10.InterfaceType
   @objc public var identifier: Swift.String
   @objc public var autoSwitchInterface: Swift.Bool
-  @objc public init(interfaceType: StarIO10.InterfaceType, identifier: Swift.String = FIRST_FOUND_DEVICE, autoSwitchInterface: Swift.Bool = true)
+  @objc public init(interfaceType: StarIO10.InterfaceType, identifier: Swift.String = FIRST_FOUND_DEVICE, autoSwitchInterface: Swift.Bool = false)
   @objc deinit
 }
 extension StarIO10.StarXpandCommand.MelodySpeaker {
@@ -1501,9 +1371,6 @@ extension StarIO10.StarPrinterEmulation : Swift.RawRepresentable {}
 extension StarIO10.StarXpandCommand.Display.CursorState : Swift.Equatable {}
 extension StarIO10.StarXpandCommand.Display.CursorState : Swift.Hashable {}
 extension StarIO10.StarXpandCommand.Display.CursorState : Swift.RawRepresentable {}
-extension StarIO10.StarXpandCommand.Printer.TextAlignment : Swift.Equatable {}
-extension StarIO10.StarXpandCommand.Printer.TextAlignment : Swift.Hashable {}
-extension StarIO10.StarXpandCommand.Printer.TextAlignment : Swift.RawRepresentable {}
 extension StarIO10.StarXpandCommand.Bezel.LEDType : Swift.Equatable {}
 extension StarIO10.StarXpandCommand.Bezel.LEDType : Swift.Hashable {}
 extension StarIO10.StarXpandCommand.Bezel.LEDType : Swift.RawRepresentable {}
@@ -1549,15 +1416,9 @@ extension StarIO10.StarXpandCommand.Printer.QRCodeLevel : Swift.RawRepresentable
 extension StarIO10.StarXpandCommand.Presenter.LEDType : Swift.Equatable {}
 extension StarIO10.StarXpandCommand.Presenter.LEDType : Swift.Hashable {}
 extension StarIO10.StarXpandCommand.Presenter.LEDType : Swift.RawRepresentable {}
-extension StarIO10.StarXpandCommand.Printer.TextPrintType : Swift.Equatable {}
-extension StarIO10.StarXpandCommand.Printer.TextPrintType : Swift.Hashable {}
-extension StarIO10.StarXpandCommand.Printer.TextPrintType : Swift.RawRepresentable {}
 extension StarIO10.StarPrinterModel : Swift.Equatable {}
 extension StarIO10.StarPrinterModel : Swift.Hashable {}
 extension StarIO10.StarPrinterModel : Swift.RawRepresentable {}
-extension StarIO10.StarXpandCommand.Printer.TextWidthType : Swift.Equatable {}
-extension StarIO10.StarXpandCommand.Printer.TextWidthType : Swift.Hashable {}
-extension StarIO10.StarXpandCommand.Printer.TextWidthType : Swift.RawRepresentable {}
 extension StarIO10.StarXpandCommand.Printer.CharacterEncodingType : Swift.Equatable {}
 extension StarIO10.StarXpandCommand.Printer.CharacterEncodingType : Swift.Hashable {}
 extension StarIO10.StarXpandCommand.Printer.CharacterEncodingType : Swift.RawRepresentable {}
@@ -1573,15 +1434,9 @@ extension StarIO10.StarXpandCommand.Display.InternationalCharacterType : Swift.R
 extension StarIO10.StarXpandCommand.Printer.QRCodeModel : Swift.Equatable {}
 extension StarIO10.StarXpandCommand.Printer.QRCodeModel : Swift.Hashable {}
 extension StarIO10.StarXpandCommand.Printer.QRCodeModel : Swift.RawRepresentable {}
-extension StarIO10.StarXpandCommand.Printer.AmbiguousCharacterWidthType : Swift.Equatable {}
-extension StarIO10.StarXpandCommand.Printer.AmbiguousCharacterWidthType : Swift.Hashable {}
-extension StarIO10.StarXpandCommand.Printer.AmbiguousCharacterWidthType : Swift.RawRepresentable {}
 extension StarIO10.StarXpandCommand.Printer.InternationalCharacterType : Swift.Equatable {}
 extension StarIO10.StarXpandCommand.Printer.InternationalCharacterType : Swift.Hashable {}
 extension StarIO10.StarXpandCommand.Printer.InternationalCharacterType : Swift.RawRepresentable {}
-extension StarIO10.StarXpandCommand.Printer.TextEllipsizeType : Swift.Equatable {}
-extension StarIO10.StarXpandCommand.Printer.TextEllipsizeType : Swift.Hashable {}
-extension StarIO10.StarXpandCommand.Printer.TextEllipsizeType : Swift.RawRepresentable {}
 extension StarIO10.StarXpandCommand.Printer.BarcodeSymbology : Swift.Equatable {}
 extension StarIO10.StarXpandCommand.Printer.BarcodeSymbology : Swift.Hashable {}
 extension StarIO10.StarXpandCommand.Printer.BarcodeSymbology : Swift.RawRepresentable {}

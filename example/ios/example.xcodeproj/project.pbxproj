@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,17 +16,6 @@
 		889D26632524548F00AA5D07 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		88A8570E2595E29A00F4A8CC /* StarIO10.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E661E9258C55D9006F1EE4 /* StarIO10.xcframework */; };
 		DD10623729C055A4002C8C77 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD10623629C055A4002C8C77 /* AppDelegate.mm */; };
-		DD56B2842B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27A2B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png */; };
-		DD56B2852B70879D0047C348 /* label_sample21_shipping_label_phones_old.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27B2B70879D0047C348 /* label_sample21_shipping_label_phones_old.png */; };
-		DD56B2862B70879D0047C348 /* label_sample28_cleanedsanitised_hand.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27C2B70879D0047C348 /* label_sample28_cleanedsanitised_hand.png */; };
-		DD56B2872B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27D2B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png */; };
-		DD56B2882B70879D0047C348 /* label_sample21_shipping_label_house.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27E2B70879D0047C348 /* label_sample21_shipping_label_house.png */; };
-		DD56B2892B70879D0047C348 /* receipt_sample16_cafe_template_coffee_cup.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27F2B70879D0047C348 /* receipt_sample16_cafe_template_coffee_cup.png */; };
-		DD56B28A2B70879D0047C348 /* label_sample33_visitor_label_user_profile_picture.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2802B70879D0047C348 /* label_sample33_visitor_label_user_profile_picture.png */; };
-		DD56B28B2B70879D0047C348 /* label_sample32_sale_50off_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2812B70879D0047C348 /* label_sample32_sale_50off_background.png */; };
-		DD56B28C2B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2822B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png */; };
-		DD56B28D2B70879D0047C348 /* label_sample16_japanese_food_label_lunch_box_plastic.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2832B70879D0047C348 /* label_sample16_japanese_food_label_lunch_box_plastic.png */; };
-		DDCDFE632B4E1641009A001A /* signature.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCDFE622B4E1641009A001A /* signature.png */; };
 		E3522EC225F6F659008B0731 /* logo_01.png in Resources */ = {isa = PBXBuildFile; fileRef = E3522EC125F6F659008B0731 /* logo_01.png */; };
 /* End PBXBuildFile section */
 
@@ -59,17 +48,6 @@
 		88E661E9258C55D9006F1EE4 /* StarIO10.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = StarIO10.xcframework; path = ../../ios/libs/StarIO10.xcframework; sourceTree = "<group>"; };
 		DBDCF4355CE43E454FEE01FE /* libPods-example-exampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example-exampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD10623629C055A4002C8C77 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = example/AppDelegate.mm; sourceTree = "<group>"; };
-		DD56B27A2B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample19_pharmacy_medication1_logo.png; path = example/label_sample19_pharmacy_medication1_logo.png; sourceTree = "<group>"; };
-		DD56B27B2B70879D0047C348 /* label_sample21_shipping_label_phones_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample21_shipping_label_phones_old.png; path = example/label_sample21_shipping_label_phones_old.png; sourceTree = "<group>"; };
-		DD56B27C2B70879D0047C348 /* label_sample28_cleanedsanitised_hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample28_cleanedsanitised_hand.png; path = example/label_sample28_cleanedsanitised_hand.png; sourceTree = "<group>"; };
-		DD56B27D2B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample17_japanese_food_label_cake_plastic.png; path = example/label_sample17_japanese_food_label_cake_plastic.png; sourceTree = "<group>"; };
-		DD56B27E2B70879D0047C348 /* label_sample21_shipping_label_house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample21_shipping_label_house.png; path = example/label_sample21_shipping_label_house.png; sourceTree = "<group>"; };
-		DD56B27F2B70879D0047C348 /* receipt_sample16_cafe_template_coffee_cup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = receipt_sample16_cafe_template_coffee_cup.png; path = example/receipt_sample16_cafe_template_coffee_cup.png; sourceTree = "<group>"; };
-		DD56B2802B70879D0047C348 /* label_sample33_visitor_label_user_profile_picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample33_visitor_label_user_profile_picture.png; path = example/label_sample33_visitor_label_user_profile_picture.png; sourceTree = "<group>"; };
-		DD56B2812B70879D0047C348 /* label_sample32_sale_50off_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample32_sale_50off_background.png; path = example/label_sample32_sale_50off_background.png; sourceTree = "<group>"; };
-		DD56B2822B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample01_tamper_proof_label_checked.png; path = example/label_sample01_tamper_proof_label_checked.png; sourceTree = "<group>"; };
-		DD56B2832B70879D0047C348 /* label_sample16_japanese_food_label_lunch_box_plastic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample16_japanese_food_label_lunch_box_plastic.png; path = example/label_sample16_japanese_food_label_lunch_box_plastic.png; sourceTree = "<group>"; };
-		DDCDFE622B4E1641009A001A /* signature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = signature.png; path = ../windows/example/Assets/signature.png; sourceTree = "<group>"; };
 		E3522EC125F6F659008B0731 /* logo_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_01.png; path = example/logo_01.png; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -117,17 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				E3522EC125F6F659008B0731 /* logo_01.png */,
-				DDCDFE622B4E1641009A001A /* signature.png */,
-				DD56B2822B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png */,
-				DD56B2832B70879D0047C348 /* label_sample16_japanese_food_label_lunch_box_plastic.png */,
-				DD56B27D2B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png */,
-				DD56B27A2B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png */,
-				DD56B27E2B70879D0047C348 /* label_sample21_shipping_label_house.png */,
-				DD56B27B2B70879D0047C348 /* label_sample21_shipping_label_phones_old.png */,
-				DD56B27C2B70879D0047C348 /* label_sample28_cleanedsanitised_hand.png */,
-				DD56B2812B70879D0047C348 /* label_sample32_sale_50off_background.png */,
-				DD56B2802B70879D0047C348 /* label_sample33_visitor_label_user_profile_picture.png */,
-				DD56B27F2B70879D0047C348 /* receipt_sample16_cafe_template_coffee_cup.png */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				DD10623629C055A4002C8C77 /* AppDelegate.mm */,
@@ -222,6 +189,7 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "example" */;
 			buildPhases = (
 				34536438C826E306BC1B3E70 /* [CP] Check Pods Manifest.lock */,
+				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -286,21 +254,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD56B2852B70879D0047C348 /* label_sample21_shipping_label_phones_old.png in Resources */,
 				889D26632524548F00AA5D07 /* main.jsbundle in Resources */,
-				DD56B2892B70879D0047C348 /* receipt_sample16_cafe_template_coffee_cup.png in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				DD56B2872B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png in Resources */,
-				DDCDFE632B4E1641009A001A /* signature.png in Resources */,
-				DD56B2842B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				DD56B28C2B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png in Resources */,
-				DD56B2882B70879D0047C348 /* label_sample21_shipping_label_house.png in Resources */,
-				DD56B28D2B70879D0047C348 /* label_sample16_japanese_food_label_lunch_box_plastic.png in Resources */,
 				E3522EC225F6F659008B0731 /* logo_01.png in Resources */,
-				DD56B28A2B70879D0047C348 /* label_sample33_visitor_label_user_profile_picture.png in Resources */,
-				DD56B28B2B70879D0047C348 /* label_sample32_sale_50off_background.png in Resources */,
-				DD56B2862B70879D0047C348 /* label_sample28_cleanedsanitised_hand.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +412,25 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FD10A7F022414F080027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -594,7 +570,7 @@
 					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
 					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.5.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -663,7 +639,7 @@
 					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
 					"\"$(SRCROOT)\"",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.5.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -682,7 +658,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -738,13 +714,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-DFOLLY_NO_CONFIG",
-					"-DFOLLY_MOBILE=1",
-					"-DFOLLY_USE_LIBCPP=1",
-					"-DFOLLY_CFG_NO_COROUTINES=1",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -755,7 +725,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -804,13 +774,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "$(inherited)";
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-DFOLLY_NO_CONFIG",
-					"-DFOLLY_MOBILE=1",
-					"-DFOLLY_USE_LIBCPP=1",
-					"-DFOLLY_CFG_NO_COROUTINES=1",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -1,9 +1,7 @@
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
 import { StarXpandCommand } from '../../index';
 import { StarXpandCommandParameterConverter } from './StarXpandCommandParameterConverter';
-import { PrinterBaseBuilder } from './PrinterBaseBuilder';
 import { Buffer } from 'buffer';
-
 
 export class DocumentBuilder extends BaseStarXpandCommandBuilder {
 
@@ -130,11 +128,6 @@ export class DocumentBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-
-            if (builder._parameter !== undefined) {
-                PrinterBaseBuilder.addPrinterParameter(builder._parameters, builder._parameter!)
-            }
-
             let contents = this._parameters.get("contents") as Array<Map<string, any>>;
 
             contents.push(builder._parameters);

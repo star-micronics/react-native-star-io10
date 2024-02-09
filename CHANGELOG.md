@@ -2,23 +2,6 @@
 
 # Change Log
 
-## 1.6.0 (2024/02/09)
-
-* Added POP10CBI support.
-* Added API for template printing function.
-* Added a screen for template printing to the sample app.
-* Added API for specifying number of character function.
-* Added API for setting full/half-width of Unicode ambiguous characters.
-* Changed the Auto Switch Interface function to enabled by default.
-* Improved switching speed of the Auto Switch Interface function.
-* Added several samples of printing patterns using template printing function.
-* Added privacy manifest file according to Apple's guidelines. (`react-native-star-io10` does not use Required Reason API.)
-* Updated React Native version to 0.73.2.
-* Updated React Native for Windows version to 0.73.4.
-* Android: Added Android 14 support.
-* iOS: Added use_frameworks! support. [#90](https://github.com/star-micronics/react-native-star-io10/issues/90)
-* Remove unused imports and variables. [#107](https://github.com/star-micronics/react-native-star-io10/pull/107)
-
 ## 1.5.0 (2023/10/27)
 
 * Added MCP31CI/CBI support.

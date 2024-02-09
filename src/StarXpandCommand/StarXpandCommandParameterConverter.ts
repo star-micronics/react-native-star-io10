@@ -3,17 +3,12 @@ import { BlackMarkPosition } from './Printer/BlackMarkPosition';
 import { Alignment } from './Printer/Alignment';
 import { FontType } from './Printer/FontType';
 import { CjkCharacterType } from './Printer/CjkCharacterType';
-import { AmbiguousCharacterWidthType } from './Printer/AmbiguousCharacterWidthType';
 import { CutType } from './Printer/CutType';
 import { BarcodeSymbology } from './Printer/BarcodeSymbology';
 import { BarcodeBarRatioLevel } from './Printer/BarcodeBarRatioLevel';
 import { Pdf417Level } from './Printer/Pdf417Level';
 import { QRCodeModel } from './Printer/QRCodeModel';
 import { QRCodeLevel } from './Printer/QRCodeLevel';
-import { TextWidthType } from './Printer/TextWidthType';
-import { TextAlignment } from './Printer/TextAlignment';
-import { TextEllipsizeType } from './Printer/TextEllipsizeType';
-import { TextPrintType } from './Printer/TextPrintType';
 import { SoundStorageArea } from './MelodySpeaker/SoundStorageArea';
 import { CursorState } from './Display/CursorState';
 import { Contrast } from './Display/Contrast';
@@ -120,15 +115,6 @@ export class StarXpandCommandParameterConverter {
         return commandMap.get(value) as string;
     }
 
-    static convertAmbiguousCharacterWidthType(value: AmbiguousCharacterWidthType): string {
-        let commandMap = new Map([
-            [AmbiguousCharacterWidthType.Half, "Half"],
-            [AmbiguousCharacterWidthType.Full, "Full"]
-        ]);
-
-        return commandMap.get(value) as string;
-    }
-
     static convertCutType(value: CutType): string {
         let commandMap = new Map([
             [CutType.Full, "Full"],
@@ -199,45 +185,6 @@ export class StarXpandCommandParameterConverter {
             [QRCodeLevel.M, "M"],
             [QRCodeLevel.Q, "Q"],
             [QRCodeLevel.H, "H"]
-        ]);
-
-        return commandMap.get(value) as string;
-    }
-
-    static convertTextWidthType(value: TextWidthType): string {
-        let commandMap = new Map([
-            [TextWidthType.Half, "Half"],
-            [TextWidthType.Full, "Full"]
-        ]);
-
-        return commandMap.get(value) as string;
-    }
-
-    static convertTextAlignment(value: TextAlignment): string {
-        let commandMap = new Map([
-            [TextAlignment.Left, "Left"],
-            [TextAlignment.Center, "Center"],
-            [TextAlignment.Right, "Right"]
-        ]);
-
-        return commandMap.get(value) as string;
-    }
-
-    static convertTextEllipsizeType(value: TextEllipsizeType): string {
-        let commandMap = new Map([
-            [TextEllipsizeType.None, "None"],
-            [TextEllipsizeType.Start, "Start"],
-            [TextEllipsizeType.Middle, "Middle"],
-            [TextEllipsizeType.End, "End"]
-        ]);
-
-        return commandMap.get(value) as string;
-    }
-
-    static convertTextPrintType(value: TextPrintType): string {
-        let commandMap = new Map([
-            [TextPrintType.GoneWhenEmpty, "GoneWhenEmpty"],
-            [TextPrintType.Always, "Always"]
         ]);
 
         return commandMap.get(value) as string;

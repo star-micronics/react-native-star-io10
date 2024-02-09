@@ -324,7 +324,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
     }
 
     @ReactMethod
-    fun print(identifier: String, code: String, template: String?, timeout: Int, promise: Promise) {
+    fun print(identifier: String, code: String, timeout: Int, promise: Promise) {
         val job = SupervisorJob()
         val scope = CoroutineScope(Dispatchers.Default + job)
 
@@ -332,7 +332,6 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
             val printer = InstanceManager.get(identifier)
 
             if (printer is StarPrinter) {
-                printer.template = template
                 printer.printTimeout = timeout
 
                 try {
@@ -352,7 +351,6 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
     fun spoolPrint(
         identifier: String,
         code: String,
-        template: String?,
         isRetryEnabled: Boolean,
         retryTimeout: Int,
         note: String,
@@ -366,7 +364,6 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
             val printer = InstanceManager.get(identifier)
 
             if (printer is StarPrinter) {
-                printer.template = template
                 printer.printTimeout = printTimeout
 
                 val jobSettings = StarSpoolJobSettings(isRetryEnabled, retryTimeout, note)

@@ -6,20 +6,13 @@ import { PrinterBaseBuilder } from './PrinterBaseBuilder';
 
 export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
-    public _parameter: StarXpandCommand.Printer.PageModeParameter | undefined = undefined;
     public _parameters: Map<string, any>;
 
-    constructor();
-    constructor(parameter: StarXpandCommand.Printer.PageModeParameter | undefined);
-    constructor(parameter?: StarXpandCommand.Printer.PageModeParameter | undefined) {
+    constructor() {
         super();
 
-        if (parameter !== undefined) {
-            this._parameter = parameter;
-        }
         this._parameters = new Map<string, any>([
             ["category", "PageMode"],
-            ["parameters", []],
             ["contents", new Array<Map<string, any>>()]
         ]);
     }
@@ -152,17 +145,9 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
-    styleAmbiguousCharacterWidthType(type: StarXpandCommand.Printer.AmbiguousCharacterWidthType): PageModeBuilder {
+    actionPrintText(content: string): PageModeBuilder {
         this._addAction(async() => {
-            PrinterBaseBuilder.styleAmbiguousCharacterWidthType(this._parameters, type);
-        });
-
-        return this;
-    }
-
-    actionPrintText(content: string, parameter: StarXpandCommand.Printer.TextParameter | undefined = undefined): PageModeBuilder {
-        this._addAction(async() => {
-            PrinterBaseBuilder.actionPrintText(this._parameters, content, parameter);
+            PrinterBaseBuilder.actionPrintText(this._parameters, content);
         });
 
         return this;
@@ -215,6 +200,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
     }
 
     actionPrintRectangle(parameter: StarXpandCommand.Printer.PageModeRectangleParameter): PageModeBuilder {
+        var size: number[] = [parameter.x, parameter.y, parameter.width, parameter.height];
 
         this._addAction(async() => {
             PrinterBaseBuilder.actionPrintRectangle(this._parameters, parameter);
@@ -227,11 +213,6 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            if (builder._parameter !== undefined) {
-                PrinterBaseBuilder.addPageModeParameter(builder._parameters, builder._parameter!)
-            }
-
-
             let contents = this._parameters.get("contents") as Array<Map<string, any>>;
 
             contents.push(
@@ -247,12 +228,7 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
 
         this._addAction(async() => {
             PrinterBaseBuilder.stylePageModeArea(builder._parameters, parameter)
-
-            if (builder._parameter !== undefined) {
-                PrinterBaseBuilder.addPageModeParameter(builder._parameters, builder._parameter!)
-            }
-
-
+            
             let contents = this._parameters.get("contents") as Array<Map<string, any>>;
 
             contents.push(

@@ -28,4 +28,3 @@ export * from './BuzzerBuilder';
 export * from './MelodySpeakerBuilder';
 export * from './DisplayBuilder';
 export * from './MagnificationParameter';
-export * from './TemplateExtensionParameter';

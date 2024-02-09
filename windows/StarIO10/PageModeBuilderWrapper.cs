@@ -41,7 +41,7 @@ namespace StarMicronics.ReactNative.StarIO10
                                     .GetProperty("contents")[0]
                                     .GetProperty("contents")[0]
                                     .GetProperty("contents")[0]
-                                    .GetProperty("contents")[0]
+                                    .GetProperty("contents")[1]
                                     .ToString();
 
 

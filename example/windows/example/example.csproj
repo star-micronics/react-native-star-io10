@@ -138,23 +138,12 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\label_sample01_tamper_proof_label_checked.png" />
-    <Content Include="Assets\label_sample16_japanese_food_label_lunch_box_plastic.png" />
-    <Content Include="Assets\label_sample17_japanese_food_label_cake_plastic.png" />
-    <Content Include="Assets\label_sample19_pharmacy_medication1_logo.png" />
-    <Content Include="Assets\label_sample21_shipping_label_house.png" />
-    <Content Include="Assets\label_sample21_shipping_label_phones_old.png" />
-    <Content Include="Assets\label_sample28_cleanedsanitised_hand.png" />
-    <Content Include="Assets\label_sample32_sale_50off_background.png" />
-    <Content Include="Assets\label_sample33_visitor_label_user_profile_picture.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
     <Content Include="Assets\logo_01.png" />
-    <Content Include="Assets\receipt_sample16_cafe_template_coffee_cup.png" />
-    <Content Include="Assets\signature.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />

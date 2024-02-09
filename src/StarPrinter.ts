@@ -37,8 +37,6 @@ export class StarPrinter extends NativeObject {
     getStatusTimeout: number = 5000;
     starConfigurationTimeout: number = 90000;
 
-    template: string | undefined = undefined;
-
     get information(): StarPrinterInformation | undefined {
         return this._information;
     }
@@ -270,7 +268,7 @@ export class StarPrinter extends NativeObject {
         if (args.length === 1) {
             const [command] = args;
 
-            await NativeModules.StarPrinterWrapper.print(this._nativeObject, command, this.template, this.printTimeout)
+            await NativeModules.StarPrinterWrapper.print(this._nativeObject, command, this.printTimeout)
             .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;
@@ -279,7 +277,7 @@ export class StarPrinter extends NativeObject {
         if (args.length === 2) {
             const [command, starSpoolJobSettings] = args;
 
-            var jobId = await NativeModules.StarPrinterWrapper.spoolPrint(this._nativeObject, command, this.template, starSpoolJobSettings.isRetryEnabled, starSpoolJobSettings.timeout, starSpoolJobSettings.note, this.printTimeout)
+            var jobId = await NativeModules.StarPrinterWrapper.spoolPrint(this._nativeObject, command, starSpoolJobSettings.isRetryEnabled, starSpoolJobSettings.timeout, starSpoolJobSettings.note, this.printTimeout)
             .catch(async (nativeError: any) => {
                 var error = await StarIO10ErrorFactory.create(nativeError.code);
                 throw error;

@@ -58,7 +58,7 @@ class PageModeBuilderWrapper internal constructor(context: ReactApplicationConte
                 .getJSONArray("contents").getJSONObject(0)
                 .getJSONArray("contents").getJSONObject(0)
                 .getJSONArray("contents").getJSONObject(0)
-                .getJSONArray("contents").getJSONObject(0)
+                .getJSONArray("contents").getJSONObject(1)
 
             promise.resolve(contents.toString())
         } catch (e: Exception) {

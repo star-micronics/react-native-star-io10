@@ -21,7 +21,6 @@ export declare class StarPrinter extends NativeObject {
     printTimeout: number;
     getStatusTimeout: number;
     starConfigurationTimeout: number;
-    template: string | undefined;
     get information(): StarPrinterInformation | undefined;
     get connectionSettings(): StarConnectionSettings;
     get printerDelegate(): PrinterDelegate;

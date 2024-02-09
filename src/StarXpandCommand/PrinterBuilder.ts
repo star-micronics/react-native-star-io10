@@ -6,23 +6,13 @@ import { PrinterBaseBuilder } from './PrinterBaseBuilder';
 
 export class PrinterBuilder extends BaseStarXpandCommandBuilder {
 
-    public _parameter: StarXpandCommand.Printer.PrinterParameter | undefined = undefined;
     public _parameters: Map<string, any>;
 
-    constructor();
-    constructor(parameter: StarXpandCommand.Printer.PrinterParameter | undefined);
-    constructor(parameter?: StarXpandCommand.Printer.PrinterParameter | undefined) {
-
+    constructor() {
         super();
-
-        if (parameter !== undefined) {
-            this._parameter = parameter;
-        }
-
 
         this._parameters = new Map<string, any>([
             ["category", "Printer"],
-            ["parameters", []],
             ["contents", new Array<Map<string, any>>()]
         ]);
     }
@@ -139,14 +129,6 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
-    styleAmbiguousCharacterWidthType(type: StarXpandCommand.Printer.AmbiguousCharacterWidthType): PrinterBuilder {
-        this._addAction(async() => {
-            PrinterBaseBuilder.styleAmbiguousCharacterWidthType(this._parameters, type);
-        });
-
-        return this;
-    }
-
     actionCut(type: StarXpandCommand.Printer.CutType): PrinterBuilder {
         this._addAction(async() => {
             PrinterBaseBuilder.actionCut(this._parameters, type);
@@ -171,9 +153,9 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
-    actionPrintText(content: string, parameter: StarXpandCommand.Printer.TextParameter | undefined = undefined): PrinterBuilder {
+    actionPrintText(content: string): PrinterBuilder {
         this._addAction(async() => {
-            PrinterBaseBuilder.actionPrintText(this._parameters, content, parameter);
+            PrinterBaseBuilder.actionPrintText(this._parameters, content);
         });
 
         return this;
@@ -237,11 +219,6 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            if (builder._parameter !== undefined) {
-                PrinterBaseBuilder.addPrinterParameter(builder._parameters, builder._parameter!)
-            }
-
-
             let contents = this._parameters.get("contents") as Array<Map<string, any>>;
 
             contents.push(
@@ -256,11 +233,6 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
         this._addChild(builder);
 
         this._addAction(async() => {
-            if (builder._parameter !== undefined) {
-                PrinterBaseBuilder.addPageModeParameter(builder._parameters, builder._parameter!)
-            }
-
-
             PrinterBaseBuilder.stylePageModeArea(builder._parameters,parameters );
             let contents = this._parameters.get("contents") as Array<Map<string, any>>;
             contents.push(
