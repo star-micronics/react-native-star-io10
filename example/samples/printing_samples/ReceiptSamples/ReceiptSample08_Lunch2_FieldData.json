@@ -1,0 +1,15 @@
+{
+    "number" : "0001-0001",
+    "account_day" : "2022/01/01",
+    "customer_name" : "静岡 太郎",
+    "total_price" : 1500,
+    "tax_rate_10_target" : 1500,
+    "tax_rate_10_tax" : 136,
+    "description" : "ご飲食代",
+    "store_name" : "Starカフェ 丸の内店",
+    "address" : "東京都千代田区\n○○１丁目２－３",
+    "telephone_number" : "01-2345-6789",
+    "registration_number" : "T1234567890123",
+    "staff_name" : "静岡 花子",
+    "receipt_number" : "000120160510111212345"
+}

@@ -1,0 +1,10 @@
+{
+    "store_name" : "Local Pharmacy",
+    "address" : "123 HIGH STREET\nLONDON, SWA1A 1AA",
+    "telephone_number" : "(111)222 333",
+    "number" : "Rx: 860015 - 5100",
+    "customer_name" : "SMITH, JOHN",
+    "usage" : "TAKE ONE TABLET ONCE DAILY",
+    "expiry_date" : "3/24",
+    "quantity" : "50 TABLETS"
+}

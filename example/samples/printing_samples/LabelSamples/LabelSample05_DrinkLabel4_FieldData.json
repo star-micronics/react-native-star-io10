@@ -1,0 +1,21 @@
+{
+    "order_types" : "モバイルオーダー",
+    "datetime" : "2023年09月18日 15:09",
+    "order_number" : "M034",
+    "item_number" : 1,
+    "number_of_items" : 1,
+    "time" : "15:09",
+    "product_name" : "Star Drink/L",
+    "item_list" : [
+        {
+            "detail" : "*Syrup/Less"
+        },
+        {
+            "detail" : "*Ice/Less"
+        },
+        {
+            "detail" : "*Pearl"
+        }
+    ],
+    "note" : "お手荷物への同梱はカップ破損\n防止のためお控えください。"
+}

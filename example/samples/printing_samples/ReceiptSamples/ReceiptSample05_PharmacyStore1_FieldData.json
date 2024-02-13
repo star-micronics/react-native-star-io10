@@ -1,0 +1,57 @@
+{
+    "staff_name" : "John Smith",
+    "rfn" : "0913-8279-2597-0104-2420",
+    "item_list" : [
+        {
+            "mark" : "",
+            "name" : "BOX FAN 20\"",
+            "quantity" : 1,
+            "tax_mark" : "A",
+            "price" : 14.99,
+            "remarks" : " SALE"
+        },
+        {
+            "mark" : "F",
+            "name" : "KICODAM 14S",
+            "quantity" : 1,
+            "tax_mark" : "A",
+            "price" : 54.99,
+            "remarks" : ""
+        },
+        {
+            "mark" : "F",
+            "name" : "  MFG COUPON",
+            "quantity" : 1,
+            "tax_mark" : "",
+            "price" : 5.0,
+            "remarks" : "-MFGC"
+        },
+        {
+            "mark" : "",
+            "name" : "   SUBTOTAL",
+            "quantity" : null,
+            "tax_mark" : "",
+            "price" : 64.98,
+            "remarks" : ""
+        }
+    ],
+    "sales_tax" : 5.77,
+    "total_price" : 70.75,
+    "payment_method" : "CREDIT CARD",
+    "payment_amount" : 70.75,
+    "cash_back" : 0,
+    "mab_serving" : 5.0,
+    "mfg_serving" : 5.0,
+    "total_serving" : 10.0,
+    "barcode" : "0123456789012345678901234567890123456789",
+    "address" : "123 Star Road, City,State 12345",
+    "telephone_number" : "(000)123-4567",
+    "host_name" : "STAR-M.JP",
+    "date" : "APRIL 24, 2007",
+    "time" : "12:38 PM",
+    "free_call" : "0-123-456-7890",
+    "survey_number" : "0913-6278-2697-0704-420-17",
+    "number" : "9136",
+    "seq_number" : "913627052",
+    "card_number" : "****************1015"
+}

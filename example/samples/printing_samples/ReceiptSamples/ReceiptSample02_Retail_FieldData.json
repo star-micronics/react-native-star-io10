@@ -1,0 +1,36 @@
+{
+    "store_name" : "Star Store",
+    "order_number" : "#2-023",
+    "datetime" : "7/16/21, 10:00 AM",
+    "order_types" : "Sale",
+    "staff_name" : "John",
+    "transaction" : "#74735210207161910007",
+    "item_list" : [
+        {
+            "name" : "Star Hoodie",
+            "quantity" : 1,
+            "price" : 30.0,
+            "detail" : "   (Medium, Green)\n"
+        },
+        {
+            "name" : "Star Magnet",
+            "quantity" : 1,
+            "price" : 6.99,
+            "detail" : ""
+        },
+        {
+            "name" : "French Roast",
+            "quantity" : 1,
+            "price" : 3.75
+        }
+    ],
+    "subtotal_price" : 40.74,
+    "tax" : 3.61,
+    "total_price" : 44.35,
+    "payment_method" : "Cash",
+    "payment_amount" : 44.35,
+    "address" : "1234 Star Street\nNew York, NY, 10016\nUnited States",
+    "telephone_number" : "800-456-7890",
+    "footer" : "Powered by: StarXpand SDK",
+    "barcode" : "74735210207161910007"
+}

@@ -1,0 +1,8 @@
+{
+    "product_name" : "Product Name",
+    "parameter1" : "SKU",
+    "parameter2" : "Price",
+    "parameter3" :  "Variant option 1",
+    "parameter4" : "Incl. VAT",
+    "sku" : "012345789012"
+}

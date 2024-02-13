@@ -1,8 +1,10 @@
 import { BaseStarXpandCommandBuilder } from './BaseStarXpandCommandBuilder';
 import { StarXpandCommand } from '../../index';
 export declare class PageModeBuilder extends BaseStarXpandCommandBuilder {
+    _parameter: StarXpandCommand.Printer.PageModeParameter | undefined;
     _parameters: Map<string, any>;
     constructor();
+    constructor(parameter: StarXpandCommand.Printer.PageModeParameter | undefined);
     stylePrintDirection(direction: StarXpandCommand.Printer.PageModePrintDirection): PageModeBuilder;
     styleFont(type: StarXpandCommand.Printer.FontType): PageModeBuilder;
     styleBold(enable: boolean): PageModeBuilder;
@@ -19,7 +21,8 @@ export declare class PageModeBuilder extends BaseStarXpandCommandBuilder {
     styleInternationalCharacter(type: StarXpandCommand.Printer.InternationalCharacterType): PageModeBuilder;
     styleSecondPriorityCharacterEncoding(type: StarXpandCommand.Printer.CharacterEncodingType): PageModeBuilder;
     styleCjkCharacterPriority(types: Array<StarXpandCommand.Printer.CjkCharacterType>): PageModeBuilder;
-    actionPrintText(content: string): PageModeBuilder;
+    styleAmbiguousCharacterWidthType(type: StarXpandCommand.Printer.AmbiguousCharacterWidthType): PageModeBuilder;
+    actionPrintText(content: string, parameter?: StarXpandCommand.Printer.TextParameter | undefined): PageModeBuilder;
     actionPrintBarcode(parameter: StarXpandCommand.Printer.BarcodeParameter): PageModeBuilder;
     actionPrintPdf417(parameter: StarXpandCommand.Printer.Pdf417Parameter): PageModeBuilder;
     actionPrintQRCode(parameter: StarXpandCommand.Printer.QRCodeParameter): PageModeBuilder;

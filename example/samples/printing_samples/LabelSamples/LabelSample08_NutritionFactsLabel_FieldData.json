@@ -1,0 +1,79 @@
+{
+    "servings_per_container" : 16,
+    "serving_size" : "1 Tbsp.(21g)",
+    "amount_per_serving" : "Calories      60",
+    "item1_list" : [
+        {
+            "name" : "Total Fat",
+            "amount" : "0g",
+            "percentage" : "0%"
+        },
+        {
+            "name" : "  Saturated Fat",
+            "amount" : "0g",
+            "percentage" : "0%"
+        },
+        {
+            "name" : "  Trans Fat",
+            "amount" : "0g",
+            "percentage" : ""
+        },
+        {
+            "name" : "Cholesterol",
+            "amount" : "0mg",
+            "percentage" : "0%"
+        },
+        {
+            "name" : "Sodium",
+            "amount" : "0mg",
+            "percentage" : "0%"
+        },
+        {
+            "name" : "Total Carbohydrate",
+            "amount" : "17g",
+            "percentage" : "6%"
+        },
+        {
+            "name" : "  Dietary Fiber",
+            "amount" : "0g",
+            "percentage" : "0%"
+        },
+        {
+            "name" : "  Total Sugars",
+            "amount" : "17g",
+            "percentage" : ""
+        },
+        {
+            "name" : "",
+            "amount" : "",
+            "percentage" : "34%"
+        },
+        {
+            "name" : "Protein",
+            "amount" : "0g",
+            "percentage" : ""
+        }
+    ],
+    "item2_list" : [
+        {
+            "name" : "Vitamin D",
+            "amount" : "0mcg",
+            "percentage" : "0%"
+        },
+        {
+            "name" : "Calcium",
+            "amount" : "0mg",
+            "percentage" : "0%"
+        },
+        {
+            "name" : "Iron",
+            "amount" : "0mg",
+            "percentage" : "0%"
+        },
+        {
+            "name" : "Potassium",
+            "amount" : "0mg",
+            "percentage" : "0%"
+        }
+    ]
+}

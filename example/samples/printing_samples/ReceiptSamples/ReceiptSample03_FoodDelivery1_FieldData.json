@@ -1,0 +1,30 @@
+{
+    "store_name" : "Star Delivery",
+    "customer_name" : "John Smith",
+    "staff_name" : "Jane S",
+    "pickup_time" : "Sun, Sep 17, 1:22 AM",
+    "order_number" : "#ef9458a8",
+    "total_items" : 5,
+    "item_list" : [
+        {
+            "name" : "Star Water",
+            "quantity" : 1,
+            "price" : 2.49,
+            "detail" : "Enhanced Water(20 oz)\n"
+        },
+        {
+            "name" : " Star Enhanced",
+            "quantity" : 2,
+            "price" : 5.98,
+            "detail" : "Purified Water(1L)\n"
+        },
+        {
+            "name" : " Star Blue",
+            "quantity" : 2,
+            "price" : 5.98,
+            "detail" : "Thirst Quencher(28 oz)\n"
+        }
+    ],
+    "subtotal" : 14.45,
+    "total" : 14.45
+}

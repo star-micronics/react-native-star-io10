@@ -62,7 +62,7 @@ RCT_REMAP_METHOD(actionPrintImage,
         NSDictionary *contentsDictionary3 = [contentsArray3 objectAtIndex:0];
         
         NSArray *contentsArray4 = [contentsDictionary3 objectForKey:@"contents"];
-        NSDictionary *contentsDictionary4 = [contentsArray4 objectAtIndex:1];
+        NSDictionary *contentsDictionary4 = [contentsArray4 objectAtIndex:0];
         
         NSError *error = nil;
         NSData *parameterData = [NSJSONSerialization dataWithJSONObject:contentsDictionary4 options:0 error:&error];

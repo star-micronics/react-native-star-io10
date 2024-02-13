@@ -6,7 +6,8 @@ These samples includes following functions.
 
 * [printing](samples/printing/App.tsx) - To print by the printer
 * [printing (spooler)](samples/printing_spooler/App.tsx) - To print using the printer's spooler function
-* [printing samples](samples/printing_samples/PrintingSamples.md) - Printing samples of labels (sample code and print results) for each type of business
+* [template print](samples/template_print/App.tsx) - To print using template printing function
+* [printing samples](samples/printing_samples/README.md) - Printing samples of receipts and labels (sample code and print results) for each type of business
 * [discovery](samples/discovery/App.tsx) - To discover devices
 * [status](samples/status/App.tsx) - To get the status of the device
 * [monitor](samples/monitor/App.tsx) - To monitor the device

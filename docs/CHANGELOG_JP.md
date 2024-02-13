@@ -2,6 +2,23 @@
 
 # 変更点
 
+## 1.6.0 (2024/02/09)
+
+* POP10CBI に対応
+* テンプレート印刷APIを追加
+* サンプルアプリにテンプレート印刷画面を追加
+* 文字数指定APIを追加
+* Unicodeあいまい文字全半角設定APIを追加
+* インターフェイス自動切り替え機能をデフォルト有効に変更
+* インターフェイス自動切り替え機能の切り替え速度を改善
+* テンプレート印刷APIを使った印刷パターンのサンプルを複数追加
+* Apple社の指針に従い、`react-native-star-io10`にプライバシーマニフェストファイルを追加（Required Reason APIは使用していません）
+* React Native のバージョンを0.73.2に更新
+* React Native for Windows のバージョンを0.73.4に更新
+* Android: Android14 に対応
+* iOS: use_frameworks! に対応 [#90](https://github.com/star-micronics/react-native-star-io10/issues/90)
+* 使用していないimportと変数を削除 [#107](https://github.com/star-micronics/react-native-star-io10/pull/107)
+
 ## 1.5.0 (2023/10/27)
 
 * MCP31CI/CBI に対応

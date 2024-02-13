@@ -1,0 +1,14 @@
+{
+    "number" : 9,
+    "year" : 2013,
+    "month" : 1,
+    "day" : 10,
+    "name" : "静岡　太郎",
+    "description" : "ご飲食代として",
+    "price" : 2200,
+    "excluding_tax" : 2000,
+    "tax" : 200,
+    "store_name" : "珈琲の店スター\n　　静岡店",
+    "address" : "XXX県XXX市XXX町123-1",
+    "telephone_number" : "01-2345-6789"
+}

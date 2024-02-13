@@ -1,0 +1,32 @@
+{
+    "store_name" : "ร้าน STAR EAT",
+    "address" : "Bangkok , Thailand",
+    "number" : 1,
+    "date" : "ดด/วว/ปปปป",
+    "time" : "HH:MM PM",
+    "customer_name" : "Mr. Star Micronics",
+    "order_time" : "HH:MM PM",
+    "item_list" : [
+        {
+            "number_of_items" : 1,
+            "name" : "ข้าวผัดปู",
+            "price" : 59
+        },
+        {
+            "number_of_items" : 1,
+            "name" : "ต้มยำกุ้ง",
+            "price" : 120
+        },
+        {
+            "number_of_items" : 2,
+            "name" : "ก๋วยเตี๋ยวหมูน้ำตก",
+            "price" : 69
+        }
+    ],
+    "note" : "**โปรดเตรียมช้อนส้อมให้ด้วย",
+    "sub_total" : 248,
+    "tax" : "-",
+    "total" : 248,
+    "charge" : "Visa XXXX-XXXX-XXXX-0123",
+    "store_url" : "https://starmicronics.co.th/en/contact/"
+}

@@ -1,0 +1,20 @@
+{
+    "order_number" : 38,
+    "item_number" : 1,
+    "number_of_items" : 1,
+    "datetime" : "19/10/30 18:55",
+    "product_name" : "Star Tea/L",
+    "item_list" : [
+        {
+            "detail" : "*Syrup/Regular"
+        },
+        {
+            "detail" : "*Ice/Zero"
+        },
+        {
+            "detail" : "*Pearl"
+        }
+    ],
+    "note" : "カップ等の持ち帰り、\n環境美化にご協力お願いします。\n100020",
+    "number" : "02-203854"
+}

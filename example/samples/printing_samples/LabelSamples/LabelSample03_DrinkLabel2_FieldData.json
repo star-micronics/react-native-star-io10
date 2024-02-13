@@ -1,0 +1,56 @@
+{
+    "item_number" : 1,
+    "number_of_items" : 1,
+    "items_in_order" : 1,
+    "customer_name" : "*John Smith*",
+    "product_name" : "Star Mocha",
+    "item_list" : [
+        {
+            "detail" : "Caramel Syrup"
+        },
+        {
+            "detail" : "2 pumps Classic Syrup"
+        },
+        {
+            "detail" : "4 pumps Peppermint Syrup"
+        },
+        {
+            "detail" : "No Toffee Nut Syrp"
+        },
+        {
+            "detail" : "1 pump White Mocha"
+        },
+        {
+            "detail" : "3 pumps Mocha"
+        },
+        {
+            "detail" : "Caramel Sauce"
+        },
+        {
+            "detail" : "4 pumps Toasted Wc Sa"
+        },
+        {
+            "detail" : "Warm"
+        },
+        {
+            "detail" : "Extra Foam"
+        },
+        {
+            "detail" : "Extra Whip"
+        },
+        {
+            "detail" : "Ex Mocha Drizzle"
+        },
+        {
+            "detail" : "Ex Vanilla Powder"
+        },
+        {
+            "detail" : "Lt Salt Topping"
+        },
+        {
+            "detail" : "Ex Caramel Sugar"
+        }
+    ],
+    "time" : "6:21:34 PM",
+    "order_types" : ">MOBILE<"
+}

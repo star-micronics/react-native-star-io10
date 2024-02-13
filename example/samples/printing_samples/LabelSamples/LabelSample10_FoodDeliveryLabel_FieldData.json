@@ -1,0 +1,17 @@
+{
+    "store_name" : "Star Eats",
+    "order_name" : "8A720  Micronics",
+    "time" : "March 24 2021 1:30PM",
+    "order_types" : "DELIVERY",
+    "item_list" : [
+        {
+            "name" : "1XStar's lunch box A *",
+            "price" : 10.95
+        }
+    ],
+    "subtotal" : 0.97,
+    "amount_paid" : 11.92,
+    "item_count" : 1,
+    "item_price" : 10.00,
+    "note" : "*Use special sauce as you like!"
+}

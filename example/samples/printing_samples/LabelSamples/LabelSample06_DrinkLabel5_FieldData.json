@@ -1,0 +1,13 @@
+{
+    "header" : "   * MODIFY *   ",
+    "order_types" : "Eat In",
+    "order_number" : 2956,
+    "time" : "9:49:16 AM",
+    "product_name" : "Star Macchiato",
+    "item_list" : [
+        {
+            "detail" : "Almond Milk"
+        }
+    ],
+    "footer" : "   * MODIFY *   "
+}

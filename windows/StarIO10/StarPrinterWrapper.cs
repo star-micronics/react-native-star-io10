@@ -356,7 +356,7 @@ namespace StarMicronics.ReactNative.StarIO10
         }
 
         [ReactMethod("print")]
-        public async void Print(string objectIdentifier, string command, int timeout, IReactPromise<JSValue.Void> promise)
+        public async void Print(string objectIdentifier, string command, string? template, int timeout, IReactPromise<JSValue.Void> promise)
         {
             if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
@@ -364,6 +364,7 @@ namespace StarMicronics.ReactNative.StarIO10
                 return;
             }
 
+            nativeObject.Template = template;
             nativeObject.PrintTimeout = timeout;
 
             try
@@ -379,7 +380,7 @@ namespace StarMicronics.ReactNative.StarIO10
         }
 
         [ReactMethod("spoolPrint")]
-        public async void SpoolPrint(string objectIdentifier, string command, bool isRetryEnabled, int retryTimeout, string note, int printTimeout, IReactPromise<int> promise)
+        public async void SpoolPrint(string objectIdentifier, string command, string? template, bool isRetryEnabled, int retryTimeout, string note, int printTimeout, IReactPromise<int> promise)
         {
             if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
@@ -387,6 +388,7 @@ namespace StarMicronics.ReactNative.StarIO10
                 return;
             }
 
+            nativeObject.Template = template;
             nativeObject.PrintTimeout = printTimeout;
 
             var jobSettings = new StarSpoolJobSettings(isRetryEnabled, retryTimeout, note);
