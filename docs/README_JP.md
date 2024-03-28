@@ -36,7 +36,7 @@ npm install react-native-star-io10 --save
 
 ### iOS
 #### プライバシーマニュフェスト
-Apple社の指針に従い、`react-native-star-io10` V1.6.0以降はプライバシーマニフェストファイルを含みます。
+Apple社の指針に従い、`react-native-star-io10` V1.6.1以降はプライバシーマニフェストファイルを含みます。
 Manifest fileについては[こちら](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files)をご参照ください。
 ただし、`react-native-star-io10`では過去バージョンを含め、Required Reason APIは使用しておりません。（2024年1月29日現在）
 

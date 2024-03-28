@@ -36,7 +36,7 @@ npm install react-native-star-io10 --save
 
 ### iOS
 #### Privacy manifest file
-In accordance with Apple's guidelines, `react-native-star-io10` V1.6.0 or later includes a privacy manifest file. Please see [here](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files) for the Manifest file.
+In accordance with Apple's guidelines, `react-native-star-io10` V1.6.1 or later includes a privacy manifest file. Please see [here](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files) for the Manifest file.
 However, `react-native-star-io10` does not use the Required Reason API from the first release. (As of January 29, 2024)
 
 #### Some settings and approvals are required depending on the printer interface

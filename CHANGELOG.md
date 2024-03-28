@@ -2,6 +2,13 @@
 
 # Change Log
 
+## 1.6.1 (2024/03/27)
+
+* Bug Fix:
+  * iOS: Fixed privacy manifest file according to Apple's App Review. (`react-native-star-io10` does not use Required Reason API.)
+* Updated React Native version to 0.73.6.
+* Updated React Native Windows version to 0.73.11.
+
 ## 1.6.0 (2024/02/09)
 
 * Added POP10CBI support.

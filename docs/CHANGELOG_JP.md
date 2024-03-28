@@ -2,6 +2,13 @@
 
 # 変更点
 
+## 1.6.1 (2024/03/27)
+
+* 不具合修正
+  * iOS: Apple社のApp Reviewに従い、`react-native-star-io10`のプライバシーマニフェストファイルを修正（Required Reason APIは使用していません）
+* React Native のバージョンを0.73.6に更新
+* React Native Windows のバージョンを0.73.11に更新
+
 ## 1.6.0 (2024/02/09)
 
 * POP10CBI に対応
