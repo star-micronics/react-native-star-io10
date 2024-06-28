@@ -693,6 +693,7 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterCutType, "Cut
   STARIO10StarXpandCommandPrinterCutTypePartial = 1,
   STARIO10StarXpandCommandPrinterCutTypeFullDirect = 2,
   STARIO10StarXpandCommandPrinterCutTypePartialDirect = 3,
+  STARIO10StarXpandCommandPrinterCutTypeTearOff = 4,
 };
 
 
@@ -812,7 +813,8 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterInternational
   STARIO10StarXpandCommandPrinterInternationalCharacterTypeChina = 17,
   STARIO10StarXpandCommandPrinterInternationalCharacterTypeVietnam = 18,
   STARIO10StarXpandCommandPrinterInternationalCharacterTypeArabic = 19,
-  STARIO10StarXpandCommandPrinterInternationalCharacterTypeLegal = 20,
+  STARIO10StarXpandCommandPrinterInternationalCharacterTypeIndia = 20,
+  STARIO10StarXpandCommandPrinterInternationalCharacterTypeLegal = 21,
 };
 
 
@@ -1322,39 +1324,24 @@ SWIFT_CLASS_NAMED("StarPrinter")
 @end
 
 
+@class STARIO10StarSpoolJobSettings;
 @class STARIO10StarPrinterStatus;
 @class STARIO10StarSpoolJobStatus;
 
 @interface STARIO10StarPrinter (SWIFT_EXTENSION(StarIO10))
-/// @available(iOS, obsoleted: 15.0, message: “Not available on iOS 15 or later: Please use open() async”)
-/// 以下の各funcに上記@availableを設定していたが削除(Ver2.0以降)。ReactNative用StarIO10WrapperからはiOS15でも利用するため。
 - (void)openWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
 - (void)closeWithCompletion:(void (^ _Nonnull)(void))completion;
 - (void)printWithRaw:(NSData * _Nonnull)raw completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
 - (void)printWithCommand:(NSString * _Nonnull)command completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+- (void)printWithCommand:(NSString * _Nonnull)command starSpoolJobSettings:(STARIO10StarSpoolJobSettings * _Nonnull)starSpoolJobSettings completion:(void (^ _Nonnull)(NSInteger, NSError * _Nullable))completion;
 - (void)getStatusWithCompletion:(void (^ _Nonnull)(STARIO10StarPrinterStatus * _Nullable, NSError * _Nullable))completion;
 - (void)getSpoolJobStatusWithJobId:(NSInteger)jobId completion:(void (^ _Nonnull)(STARIO10StarSpoolJobStatus * _Nullable, NSError * _Nullable))completion;
 - (void)getSpoolJobStatusListWithSize:(NSInteger)size completion:(void (^ _Nonnull)(NSArray<STARIO10StarSpoolJobStatus *> * _Nullable, NSError * _Nullable))completion;
+- (void)setStarConfigurationWithStarConfiguration:(NSString * _Nonnull)starConfiguration completion:(void (^ _Nonnull)(enum STARIO10StarConfigurationSetResult, NSError * _Nullable))completion;
 - (void)getStarConfigurationWithPassword:(NSString * _Nullable)password completion:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completion;
 - (void)getDefaultStarConfigurationWithCompletion:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completion;
 @end
 
-@class STARIO10StarSpoolJobSettings;
-
-SWIFT_AVAILABILITY(ios,introduced=13.0)
-@interface STARIO10StarPrinter (SWIFT_EXTENSION(StarIO10))
-- (void)openWithCompletionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler;
-- (void)closeWithCompletionHandler:(void (^ _Nonnull)(void))completionHandler;
-- (void)printWithRaw:(NSData * _Nonnull)raw completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler;
-- (void)printWithCommand:(NSString * _Nonnull)command completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler;
-- (void)printWithCommand:(NSString * _Nonnull)command starSpoolJobSettings:(STARIO10StarSpoolJobSettings * _Nonnull)starSpoolJobSettings completionHandler:(void (^ _Nonnull)(NSInteger, NSError * _Nullable))completionHandler;
-- (void)getStatusWithCompletionHandler:(void (^ _Nonnull)(STARIO10StarPrinterStatus * _Nullable, NSError * _Nullable))completionHandler;
-- (void)getSpoolJobStatusWithJobId:(NSInteger)jobId completionHandler:(void (^ _Nonnull)(STARIO10StarSpoolJobStatus * _Nullable, NSError * _Nullable))completionHandler;
-- (void)getSpoolJobStatusListWithSize:(NSInteger)size completionHandler:(void (^ _Nonnull)(NSArray<STARIO10StarSpoolJobStatus *> * _Nullable, NSError * _Nullable))completionHandler;
-- (void)setStarConfigurationWithStarConfiguration:(NSString * _Nonnull)starConfiguration completionHandler:(void (^ _Nonnull)(enum STARIO10StarConfigurationSetResult, NSError * _Nullable))completionHandler;
-- (void)getStarConfigurationWithPassword:(NSString * _Nullable)password completionHandler:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completionHandler;
-- (void)getDefaultStarConfigurationWithCompletionHandler:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completionHandler;
-@end
 
 typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarPrinterEmulation, "StarPrinterEmulation", open) {
   STARIO10StarPrinterEmulationUnknown = 0,
@@ -1401,10 +1388,11 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarPrinterModel, "StarPrinterModel"
   STARIO10StarPrinterModelSM_T400i SWIFT_COMPILE_NAME("sm_T400i") = 19,
   STARIO10StarPrinterModelSM_L200 SWIFT_COMPILE_NAME("sm_L200") = 20,
   STARIO10StarPrinterModelSM_L300 SWIFT_COMPILE_NAME("sm_L300") = 21,
-  STARIO10StarPrinterModelBSC10 SWIFT_COMPILE_NAME("bsc10") = 22,
-  STARIO10StarPrinterModelTSP043 SWIFT_COMPILE_NAME("tsp043") = 23,
-  STARIO10StarPrinterModelSP700 SWIFT_COMPILE_NAME("sp700") = 24,
-  STARIO10StarPrinterModelTUP500 SWIFT_COMPILE_NAME("tup500") = 25,
+  STARIO10StarPrinterModelBSC10II SWIFT_COMPILE_NAME("bsc10II") = 22,
+  STARIO10StarPrinterModelBSC10 SWIFT_COMPILE_NAME("bsc10") = 23,
+  STARIO10StarPrinterModelTSP043 SWIFT_COMPILE_NAME("tsp043") = 24,
+  STARIO10StarPrinterModelSP700 SWIFT_COMPILE_NAME("sp700") = 25,
+  STARIO10StarPrinterModelTUP500 SWIFT_COMPILE_NAME("tup500") = 26,
 };
 
 @protocol STARIO10StarPrinterStatusDetail;
@@ -2415,6 +2403,7 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterCutType, "Cut
   STARIO10StarXpandCommandPrinterCutTypePartial = 1,
   STARIO10StarXpandCommandPrinterCutTypeFullDirect = 2,
   STARIO10StarXpandCommandPrinterCutTypePartialDirect = 3,
+  STARIO10StarXpandCommandPrinterCutTypeTearOff = 4,
 };
 
 
@@ -2534,7 +2523,8 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterInternational
   STARIO10StarXpandCommandPrinterInternationalCharacterTypeChina = 17,
   STARIO10StarXpandCommandPrinterInternationalCharacterTypeVietnam = 18,
   STARIO10StarXpandCommandPrinterInternationalCharacterTypeArabic = 19,
-  STARIO10StarXpandCommandPrinterInternationalCharacterTypeLegal = 20,
+  STARIO10StarXpandCommandPrinterInternationalCharacterTypeIndia = 20,
+  STARIO10StarXpandCommandPrinterInternationalCharacterTypeLegal = 21,
 };
 
 
@@ -3044,39 +3034,24 @@ SWIFT_CLASS_NAMED("StarPrinter")
 @end
 
 
+@class STARIO10StarSpoolJobSettings;
 @class STARIO10StarPrinterStatus;
 @class STARIO10StarSpoolJobStatus;
 
 @interface STARIO10StarPrinter (SWIFT_EXTENSION(StarIO10))
-/// @available(iOS, obsoleted: 15.0, message: “Not available on iOS 15 or later: Please use open() async”)
-/// 以下の各funcに上記@availableを設定していたが削除(Ver2.0以降)。ReactNative用StarIO10WrapperからはiOS15でも利用するため。
 - (void)openWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
 - (void)closeWithCompletion:(void (^ _Nonnull)(void))completion;
 - (void)printWithRaw:(NSData * _Nonnull)raw completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
 - (void)printWithCommand:(NSString * _Nonnull)command completion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+- (void)printWithCommand:(NSString * _Nonnull)command starSpoolJobSettings:(STARIO10StarSpoolJobSettings * _Nonnull)starSpoolJobSettings completion:(void (^ _Nonnull)(NSInteger, NSError * _Nullable))completion;
 - (void)getStatusWithCompletion:(void (^ _Nonnull)(STARIO10StarPrinterStatus * _Nullable, NSError * _Nullable))completion;
 - (void)getSpoolJobStatusWithJobId:(NSInteger)jobId completion:(void (^ _Nonnull)(STARIO10StarSpoolJobStatus * _Nullable, NSError * _Nullable))completion;
 - (void)getSpoolJobStatusListWithSize:(NSInteger)size completion:(void (^ _Nonnull)(NSArray<STARIO10StarSpoolJobStatus *> * _Nullable, NSError * _Nullable))completion;
+- (void)setStarConfigurationWithStarConfiguration:(NSString * _Nonnull)starConfiguration completion:(void (^ _Nonnull)(enum STARIO10StarConfigurationSetResult, NSError * _Nullable))completion;
 - (void)getStarConfigurationWithPassword:(NSString * _Nullable)password completion:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completion;
 - (void)getDefaultStarConfigurationWithCompletion:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completion;
 @end
 
-@class STARIO10StarSpoolJobSettings;
-
-SWIFT_AVAILABILITY(ios,introduced=13.0)
-@interface STARIO10StarPrinter (SWIFT_EXTENSION(StarIO10))
-- (void)openWithCompletionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler;
-- (void)closeWithCompletionHandler:(void (^ _Nonnull)(void))completionHandler;
-- (void)printWithRaw:(NSData * _Nonnull)raw completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler;
-- (void)printWithCommand:(NSString * _Nonnull)command completionHandler:(void (^ _Nonnull)(NSError * _Nullable))completionHandler;
-- (void)printWithCommand:(NSString * _Nonnull)command starSpoolJobSettings:(STARIO10StarSpoolJobSettings * _Nonnull)starSpoolJobSettings completionHandler:(void (^ _Nonnull)(NSInteger, NSError * _Nullable))completionHandler;
-- (void)getStatusWithCompletionHandler:(void (^ _Nonnull)(STARIO10StarPrinterStatus * _Nullable, NSError * _Nullable))completionHandler;
-- (void)getSpoolJobStatusWithJobId:(NSInteger)jobId completionHandler:(void (^ _Nonnull)(STARIO10StarSpoolJobStatus * _Nullable, NSError * _Nullable))completionHandler;
-- (void)getSpoolJobStatusListWithSize:(NSInteger)size completionHandler:(void (^ _Nonnull)(NSArray<STARIO10StarSpoolJobStatus *> * _Nullable, NSError * _Nullable))completionHandler;
-- (void)setStarConfigurationWithStarConfiguration:(NSString * _Nonnull)starConfiguration completionHandler:(void (^ _Nonnull)(enum STARIO10StarConfigurationSetResult, NSError * _Nullable))completionHandler;
-- (void)getStarConfigurationWithPassword:(NSString * _Nullable)password completionHandler:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completionHandler;
-- (void)getDefaultStarConfigurationWithCompletionHandler:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completionHandler;
-@end
 
 typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarPrinterEmulation, "StarPrinterEmulation", open) {
   STARIO10StarPrinterEmulationUnknown = 0,
@@ -3123,10 +3098,11 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarPrinterModel, "StarPrinterModel"
   STARIO10StarPrinterModelSM_T400i SWIFT_COMPILE_NAME("sm_T400i") = 19,
   STARIO10StarPrinterModelSM_L200 SWIFT_COMPILE_NAME("sm_L200") = 20,
   STARIO10StarPrinterModelSM_L300 SWIFT_COMPILE_NAME("sm_L300") = 21,
-  STARIO10StarPrinterModelBSC10 SWIFT_COMPILE_NAME("bsc10") = 22,
-  STARIO10StarPrinterModelTSP043 SWIFT_COMPILE_NAME("tsp043") = 23,
-  STARIO10StarPrinterModelSP700 SWIFT_COMPILE_NAME("sp700") = 24,
-  STARIO10StarPrinterModelTUP500 SWIFT_COMPILE_NAME("tup500") = 25,
+  STARIO10StarPrinterModelBSC10II SWIFT_COMPILE_NAME("bsc10II") = 22,
+  STARIO10StarPrinterModelBSC10 SWIFT_COMPILE_NAME("bsc10") = 23,
+  STARIO10StarPrinterModelTSP043 SWIFT_COMPILE_NAME("tsp043") = 24,
+  STARIO10StarPrinterModelSP700 SWIFT_COMPILE_NAME("sp700") = 25,
+  STARIO10StarPrinterModelTUP500 SWIFT_COMPILE_NAME("tup500") = 26,
 };
 
 @protocol STARIO10StarPrinterStatusDetail;

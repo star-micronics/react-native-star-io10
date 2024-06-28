@@ -13,4 +13,8 @@ export class StarIO10UnprintableError extends StarIO10Error {
 
         this._status = status;
     }
+
+    protected get typeName(): string {
+        return "StarIO10UnprintableError";
+    }
 }

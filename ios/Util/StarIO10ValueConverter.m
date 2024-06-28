@@ -69,6 +69,7 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10StarPrinterModelSM_T400i): @"SM_T400i",
             @(STARIO10StarPrinterModelSM_L200): @"SM_L200",
             @(STARIO10StarPrinterModelSM_L300): @"SM_L300",
+            @(STARIO10StarPrinterModelBSC10II): @"BSC10II",
             @(STARIO10StarPrinterModelBSC10): @"BSC10",
             @(STARIO10StarPrinterModelTSP043): @"TSP043",
             @(STARIO10StarPrinterModelSP700): @"SP700",
@@ -86,6 +87,7 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
         };
         
         kInterfaceTypeDictionary = @{
+            @(STARIO10InterfaceTypeUnknown): @"Unknown",
             @(STARIO10InterfaceTypeLAN): @"Lan",
             @(STARIO10InterfaceTypeBluetooth): @"Bluetooth",
             @(STARIO10InterfaceTypeBluetoothLE): @"BluetoothLE",
@@ -183,6 +185,7 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10StarXpandCommandPrinterInternationalCharacterTypeChina): @"China",
             @(STARIO10StarXpandCommandPrinterInternationalCharacterTypeVietnam): @"Vietnam",
             @(STARIO10StarXpandCommandPrinterInternationalCharacterTypeArabic): @"Arabic",
+            @(STARIO10StarXpandCommandPrinterInternationalCharacterTypeIndia): @"India",
             @(STARIO10StarXpandCommandPrinterInternationalCharacterTypeLegal): @"Legal"
         };
         
@@ -205,7 +208,8 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10StarXpandCommandPrinterCutTypeFull): @"Full",
             @(STARIO10StarXpandCommandPrinterCutTypePartial): @"Partial",
             @(STARIO10StarXpandCommandPrinterCutTypeFullDirect): @"FullDirect",
-            @(STARIO10StarXpandCommandPrinterCutTypePartialDirect): @"PartialDirect"
+            @(STARIO10StarXpandCommandPrinterCutTypePartialDirect): @"PartialDirect",
+            @(STARIO10StarXpandCommandPrinterCutTypeTearOff): @"TearOff"
         };
         
         kPrinterBarcodeSymbologyDictionary = @{

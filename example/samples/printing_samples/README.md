@@ -3,7 +3,8 @@ Samples are available to create print layouts for each type of business. Please 
 
 - [Label Samples](#LabelSamples)
 - [Receipt Samples](#ReceiptSamples)
-- [Graphic Samples](#GraphicSamples)
+- [Graphic Samples for iOS/Android](#GraphicSamples)
+
 
 > :warning: Some printer models may not be able to print some samples. Please confirm the APIs available for that model and adjust the layout accordingly when using this samples.
 
@@ -75,7 +76,7 @@ Please combine ReceiptSampleXX_SampleName_Template.tsx as template and ReceiptSa
 | 12 | Lottery | <img src="ReceiptSamples/images/ReceiptSample12_Lottery.png" width="258px"> | 72mm |
 
 <a id="GraphicSamples"></a>
-## Graphic Samples
+## Graphic Samples for iOS/Android
 
 This is a sample generating receipt image from text data.
 

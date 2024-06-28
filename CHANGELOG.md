@@ -2,6 +2,21 @@
 
 # Change Log
 
+## 1.7.0 (2024/06/24)
+
+* Added BSC10II support.
+* Added TearOff (feed to tear bar) to the CutType enum.
+* Added India to the Printer.InternationalCharacterType enum.
+* Changed the example app to use function components instead of class components.
+* Changed the example app to use CheckBox instead of Picker.
+* Updated React Native version to 0.73.8.
+* Updated React Native for Windows version to 0.73.13.
+* iOS/Windows: Changed so that StarIO10InUseError is thrown immediately when StarPrinter.open() is executed for a LAN printer that has already been opened by another device if autoSwitchInterface is false.
+* Bug Fix:
+  * iOS: Fixed an issue where occasionally caused a crash when executing print operations on multiple printers at the same time.
+  * Fixed the value of the name property of the StarIO10Error subclass to be the string of the class name when the app bundle is generated with the minify option enabled.
+  * iOS: Fixed an issue where StarIO10IllegalDeviceStateError(message: "Network Unavailable.") could occasionally be thrown even though the iOS device is actually connected to the network.
+
 ## 1.6.1 (2024/03/27)
 
 * Bug Fix:

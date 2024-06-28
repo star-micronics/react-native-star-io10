@@ -89,6 +89,7 @@ export class StarXpandCommandParameterConverter {
             [StarXpandCommand.Printer.InternationalCharacterType.China, "China"],
             [StarXpandCommand.Printer.InternationalCharacterType.Vietnam, "Vietnam"],
             [StarXpandCommand.Printer.InternationalCharacterType.Arabic, "Arabic"],
+            [StarXpandCommand.Printer.InternationalCharacterType.India, "India"],
             [StarXpandCommand.Printer.InternationalCharacterType.Legal, "Legal"]
         ]);
 
@@ -134,7 +135,8 @@ export class StarXpandCommandParameterConverter {
             [CutType.Full, "Full"],
             [CutType.Partial, "Partial"],
             [CutType.FullDirect, "FullDirect"],
-            [CutType.PartialDirect, "PartialDirect"]
+            [CutType.PartialDirect, "PartialDirect"],
+            [CutType.TearOff, "TearOff"]
         ]);
 
         return commandMap.get(value) as string;

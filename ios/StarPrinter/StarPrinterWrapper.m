@@ -294,7 +294,7 @@ RCT_REMAP_METHOD(spoolPrint,
                                                                                                      timeout:retryTimeout.integerValue
                                                                                                         note:note];
         
-    [printer printWithCommand:code starSpoolJobSettings:jobSettings completionHandler:^(NSInteger jobId, NSError *error) {
+    [printer printWithCommand:code starSpoolJobSettings:jobSettings completion:^(NSInteger jobId, NSError *error) {
         if (error) {
             NSString *errorID = [self->_objManager add:error];
             reject(errorID, error.localizedDescription, error);
@@ -346,7 +346,7 @@ RCT_REMAP_METHOD(getSpoolJobStatus,
     
     printer.getStatusTimeout = getStatusTimeout.integerValue;
     
-    [printer getSpoolJobStatusWithJobId:jobId.integerValue completionHandler:^(STARIO10StarSpoolJobStatus *status, NSError *error) {
+    [printer getSpoolJobStatusWithJobId:jobId.integerValue completion:^(STARIO10StarSpoolJobStatus *status, NSError *error) {
         if (error) {
             NSString *errorID = [self->_objManager add:error];
             reject(errorID, error.localizedDescription, error);
@@ -373,7 +373,7 @@ RCT_REMAP_METHOD(getSpoolJobStatusList,
     
     printer.getStatusTimeout = getStatusTimeout.integerValue;
     
-    [printer getSpoolJobStatusListWithSize:size.integerValue completionHandler:^(NSArray<STARIO10StarSpoolJobStatus *> *statusList, NSError *error) {
+    [printer getSpoolJobStatusListWithSize:size.integerValue completion:^(NSArray<STARIO10StarSpoolJobStatus *> *statusList, NSError *error) {
         if (error) {
             NSString *errorID = [self->_objManager add:error];
             reject(errorID, error.localizedDescription, error);
@@ -451,7 +451,7 @@ RCT_REMAP_METHOD(setStarConfiguration,
     
     printer.starConfigurationTimeout = starConfigurationTimeout.integerValue;
     
-    [printer setStarConfigurationWithStarConfiguration:starConfiguration completionHandler:^(STARIO10StarConfigurationSetResult result, NSError *error) {
+    [printer setStarConfigurationWithStarConfiguration:starConfiguration completion:^(STARIO10StarConfigurationSetResult result, NSError *error) {
         if (error) {
             NSString *errorID = [self->_objManager add:error];
             reject(errorID, error.localizedDescription, error);

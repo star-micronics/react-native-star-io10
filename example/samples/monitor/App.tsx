@@ -1,7 +1,9 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+
 import {
     View,
-    ScrollView,
+    FlatList,
     Text,
     Button,
     TextInput,
@@ -9,9 +11,7 @@ import {
     Platform
 } from 'react-native';
 
-import {
-    Picker
-} from '@react-native-picker/picker';
+import CheckBox from '@react-native-community/checkbox';
 
 import {
     InterfaceType,
@@ -19,33 +19,25 @@ import {
     StarPrinter
 } from 'react-native-star-io10';
 
-interface AppProps {
-}
+export default function App() {
+    const [interfaceType, setInterfaceType] = useState(InterfaceType.Lan);
+    const [identifier, setIdentifier] = useState("00:11:62:00:00:00");
+    const [statusList, setStatusList] = useState<String[]>([]);
+    const [printer, setPrinter] = useState<StarPrinter | undefined>(undefined);
+    const [isMonitoring, setIsMonitoring] = useState(false);
 
-interface AppState {
-    interfaceType: InterfaceType;
-    identifier: string;
-    statusText: string;
-}
-
-class App extends React.Component<AppProps, AppState> {
-    private _printer: StarPrinter;
-
-    private _onPressMonitorButton = async() => {
-        await this._printer.close();
-        await this._printer.dispose();
-
+    async function _onPressMonitorButton() {
         var settings = new StarConnectionSettings();
-        settings.interfaceType = this.state.interfaceType;
-        settings.identifier = this.state.identifier;
+        settings.interfaceType = interfaceType;
+        settings.identifier = identifier;
         // settings.autoSwitchInterface = true;
 
         // If you are using Android 12 and targetSdkVersion is 31 or later,
         // you have to request Bluetooth permission (Nearby devices permission) to use the Bluetooth printer.
         // https://developer.android.com/about/versions/12/features/bluetooth-permissions
         if (Platform.OS == 'android' && 31 <= Platform.Version) {
-            if (this.state.interfaceType == InterfaceType.Bluetooth || settings.autoSwitchInterface == true) {
-                var hasPermission = await this._confirmBluetoothPermission();
+            if (interfaceType == InterfaceType.Bluetooth || settings.autoSwitchInterface == true) {
+                var hasPermission = await _confirmBluetoothPermission();
 
                 if (!hasPermission) {
                     console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the Bluetooth printer`);
@@ -53,92 +45,126 @@ class App extends React.Component<AppProps, AppState> {
                 }
             }
         }
-
-        this._printer = new StarPrinter(settings);
-
-        this._printer.printerDelegate.onCommunicationError = (error) => {
-            console.log(`Printer: Communication Error`);
-            console.log(error);
-            this.setState({statusText: this.state.statusText + `Printer: Communication Error\n${String(error)}\n`});
-        }
-        this._printer.printerDelegate.onReady = () => {
-            console.log(`Printer: Ready`);
-            this.setState({statusText: this.state.statusText + `Printer: Ready\n`});
-        }
-        this._printer.printerDelegate.onError = () => {
-            console.log(`Printer: Error`);
-            this.setState({statusText: this.state.statusText + `Printer: Error\n`});
-        }
-        this._printer.printerDelegate.onPaperReady = () => {
-            console.log(`Printer: Paper Ready`);
-            this.setState({statusText: this.state.statusText + `Printer: Paper Ready\n`});
-        }
-        this._printer.printerDelegate.onPaperNearEmpty = () => {
-            console.log(`Printer: Paper Near Empty`);
-            this.setState({statusText: this.state.statusText + `Printer: Paper Near Empty\n`});
-        }
-        this._printer.printerDelegate.onPaperEmpty = () => {
-            console.log(`Printer: Paper Empty`);
-            this.setState({statusText: this.state.statusText + `Printer: Paper Empty\n`});
-        }
-        this._printer.printerDelegate.onCoverOpened = () => {
-            console.log(`Printer: Cover Opened`);
-            this.setState({statusText: this.state.statusText + `Printer: Cover Opened\n`});
-        }
-        this._printer.printerDelegate.onCoverClosed = () => {
-            console.log(`Printer: Cover Closed`);
-            this.setState({statusText: this.state.statusText + `Printer: Cover Closed\n`});
-        }
-        this._printer.drawerDelegate.onCommunicationError = (error) => {
-            console.log(`Drawer: Communication Error`);
-            console.log(error);
-            this.setState({statusText: this.state.statusText + `Drawer: Communication Error\n${String(error)}\n`});
-        }
-        this._printer.drawerDelegate.onOpenCloseSignalSwitched = (openCloseSignal) => {
-            console.log(`Drawer: Open Close Signal Switched: ${String(openCloseSignal)}`);
-            this.setState({statusText: this.state.statusText + `Drawer: Open Close Signal Switched: ${String(openCloseSignal)}\n`});
-        }
-        this._printer.inputDeviceDelegate.onCommunicationError = (error) => {
-            console.log(`Input Device: Communication Error`);
-            console.log(error);
-            this.setState({statusText: this.state.statusText + `Input Device: Communication Error\n${String(error)}\n`});
-        }
-        this._printer.inputDeviceDelegate.onConnected = () => {
-            console.log(`Input Device: Connected`);
-            this.setState({statusText: this.state.statusText + `Input Device: Connected\n`});
-        }
-        this._printer.inputDeviceDelegate.onDisconnected = () => {
-            console.log(`Input Device: Disconnected`);
-            this.setState({statusText: this.state.statusText + `Input Device: Disconnected\n`});
-        }
-        this._printer.inputDeviceDelegate.onDataReceived = (data) => {
-            console.log(`Input Device: DataReceived ${String(data)}`);
-            this.setState({statusText: this.state.statusText + `Input Device: DataReceived ${String(data)}\n`});
-        }
-        this._printer.displayDelegate.onCommunicationError = (error) => {
-            console.log(`Display: Communication Error`);
-            console.log(error);
-            this.setState({statusText: this.state.statusText + `Display: Communication Error\n${String(error)}\n`});
-        }
-        this._printer.displayDelegate.onConnected = () => {
-            console.log(`Display: Connected`);
-            this.setState({statusText: this.state.statusText + `Display: Connected\n`});
-        }
-        this._printer.displayDelegate.onDisconnected = () => {
-            console.log(`Display: Disconnected`);
-            this.setState({statusText: this.state.statusText + `Display: Disconnected\n`});
-        }
-
         try {
-            await this._printer.open();
+            if (isMonitoring) {
+                await printer?.close();
+                await printer?.dispose();
+                setPrinter(undefined);
+            } else {
+                setStatusList([]);
+                setPrinter(new StarPrinter(settings));
+            }
+            setIsMonitoring(!isMonitoring);
         }
         catch(error) {
             console.log(`Error: ${String(error)}`);
-            this.setState({statusText: this.state.statusText + `Error: ${String(error)}\n`});
         }
     }
 
-    private async _confirmBluetoothPermission(): Promise<boolean> {
+    useEffect(() => {
+        const _startMonitor = async () => {
+            if (printer == undefined) {
+                return;
+            }
+            printer.printerDelegate.onCommunicationError = (error) => {
+                var status = `Printer: Communication Error\n${String(error)}`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.printerDelegate.onReady = () => {
+                var status = `Printer: Ready`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.printerDelegate.onError = () => {
+                var status = `Printer: Error`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.printerDelegate.onPaperReady = () => {
+                var status = `Printer: Paper Ready`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.printerDelegate.onPaperNearEmpty = () => {
+                var status = `Printer: Paper Near Empty`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.printerDelegate.onPaperEmpty = () => {
+                var status = `Printer: Paper Empty`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.printerDelegate.onCoverOpened = () => {
+                var status = `Printer: Cover Opened`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.printerDelegate.onCoverClosed = () => {
+                var status = `Printer: Cover Closed`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.drawerDelegate.onCommunicationError = (error) => {
+                var status = `Drawer: Communication Error\n${String(error)}`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.drawerDelegate.onOpenCloseSignalSwitched = (openCloseSignal) => {
+                var status = `Drawer: Open Close Signal Switched: ${String(openCloseSignal)}`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.inputDeviceDelegate.onCommunicationError = (error) => {
+                var status = `Input Device: Communication Error\n${String(error)}`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.inputDeviceDelegate.onConnected = () => {
+                var status = `Input Device: Connected`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.inputDeviceDelegate.onDisconnected = () => {
+                var status = `Input Device: Disconnected`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.inputDeviceDelegate.onDataReceived = (data) => {
+                var status = `Input Device: DataReceived ${String(data)}`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.displayDelegate.onCommunicationError = (error) => {
+                var status = `Display: Communication Error\n${String(error)}`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.displayDelegate.onConnected = () => {
+                var status = `Display: Connected`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+            printer.displayDelegate.onDisconnected = () => {
+                var status = `Display: Disconnected`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+    
+            try {
+                await printer.open();
+            }
+            catch(error) {
+                var status = `Error: ${String(error)}`;
+                console.log(status);
+                setStatusList((statusList) => [...statusList, status]);
+            }
+        }
+        _startMonitor();        
+    }, [printer]);
+
+    async function _confirmBluetoothPermission(): Promise<boolean> {
         var hasPermission = false;
 
         try {
@@ -157,62 +183,92 @@ class App extends React.Component<AppProps, AppState> {
         return hasPermission;
     }
 
-    constructor(props: any) {
-        super(props);
-
-        this.state = {
-            interfaceType: InterfaceType.Lan,
-            identifier: '00:11:62:00:00:00',
-            statusText: '\n',
-        };
-
-        var settings = new StarConnectionSettings();
-        settings.interfaceType = this.state.interfaceType;
-        settings.identifier = this.state.identifier;
-        this._printer = new StarPrinter(settings);
-    }
-
-    render() {
-        return (
+    return (
             <View style={{ flex: 1, margin: 50 }}>
                 <View style={{ flexDirection: 'row' }}>
-                <Text style={{ width: 100 }}>Interface</Text>
-                <Picker
-                    style={{ width: 200, marginLeft: 20, justifyContent: 'center' }}
-                    selectedValue={this.state.interfaceType}
-                    onValueChange={(value) => {
-                        this.setState({ interfaceType: value });
-                    }}>
-                    <Picker.Item label='LAN' value={InterfaceType.Lan} />
-                    <Picker.Item label='Bluetooth' value={InterfaceType.Bluetooth}/>
-                    <Picker.Item label='Bluetooth LE' value={InterfaceType.BluetoothLE}/>
-                    <Picker.Item label='USB' value={InterfaceType.Usb} />
-                </Picker>
+                    <Text style={{ width: 100 }}>Interface</Text>
+                    <View style={{ margin: 10 }}>
+                        <View style={{ flexDirection: 'row', marginTop: 0 }}>
+                            <CheckBox
+                                style={{ marginLeft: 20 }}
+                                value={
+                                    interfaceType == InterfaceType.Lan
+                                }
+                                onValueChange={(isChecked) => {
+                                    if (isChecked) {
+                                        setInterfaceType(InterfaceType.Lan);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>LAN</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                            <CheckBox
+                                style={{ marginLeft: 20 }}
+                                value={
+                                    interfaceType == InterfaceType.Bluetooth
+                                }
+                                onValueChange={(isChecked) => {
+                                    if (isChecked) {
+                                        setInterfaceType(InterfaceType.Bluetooth);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>Bluetooth</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                            <CheckBox
+                                style={{ marginLeft: 20 }}
+                                value={
+                                    interfaceType == InterfaceType.BluetoothLE
+                                }
+                                onValueChange={(isChecked) => {
+                                    if (isChecked) {
+                                        setInterfaceType(InterfaceType.BluetoothLE);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>BluetoothLE</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                            <CheckBox
+                                style={{ marginLeft: 20 }}
+                                value={
+                                    interfaceType == InterfaceType.Usb
+                                }
+                                onValueChange={(isChecked) => {
+                                    if (isChecked) {
+                                        setInterfaceType(InterfaceType.Usb);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>USB</Text>
+                        </View>
+                    </View>
                 </View>
                 <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                <Text style={{ width: 100 }}>Identifier</Text>
-                <TextInput
-                    style={{ width: 200, marginLeft: 20 }}
-                    value={this.state.identifier}
-                    onChangeText={(value) => {
-                        this.setState({ identifier: value });
-                    }}
-                />
+                    <Text style={{ width: 100 }}>Identifier</Text>
+                    <TextInput
+                        style={{ width: 200, marginLeft: 20 }}
+                        value={identifier}
+                        onChangeText={(value) => {
+                            setIdentifier(value);
+                        }}
+                    />
                 </View>
-                <View style={{ width: 100, marginTop: 20 }}>
-                <Button
-                    title="Monitor"
-                    onPress={this._onPressMonitorButton}
-                />
+                <View style={{ width: 120, marginTop: 20 }}>
+                    <Button
+                        title={isMonitoring ? "Stop Monitoring" : "Start Monitoring"}
+                        onPress={_onPressMonitorButton}
+                    />
                 </View>
-                <View style={{flex: 1, alignSelf: 'stretch', marginTop: 20}}>
-                    <ScrollView>
-                        <Text>{this.state.statusText}</Text>
-                    </ScrollView>
+                <View style={{ flex: 1, alignSelf: 'stretch', marginTop: 20 }}>
+                <FlatList
+                    style={{ marginTop: 30 }}
+                    data={statusList}
+                    renderItem={({item}) => <Text>{item}</Text>}
+                    keyExtractor={(item, index) => index.toString()} />
                 </View>
             </View>
-        );
-    }
+    );
 };
-
-export default App;

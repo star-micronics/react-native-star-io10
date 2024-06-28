@@ -29,7 +29,6 @@ namespace example
 
             PackageProviders.Add(new Microsoft.ReactNative.Managed.ReactPackageProvider());
             PackageProviders.Add(new ReactPackageProvider());
-            PackageProviders.Add(new ReactNativePicker.ReactPackageProvider());
             PackageProviders.Add(new CheckboxWindows.ReactPackageProvider());
 
             InitializeComponent();

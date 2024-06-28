@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState } from 'react';
+
 import {
     View,
     Text,
@@ -8,9 +10,7 @@ import {
     Platform
 } from 'react-native';
 
-import {
-    Picker
-} from '@react-native-picker/picker';
+import CheckBox from '@react-native-community/checkbox';
 
 import {
     InterfaceType,
@@ -19,29 +19,24 @@ import {
     StarPrinter
 } from 'react-native-star-io10';
 
-interface AppProps {
-}
+export default function App() {
+    const [interfaceType, setInterfaceType] = useState(InterfaceType.Lan);
+    const [identifier, setIdentifier] = useState("00:11:62:00:00:00");
+    const [templateIndex, setTemplateIndex] = useState(0);
+    const [fieldDataIndex, setFieldDataIndex] = useState(0);
 
-interface AppState {
-    interfaceType: InterfaceType;
-    identifier: string;
-    templateIndex: string;
-    fieldDataIndex: string;
-}
-
-class App extends React.Component<AppProps, AppState> {
-    private _onPressPrintButton = async() => {
+    async function _onPressPrintButton() {
         var settings = new StarConnectionSettings();
-        settings.interfaceType = this.state.interfaceType;
-        settings.identifier = this.state.identifier;
+        settings.interfaceType = interfaceType;
+        settings.identifier = identifier;
         // settings.autoSwitchInterface = true;
 
         // If you are using Android 12 and targetSdkVersion is 31 or later,
         // you have to request Bluetooth permission (Nearby devices permission) to use the Bluetooth printer.
         // https://developer.android.com/about/versions/12/features/bluetooth-permissions
         if (Platform.OS == 'android' && 31 <= Platform.Version) {
-            if (this.state.interfaceType == InterfaceType.Bluetooth || settings.autoSwitchInterface == true) {
-                var hasPermission = await this._confirmBluetoothPermission();
+            if (interfaceType == InterfaceType.Bluetooth || settings.autoSwitchInterface == true) {
+                var hasPermission = await _confirmBluetoothPermission();
 
                 if (!hasPermission) {
                     console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the Bluetooth printer`);
@@ -53,41 +48,36 @@ class App extends React.Component<AppProps, AppState> {
         var printer = new StarPrinter(settings);
 
         var template;
-
-        if (this.state.templateIndex == '0') {      // Receipt w/ specifying number of characters
-            template = await this._createReceiptWithSpecifyingNumberOfCharactersTemplate();
-        }
-        else if (this.state.templateIndex == '1') { // Receipt w/o specifying number of characters
-            template = await this._createReceiptWithoutSpecifyingNumberOfCharactersTemplate();
-        }
-        else {                                      // Label
-            template = await this._createLabelTemplate();
-        }
-
         var fieldData;
 
-        if (this.state.templateIndex == '0') {      // Receipt w/ specifying number of characters
-            if (this.state.fieldDataIndex == '0') { // Receipt1
-                fieldData = this.RECEIPT1_FIELD_DATA;
+        if (templateIndex == 0) {      // Template: Receipt w/ specifying number of characters
+            template = await _createReceiptWithSpecifyingNumberOfCharactersTemplate();
+
+            if (fieldDataIndex == 0) { // Field Data: Receipt1
+                fieldData = RECEIPT1_FIELD_DATA;
             }
-            else {                                  // Receipt2
-                fieldData = this.RECEIPT2_FIELD_DATA;
-            }
-        }
-        else if (this.state.templateIndex == '1') { // Receipt w/o specifying number of characters
-            if (this.state.fieldDataIndex == '0') { // Receipt1
-                fieldData = this.RECEIPT1_FIELD_DATA;
-            }
-            else {                                  // Receipt3
-                fieldData = this.RECEIPT3_FIELD_DATA;
+            else {                                // Field Data: Receipt2
+                fieldData = RECEIPT2_FIELD_DATA;
             }
         }
-        else {                                      // Label
-            if (this.state.fieldDataIndex == '0') { // Label1
-                fieldData = this.LABEL1_FIELD_DATA;
+        else if (templateIndex == 1) { // Template: Receipt w/o specifying number of characters
+            template = await _createReceiptWithoutSpecifyingNumberOfCharactersTemplate();
+
+            if (fieldDataIndex == 0) { // Field Data: Receipt1
+                fieldData = RECEIPT1_FIELD_DATA;
             }
-            else {                                  // Label2
-                fieldData = this.LABEL2_FIELD_DATA;
+            else {                                // Field Data: Receipt3
+                fieldData = RECEIPT3_FIELD_DATA;
+            }
+        }
+        else {                                    // Template: Label
+            template = await _createLabelTemplate();
+
+            if (fieldDataIndex == 0) { // Field Data: Label1
+                fieldData = LABEL1_FIELD_DATA;
+            }
+            else {                                // Field Data: Label2
+                fieldData = LABEL2_FIELD_DATA;
             }
         }
 
@@ -108,7 +98,7 @@ class App extends React.Component<AppProps, AppState> {
         }
     }
 
-    private _createReceiptWithSpecifyingNumberOfCharactersTemplate(): Promise<string> {
+    async function _createReceiptWithSpecifyingNumberOfCharactersTemplate(): Promise<string> {
         var builder = new StarXpandCommand.StarXpandCommandBuilder();
 
         builder.addDocument(new StarXpandCommand.DocumentBuilder()
@@ -354,7 +344,7 @@ class App extends React.Component<AppProps, AppState> {
         return builder.getCommands();
     }
 
-    private _createReceiptWithoutSpecifyingNumberOfCharactersTemplate(): Promise<string> {
+    async function _createReceiptWithoutSpecifyingNumberOfCharactersTemplate(): Promise<string> {
         var builder = new StarXpandCommand.StarXpandCommandBuilder();
 
         builder.addDocument(new StarXpandCommand.DocumentBuilder()
@@ -486,7 +476,7 @@ class App extends React.Component<AppProps, AppState> {
         return builder.getCommands();
     }
 
-    private _createLabelTemplate(): Promise<string> {
+    async function _createLabelTemplate(): Promise<string> {
         var builder = new StarXpandCommand.StarXpandCommandBuilder();
 
         builder.addDocument(
@@ -538,28 +528,7 @@ class App extends React.Component<AppProps, AppState> {
         return builder.getCommands();
     }
 
-    private _createFieldDataOptions = () => {
-        if (this.state.templateIndex == '0') {      // Receipt w/ specifying number of characters
-            return [
-                <Picker.Item label='Receipt1' value='0' key='0'/>,
-                <Picker.Item label='Receipt2' value='1' key='1'/>
-            ];
-        }
-        else if (this.state.templateIndex == '1') { // Receipt w/o specifying number of characters
-            return [
-                <Picker.Item label='Receipt1' value='0' key='2'/>,
-                <Picker.Item label='Receipt3' value='1' key='3'/>
-            ];
-        }
-        else {                                      // Label
-            return [
-                <Picker.Item label='Label1' value='0' key='4'/>,
-                <Picker.Item label='Label2' value='1' key='5'/>
-            ];
-        }
-    }
-
-    private async _confirmBluetoothPermission(): Promise<boolean> {
+    async function _confirmBluetoothPermission(): Promise<boolean> {
         var hasPermission = false;
 
         try {
@@ -578,84 +547,7 @@ class App extends React.Component<AppProps, AppState> {
         return hasPermission;
     }
 
-    constructor(props: any) {
-        super(props);
-
-        this.state = {
-            interfaceType: InterfaceType.Lan,
-            identifier: '00:11:62:00:00:00',
-            templateIndex: '0',
-            fieldDataIndex: '0'
-        };
-    }
-
-    render() {
-        return (
-            <View style={{ flex: 1, marginLeft: 20, marginRight: 20, marginTop: 100, marginBottom: 50 }}>
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ width: 100 }}>Interface</Text>
-                    <Picker
-                        style={{ width: 200, marginLeft: 20, justifyContent: 'center' }}
-                        itemStyle={{ height: 100 }}
-                        selectedValue={this.state.interfaceType}
-                        onValueChange={(value) => {
-                            this.setState({ interfaceType: value });
-                        }}>
-                        <Picker.Item label='LAN' value={InterfaceType.Lan} />
-                        <Picker.Item label='Bluetooth' value={InterfaceType.Bluetooth} />
-                        <Picker.Item label='Bluetooth LE' value={InterfaceType.BluetoothLE} />
-                        <Picker.Item label='USB' value={InterfaceType.Usb} />
-                    </Picker>
-                </View>
-                <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                    <Text style={{ width: 100 }}>Identifier</Text>
-                    <TextInput
-                        style={{ width: 200, marginLeft: 20 }}
-                        value={this.state.identifier}
-                        onChangeText={(value) => {
-                            this.setState({ identifier: value });
-                        }}
-                    />
-                </View>
-                <View style={{ height: 120, flexDirection: 'column', marginTop: 30 }}>
-                    <Text style={{ height: 30 }}>Template</Text>
-                    <Picker
-                        style={{ height: 90, marginLeft: 0, justifyContent: 'center' }}
-                        itemStyle={{ fontSize: 14 }}
-                        selectedValue={this.state.templateIndex}
-                        onValueChange={(value) => {
-                            this.setState({ templateIndex: value, fieldDataIndex: '0' });
-                        }}>
-                        <Picker.Item label='Receipt w/ specifying number of characters' value='0' />
-                        <Picker.Item label='Receipt w/o specifying number of characters' value='1' />
-                        <Picker.Item label='Label' value='2' />
-                    </Picker>
-                </View>
-                <View style={{ height: 120, flexDirection: 'column', marginTop: 30 }}>
-                    <Text style={{ height: 30 }}>Field Data</Text>
-                    <Picker
-                        style={{ height: 90, marginLeft: 0, justifyContent: 'center' }}
-                        itemStyle={{ fontSize: 14 }}
-                        selectedValue={this.state.fieldDataIndex}
-                        onValueChange={(value) => {
-                            this.setState({ fieldDataIndex: value });
-                        }}>
-                        {
-                            this._createFieldDataOptions()
-                        }
-                    </Picker>
-                </View>
-                <View style={{ width: 100, marginTop: 20 }}>
-                    <Button
-                        title="Print"
-                        onPress={this._onPressPrintButton}
-                    />
-                </View>
-            </View>
-        );
-    }
-
-    RECEIPT1_FIELD_DATA = `
+    const RECEIPT1_FIELD_DATA = `
     {
         "store_name" : "   Star Cafe   ",
         "order_number" : "#2-007",
@@ -687,7 +579,7 @@ class App extends React.Component<AppProps, AppState> {
         "url" : "star-m.jp"
     }`;
 
-    RECEIPT2_FIELD_DATA = `
+    const RECEIPT2_FIELD_DATA = `
     {
         "store_name" : "   Star Cafe   ",
         "order_number" : "#2-008",
@@ -719,7 +611,7 @@ class App extends React.Component<AppProps, AppState> {
         "url" : "star-m.jp"
     }`;
 
-    RECEIPT3_FIELD_DATA = `
+    const RECEIPT3_FIELD_DATA = `
     {
         "store_name" : "   Star Cafe   ",
         "order_number" : "#2-009",
@@ -766,7 +658,7 @@ class App extends React.Component<AppProps, AppState> {
         "url" : "star-m.jp"
     }`;
 
-    LABEL1_FIELD_DATA = `
+    const LABEL1_FIELD_DATA = `
     {
         "item_name" : "T-Shirt",
         "sku" : "012345678901",
@@ -775,7 +667,7 @@ class App extends React.Component<AppProps, AppState> {
         "price_gbp" : 22.0
     }`;
 
-    LABEL2_FIELD_DATA = `
+    const LABEL2_FIELD_DATA = `
     {
         "item_name" : "Necklace",
         "sku" : "111111111111",
@@ -783,6 +675,191 @@ class App extends React.Component<AppProps, AppState> {
         "price_eur" : 130.0,
         "price_gbp" : 110.0
     }`;
-};
+    
+    return (
+            <View style={{ flex: 1, marginLeft: 20, marginRight: 20, marginTop: 50, marginBottom: 50 }}>
 
-export default App;
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ width: 100 }}>Interface</Text>
+                    <View style={{ margin: 10 }}>
+                        <View style={{ flexDirection: 'row', marginTop: 0 }}>
+                            <CheckBox
+                                style={{ marginLeft: 20 }}
+                                value={
+                                    interfaceType == InterfaceType.Lan
+                                }
+                                onValueChange={(isChecked) => {
+                                    if (isChecked) {
+                                        setInterfaceType(InterfaceType.Lan);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>LAN</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                            <CheckBox
+                                style={{ marginLeft: 20 }}
+                                value={
+                                    interfaceType == InterfaceType.Bluetooth
+                                }
+                                onValueChange={(isChecked) => {
+                                    if (isChecked) {
+                                        setInterfaceType(InterfaceType.Bluetooth);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>Bluetooth</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                            <CheckBox
+                                style={{ marginLeft: 20 }}
+                                value={
+                                    interfaceType == InterfaceType.BluetoothLE
+                                }
+                                onValueChange={(isChecked) => {
+                                    if (isChecked) {
+                                        setInterfaceType(InterfaceType.BluetoothLE);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>BluetoothLE</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                            <CheckBox
+                                style={{ marginLeft: 20 }}
+                                value={
+                                    interfaceType == InterfaceType.Usb
+                                }
+                                onValueChange={(isChecked) => {
+                                    if (isChecked) {
+                                        setInterfaceType(InterfaceType.Usb);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>USB</Text>
+                        </View>
+                    </View>
+                </View>
+
+                <View style={{ flexDirection: 'row', marginTop: 30 }}>
+                    <Text style={{ width: 100 }}>Identifier</Text>
+                    <TextInput
+                        style={{ width: 200, marginLeft: 20 }}
+                        value={identifier}
+                        onChangeText={(value) => {
+                            setIdentifier(value);
+                        }}
+                    />
+                </View>
+
+                <View style={{ height: 150, flexDirection: 'column', marginTop: 30 }}>
+                    <Text style={{ height: 30 }}>Template</Text>
+                    <View style={{ margin: 10 }}>
+                        <View style={{ flexDirection: 'row', marginTop: 0 }}>
+                            <CheckBox
+                                value={
+                                    templateIndex == 0
+                                }
+                                onValueChange={(isChecked: boolean) => {
+                                    if (isChecked) {
+                                        setTemplateIndex(0);
+                                        setFieldDataIndex(0);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>Receipt w/ specifying number of characters</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                            <CheckBox
+                                value={
+                                    templateIndex == 1
+                                }
+                                onValueChange={(isChecked: boolean) => {
+                                    if (isChecked) {
+                                        setTemplateIndex(1);
+                                        setFieldDataIndex(0);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>Receipt w/o specifying number of characters</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                            <CheckBox
+                                value={
+                                    templateIndex == 2
+                                }
+                                onValueChange={(isChecked: boolean) => {
+                                    if (isChecked) {
+                                        setTemplateIndex(2);
+                                        setFieldDataIndex(0);
+                                    }
+                                }}
+                            />
+                            <Text style={{ marginLeft: 20 }}>Label</Text>
+                        </View>
+                    </View>
+                </View>
+
+                <View style={{ height: 120, flexDirection: 'column', marginTop: 30 }}>
+                    <Text style={{ height: 30 }}>Field Data</Text>
+                    <View style={{ margin: 10 }}>
+                        <View style={{ flexDirection: 'row', marginTop: 0 }}>
+                            <CheckBox
+                                value={
+                                    fieldDataIndex == 0
+                                }
+                                onValueChange={(isChecked: boolean) => {
+                                    if (isChecked) {
+                                        setFieldDataIndex(0);
+                                    }
+                                }}
+                            />
+                            {
+                                (() => {
+                                    switch (templateIndex) {
+                                        case 0: // Receipt w/ specifying number of characters
+                                            return <Text style={{ marginLeft: 20 }}>Receipt1</Text>;
+                                        case 1: // Receipt w/o specifying number of characters
+                                            return <Text style={{ marginLeft: 20 }}>Receipt1</Text>;
+                                        case 2: // Label
+                                            return <Text style={{ marginLeft: 20 }}>Label1</Text>;
+                                    }
+                                })()
+                            }
+                        </View>
+                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
+                            <CheckBox
+                                value={
+                                    fieldDataIndex == 1
+                                }
+                                onValueChange={(isChecked: boolean) => {
+                                    if (isChecked) {
+                                        setFieldDataIndex(1);
+                                    }
+                                }}
+                            />
+                            {
+                                (() => {
+                                    switch (templateIndex) {
+                                        case 0: // Receipt w/ specifying number of characters
+                                            return <Text style={{ marginLeft: 20 }}>Receipt2</Text>;
+                                        case 1: // Receipt w/o specifying number of characters
+                                            return <Text style={{ marginLeft: 20 }}>Receipt3</Text>;
+                                        case 2: // Label
+                                            return <Text style={{ marginLeft: 20 }}>Label2</Text>;
+                                    }
+                                })()
+                            }
+                        </View>
+                    </View>
+                </View>
+
+                <View style={{ width: 100, marginTop: 20 }}>
+                    <Button
+                        title="Print"
+                        onPress={_onPressPrintButton}
+                    />
+                </View>
+            </View>
+    );
+};

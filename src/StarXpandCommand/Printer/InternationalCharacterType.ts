@@ -19,5 +19,6 @@ export enum InternationalCharacterType {
     China = 'China',
     Vietnam = 'Vietnam',
     Arabic = 'Arabic',
+    India = 'India',
     Legal = 'Legal'
 }

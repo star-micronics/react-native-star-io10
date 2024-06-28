@@ -47,16 +47,16 @@ import _SwiftConcurrencyShims
   }
   @objc deinit
 }
-extension StarIO10.StarPrinter {
+@objc extension StarIO10.StarPrinter {
   @objc dynamic public func open(completion: @escaping ((any Swift.Error)?) -> Swift.Void)
   @objc dynamic public func close(completion: @escaping () -> Swift.Void)
   @objc dynamic public func print(raw: Foundation.Data, completion: @escaping ((any Swift.Error)?) -> Swift.Void)
   @objc dynamic public func print(command: Swift.String, completion: @escaping ((any Swift.Error)?) -> Swift.Void)
-  public func print(command: Swift.String, starSpoolJobSettings: StarIO10.StarSpoolJobSettings, completion: @escaping (Swift.Int?, (any Swift.Error)?) -> Swift.Void)
+  @objc dynamic public func print(command: Swift.String, starSpoolJobSettings: StarIO10.StarSpoolJobSettings, completion: @escaping (Swift.Int, (any Swift.Error)?) -> Swift.Void)
   @objc dynamic public func getStatus(completion: @escaping (StarIO10.StarPrinterStatus?, (any Swift.Error)?) -> Swift.Void)
   @objc dynamic public func getSpoolJobStatus(jobId: Swift.Int, completion: @escaping (StarIO10.StarSpoolJobStatus?, (any Swift.Error)?) -> Swift.Void)
   @objc dynamic public func getSpoolJobStatusList(size: Swift.Int, completion: @escaping ([StarIO10.StarSpoolJobStatus]?, (any Swift.Error)?) -> Swift.Void)
-  public func setStarConfiguration(starConfiguration: Swift.String, completion: @escaping (StarIO10.StarConfigurationSetResult?, (any Swift.Error)?) -> Swift.Void)
+  @objc dynamic public func setStarConfiguration(starConfiguration: Swift.String, completion: @escaping (StarIO10.StarConfigurationSetResult, (any Swift.Error)?) -> Swift.Void)
   @objc dynamic public func getStarConfiguration(password: Swift.String? = nil, completion: @escaping (Swift.String?, (any Swift.Error)?) -> Swift.Void)
   @objc dynamic public func getDefaultStarConfiguration(completion: @escaping (Swift.String?, (any Swift.Error)?) -> Swift.Void)
 }
@@ -616,7 +616,7 @@ extension StarIO10.StarXpandCommand.Printer {
     }
   }
 }
-@_hasMissingDesignatedInitializers @objcMembers @objc(STARIO10StarPrinter) public class StarPrinter : ObjectiveC.NSObject {
+@_hasMissingDesignatedInitializers @objc(STARIO10StarPrinter) public class StarPrinter : ObjectiveC.NSObject {
   @objc public var information: StarIO10.StarPrinterInformation? {
     get
   }
@@ -893,37 +893,37 @@ extension StarIO10.StarXpandCommand.Printer {
 @available(iOS 13.0, *)
 extension StarIO10.StarPrinter {
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func open() async throws
+  public func open() async throws
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func close() async
+  public func close() async
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func print(raw: Foundation.Data) async throws
+  public func print(raw: Foundation.Data) async throws
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func print(command: Swift.String) async throws
+  public func print(command: Swift.String) async throws
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func print(command: Swift.String, starSpoolJobSettings: StarIO10.StarSpoolJobSettings) async throws -> Swift.Int
+  public func print(command: Swift.String, starSpoolJobSettings: StarIO10.StarSpoolJobSettings) async throws -> Swift.Int
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func getStatus() async throws -> StarIO10.StarPrinterStatus
+  public func getStatus() async throws -> StarIO10.StarPrinterStatus
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func getSpoolJobStatus(jobId: Swift.Int) async throws -> StarIO10.StarSpoolJobStatus
+  public func getSpoolJobStatus(jobId: Swift.Int) async throws -> StarIO10.StarSpoolJobStatus
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func getSpoolJobStatusList(size: Swift.Int) async throws -> [StarIO10.StarSpoolJobStatus]
+  public func getSpoolJobStatusList(size: Swift.Int) async throws -> [StarIO10.StarSpoolJobStatus]
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func setStarConfiguration(starConfiguration: Swift.String) async throws -> StarIO10.StarConfigurationSetResult
+  public func setStarConfiguration(starConfiguration: Swift.String) async throws -> StarIO10.StarConfigurationSetResult
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func getStarConfiguration(password: Swift.String? = nil) async throws -> Swift.String
+  public func getStarConfiguration(password: Swift.String? = nil) async throws -> Swift.String
   #endif
   #if compiler(>=5.3) && $AsyncAwait
-  @objc dynamic public func getDefaultStarConfiguration() async throws -> Swift.String
+  public func getDefaultStarConfiguration() async throws -> Swift.String
   #endif
 }
 extension StarIO10.StarXpandCommand.Display {
@@ -1028,6 +1028,7 @@ extension StarIO10.StarXpandCommand {
   @objc(STARIO10StarPrinterModelSM_T400i) case sm_T400i
   @objc(STARIO10StarPrinterModelSM_L200) case sm_L200
   @objc(STARIO10StarPrinterModelSM_L300) case sm_L300
+  @objc(STARIO10StarPrinterModelBSC10II) case bsc10II
   @objc(STARIO10StarPrinterModelBSC10) case bsc10
   @objc(STARIO10StarPrinterModelTSP043) case tsp043
   @objc(STARIO10StarPrinterModelSP700) case sp700
@@ -1218,6 +1219,7 @@ extension StarIO10.StarXpandCommand.Printer {
     case china
     case vietnam
     case arabic
+    case india
     case legal
     public init?(rawValue: Swift.Int)
     public typealias RawValue = Swift.Int
@@ -1458,6 +1460,7 @@ extension StarIO10.StarXpandCommand.Printer {
     case partial
     case fullDirect
     case partialDirect
+    case tearOff
     public init?(rawValue: Swift.Int)
     public typealias RawValue = Swift.Int
     public var rawValue: Swift.Int {

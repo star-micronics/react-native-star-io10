@@ -44,6 +44,7 @@ class StarIO10ValueConverter {
     companion object {
 
         private val interfaceTypeMap = mapOf(
+            "Unknown" to InterfaceType.Unknown,
             "Bluetooth" to InterfaceType.Bluetooth,
             "BluetoothLE" to InterfaceType.BluetoothLE,
             "Lan" to InterfaceType.Lan,
@@ -91,6 +92,7 @@ class StarIO10ValueConverter {
             "SM_L200" to StarPrinterModel.SM_L200,
             "SM_L300" to StarPrinterModel.SM_L300,
             "BSC10" to StarPrinterModel.BSC10,
+            "BSC10II" to StarPrinterModel.BSC10II,
             "TSP043" to StarPrinterModel.TSP043,
             "SP700" to StarPrinterModel.SP700,
             "TUP500" to StarPrinterModel.TUP500,
@@ -300,7 +302,8 @@ class StarIO10ValueConverter {
             "Full" to CutType.Full,
             "Partial" to CutType.Partial,
             "FullDirect" to CutType.FullDirect,
-            "PartialDirect" to CutType.PartialDirect
+            "PartialDirect" to CutType.PartialDirect,
+            "TearOff" to CutType.TearOff
         )
 
         fun toPrinterCutType(value: String): CutType {
@@ -375,7 +378,8 @@ class StarIO10ValueConverter {
             "Croatia" to InternationalCharacterType.Croatia,
             "China" to InternationalCharacterType.China,
             "Vietnam" to InternationalCharacterType.Vietnam,
-            "Arabic" to InternationalCharacterType.Arabic
+            "Arabic" to InternationalCharacterType.Arabic,
+            "India" to InternationalCharacterType.India
         )
 
         fun toPrinterInternationalType(value: String): InternationalCharacterType {

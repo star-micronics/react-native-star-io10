@@ -33,7 +33,7 @@ android {
         minSdkVersion 28
         targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
         versionCode 1
-        versionName "1.6.0"
+        versionName "1.7.0"
     }
 
     buildTypes {

@@ -2,6 +2,21 @@
 
 # 変更点
 
+## 1.7.0 (2024/06/24)
+
+* BSC10II に対応
+* CutTypeのenumにTearOff（ティアバーまで用紙送り）を追加
+* Printer.InternationalCharacterTypeのenumにIndiaを追加
+* サンプルアプリでクラスコンポーネントから関数コンポーネントを使うよう変更
+* サンプルアプリでPickerからCheckBoxを使うよう変更
+* React Native のバージョンを0.73.8に更新
+* React Native for Windows のバージョンを0.73.13に更新
+* iOS/Windows: autoSwitchInterfaceがfalseの場合、既に他端末がopen済みのLANプリンターに対してStarPrinter.open()を実行したとき、すぐにStarIO10InUseErrorをスローするよう変更
+* 不具合修正
+  * iOS: 複数台のプリンターに対して同時に印刷処理を実行した場合に、まれにクラッシュする問題を修正
+  * minifyオプションを有効にしてアプリのbundleを生成したとき、StarIO10Errorのサブクラスのnameプロパティの値がクラス名の文字列となるよう修正
+  * iOS: 実際にはiOS端末がネットワークに接続されていても、まれにStarIO10IllegalDeviceStateError(message: "Network Unavailable.")がスローされることがある問題を修正
+
 ## 1.6.1 (2024/03/27)
 
 * 不具合修正

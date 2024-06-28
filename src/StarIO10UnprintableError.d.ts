@@ -4,4 +4,5 @@ export declare class StarIO10UnprintableError extends StarIO10Error {
     private _status;
     get status(): StarPrinterStatus | undefined;
     constructor(message: string, errorCode: number, status: StarPrinterStatus | undefined);
+    protected get typeName(): string;
 }

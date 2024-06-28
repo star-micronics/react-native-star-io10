@@ -15,6 +15,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		889D26632524548F00AA5D07 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		88A8570E2595E29A00F4A8CC /* StarIO10.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E661E9258C55D9006F1EE4 /* StarIO10.xcframework */; };
+		9FF5DC3C2C17D63200D66D4E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9FF5DC3B2C17D63200D66D4E /* PrivacyInfo.xcprivacy */; };
 		DD10623729C055A4002C8C77 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD10623629C055A4002C8C77 /* AppDelegate.mm */; };
 		DD56B2842B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27A2B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png */; };
 		DD56B2852B70879D0047C348 /* label_sample21_shipping_label_phones_old.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27B2B70879D0047C348 /* label_sample21_shipping_label_phones_old.png */; };
@@ -57,6 +58,7 @@
 		73B9172EBB3ED939CA361D76 /* Pods-example-exampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-exampleTests.debug.xcconfig"; path = "Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = example/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88E661E9258C55D9006F1EE4 /* StarIO10.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = StarIO10.xcframework; path = ../../ios/libs/StarIO10.xcframework; sourceTree = "<group>"; };
+		9FF5DC3B2C17D63200D66D4E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		DBDCF4355CE43E454FEE01FE /* libPods-example-exampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example-exampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD10623629C055A4002C8C77 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = example/AppDelegate.mm; sourceTree = "<group>"; };
 		DD56B27A2B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample19_pharmacy_medication1_logo.png; path = example/label_sample19_pharmacy_medication1_logo.png; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				9FF5DC3B2C17D63200D66D4E /* PrivacyInfo.xcprivacy */,
 				88E661E9258C55D9006F1EE4 /* StarIO10.xcframework */,
 				13B07FAE1A68108700A75B9A /* example */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -292,6 +295,7 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				DD56B2872B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png in Resources */,
 				DDCDFE632B4E1641009A001A /* signature.png in Resources */,
+				9FF5DC3C2C17D63200D66D4E /* PrivacyInfo.xcprivacy in Resources */,
 				DD56B2842B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				DD56B28C2B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png in Resources */,
@@ -330,11 +334,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -444,11 +448,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -594,7 +598,7 @@
 					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
 					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.7.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -663,7 +667,7 @@
 					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
 					"\"$(SRCROOT)\"",
 				);
-				MARKETING_VERSION = 1.6.0;
+				MARKETING_VERSION = 1.7.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -745,8 +749,13 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 			};
 			name = Debug;
 		};
@@ -811,8 +820,13 @@
 					"-DFOLLY_USE_LIBCPP=1",
 					"-DFOLLY_CFG_NO_COROUTINES=1",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					" ",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				USE_HERMES = true;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

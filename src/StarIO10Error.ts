@@ -10,7 +10,11 @@ export class StarIO10Error extends Error {
     constructor(message: string, errorCode: number = StarIO10ErrorCode.None) {
         super(message);
 
-        this.name = this.constructor.name;
+        this.name = this.typeName;
         this._errorCode = errorCode;
+    }
+
+    protected get typeName(): string {
+        return "StarIO10Error";
     }
 }

@@ -6,6 +6,7 @@
   />
 </p>
 
+
 - [English](../README.md)
 
 # react-native-star-io10
@@ -143,6 +144,7 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
     <usb-device vendor-id="1305" product-id="0025" />   <!--mC-Label3-->
     <usb-device vendor-id="1305" product-id="0023" />   <!--mPOP-->
     <usb-device vendor-id="1305" product-id="0001" />   <!--TSP650II/TSP650II SK/TSP700II/TSP800II/SP700/TUP500-->
+    <usb-device vendor-id="1305" product-id="0027" />   <!--BSC10II-->
     <usb-device vendor-id="1305" product-id="0011" />   <!--BSC10-->
     <usb-device vendor-id="1305" product-id="0015" />   <!--TSP043-->
     <usb-device vendor-id="1305" product-id="0017" />   <!--BSC10BR-->
@@ -162,6 +164,7 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
     <usb-accessory model="mC-Print3" manufacturer="Star Micronics"/>
     <usb-accessory model="mC-Label3" manufacturer="Star Micronics"/>
     <usb-accessory model="mPOP" manufacturer="Star Micronics"/>
+    <usb-accessory model="BSC10II" manufacturer="Star Micronics"/>
 </resources>
 ```
 

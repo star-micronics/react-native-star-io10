@@ -223,10 +223,6 @@
       <Project>{eaf81beb-a159-4421-9b6d-e59c37828a57}</Project>
       <Name>CheckboxWindows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\node_modules\%40react-native-picker\picker\windows\ReactNativePicker\ReactNativePicker.vcxproj">
-      <Project>{bedcc600-4541-41f2-aa46-9e058202b6ad}</Project>
-      <Name>ReactNativePicker</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs.Desktop, Version=14.0">

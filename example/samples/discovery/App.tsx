@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
+
 import {
     View,
     Text,
@@ -17,27 +19,21 @@ import {
     StarPrinter
 } from 'react-native-star-io10';
 
-interface AppProps {
-}
+export default function App() {
+    const [lanIsEnabled, setLanIsEnabled] = useState(true);
+    const [bluetoothIsEnabled, setBluetoothIsEnabled] = useState(true);
+    const [bluetoothLeIsEnabled, setBluetoothLeIsEnabled] = useState(true);
+    const [usbIsEnabled, setUsbIsEnabled] = useState(true);
+    const [printers, setPrinters] = useState<StarPrinter[]>([]);
+    const [manager, setManager] = useState<StarDeviceDiscoveryManager | undefined>(undefined);
 
-interface AppState {
-    lanIsEnabled: boolean;
-    bluetoothIsEnabled: boolean;
-    bluetoothLeIsEnabled: boolean;
-    usbIsEnabled: boolean;
-    printers: Array<StarPrinter>;
-}
-
-class App extends React.Component<AppProps, AppState> {
-    private _manager?: StarDeviceDiscoveryManager;
-
-    private _onPressDiscoveryButton = async() => {
+    async function _onPressDiscoveryButton () {
         // If you are using Android 12 and targetSdkVersion is 31 or later,
         // you have to request Bluetooth permission (Nearby devices permission) to use the Bluetooth printer.
         // https://developer.android.com/about/versions/12/features/bluetooth-permissions
         if (Platform.OS == 'android' && 31 <= Platform.Version) {
-            if (this.state.bluetoothIsEnabled) {
-                var hasPermission = await this._confirmBluetoothPermission();
+            if (bluetoothIsEnabled) {
+                var hasPermission = await _confirmBluetoothPermission();
 
                 if (!hasPermission) {
                     console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the Bluetooth printer`);
@@ -46,52 +42,59 @@ class App extends React.Component<AppProps, AppState> {
             }
         }
 
-        this.setState({
-            printers: [],
-        });
-
         try {
-            await this._manager?.stopDiscovery()
+            await manager?.stopDiscovery()
 
             var interfaceTypes: Array<InterfaceType> = []
-            if(this.state.lanIsEnabled) {
+            if(lanIsEnabled) {
                 interfaceTypes.push(InterfaceType.Lan);
             }
-            if(this.state.bluetoothIsEnabled) {
+            if(bluetoothIsEnabled) {
                 interfaceTypes.push(InterfaceType.Bluetooth);
             }
-            if(this.state.bluetoothLeIsEnabled) {
+            if(bluetoothLeIsEnabled) {
                 interfaceTypes.push(InterfaceType.BluetoothLE);
             }
-            if(this.state.usbIsEnabled) {
+            if(usbIsEnabled) {
                 interfaceTypes.push(InterfaceType.Usb);
             }
 
-            this._manager = await StarDeviceDiscoveryManagerFactory.create(interfaceTypes);
-            this._manager.discoveryTime = 10000;
-
-            this._manager.onPrinterFound = (printer: StarPrinter) => {
-                const printers = this.state.printers;
-                printers.push(printer);
-                this.setState({
-                    printers: printers
-                });
-
-                console.log(`Found printer: ${printer.connectionSettings.identifier}.`);
-            };
-
-            this._manager.onDiscoveryFinished = () => {
-                console.log(`Discovery finished.`);
-            };
-
-            await this._manager.startDiscovery();
+            console.log(`create manager with ${interfaceTypes}`);
+            setManager(await StarDeviceDiscoveryManagerFactory.create(interfaceTypes));
         }
         catch(error) {
             console.log(`Error: ${String(error)}`);
         }
     }
 
-    private async _confirmBluetoothPermission(): Promise<boolean> {
+    useEffect( () => {
+        const _startDiscovery = async () => {
+            setPrinters([]);
+            if (manager != undefined) {
+                manager.discoveryTime = 10000;
+
+                manager.onPrinterFound = async (printer: StarPrinter) => {
+                    setPrinters((printers) => [...printers, printer]);        
+                    console.log(`Found printer: ${printer.connectionSettings.interfaceType} ${printer.connectionSettings.identifier}.`);
+                };
+        
+                manager.onDiscoveryFinished = () => {
+                    console.log(`Discovery finished.`);
+                };
+    
+                try {
+                    console.log(`Discovery start.`);
+                    await manager.startDiscovery();
+                }
+                catch(error) {
+                    console.log(`Error: ${String(error)}`);
+                }  
+            }
+        }
+        _startDiscovery();
+    }, [manager]);
+
+    async function _confirmBluetoothPermission(): Promise<boolean> {
         var hasPermission = false;
 
         try {
@@ -110,82 +113,66 @@ class App extends React.Component<AppProps, AppState> {
         return hasPermission;
     }
 
-    constructor(props: any) {
-        super(props);
+    return (
+        <View style={{ margin: 50 }}>
+            <Text>Interface</Text>
 
-        this.state = {
-            lanIsEnabled: true,
-            bluetoothIsEnabled: true,
-            bluetoothLeIsEnabled: true,
-            usbIsEnabled: true,
-            printers: [],
-        };
-    }
+            <View style={{ flexDirection: 'row', marginTop: 20  }}>
+            <CheckBox
+                style={{ marginLeft: 20 }}
+                value={lanIsEnabled}
+                onValueChange={(newValue) => {
+                    setLanIsEnabled(newValue);
+                }}
+            />
+            <Text style={{ marginLeft: 20 }}>LAN</Text>
+            </View>
 
-    render() {
-        return (
-            <View style={{ margin: 50 }}>
-                <Text>Interface</Text>
+            <View style={{ flexDirection: 'row' }}>
+            <CheckBox
+                style={{ marginLeft: 20 }}
+                value={bluetoothIsEnabled}
+                onValueChange={(newValue) => {
+                    setBluetoothIsEnabled(newValue);
+                }}
+            />
+            <Text style={{ marginLeft: 20 }}>Bluetooth</Text>
+            </View>
 
-                <View style={{ flexDirection: 'row', marginTop: 20  }}>
-                <CheckBox
-                    style={{ marginLeft: 20 }}
-                    value={this.state.lanIsEnabled}
-                    onValueChange={(newValue) => {
-                        this.setState({ lanIsEnabled: newValue });
-                    }}
+            <View style={{ flexDirection: 'row' }}>
+            <CheckBox
+                style={{ marginLeft: 20 }}
+                value={bluetoothLeIsEnabled}
+                onValueChange={(newValue) => {
+                    setBluetoothLeIsEnabled(newValue);
+                }}
+            />
+            <Text style={{ marginLeft: 20 }}>Bluetooth LE</Text>
+            </View>
+
+            <View style={{ flexDirection: 'row' }}>
+            <CheckBox
+                style={{ marginLeft: 20 }}
+                value={usbIsEnabled}
+                onValueChange={(newValue) => {
+                    setUsbIsEnabled(newValue);
+                }}
+            />
+            <Text style={{ marginLeft: 20 }}>USB</Text>
+            </View>
+
+            <View
+                style={{ width: 100, marginTop: 30 }}>
+                <Button
+                title="Discovery"
+                onPress={_onPressDiscoveryButton}
                 />
-                <Text style={{ marginLeft: 20 }}>LAN</Text>
-                </View>
-
-                <View style={{ flexDirection: 'row' }}>
-                <CheckBox
-                    style={{ marginLeft: 20 }}
-                    value={this.state.bluetoothIsEnabled}
-                    onValueChange={(newValue) => {
-                        this.setState({ bluetoothIsEnabled: newValue });
-                    }}
-                />
-                <Text style={{ marginLeft: 20 }}>Bluetooth</Text>
-                </View>
-
-                <View style={{ flexDirection: 'row' }}>
-                <CheckBox
-                    style={{ marginLeft: 20 }}
-                    value={this.state.bluetoothLeIsEnabled}
-                    onValueChange={(newValue) => {
-                        this.setState({ bluetoothLeIsEnabled: newValue });
-                    }}
-                />
-                <Text style={{ marginLeft: 20 }}>Bluetooth LE</Text>
-                </View>
-
-                <View style={{ flexDirection: 'row' }}>
-                <CheckBox
-                    style={{ marginLeft: 20 }}
-                    value={this.state.usbIsEnabled}
-                    onValueChange={(newValue) => {
-                        this.setState({ usbIsEnabled: newValue });
-                    }}
-                />
-                <Text style={{ marginLeft: 20 }}>USB</Text>
-                </View>
-
-                <View
-                    style={{ width: 100, marginTop: 30 }}>
-                    <Button
-                    title="Discovery"
-                    onPress={this._onPressDiscoveryButton}
-                    />
-                </View>
+            </View>
                 <FlatList
                     style={{ marginTop: 30 }}
-                    data={this.state.printers}
+                    data={printers}
                     renderItem={({item}) => <Text>{item.connectionSettings.interfaceType} : {item.connectionSettings.identifier}</Text>}
                     keyExtractor={(item, index) => index.toString()} />
             </View>
-        );
-    }
+    );
 };
-
-export default App;

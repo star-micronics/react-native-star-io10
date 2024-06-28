@@ -29,6 +29,7 @@ namespace StarMicronics.ReactNative.StarIO10
     {
         private static readonly IReadOnlyDictionary<InterfaceType, string> InterfaceTypeDictionary = new Dictionary<InterfaceType, string>()
         {
+            { InterfaceType.Unknown, "Unknown" },
             { InterfaceType.Lan, "Lan" },
             { InterfaceType.Bluetooth, "Bluetooth" },
             { InterfaceType.BluetoothLE, "BluetoothLE" },
@@ -59,6 +60,7 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarPrinterModel.SML200, "SM_L200" },
             { StarPrinterModel.SML300, "SM_L300" },
             { StarPrinterModel.BSC10, "BSC10" },
+            { StarPrinterModel.BSC10II, "BSC10II" },
             { StarPrinterModel.TSP043, "TSP043" },
             { StarPrinterModel.SP700, "SP700" },
             { StarPrinterModel.TUP500, "TUP500" },
@@ -179,6 +181,7 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarMicronics.StarIO10.StarXpandCommand.Printer.InternationalCharacterType.China, "China" },
             { StarMicronics.StarIO10.StarXpandCommand.Printer.InternationalCharacterType.Vietnam, "Vietnam" },
             { StarMicronics.StarIO10.StarXpandCommand.Printer.InternationalCharacterType.Arabic, "Arabic" },
+            { StarMicronics.StarIO10.StarXpandCommand.Printer.InternationalCharacterType.India, "India" },
             { StarMicronics.StarIO10.StarXpandCommand.Printer.InternationalCharacterType.Legal, "Legal" },
         };
 
@@ -205,6 +208,7 @@ namespace StarMicronics.ReactNative.StarIO10
             { CutType.Partial, "Partial" },
             { CutType.FullDirect, "FullDirect" },
             { CutType.PartialDirect, "PartialDirect" },
+            { CutType.TearOff, "TearOff" },
         };
 
         private static readonly IReadOnlyDictionary<BarcodeSymbology, string> PrinterBarcodeSymbologyDictionary = new Dictionary<BarcodeSymbology, string>()

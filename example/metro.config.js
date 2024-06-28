@@ -7,7 +7,7 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
  * @type {import('metro-config').MetroConfig}
  */
 const path = require('path');
-const blacklist = require('metro-config/src/defaults/exclusionlist');
+const blacklist = require('metro-config/src/defaults/exclusionList');
 
 const config = {
   resolver: {
