@@ -4,7 +4,7 @@
 
 ## 1.7.0 (2024/06/24)
 
-* Added BSC10II support.
+* Added BSC10II support (Limited region model).
 * Added TearOff (feed to tear bar) to the CutType enum.
 * Added India to the Printer.InternationalCharacterType enum.
 * Changed the example app to use function components instead of class components.
