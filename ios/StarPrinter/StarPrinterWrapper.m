@@ -478,6 +478,22 @@ RCT_REMAP_METHOD(close,
     }];
 }
 
+RCT_REMAP_METHOD(getErrorDetail,
+                 getErrorDetailWithObjectIdentifier:(nonnull NSString *)objID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    NSString *errorDetailID = [self->_objManager add:printer.errorDetail];
+    resolve(errorDetailID);
+}
+
 #pragma mark - Delegate
 
 - (NSArray<NSString *> *)supportedEvents

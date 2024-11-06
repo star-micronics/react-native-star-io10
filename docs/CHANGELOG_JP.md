@@ -1,6 +1,23 @@
 - [English](../CHANGELOG.md)
 
+
 # 変更点
+
+## 1.8.0 (2024/11/01)
+
+* TSP100IV-UEWB およびTSP100IV-UEWB SK に対応
+* プリンターの詳細情報を取得するAPIを追加
+  * StarPrinterInformationのdetailプロパティ
+  * StarPrinterInformationDetail
+  * StarPrinterInformationLan
+  * StarPrinterInformationBluetooth
+  * StarPrinterInformationBluetoothLE
+  * StarPrinterInformationUsb
+* エラーの詳細情報を取得するAPIを追加
+  * StarPrinterのerrorDetailプロパティ
+  * StarIO10ErrorDetail
+* 不具合修正
+  * Xcode16とiOS18の組み合わせで、LAN経由でプリンターの検索・通信に失敗する問題を修正 [#124](https://github.com/star-micronics/react-native-star-io10/issues/124)
 
 ## 1.7.0 (2024/06/24)
 

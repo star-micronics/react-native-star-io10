@@ -125,6 +125,7 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="StarIO10ErrorDetailWrapper.cs" />
     <Compile Include="StarSpoolJobStatusListWrapper.cs" />
     <Compile Include="StarSpoolJobStatusWrapper.cs" />
     <Compile Include="DisplayBuilderWrapper.cs" />

@@ -1,10 +1,3 @@
-//
-//  StarIO10ValueConverter.m
-//  react-native-star-io10
-//
-//  Created by 上田　雄磨 on 2020/10/23.
-//
-
 #import "StarIO10ValueConverter.h"
 
 @implementation StarIO10ValueConverter
@@ -379,6 +372,64 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
 + (NSString *)toStringFromInterfaceType:(STARIO10InterfaceType)value
 {
     return kInterfaceTypeDictionary[@(value)];
+}
+
++ (NSDictionary<NSString *, id> *)toStarPrinterStatusReservedDictionary:(NSDictionary<NSString *, id> *)reserved
+{
+    NSMutableDictionary<NSString *, id> *jsNamingDictionary = [[NSMutableDictionary alloc] init];
+    
+    for (id key in [reserved keyEnumerator]) {
+        NSString *keyString = [self toJSNaming:key];
+        
+        id value = [NSNull class];
+        id tempValue = [reserved valueForKey:key];
+        
+        if (tempValue == nil || [tempValue isEqual:[NSNull null]]) {
+            value = [NSNull null];
+        }
+        else if ([keyString isEqualToString:@"cutterError"] ||
+                 [keyString isEqualToString:@"paperSeparatorError"] ||
+                 [keyString isEqualToString:@"paperJamError"] ||
+                 [keyString isEqualToString:@"rollPositionError"] ||
+                 [keyString isEqualToString:@"paperPresent"] ||
+                 [keyString isEqualToString:@"drawerOpenError"] ||
+                 [keyString isEqualToString:@"printUnitOpen"] ||
+                 [keyString isEqualToString:@"drawer1OpenCloseSignal"] ||
+                 [keyString isEqualToString:@"drawer2OpenCloseSignal"] ||
+                 [keyString isEqualToString:@"externalDevice1Connected"] ||
+                 [keyString isEqualToString:@"externalDevice2Connected"] ||
+                 [keyString isEqualToString:@"partsReplacementNotification"] ||
+                 [keyString isEqualToString:@"cleaningNotification"] ||
+                 [keyString isEqualToString:@"printHeadOverTemperature"] ||
+                 [keyString isEqualToString:@"unrecoverableError"] ||
+                 [keyString isEqualToString:@"printHeadThermistorError"] ||
+                 [keyString isEqualToString:@"receiveBufferOverflow"] ||
+                 [keyString isEqualToString:@"boardOverTemperature"] ||
+                 [keyString isEqualToString:@"flashAccessError"] ||
+                 [keyString isEqualToString:@"eepromAccessError"] ||
+                 [keyString isEqualToString:@"sramAccessError"] ||
+                 [keyString isEqualToString:@"boardThermistorError"] ||
+                 [keyString isEqualToString:@"sensorAdjustmentError"]) {
+            value = @(((STARIO10NullableBool *)tempValue).value);
+        }
+        else if ([keyString isEqualToString:@"detectedPaperWidth"] ||
+                 [keyString isEqualToString:@"version"] ||
+                 [keyString isEqualToString:@"etbCounter"] ||
+                 [keyString isEqualToString:@"connectedInterface"]) {
+            value = @(((STARIO10NullableInt *)tempValue).value);
+        }
+        else if ([keyString isEqualToString:@"drawer1OpenedMethod"] ||
+                 [keyString isEqualToString:@"drawer2OpenedMethod"]) {
+            value = (([StarIO10ValueConverter toStringFromDrawerOpenedMethod:((STARIO10NullableDrawerOpenedMethod *)tempValue).value]));
+        }
+        else {
+            continue;
+        }
+        
+        [jsNamingDictionary setObject:value forKey:keyString];
+    }
+    
+    return jsNamingDictionary;
 }
 
 + (NSString *)toStringFromDrawerOpenedMethod:(STARIO10DrawerOpenedMethod)value

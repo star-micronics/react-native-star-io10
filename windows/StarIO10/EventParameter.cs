@@ -11,5 +11,11 @@
         public static readonly string KeyEmulation = "emulation";
         public static readonly string KeyReserved = "reserved";
         public static readonly string KeyConnectionIdentifier = "connectionIdentifier";
+
+        public static readonly string KeyMacAddress = "macAddress";
+        public static readonly string KeyIPAddress = "ipAddress";
+        public static readonly string KeyBluetoothAddress = "bluetoothAddress";
+        public static readonly string KeyBluetoothDeviceName = "bluetoothDeviceName";
+
     }
 }

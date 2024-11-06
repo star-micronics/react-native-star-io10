@@ -598,5 +598,20 @@ namespace StarMicronics.ReactNative.StarIO10
                 promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
             }
         }
+
+        [ReactMethod("getErrorDetail")]
+        public void GetErrorDetail(string objectIdentifier, IReactPromise<string> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            StarIO10ErrorDetail errorDetail = nativeObject.ErrorDetail;
+
+            StarIO10ErrorDetailWrapper.SetObject(errorDetail, out string errorDetailIdentifier);
+            promise.Resolve(errorDetailIdentifier);
+        }
     }
 }

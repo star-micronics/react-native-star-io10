@@ -892,6 +892,10 @@ class StarIO10ValueConverter {
                     value.javaClass.isArray -> {
                         writableMap.putArray(key, this.toWritableArray(value as Array<Any?>))
                     }
+
+                    value is DrawerOpenedMethod ->{
+                        writableMap.putString(key, this.toString(value))
+                    }
                 }
             }
 

@@ -9,6 +9,7 @@ import { DisplayDelegate } from './DisplayDelegate';
 import { StarSpoolJobSettings } from './StarSpoolJobSettings';
 import { StarSpoolJobStatus } from './StarSpoolJobStatus';
 import { StarConfigurationSetResult } from './StarConfigurationSetResult';
+import { StarIO10ErrorDetail } from './StarIO10ErrorDetail';
 export declare class StarPrinter extends NativeObject {
     private _eventSubscriptions;
     private _connectionSettings;
@@ -40,6 +41,7 @@ export declare class StarPrinter extends NativeObject {
     getStarConfiguration(password?: string | undefined): Promise<string>;
     getDefaultStarConfiguration(): Promise<string>;
     close(): Promise<void>;
+    get errorDetail(): Promise<StarIO10ErrorDetail>;
     dispose(): Promise<void>;
     protected _initNativeObjectImpl(): Promise<string>;
     protected _disposeNativeObjectImpl(nativeObject: string): Promise<void>;

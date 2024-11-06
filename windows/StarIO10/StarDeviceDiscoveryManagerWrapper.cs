@@ -53,6 +53,23 @@ namespace StarMicronics.ReactNative.StarIO10
                     parameter.Add(EventParameter.KeyEmulation, emulationString);
                     parameter.Add(EventParameter.KeyReserved, StarIO10ValueConverter.ToJSValue(e.Printer.Information.Reserved));
 
+                    if (e.Printer.Information.Detail.Lan.MacAddress != null)
+                    {
+                        parameter.Add(EventParameter.KeyMacAddress, e.Printer.Information.Detail.Lan.MacAddress);
+                    }
+                    if (e.Printer.Information.Detail.Lan.IPAddress != null)
+                    {
+                        parameter.Add(EventParameter.KeyIPAddress, e.Printer.Information.Detail.Lan.IPAddress);
+                    }
+                    if (e.Printer.Information.Detail.Bluetooth.Address != null)
+                    {
+                        parameter.Add(EventParameter.KeyBluetoothAddress, e.Printer.Information.Detail.Bluetooth.Address);
+                    }
+                    if (e.Printer.Information.Detail.Bluetooth.DeviceName != null)
+                    {
+                        parameter.Add(EventParameter.KeyBluetoothDeviceName, e.Printer.Information.Detail.Bluetooth.DeviceName);
+                    }
+
                     PrinterFound(parameter);
                 };
                 nativeObject.DiscoveryFinished += (sender, e) =>

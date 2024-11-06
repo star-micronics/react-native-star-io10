@@ -87,6 +87,36 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
                             )
                         )
 
+                        params.putString(
+                            EventParameter.KEY_LAN_MAC_ADDRESS,
+                            printer.information?.detail?.lan?.macAddress ?: null
+                        )
+
+                        params.putString(
+                            EventParameter.KEY_LAN_IP_ADDRESS,
+                            printer.information?.detail?.lan?.ipAddress ?: null
+                        )
+
+                        params.putString(
+                            EventParameter.KEY_BT_ADDRESS,
+                            printer.information?.detail?.bluetooth?.address ?: null
+                        )
+
+                        params.putString(
+                            EventParameter.KEY_BT_DEVICE_NAME,
+                            printer.information?.detail?.bluetooth?.deviceName ?: null
+                        )
+
+                        params.putString(
+                            EventParameter.KEY_USB_PORT_NAME,
+                            printer.information?.detail?.usb?.portName ?: null
+                        )
+                        
+                        params.putString(
+                            EventParameter.KEY_USB_USB_SN,
+                            printer.information?.detail?.usb?.usbSerialNumber ?: null
+                        )
+
                         sendEvent(EventParameter.NAME_PRINTER_FOUND, params)
                     }
 

@@ -12,6 +12,13 @@ class EventParameter {
         const val KEY_RESERVED = "reserved"
         const val KEY_CONNECTION_IDENTIFIER = "connectionIdentifier"
 
+        const val KEY_LAN_MAC_ADDRESS = "macAddress"
+        const val KEY_LAN_IP_ADDRESS = "ipAddress"
+        const val KEY_BT_ADDRESS = "bluetoothAddress"
+        const val KEY_BT_DEVICE_NAME = "bluetoothDeviceName"
+        const val KEY_USB_PORT_NAME = "usbPortName"
+        const val KEY_USB_USB_SN = "usbSerialNumber"
+
         const val NAME_PRINTER_DELEGATE_READY = "PrinterReady"
         const val NAME_PRINTER_DELEGATE_ERROR = "PrinterError"
         const val NAME_PRINTER_DELEGATE_PAPER_READY = "PrinterPaperReady"

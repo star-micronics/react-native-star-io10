@@ -1,10 +1,3 @@
-//
-//  StarIO10ValueConverter.h
-//  react-native-star-io10
-//
-//  Created by 上田　雄磨 on 2020/10/23.
-//
-
 #import <Foundation/Foundation.h>
 @import StarIO10;
 
@@ -18,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)toStringFromStarPrinterEmulation:(STARIO10StarPrinterEmulation)value;
 + (NSString *)toStringFromInterfaceType:(STARIO10InterfaceType)value;
 
++ (NSDictionary<NSString *, id> *)toStarPrinterStatusReservedDictionary:(NSDictionary<NSString *, id> *)reserved;
 + (NSString *)toStringFromDrawerOpenedMethod:(STARIO10DrawerOpenedMethod)value;
 
 + (NSString *)toStringFromStarConfigurationSetResult:(STARIO10StarConfigurationSetResult)value;

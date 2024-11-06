@@ -48,6 +48,17 @@ export class StarDeviceDiscoveryManager extends NativeObject {
                         information._emulation = actualPrams.emulation;
                         information._reserved = new Map(Object.entries(actualPrams.reserved));
 
+                        information._detail._lan._macAddress = actualPrams.macAddress ?? undefined;
+                        information._detail._lan._ipAddress = actualPrams.ipAddress ?? undefined;
+                        information.detail._bluetooth._portName = actualPrams.bluetoothPortName ?? undefined;
+                        information.detail._bluetooth._serialNumber = actualPrams.bluetoothSerialNumber ?? undefined;
+                        information._detail._bluetooth._address = actualPrams.bluetoothAddress ?? undefined;
+                        information._detail._bluetooth._deviceName = actualPrams.bluetoothDeviceName ?? undefined;
+                        information.detail._bluetoothLE._address = actualPrams.bluetoothLEAddress ?? undefined;
+                        information.detail._usb._portName= actualPrams.usbPortName ?? undefined;
+                        information.detail._usb._productSerialNumber = actualPrams.productSerialNumber ?? undefined;
+                        information.detail._usb._usbSerialNumber = actualPrams.usbSerialNumber ?? undefined;
+
                         var printer = new StarPrinter(settings);
                         printer._information = information;
 

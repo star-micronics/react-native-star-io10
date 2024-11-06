@@ -2,6 +2,22 @@
 
 # Change Log
 
+## 1.8.0 (2024/11/01)
+
+* Added TSP100IV-UEWB and TSP100IV-UEWB SK support.
+* Added API to get detail information of printer.
+  * detail property of StarPrinterInformation
+  * StarPrinterInformationDetail
+  * StarPrinterInformationLan
+  * StarPrinterInformationBluetooth
+  * StarPrinterInformationBluetoothLE
+  * StarPrinterInformationUsb
+* Added API to get detail information of error.
+  * errorDetail property of StarPrinter
+  * StarIO10ErrorDetail
+* Bug Fix:
+  * Fixed an issue where `react-native-star-io10` failed to open and discover printer via LAN with the Xcode16 and iOS 18. [#124](https://github.com/star-micronics/react-native-star-io10/issues/124)
+
 ## 1.7.0 (2024/06/24)
 
 * Added BSC10II support (Limited region model).

@@ -478,7 +478,7 @@ RCT_REMAP_METHOD(getReserved,
         return;
     }
 
-    resolve([StarIO10ValueConverter toJSNamingDictionary:status.reserved]);
+    resolve([StarIO10ValueConverter toStarPrinterStatusReservedDictionary:status.reserved]);
 }
 
 @end

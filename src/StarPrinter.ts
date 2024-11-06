@@ -19,6 +19,8 @@ import { StarSpoolJobStatus } from './StarSpoolJobStatus';
 import { StarSpoolJobStatusFactory } from './StarSpoolJobStatusFactory';
 import { StarSpoolJobStatusListFactory } from './StarSpoolJobStatusListFactory';
 import { StarConfigurationSetResult } from './StarConfigurationSetResult';
+import { StarIO10ErrorDetail } from './StarIO10ErrorDetail';
+import { StarIO10ErrorDetailFactory } from './StarIO10ErrorDetailFactory';
 
 const eventEmitter = new NativeEventEmitter(NativeModules.StarPrinterWrapper);
 
@@ -379,6 +381,20 @@ export class StarPrinter extends NativeObject {
             var error = await StarIO10ErrorFactory.create(nativeError.code);
             throw error;
         });
+    }
+
+    get errorDetail(): Promise<StarIO10ErrorDetail> {
+        return (async () => {
+                await this._initNativeObject();
+
+                var nativeErrorDetail = await NativeModules.StarPrinterWrapper.getErrorDetail(this._nativeObject)
+                .catch(async (nativeError: any) => {
+                    var error = await StarIO10ErrorFactory.create(nativeError.code);
+                    throw error;
+                });
+                
+                return await StarIO10ErrorDetailFactory.create(nativeErrorDetail);
+        })();
     }
 
     async dispose(): Promise<void> {

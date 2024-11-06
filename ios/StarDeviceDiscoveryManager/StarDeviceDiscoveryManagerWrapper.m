@@ -131,14 +131,44 @@ RCT_REMAP_METHOD(stopDiscovery,
         NSString *interfaceTypeString = [StarIO10ValueConverter toStringFromInterfaceType:printer.connectionSettings.interfaceType];
         NSString *modelString = [StarIO10ValueConverter toStringFromStarPrinterModel:printer.information.model];
         NSString *emulationString = [StarIO10ValueConverter toStringFromStarPrinterEmulation:printer.information.emulation];
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        [params setObject:objID forKey: kKeyIdentifier];
+        [params setObject:interfaceTypeString forKey:kKeyInterfaceType];
+        [params setObject:printer.connectionSettings.identifier forKey:kKeyConnectionIdentifier];
+        [params setObject:modelString forKey:kKeyModel];
+        [params setObject:emulationString forKey:kKeyEmulation];
+        [params setObject:[StarIO10ValueConverter toJSNamingDictionary:printer.information.reserved] forKey:kKeyReserved];
+        
+        if([printer.information.detail.lan.macAddress length] >0){
+            [params setObject:printer.information.detail.lan.macAddress forKey:kKeyLanMacAddress];
+        }
+        if([printer.information.detail.lan.ipAddress length] >0){
+            [params setObject:printer.information.detail.lan.ipAddress forKey:kKeyLanIPAddress];
+        }
+        if([printer.information.detail.bluetooth.portName length] >0){
+            [params setObject:printer.information.detail.bluetooth.portName forKey:kKeyBluetoothPortName];
+        }
+        if([printer.information.detail.bluetooth.serialNumber length] >0){
+            [params setObject:printer.information.detail.bluetooth.serialNumber forKey:kKeyBluetoothSerialNumber];
+        }
+        if([printer.information.detail.bluetooth.address length] >0){
+            [params setObject:printer.information.detail.bluetooth.address forKey:kKeyBluetoothAddress];
+        }
+        if([printer.information.detail.bluetoothLE.address length] >0){
+            [params setObject:printer.information.detail.bluetoothLE.address forKey:kKeyBluetoothLEAddress];
+        }
+        if([printer.information.detail.usb.portName length] >0){
+            [params setObject:printer.information.detail.usb.portName forKey:kKeyUsbPortName];
+        }
+        if([printer.information.detail.usb.productSerialNumber length] >0){
+            [params setObject:printer.information.detail.usb.productSerialNumber forKey:kKeyUsbProductSN];
+        }
+        if([printer.information.detail.usb.usbSerialNumber length] >0){
+            [params setObject:printer.information.detail.usb.usbSerialNumber forKey:kKeyUsbUsbSN];
+        }
 
-        [self sendEventWithName:kNamePrinterFound body:@{kKeyIdentifier: objID,
-                                                         kKeyInterfaceType: interfaceTypeString,
-                                                         kKeyConnectionIdentifier: printer.connectionSettings.identifier,
-                                                         kKeyModel: modelString,
-                                                         kKeyEmulation: emulationString,
-                                                         kKeyReserved: [StarIO10ValueConverter toJSNamingDictionary:printer.information.reserved]
-        }];
+        [self sendEventWithName:kNamePrinterFound body:[params copy]];
     }
 }
 

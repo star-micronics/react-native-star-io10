@@ -929,6 +929,12 @@ namespace StarMicronics.ReactNative.StarIO10
             {
                 result = ToJSCollection(arrayValue.OfType<dynamic>().ToList());
             }
+            else if (value is DrawerOpenedMethod)
+            {
+                ToString(value, out string method);
+
+                result = new JSValue(method);
+            }
             else
             {
                 result = JSValue.Null;

@@ -1,10 +1,3 @@
-//
-//  EventParameter.m
-//  react-native-star-io10
-//
-//  Created by 上田　雄磨 on 2020/10/23.
-//
-
 #import "EventParameter.h"
 
 @implementation EventParameter
@@ -18,6 +11,15 @@ NSString * const kKeyConnectionIdentifier = @"connectionIdentifier";
 NSString * const kKeyModel = @"model";
 NSString * const kKeyEmulation = @"emulation";
 NSString * const kKeyReserved = @"reserved";
+NSString * const kKeyLanMacAddress = @"macAddress";
+NSString * const kKeyLanIPAddress = @"ipAddress";
+NSString * const kKeyBluetoothPortName = @"portName";
+NSString * const kKeyBluetoothSerialNumber = @"bluetoothSerialNumber";
+NSString * const kKeyBluetoothAddress = @"bluetoothAddress";
+NSString * const kKeyBluetoothLEAddress = @"bluetoothLEAddress";
+NSString * const kKeyUsbPortName = @"usbPortName";
+NSString * const kKeyUsbProductSN = @"productSerialNumber";
+NSString * const kKeyUsbUsbSN = @"usbSerialNumber";
 
 NSString * const kNamePrinterDelegateReady = @"PrinterReady";
 NSString * const kNamePrinterDelegateError = @"PrinterError";

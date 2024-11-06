@@ -573,6 +573,20 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
         promise.resolve(0)
     }
 
+    @ReactMethod
+    fun getErrorDetail(identifier: String, promise: Promise) {
+        val printer = InstanceManager.get(identifier)
+
+        if (printer is StarPrinter) {
+            val errorDetail = printer.errorDetail
+            val errorDetailIdentifier = InstanceManager.set(errorDetail)
+
+            promise.resolve(errorDetailIdentifier)
+        } else {
+            promise.reject(StarIO10Exception("Identifier error"))
+        }
+    }
+
     private fun sendEvent(eventName: String, @Nullable params: WritableMap) {
         reactApplicationContext
             .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)

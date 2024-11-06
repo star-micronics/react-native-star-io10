@@ -1,10 +1,10 @@
-<p align="center">
+<div style="text-align: center;">
   <img
     src="logo.png"
     width="600"
     style="margin-top: 20px; margin-bottom: 20px;"
   />
-</p>
+</div>
 
 
 - [English](../README.md)
@@ -115,7 +115,7 @@ USBプリンターと通信を行うとき、接続許可を求めるダイ�
 
 USBケーブル挿抜の度に接続許可ダイアログを表示させないようにしたい場合、次の設定を行ってください。また、この設定を行うことで、USBケーブルを挿入したときにアプリケーションが自動で起動するようになります。
 
-##### 2.2. AndroidManifest.xmlに設定を追加する
+##### 3.1. AndroidManifest.xmlに設定を追加する
 AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素を追加してください。
 
 ```xml
@@ -128,7 +128,7 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
 <meta-data android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" android:resource="@xml/accessory_filter" />
 ```
 
-##### 2.2. リソースファイルを追加する
+##### 3.2. リソースファイルを追加する
 下記のリソースファイルを `res/xml` 以下に `device_filter.xml`、`accessory_filter.xml` という名前で保存してください。
 
 - device_filter.xml
@@ -161,6 +161,8 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
 <resources>
     <usb-accessory model="Star TSP143IV-UE" manufacturer="STAR"/>
     <usb-accessory model="Star TSP143IV-UE SK" manufacturer="STAR"/>
+    <usb-accessory model="Star TSP143IV-UEWB" manufacturer="STAR"/>
+    <usb-accessory model="Star TSP143IV-UEWB SK" manufacturer="STAR"/>
     <usb-accessory model="mC-Print3" manufacturer="Star Micronics"/>
     <usb-accessory model="mC-Label3" manufacturer="Star Micronics"/>
     <usb-accessory model="mPOP" manufacturer="Star Micronics"/>

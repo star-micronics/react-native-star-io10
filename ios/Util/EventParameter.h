@@ -1,10 +1,3 @@
-//
-//  EventParameter.h
-//  react-native-star-io10
-//
-//  Created by 上田　雄磨 on 2020/10/23.
-//
-
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -20,6 +13,15 @@ extern NSString * const kKeyConnectionIdentifier;
 extern NSString * const kKeyModel;
 extern NSString * const kKeyEmulation;
 extern NSString * const kKeyReserved;
+extern NSString * const kKeyLanMacAddress;
+extern NSString * const kKeyLanIPAddress;
+extern NSString * const kKeyBluetoothPortName;
+extern NSString * const kKeyBluetoothSerialNumber;
+extern NSString * const kKeyBluetoothAddress;
+extern NSString * const kKeyBluetoothLEAddress;
+extern NSString * const kKeyUsbPortName;
+extern NSString * const kKeyUsbProductSN;
+extern NSString * const kKeyUsbUsbSN;
 
 extern NSString * const kNamePrinterDelegateReady;
 extern NSString * const kNamePrinterDelegateError;

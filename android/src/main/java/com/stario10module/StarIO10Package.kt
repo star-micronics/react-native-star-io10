@@ -16,6 +16,7 @@ class StarIO10Package : ReactPackage {
         modules.add(PageModeBuilderWrapper(reactContext))
         modules.add(StarDeviceDiscoveryManagerWrapper(reactContext))
         modules.add(StarIO10ErrorWrapper(reactContext))
+        modules.add(StarIO10ErrorDetailWrapper(reactContext))
         modules.add(StarPrinterStatusWrapper(reactContext))
         modules.add(StarSpoolJobStatusWrapper(reactContext))
         modules.add(StarSpoolJobStatusListWrapper(reactContext))
