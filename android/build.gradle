@@ -30,7 +30,7 @@ android {
     compileSdk getExtOrIntegerDefault('compileSdkVersion')
     buildToolsVersion getExtOrDefault('buildToolsVersion')
     defaultConfig {
-        minSdkVersion 28
+        minSdkVersion 25
         targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
         versionCode 1
         versionName "1.8.0"
