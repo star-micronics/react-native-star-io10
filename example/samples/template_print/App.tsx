@@ -4,13 +4,13 @@ import { useState } from 'react';
 import {
     View,
     Text,
-    Button,
     TextInput,
     PermissionsAndroid,
-    Platform
+    Platform,
+    Pressable,
+    StyleSheet,
+    ScrollView,
 } from 'react-native';
-
-import CheckBox from '@react-native-community/checkbox';
 
 import {
     InterfaceType,
@@ -20,6 +20,7 @@ import {
 } from 'react-native-star-io10';
 
 export default function App() {
+
     const [interfaceType, setInterfaceType] = useState(InterfaceType.Lan);
     const [identifier, setIdentifier] = useState("00:11:62:00:00:00");
     const [templateIndex, setTemplateIndex] = useState(0);
@@ -675,191 +676,173 @@ export default function App() {
         "price_eur" : 130.0,
         "price_gbp" : 110.0
     }`;
-    
+
+    const styles = StyleSheet.create({
+        activeButton: {
+            margin: 5,
+            width: 150,
+            alignItems: 'center',
+            backgroundColor: '#0026FF',
+            padding: 10,
+        },
+        inactiveButton: {
+            margin: 5,
+            width: 150,
+            alignItems: 'center',
+            backgroundColor: '#606060',
+            padding: 10,
+        },
+        buttonText: {
+            color: '#FFFFFF',
+        }
+    });
     return (
-            <View style={{ flex: 1, marginLeft: 20, marginRight: 20, marginTop: 50, marginBottom: 50 }}>
-
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ width: 100 }}>Interface</Text>
-                    <View style={{ margin: 10 }}>
-                        <View style={{ flexDirection: 'row', marginTop: 0 }}>
-                            <CheckBox
-                                style={{ marginLeft: 20 }}
-                                value={
-                                    interfaceType == InterfaceType.Lan
-                                }
-                                onValueChange={(isChecked) => {
-                                    if (isChecked) {
-                                        setInterfaceType(InterfaceType.Lan);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>LAN</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <CheckBox
-                                style={{ marginLeft: 20 }}
-                                value={
-                                    interfaceType == InterfaceType.Bluetooth
-                                }
-                                onValueChange={(isChecked) => {
-                                    if (isChecked) {
-                                        setInterfaceType(InterfaceType.Bluetooth);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>Bluetooth</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <CheckBox
-                                style={{ marginLeft: 20 }}
-                                value={
-                                    interfaceType == InterfaceType.BluetoothLE
-                                }
-                                onValueChange={(isChecked) => {
-                                    if (isChecked) {
-                                        setInterfaceType(InterfaceType.BluetoothLE);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>BluetoothLE</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <CheckBox
-                                style={{ marginLeft: 20 }}
-                                value={
-                                    interfaceType == InterfaceType.Usb
-                                }
-                                onValueChange={(isChecked) => {
-                                    if (isChecked) {
-                                        setInterfaceType(InterfaceType.Usb);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>USB</Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                    <Text style={{ width: 100 }}>Identifier</Text>
-                    <TextInput
-                        style={{ width: 200, marginLeft: 20 }}
-                        value={identifier}
-                        onChangeText={(value) => {
-                            setIdentifier(value);
-                        }}
-                    />
-                </View>
-
-                <View style={{ height: 150, flexDirection: 'column', marginTop: 30 }}>
-                    <Text style={{ height: 30 }}>Template</Text>
-                    <View style={{ margin: 10 }}>
-                        <View style={{ flexDirection: 'row', marginTop: 0 }}>
-                            <CheckBox
-                                value={
-                                    templateIndex == 0
-                                }
-                                onValueChange={(isChecked: boolean) => {
-                                    if (isChecked) {
-                                        setTemplateIndex(0);
-                                        setFieldDataIndex(0);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>Receipt w/ specifying number of characters</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <CheckBox
-                                value={
-                                    templateIndex == 1
-                                }
-                                onValueChange={(isChecked: boolean) => {
-                                    if (isChecked) {
-                                        setTemplateIndex(1);
-                                        setFieldDataIndex(0);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>Receipt w/o specifying number of characters</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <CheckBox
-                                value={
-                                    templateIndex == 2
-                                }
-                                onValueChange={(isChecked: boolean) => {
-                                    if (isChecked) {
-                                        setTemplateIndex(2);
-                                        setFieldDataIndex(0);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>Label</Text>
-                        </View>
-                    </View>
-                </View>
-
-                <View style={{ height: 120, flexDirection: 'column', marginTop: 30 }}>
-                    <Text style={{ height: 30 }}>Field Data</Text>
-                    <View style={{ margin: 10 }}>
-                        <View style={{ flexDirection: 'row', marginTop: 0 }}>
-                            <CheckBox
-                                value={
-                                    fieldDataIndex == 0
-                                }
-                                onValueChange={(isChecked: boolean) => {
-                                    if (isChecked) {
-                                        setFieldDataIndex(0);
-                                    }
-                                }}
-                            />
-                            {
-                                (() => {
-                                    switch (templateIndex) {
-                                        case 0: // Receipt w/ specifying number of characters
-                                            return <Text style={{ marginLeft: 20 }}>Receipt1</Text>;
-                                        case 1: // Receipt w/o specifying number of characters
-                                            return <Text style={{ marginLeft: 20 }}>Receipt1</Text>;
-                                        case 2: // Label
-                                            return <Text style={{ marginLeft: 20 }}>Label1</Text>;
-                                    }
-                                })()
-                            }
-                        </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <CheckBox
-                                value={
-                                    fieldDataIndex == 1
-                                }
-                                onValueChange={(isChecked: boolean) => {
-                                    if (isChecked) {
-                                        setFieldDataIndex(1);
-                                    }
-                                }}
-                            />
-                            {
-                                (() => {
-                                    switch (templateIndex) {
-                                        case 0: // Receipt w/ specifying number of characters
-                                            return <Text style={{ marginLeft: 20 }}>Receipt2</Text>;
-                                        case 1: // Receipt w/o specifying number of characters
-                                            return <Text style={{ marginLeft: 20 }}>Receipt3</Text>;
-                                        case 2: // Label
-                                            return <Text style={{ marginLeft: 20 }}>Label2</Text>;
-                                    }
-                                })()
-                            }
-                        </View>
-                    </View>
-                </View>
-
-                <View style={{ width: 100, marginTop: 20 }}>
-                    <Button
-                        title="Print"
-                        onPress={_onPressPrintButton}
-                    />
+        <View style={{ margin: 10, marginTop: 50, marginBottom: 50, flex: 1 }}>
+            <View style={{ flexDirection: 'row' }}>
+                <Text style={{ width: 100 }}>Interface</Text>
+                <View style={{ margin: 10 }}>
+                    <Pressable
+                        style={interfaceType == InterfaceType.Lan ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.Lan)
+                        }>
+                        <Text style={styles.buttonText}>Lan</Text>
+                    </Pressable>
+                    <Pressable
+                        style={interfaceType == InterfaceType.Bluetooth ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.Bluetooth)
+                        }>
+                        <Text style={styles.buttonText}>Bluetooth</Text>
+                    </Pressable>
+                    <Pressable
+                        style={interfaceType == InterfaceType.BluetoothLE ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.BluetoothLE)
+                        }>
+                        <Text style={styles.buttonText}>BluetoothLE</Text>
+                    </Pressable>
+                    <Pressable
+                        style={interfaceType == InterfaceType.Usb ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.Usb)
+                        }>
+                        <Text style={styles.buttonText}>USB</Text>
+                    </Pressable>
                 </View>
             </View>
+
+            <View style={{ flexDirection: 'row', marginTop: 30 }}>
+                <Text style={{ width: 100 }}>Identifier</Text>
+                <TextInput
+                    style={{ width: 200, marginLeft: 20 }}
+                    value={identifier}
+                    onChangeText={(value) => {
+                        setIdentifier(value);
+                    }}
+                />
+            </View>
+
+            <View style={{ marginTop: 10, marginBottom: 10, marginRight: 0, marginLeft: 0, flex: 1 }}>
+                <ScrollView
+                    style={{ margin: 5 }}
+                    horizontal={false}
+                    showsVerticalScrollIndicator={true}
+                >
+                    <View style={{ flexDirection: 'column' }}>
+                        <Text style={{ height: 30 }}>Template</Text>
+                        <View style={{ marginTop: 10, marginBottom: 10, marginRight: 0, marginLeft: 0 }}>
+                            <Pressable
+                                style={templateIndex == 0 ? styles.activeButton : styles.inactiveButton}
+                                onPress={() => {
+                                    setTemplateIndex(0);
+                                    setFieldDataIndex(0);
+                                }
+                                }>
+                                <Text style={styles.buttonText}>Template 0</Text>
+                            </Pressable>
+                            <Text style={{ margin: 10 }} >Receipt w/ specifying number of characters</Text>
+
+                            <Pressable
+                                style={templateIndex == 1 ? styles.activeButton : styles.inactiveButton}
+                                onPress={() => {
+                                    setTemplateIndex(1);
+                                    setFieldDataIndex(0);
+                                }
+                                }>
+                                <Text style={styles.buttonText}>Template 1</Text>
+                            </Pressable>
+                            <Text style={{ margin: 10 }}>Receipt w/o specifying number of characters</Text>
+
+                            <Pressable
+                                style={templateIndex == 2 ? styles.activeButton : styles.inactiveButton}
+                                onPress={() => {
+                                    setTemplateIndex(2);
+                                    setFieldDataIndex(0);
+                                }
+                                }>
+                                <Text style={styles.buttonText}>Template 2</Text>
+                            </Pressable>
+                            <Text style={{ margin: 10 }}>Label</Text>
+                        </View>
+
+                        <Text style={{ height: 30, marginTop: 20 }}>Field Data</Text>
+                        <View style={{ marginTop: 10, marginBottom: 10, marginRight: 0, marginLeft: 0 }}>
+                            <View style={{ flexDirection: 'row', margin: 10 }}>
+                                <Pressable
+                                    style={fieldDataIndex == 0 ? styles.activeButton : styles.inactiveButton}
+                                    onPress={() =>
+                                        setFieldDataIndex(0)
+                                    }>
+                                    <Text style={styles.buttonText}>Field Data 0</Text>
+                                </Pressable>
+                                {
+                                    (() => {
+                                        switch (templateIndex) {
+                                            case 0: // Receipt w/ specifying number of characters
+                                                return <Text style={{ margin: 10 }}>Receipt1</Text>;
+                                            case 1: // Receipt w/o specifying number of characters
+                                                return <Text style={{ margin: 10 }}>Receipt1</Text>;
+                                            case 2: // Label
+                                                return <Text style={{ margin: 10 }}>Label1</Text>;
+                                        }
+                                    })()
+                                }
+                            </View>
+                            <View style={{ flexDirection: 'row', margin: 10 }}>
+                                <Pressable
+                                    style={fieldDataIndex == 1 ? styles.activeButton : styles.inactiveButton}
+                                    onPress={() =>
+                                        setFieldDataIndex(1)
+                                    }>
+                                    <Text style={styles.buttonText}>Field Data 1</Text>
+                                </Pressable>
+                                {
+                                    (() => {
+                                        switch (templateIndex) {
+                                            case 0: // Receipt w/ specifying number of characters
+                                                return <Text style={{ margin: 10 }}>Receipt2</Text>;
+                                            case 1: // Receipt w/o specifying number of characters
+                                                return <Text style={{ margin: 10 }}>Receipt3</Text>;
+                                            case 2: // Label
+                                                return <Text style={{ margin: 10 }}>Label2</Text>;
+                                        }
+                                    })()
+                                }
+                            </View>
+                        </View>
+
+                        <View style={{ margin: 10 }}>
+                            <Pressable
+                                style={styles.activeButton}
+                                onPress={() => _onPressPrintButton()
+                                }>
+                                <Text style={styles.buttonText}>Print</Text>
+                            </Pressable>
+                        </View>
+                    </View>
+                </ScrollView>
+            </View>
+        </View>
     );
 };

@@ -14,6 +14,7 @@ import { TextWidthType } from './Printer/TextWidthType';
 import { TextAlignment } from './Printer/TextAlignment';
 import { TextEllipsizeType } from './Printer/TextEllipsizeType';
 import { TextPrintType } from './Printer/TextPrintType';
+import { BaseMagnification } from './Printer/BaseMagnification';
 import { SoundStorageArea } from './MelodySpeaker/SoundStorageArea';
 import { CursorState } from './Display/CursorState';
 import { Contrast } from './Display/Contrast';
@@ -37,6 +38,7 @@ export declare class StarXpandCommandParameterConverter {
     static convertTextAlignment(value: TextAlignment): string;
     static convertTextEllipsizeType(value: TextEllipsizeType): string;
     static convertTextPrintType(value: TextPrintType): string;
+    static convertBaseMagnification(value: BaseMagnification): string;
     static convertDrawerChannel(value: StarXpandCommand.Drawer.Channel): string;
     static convertBuzzerChannel(value: StarXpandCommand.Buzzer.Channel): string;
     static convertSoundStorageArea(value: SoundStorageArea): string;

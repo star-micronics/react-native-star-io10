@@ -35,3 +35,5 @@ export * from './TextEllipsizeType';
 export * from './TextPrintType';
 export * from './TextParameter';
 export * from './TextWidthParameter';
+export * from './BaseMagnification';
+export * from './BaseMagnificationParameter';

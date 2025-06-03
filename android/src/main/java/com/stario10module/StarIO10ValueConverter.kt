@@ -83,6 +83,7 @@ class StarIO10ValueConverter {
             "mPOP" to StarPrinterModel.mPOP,
             "mC_Print2" to StarPrinterModel.mC_Print2,
             "mC_Print3" to StarPrinterModel.mC_Print3,
+            "mC_Label2" to StarPrinterModel.mC_Label2,
             "mC_Label3" to StarPrinterModel.mC_Label3,
             "SM_S210i" to StarPrinterModel.SM_S210i,
             "SM_S230i" to StarPrinterModel.SM_S230i,

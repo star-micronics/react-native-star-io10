@@ -113,6 +113,19 @@ export class PrinterBaseBuilder {
         )
     }
 
+    static styleBaseMagnification(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.BaseMagnificationParameter) {
+        let contents = parameters.get("contents") as Array<Map<string, any>>;
+
+        contents.push(
+            new Map<string, any>([
+                ["method", "Style.BaseMagnification"],
+                ["parameter", new Map([
+                    ["text", StarXpandCommandParameterConverter.convertBaseMagnification(parameter.text)]
+                ])]
+            ])
+        )
+    }
+
     static styleCharacterSpace(parameters: Map<string, any>, width: number) {
         let contents = parameters.get("contents") as Array<Map<string, any>>;
 
@@ -304,6 +317,17 @@ export class PrinterBaseBuilder {
                 ["parameter", new Map([
                     ["lines", Math.floor(lines)]
                 ])]
+            ])
+        )
+    }
+
+    static actionSeparatorFeed(parameters: Map<string, any>) {
+        let contents = parameters.get("contents") as Array<Map<string, any>>;
+
+        contents.push(
+            new Map<string, any>([
+                ["method", "Action.Feed.Separator"],
+                ["parameter", new Map()]
             ])
         )
     }

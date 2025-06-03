@@ -13,8 +13,21 @@
 
 @implementation PrinterBuilderWrapper
 
-RCT_EXPORT_MODULE()
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _objManager = StarObjectManager.sharedManager;
+    }
+    return self;
+}
 
++ (BOOL)requiresMainQueueSetup
+{
+    return NO;
+}
+
+RCT_EXPORT_MODULE()
 
 RCT_REMAP_METHOD(actionPrintImage,
                  source:(nonnull NSString *)source
@@ -27,6 +40,16 @@ RCT_REMAP_METHOD(actionPrintImage,
     @try{
         
         STARIO10StarXpandCommandPrinterImageParameter *parameter = [StarIO10ValueConverter toPrinterImageParameterWithSource: source width:width effectDiffusion:effectDiffusion threshold:threshold];
+        
+        if (parameter == nil) {
+            NSError *error = [NSError errorWithDomain:@""
+                                                 code:STARIO10ErrorArgument
+                                             userInfo:@{NSLocalizedDescriptionKey:@"Invalid source.",
+                                                        STARIO10ErrorDetailErrorCodeKey:[NSNumber numberWithInt:STARIO10ErrorCodeNone]}];
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+            return;
+        }
         
         STARIO10StarXpandCommandPrinterBuilder *printerBuilder =[[STARIO10StarXpandCommandPrinterBuilder alloc] init ];
         printerBuilder = [printerBuilder actionPrintImage:parameter];

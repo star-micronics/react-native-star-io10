@@ -13,6 +13,20 @@
 
 @implementation PageModeBuilderWrapper
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _objManager = StarObjectManager.sharedManager;
+    }
+    return self;
+}
+
++ (BOOL)requiresMainQueueSetup
+{
+    return NO;
+}
+
 RCT_EXPORT_MODULE()
 
 RCT_REMAP_METHOD(actionPrintImage,
@@ -28,6 +42,16 @@ RCT_REMAP_METHOD(actionPrintImage,
     @try{
         
         STARIO10StarXpandCommandPrinterPageModeImageParameter *parameter = [StarIO10ValueConverter toPrinterPageModeImageParameterWithSource: source x:x y:y  width:width effectDiffusion:effectDiffusion threshold:threshold];
+        
+        if (parameter == nil) {
+            NSError *error = [NSError errorWithDomain:@""
+                                                 code:STARIO10ErrorArgument
+                                             userInfo:@{NSLocalizedDescriptionKey:@"Invalid source.",
+                                                        STARIO10ErrorDetailErrorCodeKey:[NSNumber numberWithInt:STARIO10ErrorCodeNone]}];
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+            return;
+        }
         
         STARIO10StarXpandCommandPrinterPageModeAreaParameter *pageModeArea =[StarIO10ValueConverter toPrinterPageModeAreaParameterWithX:x y:y width:width height:@300];
         //PageModeAreaの必要な高さはこの時点で未定であるため、仮の値として最大値3001を入れる。

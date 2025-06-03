@@ -4,13 +4,12 @@ import { useState } from 'react';
 import {
     View,
     Text,
-    Button,
     TextInput,
     PermissionsAndroid,
-    Platform
+    Platform,
+    Pressable,
+    StyleSheet,
 } from 'react-native';
-
-import CheckBox from '@react-native-community/checkbox';
 
 import {
     InterfaceType,
@@ -20,10 +19,11 @@ import {
 } from 'react-native-star-io10';
 
 export default function App() {
+
     const [interfaceType, setInterfaceType] = useState(InterfaceType.Lan);
     const [identifier, setIdentifier] = useState("00:11:62:00:00:00");
 
-    async function  _onPressPrintButton () {
+    async function _onPressPrintButton() {
         var settings = new StarConnectionSettings();
         settings.interfaceType = interfaceType;
         settings.identifier = identifier;
@@ -61,35 +61,39 @@ export default function App() {
                     .styleInternationalCharacter(StarXpandCommand.Printer.InternationalCharacterType.Usa)
                     .styleCharacterSpace(0)
                     .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
-                    .actionPrintText("Star Clothing Boutique\n" +
-                                    "123 Star Road\n" +
-                                    "City, State 12345\n" +
-                                    "\n")
+                    .actionPrintText(
+                        "Star Clothing Boutique\n" +
+                        "123 Star Road\n" +
+                        "City, State 12345\n" +
+                        "\n")
                     .styleAlignment(StarXpandCommand.Printer.Alignment.Left)
-                    .actionPrintText("Date:MM/DD/YYYY    Time:HH:MM PM\n" +
-                                    "--------------------------------\n" +
-                                    "\n")
-                    .actionPrintText("SKU         Description    Total\n" +
-                                    "300678566   PLAIN T-SHIRT  10.99\n" +
-                                    "300692003   BLACK DENIM    29.99\n" +
-                                    "300651148   BLUE DENIM     29.99\n" +
-                                    "300642980   STRIPED DRESS  49.99\n" +
-                                    "300638471   BLACK BOOTS    35.99\n" +
-                                    "\n" +
-                                    "Subtotal                  156.95\n" +
-                                    "Tax                         0.00\n" +
-                                    "--------------------------------\n")
+                    .actionPrintText(
+                        "Date:MM/DD/YYYY    Time:HH:MM PM\n" +
+                        "--------------------------------\n" +
+                        "\n")
+                    .actionPrintText(
+                        "SKU         Description    Total\n" +
+                        "300678566   PLAIN T-SHIRT  10.99\n" +
+                        "300692003   BLACK DENIM    29.99\n" +
+                        "300651148   BLUE DENIM     29.99\n" +
+                        "300642980   STRIPED DRESS  49.99\n" +
+                        "300638471   BLACK BOOTS    35.99\n" +
+                        "\n" +
+                        "Subtotal                  156.95\n" +
+                        "Tax                         0.00\n" +
+                        "--------------------------------\n")
                     .actionPrintText("Total     ")
                     .add(new StarXpandCommand.PrinterBuilder()
                         .styleMagnification(new StarXpandCommand.MagnificationParameter(2, 2))
                         .actionPrintText("   $156.95\n")
                     )
-                    .actionPrintText("--------------------------------\n" +
-                                    "\n" +
-                                    "Charge\n" +
-                                    "156.95\n" +
-                                    "Visa XXXX-XXXX-XXXX-0123\n" +
-                                    "\n")
+                    .actionPrintText(
+                        "--------------------------------\n" +
+                        "\n" +
+                        "Charge\n" +
+                        "156.95\n" +
+                        "Visa XXXX-XXXX-XXXX-0123\n" +
+                        "\n")
                     .add(new StarXpandCommand.PrinterBuilder()
                         .styleInvert(true)
                         .actionPrintText("Refunds and Exchanges\n")
@@ -101,22 +105,22 @@ export default function App() {
                     )
                     .actionPrintText(" with receipt\n")
                     .actionPrintText("And tags attached\n" +
-                                    "\n")
+                        "\n")
                     .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
                     .actionPrintBarcode(new StarXpandCommand.Printer.BarcodeParameter('0123456',
-                                        StarXpandCommand.Printer.BarcodeSymbology.Jan8)
-                                        .setBarDots(3)
-                                        .setBarRatioLevel(StarXpandCommand.Printer.BarcodeBarRatioLevel.Level0)
-                                        .setHeight(5)
-                                        .setPrintHri(true))
+                        StarXpandCommand.Printer.BarcodeSymbology.Jan8)
+                        .setBarDots(3)
+                        .setBarRatioLevel(StarXpandCommand.Printer.BarcodeBarRatioLevel.Level0)
+                        .setHeight(5)
+                        .setPrintHri(true))
                     .actionFeedLine(1)
                     .actionPrintQRCode(new StarXpandCommand.Printer.QRCodeParameter('Hello World.\n')
-                                        .setModel(StarXpandCommand.Printer.QRCodeModel.Model2)
-                                        .setLevel(StarXpandCommand.Printer.QRCodeLevel.L)
-                                        .setCellSize(8))
+                        .setModel(StarXpandCommand.Printer.QRCodeModel.Model2)
+                        .setLevel(StarXpandCommand.Printer.QRCodeLevel.L)
+                        .setCellSize(8))
                     .actionCut(StarXpandCommand.Printer.CutType.Partial)
-                    )
-                );
+                )
+            );
 
             var commands = await builder.getCommands();
 
@@ -125,7 +129,7 @@ export default function App() {
 
             console.log(`Success`);
         }
-        catch(error) {
+        catch (error) {
             console.log(`Error: ${String(error)}`);
         }
         finally {
@@ -139,10 +143,10 @@ export default function App() {
 
         try {
             hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
-    
+
             if (!hasPermission) {
                 const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
-                    
+
                 hasPermission = status == PermissionsAndroid.RESULTS.GRANTED;
             }
         }
@@ -153,69 +157,62 @@ export default function App() {
         return hasPermission;
     }
 
+    const styles = StyleSheet.create({
+        activeButton: {
+            margin: 5,
+            width: 150,
+            alignItems: 'center',
+            backgroundColor: '#0026FF',
+            padding: 10,
+        },
+        inactiveButton: {
+            margin: 5,
+            width: 150,
+            alignItems: 'center',
+            backgroundColor: '#606060',
+            padding: 10,
+        },
+        buttonText: {
+            color: '#FFFFFF',
+        }
+    });
+
     return (
-        <View style={{ margin: 50 }}>
+        <View style={{ margin: 10, marginTop: 50, marginBottom: 50, flex: 1 }}>
             <View style={{ flexDirection: 'row' }}>
                 <Text style={{ width: 100 }}>Interface</Text>
                 <View style={{ margin: 10 }}>
-                    <View style={{ flexDirection: 'row', marginTop: 0 }}>
-                        <CheckBox
-                            style={{ marginLeft: 20 }}
-                            value={
-                                interfaceType == InterfaceType.Lan
-                            }
-                            onValueChange={(isChecked) => {
-                                if (isChecked) {
-                                    setInterfaceType(InterfaceType.Lan);
-                                }
-                            }}
-                        />
-                        <Text style={{ marginLeft: 20 }}>LAN</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                        <CheckBox
-                            style={{ marginLeft: 20 }}
-                            value={
-                                interfaceType == InterfaceType.Bluetooth
-                            }
-                            onValueChange={(isChecked) => {
-                                if (isChecked) {
-                                    setInterfaceType(InterfaceType.Bluetooth);
-                                }
-                            }}
-                        />
-                        <Text style={{ marginLeft: 20 }}>Bluetooth</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                        <CheckBox
-                            style={{ marginLeft: 20 }}
-                            value={
-                                interfaceType == InterfaceType.BluetoothLE
-                            }
-                            onValueChange={(isChecked) => {
-                                if (isChecked) {
-                                    setInterfaceType(InterfaceType.BluetoothLE);
-                                }
-                            }}
-                        />
-                        <Text style={{ marginLeft: 20 }}>BluetoothLE</Text>
-                    </View>
-                    <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                        <CheckBox
-                            style={{ marginLeft: 20 }}
-                            value={
-                                interfaceType == InterfaceType.Usb
-                            }
-                            onValueChange={(isChecked) => {
-                                if (isChecked) {
-                                    setInterfaceType(InterfaceType.Usb);
-                                }
-                            }}
-                        />
-                        <Text style={{ marginLeft: 20 }}>USB</Text>
-                    </View>
+                    <Pressable
+                        style={interfaceType == InterfaceType.Lan ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.Lan)
+                        }>
+                        <Text style={styles.buttonText}>Lan</Text>
+                    </Pressable>
+                    <Pressable
+                        style={interfaceType == InterfaceType.Bluetooth ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.Bluetooth)
+                        }>
+                        <Text style={styles.buttonText}>Bluetooth</Text>
+                    </Pressable>
+                    <Pressable
+                        style={interfaceType == InterfaceType.BluetoothLE ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.BluetoothLE)
+                        }>
+                        <Text style={styles.buttonText}>BluetoothLE</Text>
+                    </Pressable>
+                    <Pressable
+                        style={interfaceType == InterfaceType.Usb ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.Usb)
+                        }>
+                        <Text style={styles.buttonText}>USB</Text>
+                    </Pressable>
                 </View>
             </View>
+
             <View style={{ flexDirection: 'row', marginTop: 30 }}>
                 <Text style={{ width: 100 }}>Identifier</Text>
                 <TextInput
@@ -226,11 +223,15 @@ export default function App() {
                     }}
                 />
             </View>
-            <View style={{ width: 100, marginTop: 20 }}>
-                <Button
-                    title="Print"
-                    onPress={_onPressPrintButton}
-                />
+
+
+            <View style={{ marginTop: 20 }}>
+                <Pressable
+                    style={styles.activeButton}
+                    onPress={() => _onPressPrintButton()
+                    }>
+                    <Text style={styles.buttonText}>Print</Text>
+                </Pressable>
             </View>
         </View>
     );

@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="a1e9c604-436c-4926-b5fb-60d6a2b879be"
-    Publisher="CN=u3415"
+    Name="ca48e8b3-7113-4449-a480-f3ba018f5e50"
+    Publisher="CN=Star Micronics"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="a1e9c604-436c-4926-b5fb-60d6a2b879be" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="ca48e8b3-7113-4449-a480-f3ba018f5e50" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>example</DisplayName>
-    <PublisherDisplayName>u3415</PublisherDisplayName>
+    <PublisherDisplayName>Star Micronics</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

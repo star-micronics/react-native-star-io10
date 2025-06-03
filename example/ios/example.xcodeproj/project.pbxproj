@@ -7,136 +7,84 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* exampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* exampleTests.m */; };
+		0C80B921A6F3F58F76C31292 /* libPods-example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-example.a */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		4A4A6DE10159C3E1C0D18E60 /* libPods-example-exampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DBDCF4355CE43E454FEE01FE /* libPods-example-exampleTests.a */; };
-		4FD0560A13E8688B4B2216EC /* libPods-example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6606020490ADC83C1437180E /* libPods-example.a */; };
+		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		889D26632524548F00AA5D07 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
-		88A8570E2595E29A00F4A8CC /* StarIO10.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E661E9258C55D9006F1EE4 /* StarIO10.xcframework */; };
-		9FF5DC3C2C17D63200D66D4E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9FF5DC3B2C17D63200D66D4E /* PrivacyInfo.xcprivacy */; };
-		DD10623729C055A4002C8C77 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DD10623629C055A4002C8C77 /* AppDelegate.mm */; };
-		DD56B2842B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27A2B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png */; };
-		DD56B2852B70879D0047C348 /* label_sample21_shipping_label_phones_old.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27B2B70879D0047C348 /* label_sample21_shipping_label_phones_old.png */; };
-		DD56B2862B70879D0047C348 /* label_sample28_cleanedsanitised_hand.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27C2B70879D0047C348 /* label_sample28_cleanedsanitised_hand.png */; };
-		DD56B2872B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27D2B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png */; };
-		DD56B2882B70879D0047C348 /* label_sample21_shipping_label_house.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27E2B70879D0047C348 /* label_sample21_shipping_label_house.png */; };
-		DD56B2892B70879D0047C348 /* receipt_sample16_cafe_template_coffee_cup.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27F2B70879D0047C348 /* receipt_sample16_cafe_template_coffee_cup.png */; };
-		DD56B28A2B70879D0047C348 /* label_sample33_visitor_label_user_profile_picture.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2802B70879D0047C348 /* label_sample33_visitor_label_user_profile_picture.png */; };
-		DD56B28B2B70879D0047C348 /* label_sample32_sale_50off_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2812B70879D0047C348 /* label_sample32_sale_50off_background.png */; };
-		DD56B28C2B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2822B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png */; };
-		DD56B28D2B70879D0047C348 /* label_sample16_japanese_food_label_lunch_box_plastic.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2832B70879D0047C348 /* label_sample16_japanese_food_label_lunch_box_plastic.png */; };
+		889D26632524548F00AA5D07 /* BuildFile in Resources */ = {isa = PBXBuildFile; };
+		CC79BA935D7EE43674BA1579 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */; };
+		DD56B2842B70879D0047C348 /* pharmacy_medication1_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27A2B70879D0047C348 /* pharmacy_medication1_logo.png */; };
+		DD56B2852B70879D0047C348 /* shipping_label_phones_old.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27B2B70879D0047C348 /* shipping_label_phones_old.png */; };
+		DD56B2862B70879D0047C348 /* cleanedsanitised_hand.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27C2B70879D0047C348 /* cleanedsanitised_hand.png */; };
+		DD56B2872B70879D0047C348 /* japanese_food_label_cake_plastic.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27D2B70879D0047C348 /* japanese_food_label_cake_plastic.png */; };
+		DD56B2882B70879D0047C348 /* shipping_label_house.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27E2B70879D0047C348 /* shipping_label_house.png */; };
+		DD56B2892B70879D0047C348 /* cafe_template_coffee_cup.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B27F2B70879D0047C348 /* cafe_template_coffee_cup.png */; };
+		DD56B28A2B70879D0047C348 /* visitor_label_user_profile_picture.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2802B70879D0047C348 /* visitor_label_user_profile_picture.png */; };
+		DD56B28B2B70879D0047C348 /* sale_50off_background.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2812B70879D0047C348 /* sale_50off_background.png */; };
+		DD56B28C2B70879D0047C348 /* tamper_proof_label_checked.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2822B70879D0047C348 /* tamper_proof_label_checked.png */; };
+		DD56B28D2B70879D0047C348 /* japanese_food_label_lunch_box_plastic.png in Resources */ = {isa = PBXBuildFile; fileRef = DD56B2832B70879D0047C348 /* japanese_food_label_lunch_box_plastic.png */; };
 		DDCDFE632B4E1641009A001A /* signature.png in Resources */ = {isa = PBXBuildFile; fileRef = DDCDFE622B4E1641009A001A /* signature.png */; };
 		E3522EC225F6F659008B0731 /* logo_01.png in Resources */ = {isa = PBXBuildFile; fileRef = E3522EC125F6F659008B0731 /* logo_01.png */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = example;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* exampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = exampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* exampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = exampleTests.m; sourceTree = "<group>"; };
-		096474A6396AD81B79F11D2E /* Pods-example-exampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-exampleTests.release.xcconfig"; path = "Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = example/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = example/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = example/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = example/main.m; sourceTree = "<group>"; };
-		28E518AB1F127C3A0AB54478 /* Pods-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.release.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.release.xcconfig"; sourceTree = "<group>"; };
-		41A47B4136D02FA502DB1C1B /* Pods-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.debug.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.debug.xcconfig"; sourceTree = "<group>"; };
-		6606020490ADC83C1437180E /* libPods-example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		73B9172EBB3ED939CA361D76 /* Pods-example-exampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example-exampleTests.debug.xcconfig"; path = "Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = example/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		3B4392A12AC88292D35C810B /* Pods-example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.debug.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.debug.xcconfig"; sourceTree = "<group>"; };
+		5709B34CF0A7D63546082F79 /* Pods-example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-example.release.xcconfig"; path = "Target Support Files/Pods-example/Pods-example.release.xcconfig"; sourceTree = "<group>"; };
+		5DCACB8F33CDC322A6C60F78 /* libPods-example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = example/AppDelegate.swift; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = example/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		88E661E9258C55D9006F1EE4 /* StarIO10.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = StarIO10.xcframework; path = ../../ios/libs/StarIO10.xcframework; sourceTree = "<group>"; };
-		9FF5DC3B2C17D63200D66D4E /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		DBDCF4355CE43E454FEE01FE /* libPods-example-exampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-example-exampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD10623629C055A4002C8C77 /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = example/AppDelegate.mm; sourceTree = "<group>"; };
-		DD56B27A2B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample19_pharmacy_medication1_logo.png; path = example/label_sample19_pharmacy_medication1_logo.png; sourceTree = "<group>"; };
-		DD56B27B2B70879D0047C348 /* label_sample21_shipping_label_phones_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample21_shipping_label_phones_old.png; path = example/label_sample21_shipping_label_phones_old.png; sourceTree = "<group>"; };
-		DD56B27C2B70879D0047C348 /* label_sample28_cleanedsanitised_hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample28_cleanedsanitised_hand.png; path = example/label_sample28_cleanedsanitised_hand.png; sourceTree = "<group>"; };
-		DD56B27D2B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample17_japanese_food_label_cake_plastic.png; path = example/label_sample17_japanese_food_label_cake_plastic.png; sourceTree = "<group>"; };
-		DD56B27E2B70879D0047C348 /* label_sample21_shipping_label_house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample21_shipping_label_house.png; path = example/label_sample21_shipping_label_house.png; sourceTree = "<group>"; };
-		DD56B27F2B70879D0047C348 /* receipt_sample16_cafe_template_coffee_cup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = receipt_sample16_cafe_template_coffee_cup.png; path = example/receipt_sample16_cafe_template_coffee_cup.png; sourceTree = "<group>"; };
-		DD56B2802B70879D0047C348 /* label_sample33_visitor_label_user_profile_picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample33_visitor_label_user_profile_picture.png; path = example/label_sample33_visitor_label_user_profile_picture.png; sourceTree = "<group>"; };
-		DD56B2812B70879D0047C348 /* label_sample32_sale_50off_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample32_sale_50off_background.png; path = example/label_sample32_sale_50off_background.png; sourceTree = "<group>"; };
-		DD56B2822B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample01_tamper_proof_label_checked.png; path = example/label_sample01_tamper_proof_label_checked.png; sourceTree = "<group>"; };
-		DD56B2832B70879D0047C348 /* label_sample16_japanese_food_label_lunch_box_plastic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = label_sample16_japanese_food_label_lunch_box_plastic.png; path = example/label_sample16_japanese_food_label_lunch_box_plastic.png; sourceTree = "<group>"; };
+		DD56B27A2B70879D0047C348 /* pharmacy_medication1_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pharmacy_medication1_logo.png; path = example/pharmacy_medication1_logo.png; sourceTree = "<group>"; };
+		DD56B27B2B70879D0047C348 /* shipping_label_phones_old.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shipping_label_phones_old.png; path = example/shipping_label_phones_old.png; sourceTree = "<group>"; };
+		DD56B27C2B70879D0047C348 /* cleanedsanitised_hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cleanedsanitised_hand.png; path = example/cleanedsanitised_hand.png; sourceTree = "<group>"; };
+		DD56B27D2B70879D0047C348 /* japanese_food_label_cake_plastic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = japanese_food_label_cake_plastic.png; path = example/japanese_food_label_cake_plastic.png; sourceTree = "<group>"; };
+		DD56B27E2B70879D0047C348 /* shipping_label_house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = shipping_label_house.png; path = example/shipping_label_house.png; sourceTree = "<group>"; };
+		DD56B27F2B70879D0047C348 /* cafe_template_coffee_cup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cafe_template_coffee_cup.png; path = example/cafe_template_coffee_cup.png; sourceTree = "<group>"; };
+		DD56B2802B70879D0047C348 /* visitor_label_user_profile_picture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = visitor_label_user_profile_picture.png; path = example/visitor_label_user_profile_picture.png; sourceTree = "<group>"; };
+		DD56B2812B70879D0047C348 /* sale_50off_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sale_50off_background.png; path = example/sale_50off_background.png; sourceTree = "<group>"; };
+		DD56B2822B70879D0047C348 /* tamper_proof_label_checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tamper_proof_label_checked.png; path = example/tamper_proof_label_checked.png; sourceTree = "<group>"; };
+		DD56B2832B70879D0047C348 /* japanese_food_label_lunch_box_plastic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = japanese_food_label_lunch_box_plastic.png; path = example/japanese_food_label_lunch_box_plastic.png; sourceTree = "<group>"; };
 		DDCDFE622B4E1641009A001A /* signature.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = signature.png; path = ../windows/example/Assets/signature.png; sourceTree = "<group>"; };
 		E3522EC125F6F659008B0731 /* logo_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo_01.png; path = example/logo_01.png; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4A4A6DE10159C3E1C0D18E60 /* libPods-example-exampleTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88A8570E2595E29A00F4A8CC /* StarIO10.xcframework in Frameworks */,
-				4FD0560A13E8688B4B2216EC /* libPods-example.a in Frameworks */,
+				0C80B921A6F3F58F76C31292 /* libPods-example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* exampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* exampleTests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = exampleTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* example */ = {
 			isa = PBXGroup;
 			children = (
 				E3522EC125F6F659008B0731 /* logo_01.png */,
 				DDCDFE622B4E1641009A001A /* signature.png */,
-				DD56B2822B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png */,
-				DD56B2832B70879D0047C348 /* label_sample16_japanese_food_label_lunch_box_plastic.png */,
-				DD56B27D2B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png */,
-				DD56B27A2B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png */,
-				DD56B27E2B70879D0047C348 /* label_sample21_shipping_label_house.png */,
-				DD56B27B2B70879D0047C348 /* label_sample21_shipping_label_phones_old.png */,
-				DD56B27C2B70879D0047C348 /* label_sample28_cleanedsanitised_hand.png */,
-				DD56B2812B70879D0047C348 /* label_sample32_sale_50off_background.png */,
-				DD56B2802B70879D0047C348 /* label_sample33_visitor_label_user_profile_picture.png */,
-				DD56B27F2B70879D0047C348 /* receipt_sample16_cafe_template_coffee_cup.png */,
-				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				DD56B2822B70879D0047C348 /* tamper_proof_label_checked.png */,
+				DD56B2832B70879D0047C348 /* japanese_food_label_lunch_box_plastic.png */,
+				DD56B27D2B70879D0047C348 /* japanese_food_label_cake_plastic.png */,
+				DD56B27A2B70879D0047C348 /* pharmacy_medication1_logo.png */,
+				DD56B27E2B70879D0047C348 /* shipping_label_house.png */,
+				DD56B27B2B70879D0047C348 /* shipping_label_phones_old.png */,
+				DD56B27C2B70879D0047C348 /* cleanedsanitised_hand.png */,
+				DD56B2812B70879D0047C348 /* sale_50off_background.png */,
+				DD56B2802B70879D0047C348 /* visitor_label_user_profile_picture.png */,
+				DD56B27F2B70879D0047C348 /* cafe_template_coffee_cup.png */,
 				DD10623629C055A4002C8C77 /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
-				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = example;
 			sourceTree = "<group>";
@@ -145,9 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				6606020490ADC83C1437180E /* libPods-example.a */,
-				DBDCF4355CE43E454FEE01FE /* libPods-example-exampleTests.a */,
+				5DCACB8F33CDC322A6C60F78 /* libPods-example.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -162,14 +108,12 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				9FF5DC3B2C17D63200D66D4E /* PrivacyInfo.xcprivacy */,
-				88E661E9258C55D9006F1EE4 /* StarIO10.xcframework */,
+				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 				13B07FAE1A68108700A75B9A /* example */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* exampleTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				E063F678D5901263A2418EDF /* Pods */,
+				BBD78D7AC51CEA395F1C20DB /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -180,18 +124,15 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* example.app */,
-				00E356EE1AD99517003FC87E /* exampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E063F678D5901263A2418EDF /* Pods */ = {
+		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				41A47B4136D02FA502DB1C1B /* Pods-example.debug.xcconfig */,
-				28E518AB1F127C3A0AB54478 /* Pods-example.release.xcconfig */,
-				73B9172EBB3ED939CA361D76 /* Pods-example-exampleTests.debug.xcconfig */,
-				096474A6396AD81B79F11D2E /* Pods-example-exampleTests.release.xcconfig */,
+				3B4392A12AC88292D35C810B /* Pods-example.debug.xcconfig */,
+				5709B34CF0A7D63546082F79 /* Pods-example.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -199,38 +140,17 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* exampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "exampleTests" */;
-			buildPhases = (
-				6B106604DEF2F07E25558D14 /* [CP] Check Pods Manifest.lock */,
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-				CA6F7524B9304ECBE63252A9 /* [CP] Copy Pods Resources */,
-				3242FE9A9C4863E781A6BBF9 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = exampleTests;
-			productName = exampleTests;
-			productReference = 00E356EE1AD99517003FC87E /* exampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "example" */;
 			buildPhases = (
-				34536438C826E306BC1B3E70 /* [CP] Check Pods Manifest.lock */,
+				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				2F571DA6E399DDDD5C317C89 /* [CP] Copy Pods Resources */,
-				B6D78032C9C59772559B837C /* [CP] Embed Pods Frameworks */,
+				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
+				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,19 +167,15 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1300;
+				LastUpgradeCheck = 1210;
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
 					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "example" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -272,39 +188,31 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* example */,
-				00E356ED1AD99517003FC87E /* exampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD56B2852B70879D0047C348 /* label_sample21_shipping_label_phones_old.png in Resources */,
-				889D26632524548F00AA5D07 /* main.jsbundle in Resources */,
-				DD56B2892B70879D0047C348 /* receipt_sample16_cafe_template_coffee_cup.png in Resources */,
+				DD56B2852B70879D0047C348 /* shipping_label_phones_old.png in Resources */,
+				889D26632524548F00AA5D07 /* BuildFile in Resources */,
+				DD56B2892B70879D0047C348 /* cafe_template_coffee_cup.png in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				DD56B2872B70879D0047C348 /* label_sample17_japanese_food_label_cake_plastic.png in Resources */,
+				DD56B2872B70879D0047C348 /* japanese_food_label_cake_plastic.png in Resources */,
 				DDCDFE632B4E1641009A001A /* signature.png in Resources */,
-				9FF5DC3C2C17D63200D66D4E /* PrivacyInfo.xcprivacy in Resources */,
-				DD56B2842B70879D0047C348 /* label_sample19_pharmacy_medication1_logo.png in Resources */,
+				DD56B2842B70879D0047C348 /* pharmacy_medication1_logo.png in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				DD56B28C2B70879D0047C348 /* label_sample01_tamper_proof_label_checked.png in Resources */,
-				DD56B2882B70879D0047C348 /* label_sample21_shipping_label_house.png in Resources */,
-				DD56B28D2B70879D0047C348 /* label_sample16_japanese_food_label_lunch_box_plastic.png in Resources */,
+				DD56B28C2B70879D0047C348 /* tamper_proof_label_checked.png in Resources */,
+				DD56B2882B70879D0047C348 /* shipping_label_house.png in Resources */,
+				DD56B28D2B70879D0047C348 /* japanese_food_label_lunch_box_plastic.png in Resources */,
 				E3522EC225F6F659008B0731 /* logo_01.png in Resources */,
-				DD56B28A2B70879D0047C348 /* label_sample33_visitor_label_user_profile_picture.png in Resources */,
-				DD56B28B2B70879D0047C348 /* label_sample32_sale_50off_background.png in Resources */,
-				DD56B2862B70879D0047C348 /* label_sample28_cleanedsanitised_hand.png in Resources */,
+				DD56B28A2B70879D0047C348 /* visitor_label_user_profile_picture.png in Resources */,
+				DD56B28B2B70879D0047C348 /* sale_50off_background.png in Resources */,
+				DD56B2862B70879D0047C348 /* cleanedsanitised_hand.png in Resources */,
+				CC79BA935D7EE43674BA1579 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,51 +235,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		2F571DA6E399DDDD5C317C89 /* [CP] Copy Pods Resources */ = {
+		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3242FE9A9C4863E781A6BBF9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-DoubleConversion/double-conversion.framework/double-conversion",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-Glog/glog.framework/glog",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-star-io10/StarIO10.framework/StarIO10",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/double-conversion.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarIO10.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		34536438C826E306BC1B3E70 /* [CP] Check Pods Manifest.lock */ = {
+		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -393,212 +274,53 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6B106604DEF2F07E25558D14 /* [CP] Check Pods Manifest.lock */ = {
+		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-example-exampleTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B6D78032C9C59772559B837C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-DoubleConversion/double-conversion.framework/double-conversion",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/Flipper-Glog/glog.framework/glog",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OpenSSL-Universal/OpenSSL.framework/OpenSSL",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/react-native-star-io10/StarIO10.framework/StarIO10",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/double-conversion.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/glog.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OpenSSL.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarIO10.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CA6F7524B9304ECBE63252A9 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-example-exampleTests/Pods-example-exampleTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-example/Pods-example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00E356F31AD99517003FC87E /* exampleTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD10623729C055A4002C8C77 /* AppDelegate.mm in Sources */,
-				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* example */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73B9172EBB3ED939CA361D76 /* Pods-example-exampleTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = exampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/example.app/example";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 096474A6396AD81B79F11D2E /* Pods-example-exampleTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = exampleTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/example.app/example";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 41A47B4136D02FA502DB1C1B /* Pods-example.debug.xcconfig */;
+			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MWPD5A288Z;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATH = "$(inherited) $(SRCROOT)/node_modules/react-native-star-io10/ios/libs";
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-star-io10/ios",
-				);
 				INFOPLIST_FILE = example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(SDKROOT)/usr/lib/swift",
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaAsyncSocket\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper-DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper-Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper-Glog\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper-PeerTalk\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Flipper-RSocket\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FlipperKit\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPicker\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
-					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
-				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -606,68 +328,30 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = example;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/StarIO10.xcframework";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28E518AB1F127C3A0AB54478 /* Pods-example.release.xcconfig */;
+			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MWPD5A288Z;
-				FRAMEWORK_SEARCH_PATH = "$(inherited) $(SRCROOT)/node_modules/react-native-star-io10/ios/libs";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/node_modules/react-native-star-io10/ios/libs",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(SRCROOT)/../node_modules/react-native-star-io10/ios",
-				);
 				INFOPLIST_FILE = example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(SDKROOT)/usr/lib/swift",
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/CocoaAsyncSocket\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/FBReactNativeSpec\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Folly\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RCTTypeSafety\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/RNCPicker\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-Core\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-CoreModules\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTAnimation\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTBlob\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTImage\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTLinking\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTNetwork\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTSettings\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTText\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-RCTVibration\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-cxxreact\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsi\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsiexecutor\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/React-jsinspector\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/ReactCommon\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Yoga\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/YogaKit\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/glog\"",
-					"\"${PODS_ROOT}/CocoaLibEvent/lib\"",
-					"\"${PODS_ROOT}/OpenSSL-Universal/ios/lib\"",
-					"\"$(SRCROOT)\"",
-				);
-				MARKETING_VERSION = 1.8.0;
+				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -675,8 +359,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = example;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(SRCROOT)/StarIO10.xcframework";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
@@ -704,6 +390,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -713,7 +400,7 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -729,7 +416,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -741,7 +428,6 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -756,6 +442,7 @@
 				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
 				USE_HERMES = true;
 			};
 			name = Debug;
@@ -783,6 +470,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -792,7 +480,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -801,7 +489,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -810,10 +498,8 @@
 					"\"$(SDKROOT)/usr/lib/swift\"",
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
 					"\"$(inherited)\"",
-					"\"$(SRCROOT)\"",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = (
 					"$(OTHER_CFLAGS)",
 					"-DFOLLY_NO_CONFIG",
@@ -836,15 +522,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "exampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

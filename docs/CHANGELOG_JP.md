@@ -3,6 +3,21 @@
 
 # 変更点
 
+## 1.9.0 (2025/05/19)
+
+* mC-Label2 に対応
+* ブラックマークやダイカットラベル紙等のギャップ単位で用紙送りを実行するactionSeparatorFeedメソッドを追加
+* 基本印字サイズを設定するstyleBaseMagnificationメソッドを追加
+* mC-Label2（300dpiモデル）用の[Printing Samples](../example/samples/printing_samples/README.md)を追加
+* サンプルアプリでCheckBoxからPressableを使うよう変更
+* React Native のバージョンを0.78.2に更新
+* React Native for Windows のバージョンを0.78.4に更新
+* iOS: 最低サポートOSバージョンを13から15.1に変更
+* Android: 最低サポートOSバージョンを9から10に変更
+* Android: Android16 に対応（プラットフォーム安定版で動作確認）
+* 不具合修正
+  * TSP650II、TSP700II、TSP800II、SP700、TUP500のLAN I/Fでオンライン復帰直後（PrinterDelegateのonReady()が呼ばれた時）のStarPrinter.print()の実行がまれに失敗する問題を修正
+
 ## 1.8.0 (2024/11/01)
 
 * TSP100IV-UEWB およびTSP100IV-UEWB SK に対応

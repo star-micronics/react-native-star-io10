@@ -2,6 +2,21 @@
 
 # Change Log
 
+## 1.9.0 (2025/05/19)
+
+* Added mC-Label2 support.
+* Added the actionSeparatorFeed method to execute paper feeding per black mark and gap for die-cut label paper, etc.
+* Added the styleBaseMagnification method to set the base print size.
+* Added [Printing Samples](example/samples/printing_samples/README.md) for mC-Label2 (300dpi model).
+* Changed the example app to use Pressable instead of CheckBox.
+* Updated React Native version to 0.78.2.
+* Updated React Native Windows version to 0.78.4.
+* iOS: Changed minimum supported OS version from 13 to 15.1.
+* Android: Changed minimum supported OS version from 9 to 10.
+* Android: Added Android 16 support (tested on platform stability version).
+* Bug Fix:
+  * Fixed an issue where the execution of StarPrinter.print() occasionally failed immediately after the printer came back online (when PrinterDelegate onReady() was called) with the LAN interface of TSP650II, TSP700II, TSP800II, SP700, and TUP500.
+
 ## 1.8.0 (2024/11/01)
 
 * Added TSP100IV-UEWB and TSP100IV-UEWB SK support.
@@ -20,7 +35,7 @@
 
 ## 1.7.0 (2024/06/24)
 
-* Added BSC10II support (Limited region model).
+* Added BSC10II support.
 * Added TearOff (feed to tear bar) to the CutType enum.
 * Added India to the Printer.InternationalCharacterType enum.
 * Changed the example app to use function components instead of class components.

@@ -5,13 +5,12 @@ import {
     View,
     ScrollView,
     Text,
-    Button,
     TextInput,
     PermissionsAndroid,
-    Platform
+    Platform,
+    Pressable,
+    StyleSheet,
 } from 'react-native';
-
-import CheckBox from '@react-native-community/checkbox';
 
 import {
     InterfaceType,
@@ -20,6 +19,7 @@ import {
 } from 'react-native-star-io10';
 
 export default function App() {
+
     const [interfaceType, setInterfaceType] = useState(InterfaceType.Lan);
     const [identifier, setIdentifier] = useState("00:11:62:00:00:00");
     const [statusText, setStatusText] = useState('\n');
@@ -66,7 +66,7 @@ export default function App() {
                 '\n';
             setStatusText(newStatusText);
         }
-        catch(error) {
+        catch (error) {
             console.log(`Error: ${String(error)}`);
             setStatusText(statusText + `Error: ${String(error)}\n\n`);
         }
@@ -94,91 +94,84 @@ export default function App() {
 
         return hasPermission;
     }
-
+    const styles = StyleSheet.create({
+        activeButton: {
+            margin: 5,
+            width: 150,
+            alignItems: 'center',
+            backgroundColor: '#0026FF',
+            padding: 10,
+        },
+        inactiveButton: {
+            margin: 5,
+            width: 150,
+            alignItems: 'center',
+            backgroundColor: '#606060',
+            padding: 10,
+        },
+        buttonText: {
+            color: '#FFFFFF',
+        }
+    });
     return (
-            <View style={{ flex: 1, margin: 50 }}>
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ width: 100 }}>Interface</Text>
-                    <View style={{ margin: 10 }}>
-                        <View style={{ flexDirection: 'row', marginTop: 0 }}>
-                            <CheckBox
-                                style={{ marginLeft: 20 }}
-                                value={
-                                    interfaceType == InterfaceType.Lan
-                                }
-                                onValueChange={(isChecked) => {
-                                    if (isChecked) {
-                                        setInterfaceType(InterfaceType.Lan);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>LAN</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <CheckBox
-                                style={{ marginLeft: 20 }}
-                                value={
-                                    interfaceType == InterfaceType.Bluetooth
-                                }
-                                onValueChange={(isChecked) => {
-                                    if (isChecked) {
-                                        setInterfaceType(InterfaceType.Bluetooth);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>Bluetooth</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <CheckBox
-                                style={{ marginLeft: 20 }}
-                                value={
-                                    interfaceType == InterfaceType.BluetoothLE
-                                }
-                                onValueChange={(isChecked) => {
-                                    if (isChecked) {
-                                        setInterfaceType(InterfaceType.BluetoothLE);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>BluetoothLE</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', marginTop: 10 }}>
-                            <CheckBox
-                                style={{ marginLeft: 20 }}
-                                value={
-                                    interfaceType == InterfaceType.Usb
-                                }
-                                onValueChange={(isChecked) => {
-                                    if (isChecked) {
-                                        setInterfaceType(InterfaceType.Usb);
-                                    }
-                                }}
-                            />
-                            <Text style={{ marginLeft: 20 }}>USB</Text>
-                        </View>
-                    </View>
-                </View>
-                <View style={{ flexDirection: 'row', marginTop: 30 }}>
-                    <Text style={{ width: 100 }}>Identifier</Text>
-                    <TextInput
-                        style={{ width: 200, marginLeft: 20 }}
-                        value={identifier}
-                        onChangeText={(value) => {
-                            setIdentifier(value);
-                        }}
-                    />
-                </View>
-                <View style={{ width: 100, marginTop: 20 }}>
-                    <Button
-                        title="Get status"
-                        onPress={_onPressGetStatusButton}
-                    />
-                </View>
-                <View style={{ flex: 1, alignSelf: 'stretch', marginTop: 20 }}>
-                    <ScrollView>
-                        <Text>{statusText}</Text>
-                    </ScrollView>
+        <View style={{ margin: 10, marginTop: 50, marginBottom: 50, flex: 1 }}>
+            <View style={{ flexDirection: 'row' }}>
+                <Text style={{ width: 100 }}>Interface</Text>
+                <View style={{ margin: 10 }}>
+                    <Pressable
+                        style={interfaceType == InterfaceType.Lan ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.Lan)
+                        }>
+                        <Text style={styles.buttonText}>Lan</Text>
+                    </Pressable>
+                    <Pressable
+                        style={interfaceType == InterfaceType.Bluetooth ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.Bluetooth)
+                        }>
+                        <Text style={styles.buttonText}>Bluetooth</Text>
+                    </Pressable>
+                    <Pressable
+                        style={interfaceType == InterfaceType.BluetoothLE ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.BluetoothLE)
+                        }>
+                        <Text style={styles.buttonText}>BluetoothLE</Text>
+                    </Pressable>
+                    <Pressable
+                        style={interfaceType == InterfaceType.Usb ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setInterfaceType(InterfaceType.Usb)
+                        }>
+                        <Text style={styles.buttonText}>USB</Text>
+                    </Pressable>
                 </View>
             </View>
+
+            <View style={{ flexDirection: 'row', marginTop: 30 }}>
+                <Text style={{ width: 100 }}>Identifier</Text>
+                <TextInput
+                    style={{ width: 200, marginLeft: 20 }}
+                    value={identifier}
+                    onChangeText={(value) => {
+                        setIdentifier(value);
+                    }}
+                />
+            </View>
+            <View style={{ marginTop: 20 }}>
+                <Pressable
+                    style={styles.activeButton}
+                    onPress={() => _onPressGetStatusButton()
+                    }>
+                    <Text style={styles.buttonText}>Get Status</Text>
+                </Pressable>
+            </View>
+            <View style={{ flex: 1, alignSelf: 'stretch', marginTop: 20 }}>
+                <ScrollView>
+                    <Text>{statusText}</Text>
+                </ScrollView>
+            </View>
+        </View>
     );
 };

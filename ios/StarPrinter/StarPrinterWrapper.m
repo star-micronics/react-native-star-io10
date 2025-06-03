@@ -1,11 +1,3 @@
-//
-//  StarPrinterWrapper.m
-//  StarIO10
-//
-//  Created by u3237 on 2020/07/22.
-//  Copyright © 2020 Facebook. All rights reserved.
-//
-
 #import "StarPrinterWrapper.h"
 #import <React/RCTLog.h>
 #import "StarObjectManager.h"

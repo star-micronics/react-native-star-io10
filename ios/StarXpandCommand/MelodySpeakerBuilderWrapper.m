@@ -13,6 +13,20 @@
 
 @implementation MelodySpeakerBuilderWrapper
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _objManager = StarObjectManager.sharedManager;
+    }
+    return self;
+}
+
++ (BOOL)requiresMainQueueSetup
+{
+    return NO;
+}
+
 RCT_EXPORT_MODULE()
 
 RCT_REMAP_METHOD(actionDriveOneTimeSound,
@@ -24,6 +38,16 @@ RCT_REMAP_METHOD(actionDriveOneTimeSound,
     @try{
         
         STARIO10StarXpandCommandMelodySpeakerDriveOneTimeSoundParameter *parameter = [StarIO10ValueConverter toMelodySpeakerDriveOneTimeSoundParameterWithSource:source volume:volume];
+        
+        if (parameter == nil) {
+            NSError *error = [NSError errorWithDomain:@""
+                                                 code:STARIO10ErrorArgument
+                                             userInfo:@{NSLocalizedDescriptionKey:@"Invalid source.",
+                                                        STARIO10ErrorDetailErrorCodeKey:[NSNumber numberWithInt:STARIO10ErrorCodeNone]}];
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+            return;
+        }
         
         STARIO10StarXpandCommandMelodySpeakerBuilder *melodySpeakerBuilder =[[STARIO10StarXpandCommandMelodySpeakerBuilder alloc] init ];
         melodySpeakerBuilder = [melodySpeakerBuilder actionDriveOneTimeSound:parameter];

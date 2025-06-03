@@ -30,6 +30,10 @@ build/
 local.properties
 *.iml
 *.hprof
+.kotlin/
+
+# Windows
+windows/example/packages.lock.json
 
 # Visual Studio Code
 #

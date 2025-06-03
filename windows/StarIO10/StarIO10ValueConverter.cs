@@ -51,6 +51,7 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarPrinterModel.mPOP, "mPOP" },
             { StarPrinterModel.mCPrint2, "mC_Print2" },
             { StarPrinterModel.mCPrint3, "mC_Print3" },
+            { StarPrinterModel.mCLabel2, "mC_Label2" },
             { StarPrinterModel.mCLabel3, "mC_Label3" },
             { StarPrinterModel.SMS210i, "SM_S210i" },
             { StarPrinterModel.SMS230i, "SM_S230i" },

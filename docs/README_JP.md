@@ -23,11 +23,13 @@ StarXpand SDKのドキュメントは[こちら](https://www.star-m.jp/react-nat
 
 ## 動作環境
 
-| Platform | OS Version | Arch |
-| --- | --- | --- |
-| iOS | iOS 13.0 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | 
-| Android | Android 9.0 以降 | arm64-v8a, armeabi-v7a, x86, x86_64 |
-| Windows | Windows 11 / Windows 10 22H2 | x86, x64 |
+| Platform | OS Version | Arch | Test Environment[*](#TestEnvironment) |
+| --- | --- | --- | --- |
+| iOS | iOS 15.1 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | Xcode 16.3 |
+| Android | Android 10.0 以降 | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 8.12, AGP 8.9.1 |
+| Windows | Windows 11 / Windows 10 22H2 | x64, x86(Windows 10のみ) | Visual Studio 2022 |
+
+<a id="TestEnvironment"></a>*SDK同梱のサンプルアプリをビルドして動作することを確認しています。
 
 ## 導入
 
@@ -48,7 +50,7 @@ Manifest fileについては[こちら](https://developer.apple.com/documentatio
 |--------------------------|-----------------------------------------------------------------------------------------|
 | Bluetooth                | [1.](#SupportedEAProtocols) & [2.](#BluetoothAlwaysUsageDescription) & [4.](#MFi) |
 | Bluetooth Low Energy     | [2.](#BluetoothAlwaysUsageDescription)                                                |
-| Ethernet (iOS14以上)      | [3.](#LocalNetworkUsageDescription)                                                   |
+| Ethernet                 | [3.](#LocalNetworkUsageDescription)                                                   |
 | Lightning USB           | [1.](#SupportedEAProtocols) & [4.](#MFi)                                            |
 
 <a id="SupportedEAProtocols"></a>
@@ -61,12 +63,11 @@ Manifest fileについては[こちら](https://developer.apple.com/documentatio
 > :warning: 該当するプリンターを使用しない場合は、この設定を行わないでください。
 
 <a id="BluetoothAlwaysUsageDescription"></a>
-##### 2. `Bluetooth Always Usage Description` 項目および `Bluetooth Peripheral Usage Description` 項目の設定
+##### 2. `Bluetooth Always Usage Description` 項目の設定
 
 1. Information Property List（デフォルトでは"Info.plist"）を選択します。
 2. Keyに `Privacy – Bluetooth Always Usage Description` を追加します。
-3. `Deployment Target` をiOS12に設定する場合、Keyに `Privacy – Bluetooth Peripheral Usage Description` を追加します。
-3. それぞれのValue に Bluetoothの利用目的（例: `Use Bluetooth for communication with the printer.`）を設定します。
+3. Value に Bluetoothの利用目的（例: `Use Bluetooth for communication with the printer.`）を設定します。
 4. Bluetoothにてプリンターと通信するとき、Bluetoothへのアクセス許可を求めるダイアログが表示されます。その際、Valueに設定した文字列がBluetoothを利用する理由として表示されます。
 
 より詳しくは、下記URLを参照してください。
@@ -79,7 +80,7 @@ https://developer.apple.com/documentation/bundleresources/information_property_l
 1. Information Property List（デフォルトでは"Info.plist"）を選択します。
 2. Keyに `Privacy - Local Network Usage Description` を追加します。
 3. Value に Local Networkの利用目的（例: `Use Local Network for communication with the printer or discovery the printers.`）を設定します。
-4. iOS14以上でEthernetプリンターと通信するとき、Local Networkへのアクセス許可を求めるダイアログが表示されます。その際、Valueに設定した文字列がLocal Networkを利用する理由として表示されます。
+4. Ethernetプリンターと通信するとき、Local Networkへのアクセス許可を求めるダイアログが表示されます。その際、Valueに設定した文字列がLocal Networkを利用する理由として表示されます。
 
 <a id="MFi"></a>
 ##### 4. MFi対応プリンター向けアプリ認証を取得
@@ -142,6 +143,7 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
     <usb-device vendor-id="1305" product-id="0071" />   <!--mC-Print3-->
     <usb-device vendor-id="1305" product-id="0073" />   <!--mC-Print2-->
     <usb-device vendor-id="1305" product-id="0025" />   <!--mC-Label3-->
+    <usb-device vendor-id="1305" product-id="0029" />   <!--mC-Label2-->
     <usb-device vendor-id="1305" product-id="0023" />   <!--mPOP-->
     <usb-device vendor-id="1305" product-id="0001" />   <!--TSP650II/TSP650II SK/TSP700II/TSP800II/SP700/TUP500-->
     <usb-device vendor-id="1305" product-id="0027" />   <!--BSC10II-->
@@ -165,6 +167,7 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
     <usb-accessory model="Star TSP143IV-UEWB SK" manufacturer="STAR"/>
     <usb-accessory model="mC-Print3" manufacturer="Star Micronics"/>
     <usb-accessory model="mC-Label3" manufacturer="Star Micronics"/>
+    <usb-accessory model="mC-Label2" manufacturer="Star Micronics"/>
     <usb-accessory model="mPOP" manufacturer="Star Micronics"/>
     <usb-accessory model="BSC10II" manufacturer="Star Micronics"/>
 </resources>

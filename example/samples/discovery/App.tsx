@@ -4,13 +4,12 @@ import { useState, useEffect } from 'react';
 import {
     View,
     Text,
-    Button,
     FlatList,
     PermissionsAndroid,
-    Platform
+    Platform,
+    Pressable,
+    StyleSheet,
 } from 'react-native';
-
-import CheckBox from '@react-native-community/checkbox';
 
 import {
     InterfaceType,
@@ -20,6 +19,7 @@ import {
 } from 'react-native-star-io10';
 
 export default function App() {
+
     const [lanIsEnabled, setLanIsEnabled] = useState(true);
     const [bluetoothIsEnabled, setBluetoothIsEnabled] = useState(true);
     const [bluetoothLeIsEnabled, setBluetoothLeIsEnabled] = useState(true);
@@ -27,7 +27,7 @@ export default function App() {
     const [printers, setPrinters] = useState<StarPrinter[]>([]);
     const [manager, setManager] = useState<StarDeviceDiscoveryManager | undefined>(undefined);
 
-    async function _onPressDiscoveryButton () {
+    async function _onPressDiscoveryButton() {
         // If you are using Android 12 and targetSdkVersion is 31 or later,
         // you have to request Bluetooth permission (Nearby devices permission) to use the Bluetooth printer.
         // https://developer.android.com/about/versions/12/features/bluetooth-permissions
@@ -46,49 +46,49 @@ export default function App() {
             await manager?.stopDiscovery()
 
             var interfaceTypes: Array<InterfaceType> = []
-            if(lanIsEnabled) {
+            if (lanIsEnabled) {
                 interfaceTypes.push(InterfaceType.Lan);
             }
-            if(bluetoothIsEnabled) {
+            if (bluetoothIsEnabled) {
                 interfaceTypes.push(InterfaceType.Bluetooth);
             }
-            if(bluetoothLeIsEnabled) {
+            if (bluetoothLeIsEnabled) {
                 interfaceTypes.push(InterfaceType.BluetoothLE);
             }
-            if(usbIsEnabled) {
+            if (usbIsEnabled) {
                 interfaceTypes.push(InterfaceType.Usb);
             }
 
             console.log(`create manager with ${interfaceTypes}`);
             setManager(await StarDeviceDiscoveryManagerFactory.create(interfaceTypes));
         }
-        catch(error) {
+        catch (error) {
             console.log(`Error: ${String(error)}`);
         }
     }
 
-    useEffect( () => {
+    useEffect(() => {
         const _startDiscovery = async () => {
             setPrinters([]);
             if (manager != undefined) {
                 manager.discoveryTime = 10000;
 
                 manager.onPrinterFound = async (printer: StarPrinter) => {
-                    setPrinters((printers) => [...printers, printer]);        
+                    setPrinters((printers) => [...printers, printer]);
                     console.log(`Found printer: ${printer.connectionSettings.interfaceType} ${printer.connectionSettings.identifier}.`);
                 };
-        
+
                 manager.onDiscoveryFinished = () => {
                     console.log(`Discovery finished.`);
                 };
-    
+
                 try {
                     console.log(`Discovery start.`);
                     await manager.startDiscovery();
                 }
-                catch(error) {
+                catch (error) {
                     console.log(`Error: ${String(error)}`);
-                }  
+                }
             }
         }
         _startDiscovery();
@@ -99,10 +99,10 @@ export default function App() {
 
         try {
             hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
-    
+
             if (!hasPermission) {
                 const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
-                    
+
                 hasPermission = status == PermissionsAndroid.RESULTS.GRANTED;
             }
         }
@@ -113,66 +113,76 @@ export default function App() {
         return hasPermission;
     }
 
+    const styles = StyleSheet.create({
+        activeButton: {
+            margin: 5,
+            width: 150,
+            alignItems: 'center',
+            backgroundColor: '#0026FF',
+            padding: 10,
+        },
+        inactiveButton: {
+            margin: 5,
+            width: 150,
+            alignItems: 'center',
+            backgroundColor: '#606060',
+            padding: 10,
+        },
+        buttonText: {
+            color: '#FFFFFF',
+        }
+    });
+
     return (
-        <View style={{ margin: 50 }}>
-            <Text>Interface</Text>
-
-            <View style={{ flexDirection: 'row', marginTop: 20  }}>
-            <CheckBox
-                style={{ marginLeft: 20 }}
-                value={lanIsEnabled}
-                onValueChange={(newValue) => {
-                    setLanIsEnabled(newValue);
-                }}
-            />
-            <Text style={{ marginLeft: 20 }}>LAN</Text>
-            </View>
-
+        <View style={{ margin: 10, marginTop: 50, marginBottom: 50, flex: 1 }}>
             <View style={{ flexDirection: 'row' }}>
-            <CheckBox
-                style={{ marginLeft: 20 }}
-                value={bluetoothIsEnabled}
-                onValueChange={(newValue) => {
-                    setBluetoothIsEnabled(newValue);
-                }}
-            />
-            <Text style={{ marginLeft: 20 }}>Bluetooth</Text>
+                <Text style={{ width: 100 }}>Interface</Text>
+                <View style={{ margin: 10 }}>
+                    <Pressable
+                        style={lanIsEnabled ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setLanIsEnabled(!lanIsEnabled)
+                        }>
+                        <Text style={styles.buttonText}>Lan</Text>
+                    </Pressable>
+                    <Pressable
+                        style={bluetoothIsEnabled ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setBluetoothIsEnabled(!bluetoothIsEnabled)
+                        }>
+                        <Text style={styles.buttonText}>Bluetooth</Text>
+                    </Pressable>
+                    <Pressable
+                        style={bluetoothLeIsEnabled ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setBluetoothLeIsEnabled(!bluetoothLeIsEnabled)
+                        }>
+                        <Text style={styles.buttonText}>BluetoothLE</Text>
+                    </Pressable>
+                    <Pressable
+                        style={usbIsEnabled ? styles.activeButton : styles.inactiveButton}
+                        onPress={() =>
+                            setUsbIsEnabled(!usbIsEnabled)
+                        }>
+                        <Text style={styles.buttonText}>USB</Text>
+                    </Pressable>
+                </View>
             </View>
 
-            <View style={{ flexDirection: 'row' }}>
-            <CheckBox
-                style={{ marginLeft: 20 }}
-                value={bluetoothLeIsEnabled}
-                onValueChange={(newValue) => {
-                    setBluetoothLeIsEnabled(newValue);
-                }}
-            />
-            <Text style={{ marginLeft: 20 }}>Bluetooth LE</Text>
+            <View style={{ marginTop: 20 }}>
+                <Pressable
+                    style={styles.activeButton}
+                    onPress={() => _onPressDiscoveryButton()
+                    }>
+                    <Text style={styles.buttonText}>Discovery</Text>
+                </Pressable>
             </View>
 
-            <View style={{ flexDirection: 'row' }}>
-            <CheckBox
-                style={{ marginLeft: 20 }}
-                value={usbIsEnabled}
-                onValueChange={(newValue) => {
-                    setUsbIsEnabled(newValue);
-                }}
-            />
-            <Text style={{ marginLeft: 20 }}>USB</Text>
-            </View>
-
-            <View
-                style={{ width: 100, marginTop: 30 }}>
-                <Button
-                title="Discovery"
-                onPress={_onPressDiscoveryButton}
-                />
-            </View>
-                <FlatList
-                    style={{ marginTop: 30 }}
-                    data={printers}
-                    renderItem={({item}) => <Text>{item.connectionSettings.interfaceType} : {item.connectionSettings.identifier}</Text>}
-                    keyExtractor={(item, index) => index.toString()} />
-            </View>
+            <FlatList
+                style={{ margin: 10 }}
+                data={printers}
+                renderItem={({ item }) => <Text>{item.connectionSettings.interfaceType} : {item.connectionSettings.identifier}</Text>}
+                keyExtractor={(item, index) => index.toString()} />
+        </View >
     );
 };

@@ -11,6 +11,7 @@ export declare class PrinterBuilder extends BaseStarXpandCommandBuilder {
     styleInvert(enable: boolean): PrinterBuilder;
     styleUnderLine(enable: boolean): PrinterBuilder;
     styleMagnification(parameter: StarXpandCommand.MagnificationParameter): PrinterBuilder;
+    styleBaseMagnification(parameter: StarXpandCommand.Printer.BaseMagnificationParameter): PrinterBuilder;
     styleCharacterSpace(width: number): PrinterBuilder;
     styleLineSpace(height: number): PrinterBuilder;
     styleHorizontalPositionTo(position: number): PrinterBuilder;
@@ -23,6 +24,7 @@ export declare class PrinterBuilder extends BaseStarXpandCommandBuilder {
     actionCut(type: StarXpandCommand.Printer.CutType): PrinterBuilder;
     actionFeed(height: number): PrinterBuilder;
     actionFeedLine(lines: number): PrinterBuilder;
+    actionSeparatorFeed(): PrinterBuilder;
     actionPrintText(content: string, parameter?: StarXpandCommand.Printer.TextParameter | undefined): PrinterBuilder;
     actionPrintLogo(parameter: StarXpandCommand.Printer.LogoParameter): PrinterBuilder;
     actionPrintBarcode(parameter: StarXpandCommand.Printer.BarcodeParameter): PrinterBuilder;

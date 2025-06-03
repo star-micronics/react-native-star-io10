@@ -11,6 +11,7 @@ export declare class PageModeBuilder extends BaseStarXpandCommandBuilder {
     styleInvert(enable: boolean): PageModeBuilder;
     styleUnderLine(enable: boolean): PageModeBuilder;
     styleMagnification(parameter: StarXpandCommand.MagnificationParameter): PageModeBuilder;
+    styleBaseMagnification(parameter: StarXpandCommand.Printer.BaseMagnificationParameter): PageModeBuilder;
     styleCharacterSpace(width: number): PageModeBuilder;
     styleLineSpace(height: number): PageModeBuilder;
     styleVerticalPositionTo(position: number): PageModeBuilder;

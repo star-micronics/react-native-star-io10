@@ -14,6 +14,7 @@ import { TextWidthType } from './Printer/TextWidthType';
 import { TextAlignment } from './Printer/TextAlignment';
 import { TextEllipsizeType } from './Printer/TextEllipsizeType';
 import { TextPrintType } from './Printer/TextPrintType';
+import { BaseMagnification } from './Printer/BaseMagnification';
 import { SoundStorageArea } from './MelodySpeaker/SoundStorageArea';
 import { CursorState } from './Display/CursorState';
 import { Contrast } from './Display/Contrast';
@@ -240,6 +241,15 @@ export class StarXpandCommandParameterConverter {
         let commandMap = new Map([
             [TextPrintType.GoneWhenEmpty, "GoneWhenEmpty"],
             [TextPrintType.Always, "Always"]
+        ]);
+
+        return commandMap.get(value) as string;
+    }
+
+    static convertBaseMagnification(value: BaseMagnification): string {
+        let commandMap = new Map([
+            [BaseMagnification.Standard, "Standard"],
+            [BaseMagnification.X1_5, "X1_5"]
         ]);
 
         return commandMap.get(value) as string;

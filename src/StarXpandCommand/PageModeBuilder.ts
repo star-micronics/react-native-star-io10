@@ -72,6 +72,14 @@ export class PageModeBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
+    styleBaseMagnification(parameter: StarXpandCommand.Printer.BaseMagnificationParameter): PageModeBuilder {
+        this._addAction(async() => {
+            PrinterBaseBuilder.styleBaseMagnification(this._parameters, parameter);
+        });
+
+        return this;
+    }
+
     styleCharacterSpace(width: number): PageModeBuilder {
         this._addAction(async() => {
             PrinterBaseBuilder.styleCharacterSpace(this._parameters, width);

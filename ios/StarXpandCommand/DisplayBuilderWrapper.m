@@ -13,6 +13,20 @@
 
 @implementation DisplayBuilderWrapper
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _objManager = StarObjectManager.sharedManager;
+    }
+    return self;
+}
+
++ (BOOL)requiresMainQueueSetup
+{
+    return NO;
+}
+
 RCT_EXPORT_MODULE()
 
 RCT_REMAP_METHOD(actionShowImage,
@@ -27,6 +41,16 @@ RCT_REMAP_METHOD(actionShowImage,
         STARIO10StarXpandCommandDisplayImageParameter *parameter = [StarIO10ValueConverter toDisplayImageParameterWithSource:source
                                                                                                              effectDiffusion:effectDiffusion
                                                                                                                    threshold:threshold];
+        
+        if (parameter == nil) {
+            NSError *error = [NSError errorWithDomain:@""
+                                                 code:STARIO10ErrorArgument
+                                             userInfo:@{NSLocalizedDescriptionKey:@"Invalid source.",
+                                                        STARIO10ErrorDetailErrorCodeKey:[NSNumber numberWithInt:STARIO10ErrorCodeNone]}];
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+            return;
+        }
         
         STARIO10StarXpandCommandDisplayBuilder *displayBuilder =[[STARIO10StarXpandCommandDisplayBuilder alloc] init ];
         displayBuilder = [displayBuilder actionShowImage:parameter];

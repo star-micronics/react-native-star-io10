@@ -182,7 +182,7 @@ export class ReceiptSample11_Cafe_Template {
                                                 .setAlignment(TextAlignment.Right)
                                         )
                                 )
-                                .actionPrintImage(new PageModeImageParameter("receipt_sample16_cafe_template_coffee_cup.png", 65.0, 27.0, 80))
+                                .actionPrintImage(new PageModeImageParameter("cafe_template_coffee_cup.png", 65.0, 27.0, 80))
                                 .addPageMode(
                                     new PageModeAreaParameter(8.0, 30.0)
                                         .setX(11.0)

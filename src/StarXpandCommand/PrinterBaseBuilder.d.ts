@@ -8,6 +8,7 @@ export declare class PrinterBaseBuilder {
     static styleInvert(parameters: Map<string, any>, enable: boolean): void;
     static styleUnderLine(parameters: Map<string, any>, enable: boolean): void;
     static styleMagnification(parameters: Map<string, any>, parameter: StarXpandCommand.MagnificationParameter): void;
+    static styleBaseMagnification(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.BaseMagnificationParameter): void;
     static styleCharacterSpace(parameters: Map<string, any>, width: number): void;
     static styleLineSpace(parameters: Map<string, any>, height: number): void;
     static styleHorizontalPositionTo(parameters: Map<string, any>, position: number): void;
@@ -23,6 +24,7 @@ export declare class PrinterBaseBuilder {
     static actionCut(parameters: Map<string, any>, type: StarXpandCommand.Printer.CutType): void;
     static actionFeed(parameters: Map<string, any>, height: number): void;
     static actionFeedLine(parameters: Map<string, any>, lines: number): void;
+    static actionSeparatorFeed(parameters: Map<string, any>): void;
     static actionPrintText(parameters: Map<string, any>, content: string, parameter: StarXpandCommand.Printer.TextParameter | undefined): void;
     static actionPrintLogo(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.LogoParameter): void;
     static actionPrintBarcode(parameters: Map<string, any>, parameter: StarXpandCommand.Printer.BarcodeParameter): void;

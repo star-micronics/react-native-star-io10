@@ -75,6 +75,14 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
         return this;
     }
 
+    styleBaseMagnification(parameter: StarXpandCommand.Printer.BaseMagnificationParameter): PrinterBuilder {
+        this._addAction(async() => {
+            PrinterBaseBuilder.styleBaseMagnification(this._parameters, parameter);
+        });
+
+        return this;
+    }
+
     styleCharacterSpace(width: number): PrinterBuilder {
         this._addAction(async() => {
             PrinterBaseBuilder.styleCharacterSpace(this._parameters, width);
@@ -166,6 +174,14 @@ export class PrinterBuilder extends BaseStarXpandCommandBuilder {
     actionFeedLine(lines: number): PrinterBuilder {
         this._addAction(async() => {
             PrinterBaseBuilder.actionFeedLine(this._parameters, lines);
+        });
+
+        return this;
+    }
+
+    actionSeparatorFeed(): PrinterBuilder {
+        this._addAction(async() => {
+            PrinterBaseBuilder.actionSeparatorFeed(this._parameters);
         });
 
         return this;
