@@ -25,6 +25,7 @@ class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext
             is StarIO10UnprintableException -> "Unprintable"
             is StarIO10UnsupportedModelException -> "UnsupportedModel"
             is StarIO10AuthenticationException -> "Authentication"
+            is StarIO10ServerCommunicationException -> "ServerCommunication"
             else -> {
                 promise.reject(ReactNoCrashSoftException("Exception is not defined"))
                 return

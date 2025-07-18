@@ -24,6 +24,7 @@ NSString * const kSTARIO10ErrorTypeUnprintable = @"Unprintable";
 NSString * const kSTARIO10ErrorTypeUnsupportedModel = @"UnsupportedModel";
 NSString * const kSTARIO10ErrorTypeUnknown = @"Unknown";
 NSString * const kSTARIO10ErrorTypeAuthentication = @"Authentication";
+NSString * const kSTARIO10ErrorTypeServerCommunication = @"ServerCommunication";
 
 - (instancetype)init
 {
@@ -104,6 +105,10 @@ RCT_REMAP_METHOD(getType,
 
         case STARIO10ErrorAuthentication:
             type = kSTARIO10ErrorTypeAuthentication;
+            break;
+            
+        case STARIO10ErrorServerCommunication:
+            type = kSTARIO10ErrorTypeServerCommunication;
             break;
             
         case STARIO10ErrorUnknown:

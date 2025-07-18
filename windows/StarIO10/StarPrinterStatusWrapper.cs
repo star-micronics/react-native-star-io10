@@ -310,6 +310,66 @@ namespace StarMicronics.ReactNative.StarIO10
             promise.Resolve(nativeObject.Detail.RollPositionError);
         }
 
+        [ReactMethod("getPrintHeadThermistorError")]
+        public void GetPrintHeadThermistorError(string objectIdentifier, IReactPromise<bool?> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinterStatus nativeObject) ||
+                nativeObject == null)
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            promise.Resolve(nativeObject.Detail.PrintHeadThermistorError);
+        }
+        [ReactMethod("getPrintHeadOverTemperature")]
+        public void GtPrintHeadOverTemperature(string objectIdentifier, IReactPromise<bool?> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinterStatus nativeObject) ||
+                nativeObject == null)
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            promise.Resolve(nativeObject.Detail.PrintHeadOverTemperature);
+        }
+        [ReactMethod("getReceiveBufferOverflow")]
+        public void GetReceiveBufferOverflow(string objectIdentifier, IReactPromise<bool?> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinterStatus nativeObject) ||
+                nativeObject == null)
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            promise.Resolve(nativeObject.Detail.ReceiveBufferOverflow);
+        }
+        [ReactMethod("getUnrecoverableError")]
+        public void GetUnrecoverableError(string objectIdentifier, IReactPromise<bool?> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinterStatus nativeObject) ||
+                nativeObject == null)
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            promise.Resolve(nativeObject.Detail.UnrecoverableError);
+        }
+        [ReactMethod("getVoltageError")]
+        public void GetVoltageError(string objectIdentifier, IReactPromise<bool?> promise)
+        {
+            if (!GetObject(objectIdentifier, out StarPrinterStatus nativeObject) ||
+                nativeObject == null)
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            promise.Resolve(nativeObject.Detail.VoltageError);
+        }
 
         [ReactMethod("getReserved")]
         public void GetReserved(string objectIdentifier, IReactPromise<IReadOnlyDictionary<string, JSValue>> promise)

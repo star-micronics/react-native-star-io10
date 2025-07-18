@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)toStringFromSpoolJobState:(STARIO10SpoolJobState)value;
 + (NSString *)toStringFromSpoolJobReceivedInterface:(STARIO10SpoolJobReceivedInterface)value;
 
++ (NSString *)toStringFromFirmwareUpdateStep:(STARIO10FirmwareUpdateStep)value;
+
 + (NSArray<NSNumber *> *)toPrinterCJKCharacterPriorityTypes:(nonnull NSArray<NSString *> *)types;
 + (STARIO10StarPrinterModel)toStarPrinterModel:(NSString *)value;
 + (STARIO10InterfaceType)toInterfaceType:(NSString *)value;

@@ -13,6 +13,8 @@ NSDictionary<NSNumber *, NSString *> *kStarConfigurationSetResultDictionary;
 NSDictionary<NSNumber *, NSString *> *kSpoolJobStateDictionary;
 NSDictionary<NSNumber *, NSString *> *kSpoolJobReceivedInterfaceDictionary;
 
+NSDictionary<NSNumber *, NSString *> *kFirmwareUpdateStepDictionary;
+
 NSDictionary<NSNumber *, NSString *> *kPresenterLEDTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kBezelLEDTypeDictionary;
 NSDictionary<NSNumber *, NSString *> *kPrinterAlignmentDictionary;
@@ -46,6 +48,7 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10StarPrinterModelTSP650II): @"TSP650II",
             @(STARIO10StarPrinterModelTSP700II): @"TSP700II",
             @(STARIO10StarPrinterModelTSP800II): @"TSP800II",
+            @(STARIO10StarPrinterModelTSP100LAN): @"TSP100LAN",
             @(STARIO10StarPrinterModelTSP100IIIW): @"TSP100IIIW",
             @(STARIO10StarPrinterModelTSP100IIILAN): @"TSP100IIILAN",
             @(STARIO10StarPrinterModelTSP100IIIBI): @"TSP100IIIBI",
@@ -121,6 +124,11 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10SpoolJobReceivedInterfaceCloudPRNT): @"CloudPRNT",
             @(STARIO10SpoolJobReceivedInterfaceWebPRNT): @"WebPRNT",
             @(STARIO10SpoolJobReceivedInterfaceSmcs): @"SMCS"
+        };
+        
+        kFirmwareUpdateStepDictionary = @{
+            @(STARIO10FirmwareUpdateStepTransmitting): @"Transmitting",
+            @(STARIO10FirmwareUpdateStepDownloading): @"Downloading",
         };
         
         kPresenterLEDTypeDictionary = @{
@@ -478,6 +486,11 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
 + (NSString *)toStringFromSpoolJobReceivedInterface:(STARIO10SpoolJobReceivedInterface)value
 {
     return kSpoolJobReceivedInterfaceDictionary[@(value)];
+}
+
++ (NSString *)toStringFromFirmwareUpdateStep:(STARIO10FirmwareUpdateStep)value
+{
+    return kFirmwareUpdateStepDictionary[@(value)];
 }
 
 + (NSArray<NSNumber *> *)toPrinterCJKCharacterPriorityTypes:(nonnull NSArray<NSString *> *)types

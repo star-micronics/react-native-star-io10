@@ -6,6 +6,7 @@
         public static readonly string KeyErrorIdentifier = "errorIdentifier";
         public static readonly string KeyDrawerOpenCloseSignalState = "openCloseSignal";
         public static readonly string KeyInputDeviceData = "data";
+        public static readonly string KeyFirmwareUpdateStep = "firmwareUpdateStep";
         public static readonly string KeyInterfaceType = "interfaceType";
         public static readonly string KeyModel = "model";
         public static readonly string KeyEmulation = "emulation";

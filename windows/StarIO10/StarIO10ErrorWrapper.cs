@@ -69,6 +69,10 @@ namespace StarMicronics.ReactNative.StarIO10
             {
                 type = "Authentication";
             }
+            else if (nativeObject is StarIO10ServerCommunicationException)
+            {
+                type = "ServerCommunication";
+            }
             else
             {
                 promise.Reject(new ReactError());

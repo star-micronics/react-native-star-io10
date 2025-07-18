@@ -125,7 +125,11 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="StarIO10DiagInfoUploadWrapper.cs" />
     <Compile Include="StarIO10ErrorDetailWrapper.cs" />
+    <Compile Include="StarIO10SharedObjectManager.cs" />
+    <Compile Include="StarPrinterSettingFirmwareWrapper.cs" />
+    <Compile Include="StarPrinterSettingWrapper.cs" />
     <Compile Include="StarSpoolJobStatusListWrapper.cs" />
     <Compile Include="StarSpoolJobStatusWrapper.cs" />
     <Compile Include="DisplayBuilderWrapper.cs" />

@@ -7,6 +7,7 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString * const kKeyIdentifier;
 extern NSString * const kKeyErrorIdentifier;
 extern NSString * const kKeyDraweOpenCloseSognalState;
+extern NSString * const kKeyFirmwareUpdateStep;
 extern NSString * const kKeyInputDeviceData;
 extern NSString * const kKeyInterfaceType;
 extern NSString * const kKeyConnectionIdentifier;
@@ -42,6 +43,10 @@ extern NSString * const kNameDisplayDelegateDisconnected;
 extern NSString * const kNameDisplayDelegateCommunicationError;
 extern NSString * const kNamePrinterFound;
 extern NSString * const kNameDiscoveryFinished;
+
+extern NSString * const kNameFirmwareUpdateDelegateProgress;
+extern NSString * const kNameFirmwareUpdateDelegateTransmitComplete;
+extern NSString * const kNameFirmwareUpdateDelegateError;
 
 @end
 

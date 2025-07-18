@@ -16,6 +16,11 @@ export declare class StarPrinterStatusDetail {
     _partsReplacementNotification: boolean | undefined;
     _cleaningNotification: boolean | undefined;
     _detectedPaperWidth: number | undefined;
+    _printHeadThermistorError: boolean | undefined;
+    _printHeadOverTemperature: boolean | undefined;
+    _receiveBufferOverflow: boolean | undefined;
+    _unrecoverableError: boolean | undefined;
+    _voltageError: boolean | undefined;
     get cutterError(): boolean | undefined;
     get paperSeparatorError(): boolean | undefined;
     get paperJamError(): boolean | undefined;
@@ -32,4 +37,9 @@ export declare class StarPrinterStatusDetail {
     get partsReplacementNotification(): boolean | undefined;
     get cleaningNotification(): boolean | undefined;
     get detectedPaperWidth(): number | undefined;
+    get printHeadThermistorError(): boolean | undefined;
+    get printHeadOverTemperature(): boolean | undefined;
+    get receiveBufferOverflow(): boolean | undefined;
+    get unrecoverableError(): boolean | undefined;
+    get voltageError(): boolean | undefined;
 }

@@ -111,6 +111,36 @@ export class StarPrinterStatusFactory {
                 detail._detectedPaperWidth = detectedPaperWidth;
             }
 
+            var printHeadThermistorError = await NativeModules.StarPrinterStatusWrapper.getPrintHeadThermistorError(nativeStatus);
+
+            if (typeof printHeadThermistorError === 'boolean') {
+                detail._printHeadThermistorError = printHeadThermistorError;
+            }
+
+            var printHeadOverTemperature = await NativeModules.StarPrinterStatusWrapper.getPrintHeadOverTemperature(nativeStatus);
+
+            if (typeof printHeadOverTemperature === 'boolean') {
+                detail._printHeadOverTemperature = printHeadOverTemperature;
+            }
+
+            var receiveBufferOverflow = await NativeModules.StarPrinterStatusWrapper.getReceiveBufferOverflow(nativeStatus);
+
+            if (typeof receiveBufferOverflow === 'boolean') {
+                detail._receiveBufferOverflow = receiveBufferOverflow;
+            }
+
+            var unrecoverableError = await NativeModules.StarPrinterStatusWrapper.getUnrecoverableError(nativeStatus);
+
+            if (typeof unrecoverableError === 'boolean') {
+                detail._unrecoverableError = unrecoverableError;
+            }
+
+            var voltageError = await NativeModules.StarPrinterStatusWrapper.getVoltageError(nativeStatus);
+
+            if (typeof voltageError === 'boolean') {
+                detail._voltageError = voltageError;
+            }
+
             status._detail = detail;
 
             status._reserved = new Map(Object.entries(await NativeModules.StarPrinterStatusWrapper.getReserved(nativeStatus)));

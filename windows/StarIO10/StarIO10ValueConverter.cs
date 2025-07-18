@@ -42,6 +42,7 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarPrinterModel.TSP650II, "TSP650II" },
             { StarPrinterModel.TSP700II, "TSP700II" },
             { StarPrinterModel.TSP800II, "TSP800II" },
+            { StarPrinterModel.TSP100LAN, "TSP100LAN" },
             { StarPrinterModel.TSP100IIIW, "TSP100IIIW" },
             { StarPrinterModel.TSP100IIILAN, "TSP100IIILAN" },
             { StarPrinterModel.TSP100IIIBI, "TSP100IIIBI" },

@@ -9,7 +9,7 @@ using System.Linq;
 namespace StarMicronics.ReactNative.StarIO10
 {
     [ReactModule]
-    class StarPrinterWrapper : StarIO10ObjectWrapper<StarPrinter>
+    class StarPrinterWrapper
     {
         [ReactEvent]
         public Action<IReadOnlyDictionary<string, JSValue>> PrinterCommunicationError { get; set; }
@@ -67,7 +67,7 @@ namespace StarMicronics.ReactNative.StarIO10
         {
             StarPrinter nativeObject = new StarPrinter(new StarConnectionSettings(InterfaceType.Unknown));
 
-            SetObject(nativeObject, out string objectIdentifier);
+            StarIO10SharedObjectManager.Instance.SetObject(nativeObject, out string objectIdentifier);
 
             nativeObject.PrinterDelegate.CommunicationError += (sender, e) =>
             {
@@ -119,7 +119,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("dispose")]
         public void Dispose(string objectIdentifier, IReactPromise<JSValue.Void> promise)
         {
-            DisposeObject(objectIdentifier);
+            StarIO10SharedObjectManager.Instance.DisposeObject(objectIdentifier);
 
             promise.Resolve();
         }
@@ -139,7 +139,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("activatePrinterDelegate")]
         public void ActivatePrinterDelegate(string objectIdentifier, IReactPromise<JSValue.Void> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -207,7 +207,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("activateDrawerDelegate")]
         public void ActivateDrawerDelegate(string objectIdentifier, IReactPromise<JSValue.Void> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -228,7 +228,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("activateInputDeviceDelegate")]
         public void ActivateInputDeviceDelegate(string objectIdentifier, IReactPromise<JSValue.Void> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -265,7 +265,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("activateDisplayDelegate")]
         public void ActivateDisplayDelegate(string objectIdentifier, IReactPromise<JSValue.Void> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -293,7 +293,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("open")]
         public async void Open(string objectIdentifier, string interfaceType, string identifier, int timeout, bool autoSwitchInterface, IReactPromise<JSValue.Void> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject) ||
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject) ||
                 !StarIO10ValueConverter.ToInterfaceType(interfaceType, out InterfaceType nativeInterfaceType))
             {
                 promise.Reject(new ReactError());
@@ -320,7 +320,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("getModel")]
         public void GetModel(string objectIdentifier, IReactPromise<string> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject) ||
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject) ||
                 !StarIO10ValueConverter.ToString(nativeObject.Information.Model, out string modelString))
             {
                 promise.Reject(new ReactError());
@@ -333,7 +333,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("getEmulation")]
         public void GetEmulation(string objectIdentifier, IReactPromise<string> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject) ||
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject) ||
                 !StarIO10ValueConverter.ToString(nativeObject.Information.Emulation, out string emulationString))
             {
                 promise.Reject(new ReactError());
@@ -346,7 +346,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("getReserved")]
         public void GetReserved(string objectIdentifier, IReactPromise<IReadOnlyDictionary<string, JSValue>> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -358,7 +358,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("print")]
         public async void Print(string objectIdentifier, string command, string? template, int timeout, IReactPromise<JSValue.Void> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -382,7 +382,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("spoolPrint")]
         public async void SpoolPrint(string objectIdentifier, string command, string? template, bool isRetryEnabled, int retryTimeout, string note, int printTimeout, IReactPromise<int> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -409,7 +409,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("printRawData")]
         public async void PrintRawData(string objectIdentifier, byte[] data, int timeout, IReactPromise<JSValue.Void> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -432,7 +432,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("getStatus")]
         public async void GetStatus(string objectIdentifier, int timeout, IReactPromise<string> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -456,7 +456,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("getSpoolJobStatus")]
         public async void GetSpoolJobStatus(string objectIdentifier, int jobId, int timeout, IReactPromise<string> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -483,7 +483,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("getSpoolJobStatusList")]
         public async void GetSpoolJobStatusList(string objectIdentifier, int size, int timeout, IReactPromise<string> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -509,7 +509,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("getStarConfiguration")]
         public async void GetStarConfiguration(string objectIdentifier, string? password, int timeout, IReactPromise<string> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -532,7 +532,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("getDefaultStarConfiguration")]
         public async void GetDefaultStarConfiguration(string objectIdentifier, int timeout, IReactPromise<string> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -555,7 +555,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("setStarConfiguration")]
         public async void SetStarConfiguration(string objectIdentifier, string starConfiguration, int timeout, IReactPromise<string> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -581,7 +581,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("close")]
         public async void Close(string objectIdentifier, IReactPromise<JSValue.Void> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;
@@ -602,7 +602,7 @@ namespace StarMicronics.ReactNative.StarIO10
         [ReactMethod("getErrorDetail")]
         public void GetErrorDetail(string objectIdentifier, IReactPromise<string> promise)
         {
-            if (!GetObject(objectIdentifier, out StarPrinter nativeObject))
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
             {
                 promise.Reject(new ReactError());
                 return;

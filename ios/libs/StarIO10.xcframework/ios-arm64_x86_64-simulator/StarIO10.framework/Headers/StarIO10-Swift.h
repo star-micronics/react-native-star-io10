@@ -356,7 +356,15 @@ SWIFT_CLASS("_TtCC8StarIO1016StarXpandCommand6Buzzer")
 @interface Buzzer (SWIFT_EXTENSION(StarIO10))
 @end
 
-enum STARIO10StarXpandCommandBuzzerChannel : NSInteger;
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandBuzzerChannel, "Channel", open) {
+  STARIO10StarXpandCommandBuzzerChannelNo1 = 0,
+  STARIO10StarXpandCommandBuzzerChannelNo2 = 1,
+};
+
+
+@interface Buzzer (SWIFT_EXTENSION(StarIO10))
+@end
+
 
 SWIFT_CLASS_NAMED("DriveParameter")
 @interface STARIO10StarXpandCommandBuzzerDriveParameter : NSObject
@@ -370,15 +378,6 @@ SWIFT_CLASS_NAMED("DriveParameter")
 - (nonnull instancetype)setOffTime:(NSInteger)offTime SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
-
-
-@interface Buzzer (SWIFT_EXTENSION(StarIO10))
-@end
-
-typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandBuzzerChannel, "Channel", open) {
-  STARIO10StarXpandCommandBuzzerChannelNo1 = 0,
-  STARIO10StarXpandCommandBuzzerChannelNo2 = 1,
-};
 
 
 SWIFT_CLASS("_TtC8StarIO1015CurrentWLanInfo")
@@ -440,18 +439,6 @@ SWIFT_CLASS_NAMED("ImageParameter")
 @interface Display (SWIFT_EXTENSION(StarIO10))
 @end
 
-typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandDisplayCharacterEncodingType, "CharacterEncodingType", open) {
-  STARIO10StarXpandCommandDisplayCharacterEncodingTypeJapanese = 0,
-  STARIO10StarXpandCommandDisplayCharacterEncodingTypeSimplifiedChinese = 1,
-  STARIO10StarXpandCommandDisplayCharacterEncodingTypeTraditionalChinese = 2,
-  STARIO10StarXpandCommandDisplayCharacterEncodingTypeKorean = 3,
-  STARIO10StarXpandCommandDisplayCharacterEncodingTypeCodePage = 4,
-};
-
-
-@interface Display (SWIFT_EXTENSION(StarIO10))
-@end
-
 typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandDisplayInternationalCharacterType, "InternationalCharacterType", open) {
   STARIO10StarXpandCommandDisplayInternationalCharacterTypeUsa = 0,
   STARIO10StarXpandCommandDisplayInternationalCharacterTypeFrance = 1,
@@ -481,6 +468,18 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandDisplayContrast, "Co
   STARIO10StarXpandCommandDisplayContrastMinus1 = 4,
   STARIO10StarXpandCommandDisplayContrastMinus2 = 5,
   STARIO10StarXpandCommandDisplayContrastMinus3 = 6,
+};
+
+
+@interface Display (SWIFT_EXTENSION(StarIO10))
+@end
+
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandDisplayCharacterEncodingType, "CharacterEncodingType", open) {
+  STARIO10StarXpandCommandDisplayCharacterEncodingTypeJapanese = 0,
+  STARIO10StarXpandCommandDisplayCharacterEncodingTypeSimplifiedChinese = 1,
+  STARIO10StarXpandCommandDisplayCharacterEncodingTypeTraditionalChinese = 2,
+  STARIO10StarXpandCommandDisplayCharacterEncodingTypeKorean = 3,
+  STARIO10StarXpandCommandDisplayCharacterEncodingTypeCodePage = 4,
 };
 
 @class STARIO10StarPrinter;
@@ -533,6 +532,21 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10DrawerOpenedMethod, "DrawerOpenedMet
   STARIO10DrawerOpenedMethodByCommand SWIFT_COMPILE_NAME("byCommand") = 1,
 };
 
+@class STARIO10StarPrinterSettingFirmware;
+enum STARIO10FirmwareUpdateStep : NSInteger;
+
+SWIFT_PROTOCOL_NAMED("FirmwareUpdateDelegate")
+@protocol STARIO10FirmwareUpdateDelegate
+- (void)firmwareUpdateProgress:(STARIO10StarPrinterSettingFirmware * _Nonnull)firmware step:(enum STARIO10FirmwareUpdateStep)step;
+- (void)firmwareUpdateTransmitComplete:(STARIO10StarPrinterSettingFirmware * _Nonnull)firmware;
+- (void)firmwareUpdate:(STARIO10StarPrinterSettingFirmware * _Nonnull)firmware errorDidOccur:(NSError * _Nonnull)error;
+@end
+
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10FirmwareUpdateStep, "FirmwareUpdateStep", open) {
+  STARIO10FirmwareUpdateStepDownloading SWIFT_COMPILE_NAME("downloading") = 0,
+  STARIO10FirmwareUpdateStepTransmitting SWIFT_COMPILE_NAME("transmitting") = 1,
+};
+
 
 SWIFT_CLASS("_TtC8StarIO1011FoundAPInfo")
 @interface FoundAPInfo : NSObject
@@ -582,6 +596,15 @@ SWIFT_CLASS("_TtCC8StarIO1016StarXpandCommand13MelodySpeaker")
 @interface MelodySpeaker (SWIFT_EXTENSION(StarIO10))
 @end
 
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandMelodySpeakerSoundStorageArea, "SoundStorageArea", open) {
+  STARIO10StarXpandCommandMelodySpeakerSoundStorageAreaArea1 = 0,
+  STARIO10StarXpandCommandMelodySpeakerSoundStorageAreaArea2 = 1,
+};
+
+
+@interface MelodySpeaker (SWIFT_EXTENSION(StarIO10))
+@end
+
 
 SWIFT_CLASS_NAMED("DriveOneTimeSoundParameter")
 @interface STARIO10StarXpandCommandMelodySpeakerDriveOneTimeSoundParameter : NSObject
@@ -597,7 +620,6 @@ SWIFT_CLASS_NAMED("DriveOneTimeSoundParameter")
 @interface MelodySpeaker (SWIFT_EXTENSION(StarIO10))
 @end
 
-enum STARIO10StarXpandCommandMelodySpeakerSoundStorageArea : NSInteger;
 
 SWIFT_CLASS_NAMED("DriveRegisteredSoundParameter")
 @interface STARIO10StarXpandCommandMelodySpeakerDriveRegisteredSoundParameter : NSObject
@@ -609,15 +631,6 @@ SWIFT_CLASS_NAMED("DriveRegisteredSoundParameter")
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
-
-
-@interface MelodySpeaker (SWIFT_EXTENSION(StarIO10))
-@end
-
-typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandMelodySpeakerSoundStorageArea, "SoundStorageArea", open) {
-  STARIO10StarXpandCommandMelodySpeakerSoundStorageAreaArea1 = 0,
-  STARIO10StarXpandCommandMelodySpeakerSoundStorageAreaArea2 = 1,
-};
 
 
 SWIFT_CLASS_NAMED("NullableBool")
@@ -653,6 +666,24 @@ SWIFT_CLASS("_TtCC8StarIO1016StarXpandCommand9Presenter")
 @interface Presenter (SWIFT_EXTENSION(StarIO10))
 @end
 
+
+SWIFT_CLASS_NAMED("ModeParameter")
+@interface STARIO10StarXpandCommandPresenterModeParameter : NSObject
+@property (nonatomic, readonly) BOOL loop;
+- (nonnull instancetype)setLoop:(BOOL)loop SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly) BOOL hold;
+- (nonnull instancetype)setHold:(BOOL)hold SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly) BOOL retract;
+- (nonnull instancetype)setRetract:(BOOL)retract SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly) NSInteger holdTime;
+- (nonnull instancetype)setHoldTime:(NSInteger)holdTime SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface Presenter (SWIFT_EXTENSION(StarIO10))
+@end
+
 typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPresenterLEDType, "LEDType", open) {
   STARIO10StarXpandCommandPresenterLEDTypeHolding = 0,
   STARIO10StarXpandCommandPresenterLEDTypeError = 1,
@@ -674,24 +705,6 @@ SWIFT_CLASS_NAMED("LEDAutomaticBlinkParameter")
 - (nonnull instancetype)setOffTime:(NSInteger)offTime SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-
-@interface Presenter (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("ModeParameter")
-@interface STARIO10StarXpandCommandPresenterModeParameter : NSObject
-@property (nonatomic, readonly) BOOL loop;
-- (nonnull instancetype)setLoop:(BOOL)loop SWIFT_WARN_UNUSED_RESULT;
-@property (nonatomic, readonly) BOOL hold;
-- (nonnull instancetype)setHold:(BOOL)hold SWIFT_WARN_UNUSED_RESULT;
-@property (nonatomic, readonly) BOOL retract;
-- (nonnull instancetype)setRetract:(BOOL)retract SWIFT_WARN_UNUSED_RESULT;
-@property (nonatomic, readonly) NSInteger holdTime;
-- (nonnull instancetype)setHoldTime:(NSInteger)holdTime SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -777,14 +790,11 @@ SWIFT_CLASS_NAMED("PageModeRuledLineParameter")
 @interface Printer (SWIFT_EXTENSION(StarIO10))
 @end
 
-enum STARIO10StarXpandCommandPrinterBaseMagnification : NSInteger;
-
-SWIFT_CLASS_NAMED("BaseMagnificationParameter")
-@interface STARIO10StarXpandCommandPrinterBaseMagnificationParameter : NSObject
-@property (nonatomic, readonly) enum STARIO10StarXpandCommandPrinterBaseMagnification text;
-- (nonnull instancetype)setText:(enum STARIO10StarXpandCommandPrinterBaseMagnification)text SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterBarcodeBarRatioLevel, "BarcodeBarRatioLevel", open) {
+  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevelPlus1 = 0,
+  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevel0 = 1,
+  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevelMinus1 = 2,
+};
 
 
 @interface Printer (SWIFT_EXTENSION(StarIO10))
@@ -905,7 +915,6 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterQRCodeModel, 
 @interface Printer (SWIFT_EXTENSION(StarIO10))
 @end
 
-enum STARIO10StarXpandCommandPrinterBarcodeBarRatioLevel : NSInteger;
 
 SWIFT_CLASS_NAMED("BarcodeParameter")
 @interface STARIO10StarXpandCommandPrinterBarcodeParameter : NSObject
@@ -1108,10 +1117,14 @@ SWIFT_CLASS_NAMED("PageModeAreaParameter")
 @interface Printer (SWIFT_EXTENSION(StarIO10))
 @end
 
-typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterFontType, "FontType", open) {
-  STARIO10StarXpandCommandPrinterFontTypeA = 0,
-  STARIO10StarXpandCommandPrinterFontTypeB = 1,
-};
+enum STARIO10StarXpandCommandPrinterBaseMagnification : NSInteger;
+
+SWIFT_CLASS_NAMED("BaseMagnificationParameter")
+@interface STARIO10StarXpandCommandPrinterBaseMagnificationParameter : NSObject
+@property (nonatomic, readonly) enum STARIO10StarXpandCommandPrinterBaseMagnification text;
+- (nonnull instancetype)setText:(enum STARIO10StarXpandCommandPrinterBaseMagnification)text SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
 
 
 @interface Printer (SWIFT_EXTENSION(StarIO10))
@@ -1234,10 +1247,9 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterTextAlignment
 @interface Printer (SWIFT_EXTENSION(StarIO10))
 @end
 
-typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterBarcodeBarRatioLevel, "BarcodeBarRatioLevel", open) {
-  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevelPlus1 = 0,
-  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevel0 = 1,
-  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevelMinus1 = 2,
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterFontType, "FontType", open) {
+  STARIO10StarXpandCommandPrinterFontTypeA = 0,
+  STARIO10StarXpandCommandPrinterFontTypeB = 1,
 };
 
 
@@ -1322,6 +1334,15 @@ SWIFT_CLASS_NAMED("StarDeviceDiscoveryManagerFactory")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+
+SWIFT_CLASS_NAMED("StarIO10DiagInfoUpload")
+@interface STARIO10DiagInfoUpload : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) STARIO10DiagInfoUpload * _Nonnull sharedObject;)
++ (STARIO10DiagInfoUpload * _Nonnull)sharedObject SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic) BOOL isEnabled;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
 typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10ErrorCode, "StarIO10ErrorCode", open) {
   STARIO10ErrorCodeNone SWIFT_COMPILE_NAME("none") = 0,
   STARIO10ErrorCodeDeviceHasError SWIFT_COMPILE_NAME("deviceHasError") = 1000,
@@ -1339,6 +1360,10 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10ErrorCode, "StarIO10ErrorCode", open
   STARIO10ErrorCodeStarConfigurationParameterError SWIFT_COMPILE_NAME("starConfigurationParameterError") = 6001,
   STARIO10ErrorCodeStarConfigurationSpecifiedFileError SWIFT_COMPILE_NAME("starConfigurationSpecifiedFileError") = 6002,
   STARIO10ErrorCodeInvalidTemplate SWIFT_COMPILE_NAME("invalidTemplate") = 7000,
+  STARIO10ErrorCodeCouldNotConnectToServer SWIFT_COMPILE_NAME("couldNotConnectToServer") = 8000,
+  STARIO10ErrorCodeServerUrlError SWIFT_COMPILE_NAME("serverUrlError") = 8001,
+  STARIO10ErrorCodeServerRequestParameterError SWIFT_COMPILE_NAME("serverRequestParameterError") = 8002,
+  STARIO10ErrorCodeServerAuthenticationError SWIFT_COMPILE_NAME("serverAuthenticationError") = 8003,
 };
 
 
@@ -1365,6 +1390,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) STARIO10Logg
 @end
 
 @class STARIO10StarPrinterInformation;
+@class STARIO10StarPrinterSetting;
 
 SWIFT_CLASS_NAMED("StarPrinter")
 @interface STARIO10StarPrinter : NSObject
@@ -1381,6 +1407,7 @@ SWIFT_CLASS_NAMED("StarPrinter")
 @property (nonatomic) NSInteger starConfigurationTimeout;
 @property (nonatomic, copy, getter=template, setter=setTemplate:) NSString * _Nullable template_;
 @property (nonatomic, readonly, strong) STARIO10ErrorDetail * _Nonnull errorDetail;
+@property (nonatomic, readonly, strong) STARIO10StarPrinterSetting * _Nullable setting;
 - (nonnull instancetype)initWithConnectionSettings:(STARIO10StarConnectionSettings * _Nonnull)connectionSettings;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
@@ -1512,12 +1539,30 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarPrinterModel, "StarPrinterModel"
 };
 
 
-SWIFT_CLASS("_TtC8StarIO1018StarPrinterSetting")
-@interface StarPrinterSetting : NSObject
+SWIFT_CLASS_NAMED("StarPrinterSetting")
+@interface STARIO10StarPrinterSetting : NSObject
+@property (nonatomic, readonly, strong) STARIO10StarPrinterSettingFirmware * _Nullable firmware;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+
+SWIFT_CLASS_NAMED("StarPrinterSettingFirmware")
+@interface STARIO10StarPrinterSettingFirmware : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull currentVersion;
+@property (nonatomic, readonly, copy) NSString * _Nullable latestVersion;
+@property (nonatomic, readonly) BOOL isUpdatable;
+@property (nonatomic, weak) id <STARIO10FirmwareUpdateDelegate> _Nullable updateDelegate;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+@interface STARIO10StarPrinterSettingFirmware (SWIFT_EXTENSION(StarIO10))
+- (void)getCurrentVersionWithCompletion:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completion;
+- (void)checkVersionsWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+- (void)updateWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+@end
 
 
 @protocol STARIO10StarPrinterStatusDetail;
@@ -1559,7 +1604,21 @@ SWIFT_PROTOCOL_NAMED("StarPrinterStatusDetail")
 @property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullablePartsReplacementNotification;
 @property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullableCleaningNotification;
 @property (nonatomic, readonly, strong) STARIO10NullableInt * _Nullable nullableDetectedPaperWidth;
+@property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullablePrintHeadThermistorError;
+@property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullablePrintHeadOverTemperature;
+@property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullableReceiveBufferOverflow;
+@property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullableUnrecoverableError;
+@property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullableVoltageError;
 @end
+
+
+SWIFT_CLASS("_TtC8StarIO1017StarSettingDevice")
+@interface StarSettingDevice : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
 
 
 SWIFT_CLASS("_TtC8StarIO1040StarSettingDeviceDiscoveryManagerFactory")
@@ -1599,7 +1658,7 @@ SWIFT_CLASS_NAMED("StarSpoolJobStatus")
 
 
 SWIFT_CLASS("_TtC8StarIO1015StarWLanSetting")
-@interface StarWLanSetting : StarPrinterSetting
+@interface StarWLanSetting : StarSettingDevice
 @end
 
 
@@ -1637,11 +1696,70 @@ SWIFT_CLASS_NAMED("DrawerBuilder")
 @interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
 @end
 
+@class STARIO10StarXpandCommandPreSettingBuilder;
+@class STARIO10StarXpandCommandDocumentBuilder;
 
-SWIFT_CLASS_NAMED("TemplateExtensionParameter")
-@interface STARIO10StarXpandCommandTemplateExtensionParameter : NSObject
-@property (nonatomic, readonly) BOOL enableArrayFieldData;
-- (nonnull instancetype)setEnableArrayFieldData:(BOOL)enableArrayFieldData SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_NAMED("StarXpandCommandBuilder")
+@interface STARIO10StarXpandCommandBuilder : NSObject
+@property (nonatomic, strong) STARIO10StarXpandCommandPreSettingBuilder * _Nullable preSetting;
+- (nonnull instancetype)addDocument:(STARIO10StarXpandCommandDocumentBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+- (NSString * _Nonnull)getCommands SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+
+SWIFT_CLASS_NAMED("MelodySpeakerBuilder")
+@interface STARIO10StarXpandCommandMelodySpeakerBuilder : NSObject
+- (nonnull instancetype)actionDriveRegisteredSound:(STARIO10StarXpandCommandMelodySpeakerDriveRegisteredSoundParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionDriveOneTimeSound:(STARIO10StarXpandCommandMelodySpeakerDriveOneTimeSoundParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+@class STARIO10StarXpandCommandBezelSettingBuilder;
+
+SWIFT_CLASS_NAMED("PreSettingBuilder")
+@interface STARIO10StarXpandCommandPreSettingBuilder : NSObject
+- (nonnull instancetype)addPresenterSetting:(STARIO10StarXpandCommandPresenterSettingBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)addBezelSetting:(STARIO10StarXpandCommandBezelSettingBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+
+SWIFT_CLASS_NAMED("DisplayBuilder")
+@interface STARIO10StarXpandCommandDisplayBuilder : NSObject
+- (nonnull instancetype)styleInternationalCharacter:(enum STARIO10StarXpandCommandDisplayInternationalCharacterType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleCharacterEncoding:(enum STARIO10StarXpandCommandDisplayCharacterEncodingType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleCursorPositionTo:(STARIO10StarXpandCommandDisplayPositionParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionClearLine SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionClearAll SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionSetBackLightState:(BOOL)on SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionSetCursorState:(enum STARIO10StarXpandCommandDisplayCursorState)state SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionSetContrast:(enum STARIO10StarXpandCommandDisplayContrast)value SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionShowText:(NSString * _Nonnull)content SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionShowImage:(STARIO10StarXpandCommandDisplayImageParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+
+SWIFT_CLASS_NAMED("BuzzerBuilder")
+@interface STARIO10StarXpandCommandBuzzerBuilder : NSObject
+- (nonnull instancetype)actionDrive:(STARIO10StarXpandCommandBuzzerDriveParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -1650,6 +1768,73 @@ SWIFT_CLASS_NAMED("TemplateExtensionParameter")
 @end
 
 @class STARIO10StarXpandCommandMagnificationParameter;
+@class STARIO10StarXpandCommandPageModeBuilder;
+
+SWIFT_CLASS_NAMED("PrinterBuilder")
+@interface STARIO10StarXpandCommandPrinterBuilder : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init:(STARIO10StarXpandCommandPrinterParameter * _Nonnull)parameter OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)styleAlignment:(enum STARIO10StarXpandCommandPrinterAlignment)position SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleFont:(enum STARIO10StarXpandCommandPrinterFontType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleBold:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleInvert:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleUnderLine:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleMagnification:(STARIO10StarXpandCommandMagnificationParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleBaseMagnification:(STARIO10StarXpandCommandPrinterBaseMagnificationParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleCharacterSpace:(double)width SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleLineSpace:(double)height SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleHorizontalPositionTo:(double)position SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleHorizontalPositionBy:(double)position SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleHorizontalTabPositions:(NSArray<NSNumber *> * _Nonnull)position SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleInternationalCharacter:(enum STARIO10StarXpandCommandPrinterInternationalCharacterType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleSecondPriorityCharacterEncoding:(enum STARIO10StarXpandCommandPrinterCharacterEncodingType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleCJKCharacterPriority:(NSArray<NSNumber *> * _Nonnull)types SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleAmbiguousCharacterWidthType:(enum STARIO10StarXpandCommandPrinterAmbiguousCharacterWidthType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionCut:(enum STARIO10StarXpandCommandPrinterCutType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionFeed:(double)height SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionFeedLine:(NSInteger)lines SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionSeparatorFeed SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintText:(NSString * _Nonnull)content :(STARIO10StarXpandCommandPrinterTextParameter * _Nullable)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintLogo:(STARIO10StarXpandCommandPrinterLogoParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintBarcode:(STARIO10StarXpandCommandPrinterBarcodeParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintPDF417:(STARIO10StarXpandCommandPrinterPDF417Parameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintQRCode:(STARIO10StarXpandCommandPrinterQRCodeParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintImage:(STARIO10StarXpandCommandPrinterImageParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintRuledLine:(STARIO10StarXpandCommandPrinterRuledLineParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)add:(STARIO10StarXpandCommandPrinterBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)addPageModeWithParameter:(STARIO10StarXpandCommandPrinterPageModeAreaParameter * _Nonnull)parameter builder:(STARIO10StarXpandCommandPageModeBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+
+SWIFT_CLASS_NAMED("BezelSettingBuilder")
+@interface STARIO10StarXpandCommandBezelSettingBuilder : NSObject
+- (nonnull instancetype)settingAutomaticPageLength:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)settingLEDAutomaticBlink:(STARIO10StarXpandCommandBezelLEDAutomaticBlinkParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+
+SWIFT_CLASS_NAMED("MagnificationParameter")
+@interface STARIO10StarXpandCommandMagnificationParameter : NSObject
+@property (nonatomic, readonly) NSInteger width;
+@property (nonatomic, readonly) NSInteger height;
+- (nonnull instancetype)initWithWidth:(NSInteger)width height:(NSInteger)height OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
 
 SWIFT_CLASS_NAMED("PageModeBuilder")
 @interface STARIO10StarXpandCommandPageModeBuilder : NSObject
@@ -1688,12 +1873,11 @@ SWIFT_CLASS_NAMED("PageModeBuilder")
 @interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
 @end
 
-@class STARIO10StarXpandCommandBezelSettingBuilder;
 
-SWIFT_CLASS_NAMED("PreSettingBuilder")
-@interface STARIO10StarXpandCommandPreSettingBuilder : NSObject
-- (nonnull instancetype)addPresenterSetting:(STARIO10StarXpandCommandPresenterSettingBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)addBezelSetting:(STARIO10StarXpandCommandBezelSettingBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_NAMED("TemplateExtensionParameter")
+@interface STARIO10StarXpandCommandTemplateExtensionParameter : NSObject
+@property (nonatomic, readonly) BOOL enableArrayFieldData;
+- (nonnull instancetype)setEnableArrayFieldData:(BOOL)enableArrayFieldData SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -1701,10 +1885,6 @@ SWIFT_CLASS_NAMED("PreSettingBuilder")
 @interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
 @end
 
-@class STARIO10StarXpandCommandPrinterBuilder;
-@class STARIO10StarXpandCommandBuzzerBuilder;
-@class STARIO10StarXpandCommandMelodySpeakerBuilder;
-@class STARIO10StarXpandCommandDisplayBuilder;
 
 SWIFT_CLASS_NAMED("DocumentBuilder")
 @interface STARIO10StarXpandCommandDocumentBuilder : NSObject
@@ -1720,128 +1900,6 @@ SWIFT_CLASS_NAMED("DocumentBuilder")
 - (nonnull instancetype)addDisplay:(STARIO10StarXpandCommandDisplayBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)addRaw:(NSData * _Nonnull)content SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("StarXpandCommandBuilder")
-@interface STARIO10StarXpandCommandBuilder : NSObject
-@property (nonatomic, strong) STARIO10StarXpandCommandPreSettingBuilder * _Nullable preSetting;
-- (nonnull instancetype)addDocument:(STARIO10StarXpandCommandDocumentBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getCommands SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("DisplayBuilder")
-@interface STARIO10StarXpandCommandDisplayBuilder : NSObject
-- (nonnull instancetype)styleInternationalCharacter:(enum STARIO10StarXpandCommandDisplayInternationalCharacterType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleCharacterEncoding:(enum STARIO10StarXpandCommandDisplayCharacterEncodingType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleCursorPositionTo:(STARIO10StarXpandCommandDisplayPositionParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionClearLine SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionClearAll SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionSetBackLightState:(BOOL)on SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionSetCursorState:(enum STARIO10StarXpandCommandDisplayCursorState)state SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionSetContrast:(enum STARIO10StarXpandCommandDisplayContrast)value SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionShowText:(NSString * _Nonnull)content SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionShowImage:(STARIO10StarXpandCommandDisplayImageParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("BezelSettingBuilder")
-@interface STARIO10StarXpandCommandBezelSettingBuilder : NSObject
-- (nonnull instancetype)settingAutomaticPageLength:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)settingLEDAutomaticBlink:(STARIO10StarXpandCommandBezelLEDAutomaticBlinkParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("MelodySpeakerBuilder")
-@interface STARIO10StarXpandCommandMelodySpeakerBuilder : NSObject
-- (nonnull instancetype)actionDriveRegisteredSound:(STARIO10StarXpandCommandMelodySpeakerDriveRegisteredSoundParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionDriveOneTimeSound:(STARIO10StarXpandCommandMelodySpeakerDriveOneTimeSoundParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("MagnificationParameter")
-@interface STARIO10StarXpandCommandMagnificationParameter : NSObject
-@property (nonatomic, readonly) NSInteger width;
-@property (nonatomic, readonly) NSInteger height;
-- (nonnull instancetype)initWithWidth:(NSInteger)width height:(NSInteger)height OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("BuzzerBuilder")
-@interface STARIO10StarXpandCommandBuzzerBuilder : NSObject
-- (nonnull instancetype)actionDrive:(STARIO10StarXpandCommandBuzzerDriveParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("PrinterBuilder")
-@interface STARIO10StarXpandCommandPrinterBuilder : NSObject
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)init:(STARIO10StarXpandCommandPrinterParameter * _Nonnull)parameter OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)styleAlignment:(enum STARIO10StarXpandCommandPrinterAlignment)position SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleFont:(enum STARIO10StarXpandCommandPrinterFontType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleBold:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleInvert:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleUnderLine:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleMagnification:(STARIO10StarXpandCommandMagnificationParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleBaseMagnification:(STARIO10StarXpandCommandPrinterBaseMagnificationParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleCharacterSpace:(double)width SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleLineSpace:(double)height SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleHorizontalPositionTo:(double)position SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleHorizontalPositionBy:(double)position SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleHorizontalTabPositions:(NSArray<NSNumber *> * _Nonnull)position SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleInternationalCharacter:(enum STARIO10StarXpandCommandPrinterInternationalCharacterType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleSecondPriorityCharacterEncoding:(enum STARIO10StarXpandCommandPrinterCharacterEncodingType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleCJKCharacterPriority:(NSArray<NSNumber *> * _Nonnull)types SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleAmbiguousCharacterWidthType:(enum STARIO10StarXpandCommandPrinterAmbiguousCharacterWidthType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionCut:(enum STARIO10StarXpandCommandPrinterCutType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionFeed:(double)height SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionFeedLine:(NSInteger)lines SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionSeparatorFeed SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintText:(NSString * _Nonnull)content :(STARIO10StarXpandCommandPrinterTextParameter * _Nullable)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintLogo:(STARIO10StarXpandCommandPrinterLogoParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintBarcode:(STARIO10StarXpandCommandPrinterBarcodeParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintPDF417:(STARIO10StarXpandCommandPrinterPDF417Parameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintQRCode:(STARIO10StarXpandCommandPrinterQRCodeParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintImage:(STARIO10StarXpandCommandPrinterImageParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintRuledLine:(STARIO10StarXpandCommandPrinterRuledLineParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)add:(STARIO10StarXpandCommandPrinterBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)addPageModeWithParameter:(STARIO10StarXpandCommandPrinterPageModeAreaParameter * _Nonnull)parameter builder:(STARIO10StarXpandCommandPageModeBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
 @end
 
 
@@ -2220,7 +2278,15 @@ SWIFT_CLASS("_TtCC8StarIO1016StarXpandCommand6Buzzer")
 @interface Buzzer (SWIFT_EXTENSION(StarIO10))
 @end
 
-enum STARIO10StarXpandCommandBuzzerChannel : NSInteger;
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandBuzzerChannel, "Channel", open) {
+  STARIO10StarXpandCommandBuzzerChannelNo1 = 0,
+  STARIO10StarXpandCommandBuzzerChannelNo2 = 1,
+};
+
+
+@interface Buzzer (SWIFT_EXTENSION(StarIO10))
+@end
+
 
 SWIFT_CLASS_NAMED("DriveParameter")
 @interface STARIO10StarXpandCommandBuzzerDriveParameter : NSObject
@@ -2234,15 +2300,6 @@ SWIFT_CLASS_NAMED("DriveParameter")
 - (nonnull instancetype)setOffTime:(NSInteger)offTime SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
-
-
-@interface Buzzer (SWIFT_EXTENSION(StarIO10))
-@end
-
-typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandBuzzerChannel, "Channel", open) {
-  STARIO10StarXpandCommandBuzzerChannelNo1 = 0,
-  STARIO10StarXpandCommandBuzzerChannelNo2 = 1,
-};
 
 
 SWIFT_CLASS("_TtC8StarIO1015CurrentWLanInfo")
@@ -2304,18 +2361,6 @@ SWIFT_CLASS_NAMED("ImageParameter")
 @interface Display (SWIFT_EXTENSION(StarIO10))
 @end
 
-typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandDisplayCharacterEncodingType, "CharacterEncodingType", open) {
-  STARIO10StarXpandCommandDisplayCharacterEncodingTypeJapanese = 0,
-  STARIO10StarXpandCommandDisplayCharacterEncodingTypeSimplifiedChinese = 1,
-  STARIO10StarXpandCommandDisplayCharacterEncodingTypeTraditionalChinese = 2,
-  STARIO10StarXpandCommandDisplayCharacterEncodingTypeKorean = 3,
-  STARIO10StarXpandCommandDisplayCharacterEncodingTypeCodePage = 4,
-};
-
-
-@interface Display (SWIFT_EXTENSION(StarIO10))
-@end
-
 typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandDisplayInternationalCharacterType, "InternationalCharacterType", open) {
   STARIO10StarXpandCommandDisplayInternationalCharacterTypeUsa = 0,
   STARIO10StarXpandCommandDisplayInternationalCharacterTypeFrance = 1,
@@ -2345,6 +2390,18 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandDisplayContrast, "Co
   STARIO10StarXpandCommandDisplayContrastMinus1 = 4,
   STARIO10StarXpandCommandDisplayContrastMinus2 = 5,
   STARIO10StarXpandCommandDisplayContrastMinus3 = 6,
+};
+
+
+@interface Display (SWIFT_EXTENSION(StarIO10))
+@end
+
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandDisplayCharacterEncodingType, "CharacterEncodingType", open) {
+  STARIO10StarXpandCommandDisplayCharacterEncodingTypeJapanese = 0,
+  STARIO10StarXpandCommandDisplayCharacterEncodingTypeSimplifiedChinese = 1,
+  STARIO10StarXpandCommandDisplayCharacterEncodingTypeTraditionalChinese = 2,
+  STARIO10StarXpandCommandDisplayCharacterEncodingTypeKorean = 3,
+  STARIO10StarXpandCommandDisplayCharacterEncodingTypeCodePage = 4,
 };
 
 @class STARIO10StarPrinter;
@@ -2397,6 +2454,21 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10DrawerOpenedMethod, "DrawerOpenedMet
   STARIO10DrawerOpenedMethodByCommand SWIFT_COMPILE_NAME("byCommand") = 1,
 };
 
+@class STARIO10StarPrinterSettingFirmware;
+enum STARIO10FirmwareUpdateStep : NSInteger;
+
+SWIFT_PROTOCOL_NAMED("FirmwareUpdateDelegate")
+@protocol STARIO10FirmwareUpdateDelegate
+- (void)firmwareUpdateProgress:(STARIO10StarPrinterSettingFirmware * _Nonnull)firmware step:(enum STARIO10FirmwareUpdateStep)step;
+- (void)firmwareUpdateTransmitComplete:(STARIO10StarPrinterSettingFirmware * _Nonnull)firmware;
+- (void)firmwareUpdate:(STARIO10StarPrinterSettingFirmware * _Nonnull)firmware errorDidOccur:(NSError * _Nonnull)error;
+@end
+
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10FirmwareUpdateStep, "FirmwareUpdateStep", open) {
+  STARIO10FirmwareUpdateStepDownloading SWIFT_COMPILE_NAME("downloading") = 0,
+  STARIO10FirmwareUpdateStepTransmitting SWIFT_COMPILE_NAME("transmitting") = 1,
+};
+
 
 SWIFT_CLASS("_TtC8StarIO1011FoundAPInfo")
 @interface FoundAPInfo : NSObject
@@ -2446,6 +2518,15 @@ SWIFT_CLASS("_TtCC8StarIO1016StarXpandCommand13MelodySpeaker")
 @interface MelodySpeaker (SWIFT_EXTENSION(StarIO10))
 @end
 
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandMelodySpeakerSoundStorageArea, "SoundStorageArea", open) {
+  STARIO10StarXpandCommandMelodySpeakerSoundStorageAreaArea1 = 0,
+  STARIO10StarXpandCommandMelodySpeakerSoundStorageAreaArea2 = 1,
+};
+
+
+@interface MelodySpeaker (SWIFT_EXTENSION(StarIO10))
+@end
+
 
 SWIFT_CLASS_NAMED("DriveOneTimeSoundParameter")
 @interface STARIO10StarXpandCommandMelodySpeakerDriveOneTimeSoundParameter : NSObject
@@ -2461,7 +2542,6 @@ SWIFT_CLASS_NAMED("DriveOneTimeSoundParameter")
 @interface MelodySpeaker (SWIFT_EXTENSION(StarIO10))
 @end
 
-enum STARIO10StarXpandCommandMelodySpeakerSoundStorageArea : NSInteger;
 
 SWIFT_CLASS_NAMED("DriveRegisteredSoundParameter")
 @interface STARIO10StarXpandCommandMelodySpeakerDriveRegisteredSoundParameter : NSObject
@@ -2473,15 +2553,6 @@ SWIFT_CLASS_NAMED("DriveRegisteredSoundParameter")
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
-
-
-@interface MelodySpeaker (SWIFT_EXTENSION(StarIO10))
-@end
-
-typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandMelodySpeakerSoundStorageArea, "SoundStorageArea", open) {
-  STARIO10StarXpandCommandMelodySpeakerSoundStorageAreaArea1 = 0,
-  STARIO10StarXpandCommandMelodySpeakerSoundStorageAreaArea2 = 1,
-};
 
 
 SWIFT_CLASS_NAMED("NullableBool")
@@ -2517,6 +2588,24 @@ SWIFT_CLASS("_TtCC8StarIO1016StarXpandCommand9Presenter")
 @interface Presenter (SWIFT_EXTENSION(StarIO10))
 @end
 
+
+SWIFT_CLASS_NAMED("ModeParameter")
+@interface STARIO10StarXpandCommandPresenterModeParameter : NSObject
+@property (nonatomic, readonly) BOOL loop;
+- (nonnull instancetype)setLoop:(BOOL)loop SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly) BOOL hold;
+- (nonnull instancetype)setHold:(BOOL)hold SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly) BOOL retract;
+- (nonnull instancetype)setRetract:(BOOL)retract SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic, readonly) NSInteger holdTime;
+- (nonnull instancetype)setHoldTime:(NSInteger)holdTime SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface Presenter (SWIFT_EXTENSION(StarIO10))
+@end
+
 typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPresenterLEDType, "LEDType", open) {
   STARIO10StarXpandCommandPresenterLEDTypeHolding = 0,
   STARIO10StarXpandCommandPresenterLEDTypeError = 1,
@@ -2538,24 +2627,6 @@ SWIFT_CLASS_NAMED("LEDAutomaticBlinkParameter")
 - (nonnull instancetype)setOffTime:(NSInteger)offTime SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-
-@interface Presenter (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("ModeParameter")
-@interface STARIO10StarXpandCommandPresenterModeParameter : NSObject
-@property (nonatomic, readonly) BOOL loop;
-- (nonnull instancetype)setLoop:(BOOL)loop SWIFT_WARN_UNUSED_RESULT;
-@property (nonatomic, readonly) BOOL hold;
-- (nonnull instancetype)setHold:(BOOL)hold SWIFT_WARN_UNUSED_RESULT;
-@property (nonatomic, readonly) BOOL retract;
-- (nonnull instancetype)setRetract:(BOOL)retract SWIFT_WARN_UNUSED_RESULT;
-@property (nonatomic, readonly) NSInteger holdTime;
-- (nonnull instancetype)setHoldTime:(NSInteger)holdTime SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
@@ -2641,14 +2712,11 @@ SWIFT_CLASS_NAMED("PageModeRuledLineParameter")
 @interface Printer (SWIFT_EXTENSION(StarIO10))
 @end
 
-enum STARIO10StarXpandCommandPrinterBaseMagnification : NSInteger;
-
-SWIFT_CLASS_NAMED("BaseMagnificationParameter")
-@interface STARIO10StarXpandCommandPrinterBaseMagnificationParameter : NSObject
-@property (nonatomic, readonly) enum STARIO10StarXpandCommandPrinterBaseMagnification text;
-- (nonnull instancetype)setText:(enum STARIO10StarXpandCommandPrinterBaseMagnification)text SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterBarcodeBarRatioLevel, "BarcodeBarRatioLevel", open) {
+  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevelPlus1 = 0,
+  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevel0 = 1,
+  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevelMinus1 = 2,
+};
 
 
 @interface Printer (SWIFT_EXTENSION(StarIO10))
@@ -2769,7 +2837,6 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterQRCodeModel, 
 @interface Printer (SWIFT_EXTENSION(StarIO10))
 @end
 
-enum STARIO10StarXpandCommandPrinterBarcodeBarRatioLevel : NSInteger;
 
 SWIFT_CLASS_NAMED("BarcodeParameter")
 @interface STARIO10StarXpandCommandPrinterBarcodeParameter : NSObject
@@ -2972,10 +3039,14 @@ SWIFT_CLASS_NAMED("PageModeAreaParameter")
 @interface Printer (SWIFT_EXTENSION(StarIO10))
 @end
 
-typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterFontType, "FontType", open) {
-  STARIO10StarXpandCommandPrinterFontTypeA = 0,
-  STARIO10StarXpandCommandPrinterFontTypeB = 1,
-};
+enum STARIO10StarXpandCommandPrinterBaseMagnification : NSInteger;
+
+SWIFT_CLASS_NAMED("BaseMagnificationParameter")
+@interface STARIO10StarXpandCommandPrinterBaseMagnificationParameter : NSObject
+@property (nonatomic, readonly) enum STARIO10StarXpandCommandPrinterBaseMagnification text;
+- (nonnull instancetype)setText:(enum STARIO10StarXpandCommandPrinterBaseMagnification)text SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
 
 
 @interface Printer (SWIFT_EXTENSION(StarIO10))
@@ -3098,10 +3169,9 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterTextAlignment
 @interface Printer (SWIFT_EXTENSION(StarIO10))
 @end
 
-typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterBarcodeBarRatioLevel, "BarcodeBarRatioLevel", open) {
-  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevelPlus1 = 0,
-  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevel0 = 1,
-  STARIO10StarXpandCommandPrinterBarcodeBarRatioLevelLevelMinus1 = 2,
+typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarXpandCommandPrinterFontType, "FontType", open) {
+  STARIO10StarXpandCommandPrinterFontTypeA = 0,
+  STARIO10StarXpandCommandPrinterFontTypeB = 1,
 };
 
 
@@ -3186,6 +3256,15 @@ SWIFT_CLASS_NAMED("StarDeviceDiscoveryManagerFactory")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+
+SWIFT_CLASS_NAMED("StarIO10DiagInfoUpload")
+@interface STARIO10DiagInfoUpload : NSObject
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) STARIO10DiagInfoUpload * _Nonnull sharedObject;)
++ (STARIO10DiagInfoUpload * _Nonnull)sharedObject SWIFT_WARN_UNUSED_RESULT;
+@property (nonatomic) BOOL isEnabled;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
 typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10ErrorCode, "StarIO10ErrorCode", open) {
   STARIO10ErrorCodeNone SWIFT_COMPILE_NAME("none") = 0,
   STARIO10ErrorCodeDeviceHasError SWIFT_COMPILE_NAME("deviceHasError") = 1000,
@@ -3203,6 +3282,10 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10ErrorCode, "StarIO10ErrorCode", open
   STARIO10ErrorCodeStarConfigurationParameterError SWIFT_COMPILE_NAME("starConfigurationParameterError") = 6001,
   STARIO10ErrorCodeStarConfigurationSpecifiedFileError SWIFT_COMPILE_NAME("starConfigurationSpecifiedFileError") = 6002,
   STARIO10ErrorCodeInvalidTemplate SWIFT_COMPILE_NAME("invalidTemplate") = 7000,
+  STARIO10ErrorCodeCouldNotConnectToServer SWIFT_COMPILE_NAME("couldNotConnectToServer") = 8000,
+  STARIO10ErrorCodeServerUrlError SWIFT_COMPILE_NAME("serverUrlError") = 8001,
+  STARIO10ErrorCodeServerRequestParameterError SWIFT_COMPILE_NAME("serverRequestParameterError") = 8002,
+  STARIO10ErrorCodeServerAuthenticationError SWIFT_COMPILE_NAME("serverAuthenticationError") = 8003,
 };
 
 
@@ -3229,6 +3312,7 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) STARIO10Logg
 @end
 
 @class STARIO10StarPrinterInformation;
+@class STARIO10StarPrinterSetting;
 
 SWIFT_CLASS_NAMED("StarPrinter")
 @interface STARIO10StarPrinter : NSObject
@@ -3245,6 +3329,7 @@ SWIFT_CLASS_NAMED("StarPrinter")
 @property (nonatomic) NSInteger starConfigurationTimeout;
 @property (nonatomic, copy, getter=template, setter=setTemplate:) NSString * _Nullable template_;
 @property (nonatomic, readonly, strong) STARIO10ErrorDetail * _Nonnull errorDetail;
+@property (nonatomic, readonly, strong) STARIO10StarPrinterSetting * _Nullable setting;
 - (nonnull instancetype)initWithConnectionSettings:(STARIO10StarConnectionSettings * _Nonnull)connectionSettings;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
@@ -3376,12 +3461,30 @@ typedef SWIFT_ENUM_NAMED(NSInteger, STARIO10StarPrinterModel, "StarPrinterModel"
 };
 
 
-SWIFT_CLASS("_TtC8StarIO1018StarPrinterSetting")
-@interface StarPrinterSetting : NSObject
+SWIFT_CLASS_NAMED("StarPrinterSetting")
+@interface STARIO10StarPrinterSetting : NSObject
+@property (nonatomic, readonly, strong) STARIO10StarPrinterSettingFirmware * _Nullable firmware;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+
+SWIFT_CLASS_NAMED("StarPrinterSettingFirmware")
+@interface STARIO10StarPrinterSettingFirmware : NSObject
+@property (nonatomic, readonly, copy) NSString * _Nonnull currentVersion;
+@property (nonatomic, readonly, copy) NSString * _Nullable latestVersion;
+@property (nonatomic, readonly) BOOL isUpdatable;
+@property (nonatomic, weak) id <STARIO10FirmwareUpdateDelegate> _Nullable updateDelegate;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+@interface STARIO10StarPrinterSettingFirmware (SWIFT_EXTENSION(StarIO10))
+- (void)getCurrentVersionWithCompletion:(void (^ _Nonnull)(NSString * _Nullable, NSError * _Nullable))completion;
+- (void)checkVersionsWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+- (void)updateWithCompletion:(void (^ _Nonnull)(NSError * _Nullable))completion;
+@end
 
 
 @protocol STARIO10StarPrinterStatusDetail;
@@ -3423,7 +3526,21 @@ SWIFT_PROTOCOL_NAMED("StarPrinterStatusDetail")
 @property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullablePartsReplacementNotification;
 @property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullableCleaningNotification;
 @property (nonatomic, readonly, strong) STARIO10NullableInt * _Nullable nullableDetectedPaperWidth;
+@property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullablePrintHeadThermistorError;
+@property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullablePrintHeadOverTemperature;
+@property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullableReceiveBufferOverflow;
+@property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullableUnrecoverableError;
+@property (nonatomic, readonly, strong) STARIO10NullableBool * _Nullable nullableVoltageError;
 @end
+
+
+SWIFT_CLASS("_TtC8StarIO1017StarSettingDevice")
+@interface StarSettingDevice : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
 
 
 SWIFT_CLASS("_TtC8StarIO1040StarSettingDeviceDiscoveryManagerFactory")
@@ -3463,7 +3580,7 @@ SWIFT_CLASS_NAMED("StarSpoolJobStatus")
 
 
 SWIFT_CLASS("_TtC8StarIO1015StarWLanSetting")
-@interface StarWLanSetting : StarPrinterSetting
+@interface StarWLanSetting : StarSettingDevice
 @end
 
 
@@ -3501,11 +3618,70 @@ SWIFT_CLASS_NAMED("DrawerBuilder")
 @interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
 @end
 
+@class STARIO10StarXpandCommandPreSettingBuilder;
+@class STARIO10StarXpandCommandDocumentBuilder;
 
-SWIFT_CLASS_NAMED("TemplateExtensionParameter")
-@interface STARIO10StarXpandCommandTemplateExtensionParameter : NSObject
-@property (nonatomic, readonly) BOOL enableArrayFieldData;
-- (nonnull instancetype)setEnableArrayFieldData:(BOOL)enableArrayFieldData SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_NAMED("StarXpandCommandBuilder")
+@interface STARIO10StarXpandCommandBuilder : NSObject
+@property (nonatomic, strong) STARIO10StarXpandCommandPreSettingBuilder * _Nullable preSetting;
+- (nonnull instancetype)addDocument:(STARIO10StarXpandCommandDocumentBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+- (NSString * _Nonnull)getCommands SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+
+SWIFT_CLASS_NAMED("MelodySpeakerBuilder")
+@interface STARIO10StarXpandCommandMelodySpeakerBuilder : NSObject
+- (nonnull instancetype)actionDriveRegisteredSound:(STARIO10StarXpandCommandMelodySpeakerDriveRegisteredSoundParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionDriveOneTimeSound:(STARIO10StarXpandCommandMelodySpeakerDriveOneTimeSoundParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+@class STARIO10StarXpandCommandBezelSettingBuilder;
+
+SWIFT_CLASS_NAMED("PreSettingBuilder")
+@interface STARIO10StarXpandCommandPreSettingBuilder : NSObject
+- (nonnull instancetype)addPresenterSetting:(STARIO10StarXpandCommandPresenterSettingBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)addBezelSetting:(STARIO10StarXpandCommandBezelSettingBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+
+SWIFT_CLASS_NAMED("DisplayBuilder")
+@interface STARIO10StarXpandCommandDisplayBuilder : NSObject
+- (nonnull instancetype)styleInternationalCharacter:(enum STARIO10StarXpandCommandDisplayInternationalCharacterType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleCharacterEncoding:(enum STARIO10StarXpandCommandDisplayCharacterEncodingType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleCursorPositionTo:(STARIO10StarXpandCommandDisplayPositionParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionClearLine SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionClearAll SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionSetBackLightState:(BOOL)on SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionSetCursorState:(enum STARIO10StarXpandCommandDisplayCursorState)state SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionSetContrast:(enum STARIO10StarXpandCommandDisplayContrast)value SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionShowText:(NSString * _Nonnull)content SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionShowImage:(STARIO10StarXpandCommandDisplayImageParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+
+SWIFT_CLASS_NAMED("BuzzerBuilder")
+@interface STARIO10StarXpandCommandBuzzerBuilder : NSObject
+- (nonnull instancetype)actionDrive:(STARIO10StarXpandCommandBuzzerDriveParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -3514,6 +3690,73 @@ SWIFT_CLASS_NAMED("TemplateExtensionParameter")
 @end
 
 @class STARIO10StarXpandCommandMagnificationParameter;
+@class STARIO10StarXpandCommandPageModeBuilder;
+
+SWIFT_CLASS_NAMED("PrinterBuilder")
+@interface STARIO10StarXpandCommandPrinterBuilder : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init:(STARIO10StarXpandCommandPrinterParameter * _Nonnull)parameter OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)styleAlignment:(enum STARIO10StarXpandCommandPrinterAlignment)position SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleFont:(enum STARIO10StarXpandCommandPrinterFontType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleBold:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleInvert:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleUnderLine:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleMagnification:(STARIO10StarXpandCommandMagnificationParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleBaseMagnification:(STARIO10StarXpandCommandPrinterBaseMagnificationParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleCharacterSpace:(double)width SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleLineSpace:(double)height SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleHorizontalPositionTo:(double)position SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleHorizontalPositionBy:(double)position SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleHorizontalTabPositions:(NSArray<NSNumber *> * _Nonnull)position SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleInternationalCharacter:(enum STARIO10StarXpandCommandPrinterInternationalCharacterType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleSecondPriorityCharacterEncoding:(enum STARIO10StarXpandCommandPrinterCharacterEncodingType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleCJKCharacterPriority:(NSArray<NSNumber *> * _Nonnull)types SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)styleAmbiguousCharacterWidthType:(enum STARIO10StarXpandCommandPrinterAmbiguousCharacterWidthType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionCut:(enum STARIO10StarXpandCommandPrinterCutType)type SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionFeed:(double)height SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionFeedLine:(NSInteger)lines SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionSeparatorFeed SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintText:(NSString * _Nonnull)content :(STARIO10StarXpandCommandPrinterTextParameter * _Nullable)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintLogo:(STARIO10StarXpandCommandPrinterLogoParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintBarcode:(STARIO10StarXpandCommandPrinterBarcodeParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintPDF417:(STARIO10StarXpandCommandPrinterPDF417Parameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintQRCode:(STARIO10StarXpandCommandPrinterQRCodeParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintImage:(STARIO10StarXpandCommandPrinterImageParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)actionPrintRuledLine:(STARIO10StarXpandCommandPrinterRuledLineParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)add:(STARIO10StarXpandCommandPrinterBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)addPageModeWithParameter:(STARIO10StarXpandCommandPrinterPageModeAreaParameter * _Nonnull)parameter builder:(STARIO10StarXpandCommandPageModeBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+
+SWIFT_CLASS_NAMED("BezelSettingBuilder")
+@interface STARIO10StarXpandCommandBezelSettingBuilder : NSObject
+- (nonnull instancetype)settingAutomaticPageLength:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)settingLEDAutomaticBlink:(STARIO10StarXpandCommandBezelLEDAutomaticBlinkParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
+
+SWIFT_CLASS_NAMED("MagnificationParameter")
+@interface STARIO10StarXpandCommandMagnificationParameter : NSObject
+@property (nonatomic, readonly) NSInteger width;
+@property (nonatomic, readonly) NSInteger height;
+- (nonnull instancetype)initWithWidth:(NSInteger)width height:(NSInteger)height OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
+@end
+
 
 SWIFT_CLASS_NAMED("PageModeBuilder")
 @interface STARIO10StarXpandCommandPageModeBuilder : NSObject
@@ -3552,12 +3795,11 @@ SWIFT_CLASS_NAMED("PageModeBuilder")
 @interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
 @end
 
-@class STARIO10StarXpandCommandBezelSettingBuilder;
 
-SWIFT_CLASS_NAMED("PreSettingBuilder")
-@interface STARIO10StarXpandCommandPreSettingBuilder : NSObject
-- (nonnull instancetype)addPresenterSetting:(STARIO10StarXpandCommandPresenterSettingBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)addBezelSetting:(STARIO10StarXpandCommandBezelSettingBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
+SWIFT_CLASS_NAMED("TemplateExtensionParameter")
+@interface STARIO10StarXpandCommandTemplateExtensionParameter : NSObject
+@property (nonatomic, readonly) BOOL enableArrayFieldData;
+- (nonnull instancetype)setEnableArrayFieldData:(BOOL)enableArrayFieldData SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -3565,10 +3807,6 @@ SWIFT_CLASS_NAMED("PreSettingBuilder")
 @interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
 @end
 
-@class STARIO10StarXpandCommandPrinterBuilder;
-@class STARIO10StarXpandCommandBuzzerBuilder;
-@class STARIO10StarXpandCommandMelodySpeakerBuilder;
-@class STARIO10StarXpandCommandDisplayBuilder;
 
 SWIFT_CLASS_NAMED("DocumentBuilder")
 @interface STARIO10StarXpandCommandDocumentBuilder : NSObject
@@ -3584,128 +3822,6 @@ SWIFT_CLASS_NAMED("DocumentBuilder")
 - (nonnull instancetype)addDisplay:(STARIO10StarXpandCommandDisplayBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)addRaw:(NSData * _Nonnull)content SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("StarXpandCommandBuilder")
-@interface STARIO10StarXpandCommandBuilder : NSObject
-@property (nonatomic, strong) STARIO10StarXpandCommandPreSettingBuilder * _Nullable preSetting;
-- (nonnull instancetype)addDocument:(STARIO10StarXpandCommandDocumentBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
-- (NSString * _Nonnull)getCommands SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("DisplayBuilder")
-@interface STARIO10StarXpandCommandDisplayBuilder : NSObject
-- (nonnull instancetype)styleInternationalCharacter:(enum STARIO10StarXpandCommandDisplayInternationalCharacterType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleCharacterEncoding:(enum STARIO10StarXpandCommandDisplayCharacterEncodingType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleCursorPositionTo:(STARIO10StarXpandCommandDisplayPositionParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionClearLine SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionClearAll SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionSetBackLightState:(BOOL)on SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionSetCursorState:(enum STARIO10StarXpandCommandDisplayCursorState)state SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionSetContrast:(enum STARIO10StarXpandCommandDisplayContrast)value SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionShowText:(NSString * _Nonnull)content SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionShowImage:(STARIO10StarXpandCommandDisplayImageParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("BezelSettingBuilder")
-@interface STARIO10StarXpandCommandBezelSettingBuilder : NSObject
-- (nonnull instancetype)settingAutomaticPageLength:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)settingLEDAutomaticBlink:(STARIO10StarXpandCommandBezelLEDAutomaticBlinkParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("MelodySpeakerBuilder")
-@interface STARIO10StarXpandCommandMelodySpeakerBuilder : NSObject
-- (nonnull instancetype)actionDriveRegisteredSound:(STARIO10StarXpandCommandMelodySpeakerDriveRegisteredSoundParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionDriveOneTimeSound:(STARIO10StarXpandCommandMelodySpeakerDriveOneTimeSoundParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("MagnificationParameter")
-@interface STARIO10StarXpandCommandMagnificationParameter : NSObject
-@property (nonatomic, readonly) NSInteger width;
-@property (nonatomic, readonly) NSInteger height;
-- (nonnull instancetype)initWithWidth:(NSInteger)width height:(NSInteger)height OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-+ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("BuzzerBuilder")
-@interface STARIO10StarXpandCommandBuzzerBuilder : NSObject
-- (nonnull instancetype)actionDrive:(STARIO10StarXpandCommandBuzzerDriveParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-@interface STARIO10StarXpandCommand (SWIFT_EXTENSION(StarIO10))
-@end
-
-
-SWIFT_CLASS_NAMED("PrinterBuilder")
-@interface STARIO10StarXpandCommandPrinterBuilder : NSObject
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)init:(STARIO10StarXpandCommandPrinterParameter * _Nonnull)parameter OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)styleAlignment:(enum STARIO10StarXpandCommandPrinterAlignment)position SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleFont:(enum STARIO10StarXpandCommandPrinterFontType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleBold:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleInvert:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleUnderLine:(BOOL)enable SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleMagnification:(STARIO10StarXpandCommandMagnificationParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleBaseMagnification:(STARIO10StarXpandCommandPrinterBaseMagnificationParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleCharacterSpace:(double)width SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleLineSpace:(double)height SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleHorizontalPositionTo:(double)position SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleHorizontalPositionBy:(double)position SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleHorizontalTabPositions:(NSArray<NSNumber *> * _Nonnull)position SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleInternationalCharacter:(enum STARIO10StarXpandCommandPrinterInternationalCharacterType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleSecondPriorityCharacterEncoding:(enum STARIO10StarXpandCommandPrinterCharacterEncodingType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleCJKCharacterPriority:(NSArray<NSNumber *> * _Nonnull)types SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)styleAmbiguousCharacterWidthType:(enum STARIO10StarXpandCommandPrinterAmbiguousCharacterWidthType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionCut:(enum STARIO10StarXpandCommandPrinterCutType)type SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionFeed:(double)height SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionFeedLine:(NSInteger)lines SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionSeparatorFeed SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintText:(NSString * _Nonnull)content :(STARIO10StarXpandCommandPrinterTextParameter * _Nullable)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintLogo:(STARIO10StarXpandCommandPrinterLogoParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintBarcode:(STARIO10StarXpandCommandPrinterBarcodeParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintPDF417:(STARIO10StarXpandCommandPrinterPDF417Parameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintQRCode:(STARIO10StarXpandCommandPrinterQRCodeParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintImage:(STARIO10StarXpandCommandPrinterImageParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)actionPrintRuledLine:(STARIO10StarXpandCommandPrinterRuledLineParameter * _Nonnull)parameter SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)add:(STARIO10StarXpandCommandPrinterBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)addPageModeWithParameter:(STARIO10StarXpandCommandPrinterPageModeAreaParameter * _Nonnull)parameter builder:(STARIO10StarXpandCommandPageModeBuilder * _Nonnull)builder SWIFT_WARN_UNUSED_RESULT;
 @end
 
 

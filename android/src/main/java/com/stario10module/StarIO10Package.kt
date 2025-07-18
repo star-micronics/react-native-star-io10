@@ -21,7 +21,10 @@ class StarIO10Package : ReactPackage {
         modules.add(StarSpoolJobStatusWrapper(reactContext))
         modules.add(StarSpoolJobStatusListWrapper(reactContext))
         modules.add(StarPrinterWrapper(reactContext))
+        modules.add(StarPrinterSettingWrapper(reactContext))
+        modules.add(StarPrinterSettingFirmwareWrapper(reactContext))
         modules.add(StarIO10LoggerWrapper(reactContext))
+        modules.add(StarIO10DiagInfoUploadWrapper(reactContext))
 
         return modules
     }

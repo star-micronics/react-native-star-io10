@@ -17,6 +17,11 @@ export class StarPrinterStatusDetail {
     _partsReplacementNotification: boolean | undefined = undefined;
     _cleaningNotification: boolean | undefined = undefined;
     _detectedPaperWidth: number | undefined = undefined;
+    _printHeadThermistorError: boolean | undefined = undefined;
+    _printHeadOverTemperature: boolean | undefined = undefined;
+    _receiveBufferOverflow: boolean | undefined = undefined;
+    _unrecoverableError: boolean | undefined = undefined;
+    _voltageError: boolean | undefined = undefined;
 
     get cutterError(): boolean | undefined {
         return this._cutterError;
@@ -80,5 +85,25 @@ export class StarPrinterStatusDetail {
     
     get detectedPaperWidth(): number | undefined {
         return this._detectedPaperWidth;
+    }
+    
+    get printHeadThermistorError(): boolean | undefined {
+        return this._printHeadThermistorError;
+    }
+    
+    get printHeadOverTemperature(): boolean | undefined {
+        return this._printHeadOverTemperature;
+    }
+    
+    get receiveBufferOverflow(): boolean | undefined {
+        return this._receiveBufferOverflow;
+    }
+    
+    get unrecoverableError(): boolean | undefined {
+        return this._unrecoverableError;
+    }
+    
+    get voltageError(): boolean | undefined {
+        return this._voltageError;
     }
 }

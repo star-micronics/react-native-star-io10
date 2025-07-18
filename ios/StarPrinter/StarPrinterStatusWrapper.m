@@ -466,6 +466,116 @@ RCT_REMAP_METHOD(getRollPositionError,
     }
 }
 
+RCT_REMAP_METHOD(getPrintHeadThermistorError,
+                 getPrintHeadThermistorErrorWithObjectIdentifier:(nonnull NSString *)objID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinterStatus *status = [_objManager getObject:objID];
+    
+    if (status == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10NullableBool *nullablePrintHeadThermistorError = status.detail.nullablePrintHeadThermistorError;
+    
+    if (nullablePrintHeadThermistorError != nil) {
+        resolve(@(nullablePrintHeadThermistorError.value));
+    }
+    else {
+        resolve(nil);
+    }
+}
+
+RCT_REMAP_METHOD(getPrintHeadOverTemperature,
+                 getPrintHeadOverTemperatureWithObjectIdentifier:(nonnull NSString *)objID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinterStatus *status = [_objManager getObject:objID];
+    
+    if (status == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10NullableBool *nullablePrintHeadOverTemperature = status.detail.nullablePrintHeadOverTemperature;
+    
+    if (nullablePrintHeadOverTemperature != nil) {
+        resolve(@(nullablePrintHeadOverTemperature.value));
+    }
+    else {
+        resolve(nil);
+    }
+}
+
+RCT_REMAP_METHOD(getReceiveBufferOverflow,
+                 getReceiveBufferOverflowWithObjectIdentifier:(nonnull NSString *)objID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinterStatus *status = [_objManager getObject:objID];
+    
+    if (status == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10NullableBool *nullableReceiveBufferOverflow = status.detail.nullableReceiveBufferOverflow;
+    
+    if (nullableReceiveBufferOverflow != nil) {
+        resolve(@(nullableReceiveBufferOverflow.value));
+    }
+    else {
+        resolve(nil);
+    }
+}
+
+RCT_REMAP_METHOD(getUnrecoverableError,
+                 getUnrecoverableErrorWithObjectIdentifier:(nonnull NSString *)objID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinterStatus *status = [_objManager getObject:objID];
+    
+    if (status == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10NullableBool *nullableUnrecoverableError = status.detail.nullableUnrecoverableError;
+    
+    if (nullableUnrecoverableError != nil) {
+        resolve(@(nullableUnrecoverableError.value));
+    }
+    else {
+        resolve(nil);
+    }
+}
+
+RCT_REMAP_METHOD(getVoltageError,
+                 getVoltageErrorWithObjectIdentifier:(nonnull NSString *)objID
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinterStatus *status = [_objManager getObject:objID];
+    
+    if (status == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    STARIO10NullableBool *nullableVoltageError = status.detail.nullableVoltageError;
+    
+    if (nullableVoltageError != nil) {
+        resolve(@(nullableVoltageError.value));
+    }
+    else {
+        resolve(nil);
+    }
+}
+
 RCT_REMAP_METHOD(getReserved,
                  getReservedWithObjectIdentifier:(nonnull NSString *)objID
                  resolver:(RCTPromiseResolveBlock)resolve

@@ -11,6 +11,7 @@ class EventParameter {
         const val KEY_EMULATION = "emulation"
         const val KEY_RESERVED = "reserved"
         const val KEY_CONNECTION_IDENTIFIER = "connectionIdentifier"
+        const val KEY_FIRMWARE_UPDATE_STEP = "firmwareUpdateStep"
 
         const val KEY_LAN_MAC_ADDRESS = "macAddress"
         const val KEY_LAN_IP_ADDRESS = "ipAddress"
@@ -38,5 +39,9 @@ class EventParameter {
         const val NAME_DISPLAY_DELEGATE_COMMUNICATION_ERROR = "DisplayCommunicationError"
         const val NAME_PRINTER_FOUND = "PrinterFound"
         const val NAME_DISCOVERY_FINISHED = "DiscoveryFinished"
+
+        const val FIRMWARE_UPDATE_DELEGATE_PROGRESS = "FirmwareUpdateProgress"
+        const val FIRMWARE_UPDATE_DELEGATE_TRANSMIT_COMPLETE = "FirmwareUpdateTransmitComplete"
+        const val FIRMWARE_UPDATE_DELEGATE_ERROR = "FirmwareUpdateError"
     }
 }

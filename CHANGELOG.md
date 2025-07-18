@@ -2,6 +2,25 @@
 
 # Change Log
 
+## 1.10.0 (2025/7/14)
+
+* Added API to update printer firmware.
+* Added the following printers support (Maintenance support)
+  * TSP100LAN
+  * TSP100ECO (Android only)
+  * TSP650II (LAN : IFBD-HE05)
+  * SP700 (LAN : IFBD-HE06)
+* Added some properties for printer detail status API (StarPrinterStatusDetail).
+* Added supported models for PrinterBuilder actionSeparatorFeed() method.
+* Android : Support for 16KB page size native library.
+* Android : Performance improvement of log storage with StarIO10Logger.
+* Bug Fix:
+  * Android : Performance improvement of actionPrintImage() method.
+  * Android Crash when searching for Bluetooth printer without proper permission.
+  * Android : Location Permission Conflict [#140](https://github.com/star-micronics/react-native-star-io10/issues/140)
+  * StarPrinter.printAsync() method may crashes depending on StarXpandCommandBuilder API parameters specified.
+  * iOS : Fixed an issue related to Bluetooth and USB interface communication.
+
 ## 1.9.0 (2025/05/19)
 
 * Added mC-Label2 support.

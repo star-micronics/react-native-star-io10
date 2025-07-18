@@ -10,6 +10,7 @@ import { StarIO10UnknownError } from './StarIO10UnknownError';
 import { StarIO10UnprintableError } from './StarIO10UnprintableError';
 import { StarIO10UnsupportedModelError } from './StarIO10UnsupportedModelError';
 import { StarIO10AuthenticationError } from './StarIO10AuthenticationError';
+import { StarIO10ServerCommunicationError } from './StarIO10ServerCommunicationError';
 import { StarPrinterStatusFactory } from './StarPrinterStatusFactory';
 import { StarIO10Error } from './StarIO10Error';
 import { StarPrinterStatus } from './StarPrinterStatus';
@@ -80,6 +81,9 @@ export class StarIO10ErrorFactory {
                 break;
             case 'Authentication':
                 error = new StarIO10AuthenticationError(message, errorCode);
+                break; 
+            case 'ServerCommunication':
+                error = new StarIO10ServerCommunicationError(message, errorCode);
                 break; 
             default:
                 error = new StarIO10UnknownError("Failed to create Error.");

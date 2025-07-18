@@ -21,6 +21,8 @@ import { StarSpoolJobStatusListFactory } from './StarSpoolJobStatusListFactory';
 import { StarConfigurationSetResult } from './StarConfigurationSetResult';
 import { StarIO10ErrorDetail } from './StarIO10ErrorDetail';
 import { StarIO10ErrorDetailFactory } from './StarIO10ErrorDetailFactory';
+import { StarPrinterSetting } from './StarPrinterSetting';
+import { StarPrinterSettingFactory } from './StarPrinterSettingFactory';
 
 const eventEmitter = new NativeEventEmitter(NativeModules.StarPrinterWrapper);
 
@@ -41,12 +43,18 @@ export class StarPrinter extends NativeObject {
 
     template: string | undefined = undefined;
 
+    _setting: StarPrinterSetting | undefined = undefined;
+
     get information(): StarPrinterInformation | undefined {
         return this._information;
     }
 
     get connectionSettings(): StarConnectionSettings {
         return this._connectionSettings;
+    }
+
+    get setting(): StarPrinterSetting | undefined {
+        return this._setting;
     }
 
     get printerDelegate(): PrinterDelegate {
@@ -257,6 +265,14 @@ export class StarPrinter extends NativeObject {
         this._information._model = await NativeModules.StarPrinterWrapper.getModel(this._nativeObject);
         this._information._emulation = await NativeModules.StarPrinterWrapper.getEmulation(this._nativeObject);
         this._information._reserved = new Map(Object.entries(await NativeModules.StarPrinterWrapper.getReserved(this._nativeObject)));
+
+        var nativeSetting = await NativeModules.StarPrinterSettingWrapper.init(this._nativeObject)
+        .catch(async (nativeError: any) => {
+            var error = await StarIO10ErrorFactory.create(nativeError.code);
+            throw error;
+        });
+
+        this._setting = await StarPrinterSettingFactory.create(nativeSetting, this._nativeObject);
     }
 
     async print(command: string): Promise<void>;
@@ -399,6 +415,9 @@ export class StarPrinter extends NativeObject {
 
     async dispose(): Promise<void> {
         await this._initNativeObject();
+
+        await this._setting?.dispose();
+        this._setting = undefined;
 
         await this.close();
 

@@ -14,5 +14,9 @@ export declare enum StarIO10ErrorCode {
     StarConfigurationFormatError = 6000,
     StarConfigurationParameterError = 6001,
     StarConfigurationSpecifiedFileError = 6002,
-    InvalidTemplate = 7000
+    InvalidTemplate = 7000,
+    CouldNotConnectToServer = 8000,
+    ServerUrlError = 8001,
+    ServerRequestParameterError = 8002,
+    ServerAuthenticationError = 8003
 }

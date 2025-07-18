@@ -243,6 +243,61 @@ class StarPrinterStatusWrapper internal constructor(context: ReactApplicationCon
     }
 
     @ReactMethod
+    fun getPrintHeadThermistorError(identifier: String, promise: Promise) {
+        val status = InstanceManager.get(identifier)
+
+        if (status is StarPrinterStatus) {
+            promise.resolve(status.detail.printHeadThermistorError)
+        } else {
+            promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
+        }
+    }
+
+    @ReactMethod
+    fun getPrintHeadOverTemperature(identifier: String, promise: Promise) {
+        val status = InstanceManager.get(identifier)
+
+        if (status is StarPrinterStatus) {
+            promise.resolve(status.detail.printHeadOverTemperature)
+        } else {
+            promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
+        }
+    }
+
+    @ReactMethod
+    fun getReceiveBufferOverflow(identifier: String, promise: Promise) {
+        val status = InstanceManager.get(identifier)
+
+        if (status is StarPrinterStatus) {
+            promise.resolve(status.detail.receiveBufferOverflow)
+        } else {
+            promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
+        }
+    }
+
+    @ReactMethod
+    fun getUnrecoverableError(identifier: String, promise: Promise) {
+        val status = InstanceManager.get(identifier)
+
+        if (status is StarPrinterStatus) {
+            promise.resolve(status.detail.unrecoverableError)
+        } else {
+            promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
+        }
+    }
+
+    @ReactMethod
+    fun getVoltageError(identifier: String, promise: Promise) {
+        val status = InstanceManager.get(identifier)
+
+        if (status is StarPrinterStatus) {
+            promise.resolve(status.detail.voltageError)
+        } else {
+            promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
+        }
+    }
+
+    @ReactMethod
     fun getReserved(identifier: String, promise: Promise) {
         val status = InstanceManager.get(identifier)
 

@@ -21,6 +21,11 @@ StarXpand SDKのドキュメントは[こちら](https://www.star-m.jp/react-nat
 
 ドキュメントにはSDKの概要、サンプルアプリのビルド方法、APIの使用方法、APIリファレンスなどが含まれます。
 
+## 診断情報の収集と送信について
+
+StarIO10ライブラリが提供するAPIの一部は、実行時にユーザー端末および接続プリンターの情報を収集し、スター精密が管理するクラウドサーバーに診断情報として送信します。  
+詳細は[こちら](DIAG_INFO_JP.md)を参照ください。
+
 ## 動作環境
 
 | Platform | OS Version | Arch | Test Environment[*](#TestEnvironment) |
@@ -214,6 +219,8 @@ StarXpand SDKにはプリンターと組み合わせて動作を確認できる[
 #### 6. [プリンターステータスの取得](#GetPrinterStatus)
 
 #### 7. [プリンターステータスの監視](#MonitorPrinter)
+
+#### 8. [プリンターファームウェアの更新](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/fw-update.html)
 
 <a id="GetPrinterStatus"></a>
 ### Get printer status

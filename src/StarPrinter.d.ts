@@ -10,6 +10,7 @@ import { StarSpoolJobSettings } from './StarSpoolJobSettings';
 import { StarSpoolJobStatus } from './StarSpoolJobStatus';
 import { StarConfigurationSetResult } from './StarConfigurationSetResult';
 import { StarIO10ErrorDetail } from './StarIO10ErrorDetail';
+import { StarPrinterSetting } from './StarPrinterSetting';
 export declare class StarPrinter extends NativeObject {
     private _eventSubscriptions;
     private _connectionSettings;
@@ -23,8 +24,10 @@ export declare class StarPrinter extends NativeObject {
     getStatusTimeout: number;
     starConfigurationTimeout: number;
     template: string | undefined;
+    _setting: StarPrinterSetting | undefined;
     get information(): StarPrinterInformation | undefined;
     get connectionSettings(): StarConnectionSettings;
+    get setting(): StarPrinterSetting | undefined;
     get printerDelegate(): PrinterDelegate;
     get drawerDelegate(): DrawerDelegate;
     get inputDeviceDelegate(): InputDeviceDelegate;

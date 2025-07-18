@@ -3,6 +3,8 @@ export { StarXpandCommand };
 
 export { DisplayDelegate } from './src/DisplayDelegate';
 export { DrawerOpenedMethod} from './src/DrawerOpenedMethod';
+export { FirmwareUpdateDelegate } from './src/FirmwareUpdateDelegate'
+export { FirmwareUpdateStep } from './src/FirmwareUpdateStep'
 export { InputDeviceDelegate } from './src/InputDeviceDelegate';
 export { InterfaceType } from './src/InterfaceType';
 export { PrinterDelegate } from './src/PrinterDelegate';
@@ -12,6 +14,9 @@ export { StarConnectionSettings } from './src/StarConnectionSettings';
 export { StarPrinterModel } from './src/StarPrinterModel';
 export { StarPrinterEmulation } from './src/StarPrinterEmulation';
 export { StarPrinter } from './src/StarPrinter';
+export { StarPrinterSetting } from './src/StarPrinterSetting';
+export { StarPrinterSettingFirmware } from './src/StarPrinterSettingFirmware';
+export { StarIO10DiagInfoUpload } from './src/StarIO10DiagInfoUpload';
 export { StarIO10Logger } from './src/StarIO10Logger';
 export { StarPrinterInformation } from './src/StarPrinterInformation';
 export { StarPrinterInformationDetail } from './src/StarPrinterInformationDetail';
@@ -32,6 +37,7 @@ export { StarIO10UnknownError } from './src/StarIO10UnknownError';
 export { StarIO10UnprintableError } from './src/StarIO10UnprintableError';
 export { StarIO10UnsupportedModelError } from './src/StarIO10UnsupportedModelError';
 export { StarIO10AuthenticationError } from './src/StarIO10AuthenticationError';
+export { StarIO10ServerCommunicationError } from './src/StarIO10ServerCommunicationError';
 export { StarPrinterStatus } from './src/StarPrinterStatus';
 export { StarPrinterStatusDetail } from './src/StarPrinterStatusDetail';
 export { SpoolJobReceivedInterface } from './src/SpoolJobReceivedInterface';

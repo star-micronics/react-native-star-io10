@@ -5,6 +5,7 @@
 NSString * const kKeyIdentifier = @"identifier";
 NSString * const kKeyErrorIdentifier = @"errorIdentifier";
 NSString * const kKeyDraweOpenCloseSognalState = @"openCloseSignal";
+NSString * const kKeyFirmwareUpdateStep = @"firmwareUpdateStep";
 NSString * const kKeyInputDeviceData = @"data";
 NSString * const kKeyInterfaceType = @"interfaceType";
 NSString * const kKeyConnectionIdentifier = @"connectionIdentifier";
@@ -40,5 +41,9 @@ NSString * const kNameDisplayDelegateDisconnected = @"DisplayDisconnected";
 NSString * const kNameDisplayDelegateCommunicationError = @"DisplayCommunicationError";
 NSString * const kNamePrinterFound = @"PrinterFound";
 NSString * const kNameDiscoveryFinished = @"DiscoveryFinished";
+
+NSString * const kNameFirmwareUpdateDelegateProgress = @"FirmwareUpdateProgress";
+NSString * const kNameFirmwareUpdateDelegateTransmitComplete = @"FirmwareUpdateTransmitComplete";
+NSString * const kNameFirmwareUpdateDelegateError = @"FirmwareUpdateError";
 
 @end
