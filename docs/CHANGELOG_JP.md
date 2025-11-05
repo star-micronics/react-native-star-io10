@@ -1,7 +1,10 @@
 - [English](../CHANGELOG.md)
 
-
 # 変更点
+
+## 1.10.1 (2025/10/31)
+
+* Android : USBプリンターとの通信がまれに失敗することがある問題を修正 [#49](https://github.com/star-micronics/StarXpand-SDK-Android/issues/49)
 
 ## 1.10.0 (2025/7/14)
 

@@ -9,7 +9,7 @@ StarIO10ライブラリが提供するAPIの一部は、実行時にユーザー
 
 ## 対象API
 
-ライブラリバージョン V1.10.0 において、情報の収集および送信を行うAPIは以下のとおりです。  
+ライブラリバージョン V1.10.0 以降において、情報の収集および送信を行うAPIは以下のとおりです。  
 **これらのAPIを利用する場合、アプリ配信プラットフォームにおけるプライバシーポリシーに、適切な記載を行ってください。**
 
 - [StarPrinterSetting](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/api-reference/star-printer-setting-firmware/index.html)

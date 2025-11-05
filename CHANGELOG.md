@@ -2,6 +2,10 @@
 
 # Change Log
 
+## 1.10.1 (2025/10/31)
+
+* Android : Fixed an issue where communication with USB printers occasionally failes. [#49](https://github.com/star-micronics/StarXpand-SDK-Android/issues/49)
+
 ## 1.10.0 (2025/7/14)
 
 * Added API to update printer firmware.
