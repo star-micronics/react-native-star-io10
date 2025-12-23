@@ -2,6 +2,10 @@
 
 # Change Log
 
+## 1.10.3 (2025/12/24)
+
+* Improved the peerDependencies version specification in package.json. [#149](https://github.com/star-micronics/react-native-star-io10/issues/149)
+
 ## 1.10.2 (2025/12/08)
 
 * Android : Fixed an issue where communication with USB printers(Android Open Accessory) occasionally failes. [#49](https://github.com/star-micronics/StarXpand-SDK-Android/issues/49)
