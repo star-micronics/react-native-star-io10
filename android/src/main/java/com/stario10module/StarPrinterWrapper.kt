@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 
 class StarPrinterWrapper internal constructor(context: ReactApplicationContext) :
@@ -136,6 +137,17 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
 
                     sendEvent(EventParameter.NAME_DRAWER_DELEGATE_COMMUNICATION_ERROR, params)
                 }
+
+                override fun onStatusChanged(status: StarPrinterStatusDetail) {
+                    val params = Arguments.createMap()
+                    params.putString(EventParameter.KEY_IDENTIFIER, identifier)
+                    params.putMap(
+                        EventParameter.KEY_DRAWER_STATUS,
+                        StarIO10ValueConverter.toWritableMap(status)
+                    )
+
+                    sendEvent(EventParameter.NAME_DRAWER_DELEGATE_STATUS_CHANGED, params)
+                }
             }
 
             promise.resolve(0)
@@ -256,7 +268,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                 try {
                     printer.openAsync().await()
                     promise.resolve(0)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -300,6 +312,56 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
     }
 
     @ReactMethod
+    fun write(identifier: String, data: ReadableArray, timeout: Int, promise: Promise) {
+        val job = SupervisorJob()
+        val scope = CoroutineScope(Dispatchers.Default + job)
+
+        scope.launch {
+            val printer = InstanceManager.get(identifier)
+
+            if (printer is StarPrinter) {
+                try {
+                    printer.writeAsync(StarIO10ValueConverter.toList(data), timeout).await()
+                    promise.resolve(0)
+                } catch (e: Exception) {
+                    val exceptionIdentifier = InstanceManager.set(e)
+                    promise.reject(exceptionIdentifier, e)
+                }
+            } else {
+                promise.reject(StarIO10Exception("Identifier error"))
+            }
+        }
+    }
+
+    @ReactMethod
+    fun read(identifier: String, size: Int, promise: Promise) {
+        val job = SupervisorJob()
+        val scope = CoroutineScope(Dispatchers.Default + job)
+
+        scope.launch {
+            val printer = InstanceManager.get(identifier)
+
+            if (printer is StarPrinter) {
+                try {
+                    val readResult = printer.readAsync(size).await()
+
+                    val reactData = Arguments.createArray()
+                    readResult.forEach {
+                        reactData.pushInt(it.toInt())
+                    }
+
+                    promise.resolve(reactData)
+                } catch (e: Exception) {
+                    val exceptionIdentifier = InstanceManager.set(e)
+                    promise.reject(exceptionIdentifier, e)
+                }
+            } else {
+                promise.reject(StarIO10Exception("Identifier error"))
+            }
+        }
+    }
+
+    @ReactMethod
     fun printRawData(identifier: String, data: ReadableArray, timeout: Int, promise: Promise) {
         val job = SupervisorJob()
         val scope = CoroutineScope(Dispatchers.Default + job)
@@ -313,7 +375,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                 try {
                     printer.printRawDataAsync(StarIO10ValueConverter.toList(data)).await()
                     promise.resolve(0)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -338,7 +400,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                 try {
                     printer.printAsync(code).await()
                     promise.resolve(0)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -374,7 +436,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                 try {
                     val jobId = printer.printAsync(code, jobSettings).await()
                     promise.resolve(jobId)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -400,7 +462,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                     val statusIdentifier = InstanceManager.set(status)
 
                     promise.resolve(statusIdentifier)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -426,7 +488,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                     val statusIdentifier = InstanceManager.set(status)
 
                     promise.resolve(statusIdentifier)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -452,7 +514,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                     val statusListIdentifier = InstanceManager.set(statusList)
 
                     promise.resolve(statusListIdentifier)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -482,7 +544,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                     val starConfigurationSetResult =
                         printer.setStarConfigurationAsync(starConfiguration).await()
                     promise.resolve(StarIO10ValueConverter.toString(starConfigurationSetResult))
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -511,7 +573,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                 try {
                     val starConfiguration = printer.getStarConfigurationAsync(password).await()
                     promise.resolve(starConfiguration)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -535,7 +597,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                 try {
                     val starConfiguration = printer.getDefaultStarConfigurationAsync().await()
                     promise.resolve(starConfiguration)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -557,7 +619,7 @@ class StarPrinterWrapper internal constructor(context: ReactApplicationContext) 
                 try {
                     printer.closeAsync().await()
                     promise.resolve(0)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }

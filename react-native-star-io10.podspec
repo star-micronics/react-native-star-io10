@@ -22,8 +22,8 @@ Pod::Spec.new do |s|
   s.dependency "React"
   s.pod_target_xcconfig = { 
     'EXCLUDED_ARCHS[sdk=iphoneos*]' => 'x86_64',
-    'EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]' => '$(PODS_TARGET_SRCROOT)/ios/libs/StarIO10.xcframework/ios-arm64_x86_64-simulator/*.*',
-    'FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]' => '$(SRCROOT)/libs/** $(PODS_TARGET_SRCROOT)/ios/libs $(PODS_TARGET_SRCROOT)/ios/libs/StarIO10.xcframework/ios-arm64',
+    'EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]' => '$(PODS_TARGET_SRCROOT)/ios/libs/StarIO10ReactNative.xcframework/ios-arm64_x86_64-simulator/*.*',
+    'FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]' => '$(SRCROOT)/libs/** $(PODS_TARGET_SRCROOT)/ios/libs $(PODS_TARGET_SRCROOT)/ios/libs/StarIO10ReactNative.xcframework/ios-arm64',
   }
   
   header_search_path_expo = [
@@ -36,8 +36,8 @@ Pod::Spec.new do |s|
   ]
 
   exclude_source_file_name = [
-    'libs/StarIO10.xcframework/ios-arm64_x86_64-simulator/StarIO10.framework/Headers/*.h',
-    'libs/StarIO10.xcframework/ios-arm64_x86_64-simulator/StarIO10.framework/PrivateHeaders/*.h'
+    'libs/StarIO10ReactNative.xcframework/ios-arm64_x86_64-simulator/StarIO10ReactNative.framework/Headers/*.h',
+    'libs/StarIO10ReactNative.xcframework/ios-arm64_x86_64-simulator/StarIO10ReactNative.framework/PrivateHeaders/*.h'
   ]
 
   if ENV['USE_FRAMEWORKS']
@@ -57,6 +57,6 @@ Pod::Spec.new do |s|
   # ...
   # s.dependency "..."
 
-  s.vendored_frameworks = 'ios/libs/StarIO10.xcframework'
+  s.vendored_frameworks = 'ios/libs/StarIO10ReactNative.xcframework'
 end
 

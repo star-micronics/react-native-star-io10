@@ -38,7 +38,8 @@ import java.io.InputStream
 import java.lang.Thread.sleep
 import java.util.*
 import java.util.concurrent.Executors
-
+import kotlin.reflect.full.memberProperties
+import kotlin.reflect.jvm.isAccessible
 
 class StarIO10ValueConverter {
     companion object {
@@ -100,7 +101,9 @@ class StarIO10ValueConverter {
             "SP700" to StarPrinterModel.SP700,
             "TUP500" to StarPrinterModel.TUP500,
             "SK1_2xx" to StarPrinterModel.SK1_2xx,
-            "SK1_3xx" to StarPrinterModel.SK1_3xx
+            "SK1_3xx" to StarPrinterModel.SK1_3xx,
+            "mC_Connect_Drawer" to StarPrinterModel.mC_Connect_Drawer,
+            "CD5" to StarPrinterModel.CD5,
         )
 
         fun toString(value: StarPrinterModel): String {
@@ -122,8 +125,9 @@ class StarIO10ValueConverter {
             "StarDot" to StarPrinterEmulation.StarDot,
             "StarGraphic" to StarPrinterEmulation.StarGraphic,
             "StarPRNT" to StarPrinterEmulation.StarPRNT,
+            "StarCD5" to StarPrinterEmulation.StarCD5,
             "EscPos" to StarPrinterEmulation.EscPos,
-            "EscPosMobile" to StarPrinterEmulation.EscPosMobile
+            "EscPosMobile" to StarPrinterEmulation.EscPosMobile,
         )
 
         fun toString(value: StarPrinterEmulation): String {
@@ -471,7 +475,9 @@ class StarIO10ValueConverter {
 
         private val buzzerChannelMap = mapOf(
             "No1" to com.starmicronics.stario10.starxpandcommand.buzzer.Channel.No1,
-            "No2" to com.starmicronics.stario10.starxpandcommand.buzzer.Channel.No2
+            "No2" to com.starmicronics.stario10.starxpandcommand.buzzer.Channel.No2,
+            "No3" to com.starmicronics.stario10.starxpandcommand.buzzer.Channel.No3,
+            "No4" to com.starmicronics.stario10.starxpandcommand.buzzer.Channel.No4
         )
 
         fun toBuzzerChannel(value: String): com.starmicronics.stario10.starxpandcommand.buzzer.Channel {
@@ -481,7 +487,9 @@ class StarIO10ValueConverter {
 
         private val drawerChannelMap = mapOf(
             "No1" to com.starmicronics.stario10.starxpandcommand.drawer.Channel.No1,
-            "No2" to com.starmicronics.stario10.starxpandcommand.drawer.Channel.No2
+            "No2" to com.starmicronics.stario10.starxpandcommand.drawer.Channel.No2,
+            "No3" to com.starmicronics.stario10.starxpandcommand.drawer.Channel.No3,
+            "No4" to com.starmicronics.stario10.starxpandcommand.drawer.Channel.No4
         )
 
         fun toDrawerChannel(value: String): com.starmicronics.stario10.starxpandcommand.drawer.Channel {
@@ -944,6 +952,33 @@ class StarIO10ValueConverter {
 
             return writableArray
         }
+
+        fun toWritableMap(obj: Any?): WritableMap {
+            val map = Arguments.createMap()
+
+            if (obj == null) return map
+
+            val kClass = obj::class
+            for (prop in kClass.memberProperties) {
+                prop.isAccessible = true
+                val name = prop.name
+                val value = prop.getter.call(obj)
+
+                when (value) {
+                    is String -> map.putString(name, value)
+                    is Int -> map.putInt(name, value)
+                    is Double -> map.putDouble(name, value)
+                    is Float -> map.putDouble(name, value.toDouble())
+                    is Boolean -> map.putBoolean(name, value)
+                    is Long -> map.putDouble(name, value.toDouble()) // WritableMapにLongはない
+                    null -> map.putNull(name)
+                    else -> map.putString(name, value.toString()) // fallback
+                }
+            }
+
+            return map
+        }
+
 
         private fun sourceToBitmap(source: String, context: Context): Bitmap {
             return uriToBitmap(source, context) ?: resourceFileToBitmap(source, context)

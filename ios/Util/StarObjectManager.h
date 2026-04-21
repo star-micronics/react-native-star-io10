@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-@import StarIO10;
+@import StarIO10ReactNative;
 
 NS_ASSUME_NONNULL_BEGIN
 

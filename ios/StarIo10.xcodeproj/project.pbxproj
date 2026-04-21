@@ -10,8 +10,8 @@
 		2C5DDBBF2DE7EB920024B773 /* StarPrinterSettingFirmwareWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5DDBBE2DE7EB920024B773 /* StarPrinterSettingFirmwareWrapper.m */; };
 		2C5DDBC32DE7EBCA0024B773 /* StarPrinterSettingWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5DDBC22DE7EBCA0024B773 /* StarPrinterSettingWrapper.m */; };
 		2C9FC5AA2DFFFEB40097A034 /* StarIO10DiagInfoUploadWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9FC5A82DFFFEB40097A034 /* StarIO10DiagInfoUploadWrapper.m */; };
+		61961E142EC578A600C58761 /* StarIO10ReactNative.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61961E132EC578A600C58761 /* StarIO10ReactNative.xcframework */; };
 		8893EDD925D3C138006114B2 /* StarIO10LoggerWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8893EDD725D3C138006114B2 /* StarIO10LoggerWrapper.m */; };
-		88EC0F2E2589CD1000BA09C4 /* StarIO10.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88AB8712251B23BF00245D2A /* StarIO10.xcframework */; };
 		B3E7B58A1CC2AC0600A0062D /* StarIo10.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* StarIo10.m */; };
 		DD24A8662C5B9F6E009A041A /* StarIO10ErrorDetailWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD24A8652C5B9F6E009A041A /* StarIO10ErrorDetailWrapper.m */; };
 		DD80853028DABCB3005B3D27 /* StarSpoolJobStatusWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DD80852F28DABCAA005B3D27 /* StarSpoolJobStatusWrapper.m */; };
@@ -49,9 +49,9 @@
 		2C5DDBC22DE7EBCA0024B773 /* StarPrinterSettingWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarPrinterSettingWrapper.m; sourceTree = "<group>"; };
 		2C9FC5A72DFFFEB40097A034 /* StarIO10DiagInfoUploadWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StarIO10DiagInfoUploadWrapper.h; sourceTree = "<group>"; };
 		2C9FC5A82DFFFEB40097A034 /* StarIO10DiagInfoUploadWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StarIO10DiagInfoUploadWrapper.m; sourceTree = "<group>"; };
+		61961E132EC578A600C58761 /* StarIO10ReactNative.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = StarIO10ReactNative.xcframework; path = libs/StarIO10ReactNative.xcframework; sourceTree = "<group>"; };
 		8893EDD725D3C138006114B2 /* StarIO10LoggerWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarIO10LoggerWrapper.m; sourceTree = "<group>"; };
 		8893EDD825D3C138006114B2 /* StarIO10LoggerWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarIO10LoggerWrapper.h; sourceTree = "<group>"; };
-		88AB8712251B23BF00245D2A /* StarIO10.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = StarIO10.xcframework; path = libs/StarIO10.xcframework; sourceTree = "<group>"; };
 		88AB8714251B23F700245D2A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		88AB8716251B243600245D2A /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/ImageIO.framework; sourceTree = DEVELOPER_DIR; };
 		88AB8718251B244000245D2A /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/CoreImage.framework; sourceTree = DEVELOPER_DIR; };
@@ -93,7 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88EC0F2E2589CD1000BA09C4 /* StarIO10.xcframework in Frameworks */,
+				61961E142EC578A600C58761 /* StarIO10ReactNative.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,11 +138,11 @@
 		88103EB3250F5E0100A825B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				61961E132EC578A600C58761 /* StarIO10ReactNative.xcframework */,
 				88AB871A251B246400245D2A /* UIKit.framework */,
 				88AB8718251B244000245D2A /* CoreImage.framework */,
 				88AB8716251B243600245D2A /* ImageIO.framework */,
 				88AB8714251B23F700245D2A /* QuartzCore.framework */,
-				88AB8712251B23BF00245D2A /* StarIO10.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -399,23 +399,24 @@
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
 				"EXCLUDED_ARCHS[sdk=iphoneos*]" = x86_64;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64_x86_64-simulator/*.*";
-				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64/*.*";
+				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphoneos*]" = "$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10ReactNative.xcframework/ios-arm64_x86_64-simulator/*.*";
+				"EXCLUDED_SOURCE_FILE_NAMES[sdk=iphonesimulator*]" = "$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10ReactNative.xcframework/ios-arm64/*.*";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/libs/**",
-					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/**",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphoneos*]" = (
 					"$(SRCROOT)/libs/**",
 					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs",
-					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10ReactNative.xcframework/ios-arm64",
 				);
 				"FRAMEWORK_SEARCH_PATHS[sdk=iphonesimulator*]" = (
 					"$(SRCROOT)/libs/**",
 					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs",
-					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64_x86_64-simulator",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10ReactNative.xcframework/ios-arm64_x86_64-simulator",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -425,6 +426,7 @@
 					"$(SRCROOT)/../node_modules/react-native/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = StarIo10;
 				SKIP_INSTALL = YES;
@@ -434,12 +436,13 @@
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
 				EXCLUDED_ARCHS = x86_64;
-				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64_x86_64-simulator/*.*";
+				EXCLUDED_SOURCE_FILE_NAMES = "$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10ReactNative.xcframework/ios-arm64_x86_64-simulator/*.*";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/libs/**",
 					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs",
-					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10.xcframework/ios-arm64",
+					"$(SRCROOT)/../../node_modules/react-native-star-io10/ios/libs/StarIO10ReactNative.xcframework/ios-arm64",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -449,6 +452,7 @@
 					"$(SRCROOT)/../node_modules/react-native/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				MARKETING_VERSION = 1.12.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = StarIo10;
 				SKIP_INSTALL = YES;

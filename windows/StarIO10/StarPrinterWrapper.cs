@@ -1,5 +1,7 @@
 ﻿using Microsoft.ReactNative.Managed;
 using StarMicronics.StarIO10;
+using StarMicronics.StarIO10.Delegate;
+using StarMicronics.StarIO10.Spooler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Linq;
 namespace StarMicronics.ReactNative.StarIO10
 {
     [ReactModule]
-    class StarPrinterWrapper
+    partial class StarPrinterWrapper
     {
         [ReactEvent]
         public Action<IReadOnlyDictionary<string, JSValue>> PrinterCommunicationError { get; set; }
@@ -42,6 +44,9 @@ namespace StarMicronics.ReactNative.StarIO10
         public Action<IReadOnlyDictionary<string, JSValue>> DrawerOpenCloseSignalSwitched { get; set; }
 
         [ReactEvent]
+        public Action<IReadOnlyDictionary<string, JSValue>> DrawerStatusChanged { get; set; }
+
+        [ReactEvent]
         public Action<IReadOnlyDictionary<string, JSValue>> InputDeviceCommunicationError { get; set; }
 
         [ReactEvent]
@@ -68,50 +73,6 @@ namespace StarMicronics.ReactNative.StarIO10
             StarPrinter nativeObject = new StarPrinter(new StarConnectionSettings(InterfaceType.Unknown));
 
             StarIO10SharedObjectManager.Instance.SetObject(nativeObject, out string objectIdentifier);
-
-            nativeObject.PrinterDelegate.CommunicationError += (sender, e) =>
-            {
-                StarIO10ErrorWrapper.SetObject(e.Exception, out string exceptionIdentifier);
-
-                var parameter = new Dictionary<string, JSValue>();
-                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
-                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
-
-                PrinterCommunicationError(parameter);
-            };
-
-            nativeObject.DrawerDelegate.CommunicationError += (sender, e) =>
-            {
-                StarIO10ErrorWrapper.SetObject(e.Exception, out string exceptionIdentifier);
-
-                var parameter = new Dictionary<string, JSValue>();
-                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
-                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
-
-                DrawerCommunicationError(parameter);
-            };
-
-            nativeObject.InputDeviceDelegate.CommunicationError += (sender, e) =>
-            {
-                StarIO10ErrorWrapper.SetObject(e.Exception, out string exceptionIdentifier);
-
-                var parameter = new Dictionary<string, JSValue>();
-                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
-                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
-
-                InputDeviceCommunicationError(parameter);
-            };
-
-            nativeObject.DisplayDelegate.CommunicationError += (sender, e) =>
-            {
-                StarIO10ErrorWrapper.SetObject(e.Exception, out string exceptionIdentifier);
-
-                var parameter = new Dictionary<string, JSValue>();
-                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
-                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
-
-                DisplayCommunicationError(parameter);
-            };
 
             promise.Resolve(objectIdentifier);
         }
@@ -145,56 +106,110 @@ namespace StarMicronics.ReactNative.StarIO10
                 return;
             }
 
-            nativeObject.PrinterDelegate.Ready += (sender, e) =>
+            var printerDelegate = new PrinterDelegateImpl();
+            nativeObject.PrinterDelegate = printerDelegate;
+
+            printerDelegate.CommunicationErrorEvent += (sender, exception) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
+                StarIO10ErrorWrapper.SetObject(exception, out string exceptionIdentifier);
+
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
+
+                PrinterCommunicationError(parameter);
+            };
+
+            printerDelegate.ReadyEvent += (sender, e) =>
+            {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
                 PrinterReady(parameter);
             };
 
-            nativeObject.PrinterDelegate.Error += (sender, e) =>
+            printerDelegate.ErrorEvent += (sender, e) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
                 PrinterError(parameter);
             };
 
-            nativeObject.PrinterDelegate.PaperReady += (sender, e) =>
+            printerDelegate.PaperReadyEvent += (sender, e) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
                 PrinterPaperReady(parameter);
             };
 
-            nativeObject.PrinterDelegate.PaperNearEmpty += (sender, e) =>
+            printerDelegate.PaperNearEmptyEvent += (sender, e) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
                 PrinterPaperNearEmpty(parameter);
             };
 
-            nativeObject.PrinterDelegate.PaperEmpty += (sender, e) =>
+            printerDelegate.PaperEmptyEvent += (sender, e) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
                 PrinterPaperEmpty(parameter);
             };
 
-            nativeObject.PrinterDelegate.CoverOpened += (sender, e) =>
+            printerDelegate.CoverOpenedEvent += (sender, e) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
                 PrinterCoverOpened(parameter);
             };
 
-            nativeObject.PrinterDelegate.CoverClosed += (sender, e) =>
+            printerDelegate.CoverClosedEvent += (sender, e) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
@@ -213,13 +228,51 @@ namespace StarMicronics.ReactNative.StarIO10
                 return;
             }
 
-            nativeObject.DrawerDelegate.OpenCloseSignalSwitched += (sender, e) =>
+            var drawerDelegate = new DrawerDelegateImpl();
+            nativeObject.DrawerDelegate = drawerDelegate;
+
+            drawerDelegate.CommunicationErrorEvent += (sender, exception) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
+                StarIO10ErrorWrapper.SetObject(exception, out string exceptionIdentifier);
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
-                parameter.Add(EventParameter.KeyDrawerOpenCloseSignalState, e.OpenCloseSignal);
+                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
+
+                DrawerCommunicationError(parameter);
+            };
+
+            drawerDelegate.OpenCloseSignalSwitchedEvent += (sender, openCloseSignal) =>
+            {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyDrawerOpenCloseSignalState, openCloseSignal);
 
                 DrawerOpenCloseSignalSwitched(parameter);
+            };
+
+            drawerDelegate.OpenStatusChangedEvent += (sender, statusDetail) =>
+            {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyDrawerStatus, StarIO10ValueConverter.ToJSValue(statusDetail));
+
+                DrawerStatusChanged(parameter);
             };
 
             promise.Resolve();
@@ -234,27 +287,61 @@ namespace StarMicronics.ReactNative.StarIO10
                 return;
             }
 
-            nativeObject.InputDeviceDelegate.Connected += (sender, e) =>
+            var inputDeviceDelegate = new InputDeviceDelegateImpl();
+            nativeObject.InputDeviceDelegate = inputDeviceDelegate;
+
+            inputDeviceDelegate.CommunicationErrorEvent += (sender, exception) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
+                StarIO10ErrorWrapper.SetObject(exception, out string exceptionIdentifier);
+
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
+
+                InputDeviceCommunicationError(parameter);
+            };
+
+            inputDeviceDelegate.ConnectedEvent += (sender, e) =>
+            {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
                 InputDeviceConnected(parameter);
             };
 
-            nativeObject.InputDeviceDelegate.Disconnected += (sender, e) =>
+            inputDeviceDelegate.DisconnectedEvent += (sender, e) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
                 InputDeviceDisconnected(parameter);
             };
 
-            nativeObject.InputDeviceDelegate.DataReceived += (sender, e) =>
+            inputDeviceDelegate.DataReceivedEvent += (sender, data) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
-                parameter.Add(EventParameter.KeyInputDeviceData, StarIO10ValueConverter.ToJSValue(e.Data.ToArray()));
+                parameter.Add(EventParameter.KeyInputDeviceData, StarIO10ValueConverter.ToJSValue(data.ToArray()));
 
                 InputDeviceDataReceived(parameter);
             };
@@ -271,16 +358,45 @@ namespace StarMicronics.ReactNative.StarIO10
                 return;
             }
 
-            nativeObject.DisplayDelegate.Connected += (sender, e) =>
+            var displayDelegate = new DisplayDelegateImpl();
+            nativeObject.DisplayDelegate = displayDelegate;
+
+            displayDelegate.CommunicationErrorEvent += (sender, exception) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
+                StarIO10ErrorWrapper.SetObject(exception, out string exceptionIdentifier);
+
+                var parameter = new Dictionary<string, JSValue>();
+                parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
+                parameter.Add(EventParameter.KeyErrorIdentifier, exceptionIdentifier);
+
+                DisplayCommunicationError(parameter);
+            };
+
+            displayDelegate.ConnectedEvent += (sender, e) =>
+            {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
                 DisplayConnected(parameter);
             };
 
-            nativeObject.DisplayDelegate.Disconnected += (sender, e) =>
+            displayDelegate.DisconnectedEvent += (sender, e) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string objectIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, objectIdentifier);
 
@@ -353,6 +469,49 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             promise.Resolve(StarIO10ValueConverter.ToJSDictionary(nativeObject.Information.Reserved));
+        }
+
+        [ReactMethod("write")]
+        public async void Write(string objectIdentifier, byte[] data, int timeout, IReactPromise<JSValue.Void> promise)
+        {
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            try
+            {
+                await nativeObject.WriteAsync(data, timeout);
+                promise.Resolve();
+            }
+            catch (StarIO10Exception e)
+            {
+                StarIO10ErrorWrapper.SetObject(e, out string exceptionIdentifier);
+                promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
+            }
+        }
+
+        [ReactMethod("read")]
+        public async void Read(string objectIdentifier, int size, IReactPromise<JSValue> promise)
+        {
+            if (!StarIO10SharedObjectManager.Instance.GetObject(objectIdentifier, out StarPrinter nativeObject))
+            {
+                promise.Reject(new ReactError());
+                return;
+            }
+
+            try
+            {
+                byte[] readData = await nativeObject.ReadAsync(size);
+
+                promise.Resolve(StarIO10ValueConverter.ToJSValue(readData));
+            }
+            catch (StarIO10Exception e)
+            {
+                StarIO10ErrorWrapper.SetObject(e, out string exceptionIdentifier);
+                promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
+            }
         }
 
         [ReactMethod("print")]
@@ -612,6 +771,131 @@ namespace StarMicronics.ReactNative.StarIO10
 
             StarIO10ErrorDetailWrapper.SetObject(errorDetail, out string errorDetailIdentifier);
             promise.Resolve(errorDetailIdentifier);
+        }
+    }
+
+    internal class PrinterDelegateImpl : PrinterDelegate
+    {
+        public event EventHandler<StarIO10Exception> CommunicationErrorEvent;
+        public event EventHandler ReadyEvent;
+        public event EventHandler ErrorEvent;
+        public event EventHandler PaperReadyEvent;
+        public event EventHandler PaperNearEmptyEvent;
+        public event EventHandler PaperEmptyEvent;
+        public event EventHandler CoverOpenedEvent;
+        public event EventHandler CoverClosedEvent;
+
+
+        override public void OnCommunicationError(object sender, StarIO10Exception exception)
+        {
+            CommunicationErrorEvent?.Invoke(sender, exception);
+        }
+
+        override public void OnReady(object sender)
+        {
+            ReadyEvent?.Invoke(sender, EventArgs.Empty);
+        }
+
+        override public void OnError(object sender)
+        {
+            ErrorEvent?.Invoke(sender, EventArgs.Empty);
+        }
+
+        override public void OnPaperReady(object sender)
+        {
+            PaperReadyEvent?.Invoke(sender, EventArgs.Empty);
+        }
+
+        override public void OnPaperNearEmpty(object sender)
+        {
+            PaperNearEmptyEvent?.Invoke(sender, EventArgs.Empty);
+        }
+
+        override public void OnPaperEmpty(object sender)
+        {
+            PaperEmptyEvent?.Invoke(sender, EventArgs.Empty);
+        }
+
+        override public void OnCoverOpened(object sender)
+        {
+            CoverOpenedEvent?.Invoke(sender, EventArgs.Empty);
+        }
+
+        override public void OnCoverClosed(object sender)
+        {
+            CoverClosedEvent?.Invoke(sender, EventArgs.Empty);
+        }
+    }
+
+    internal class DrawerDelegateImpl : DrawerDelegate
+    {
+        public event EventHandler<StarIO10Exception> CommunicationErrorEvent;
+        public event EventHandler<bool> OpenCloseSignalSwitchedEvent;
+        public event EventHandler<IStarPrinterStatusDetail> OpenStatusChangedEvent;
+
+        override public void OnCommunicationError(object sender, StarIO10Exception exception)
+        {
+            CommunicationErrorEvent?.Invoke(sender, exception);
+        }
+
+        override public void OnOpenCloseSignalSwitched(object sender, bool openCloseSignal)
+        {
+            OpenCloseSignalSwitchedEvent?.Invoke(sender, openCloseSignal);
+        }
+
+        override public void OnStatusChanged(object sender, IStarPrinterStatusDetail statusDetail)
+        {
+            OpenStatusChangedEvent?.Invoke(sender, statusDetail);
+        }
+    }
+
+    internal class InputDeviceDelegateImpl : InputDeviceDelegate
+    {
+        public event EventHandler<StarIO10Exception> CommunicationErrorEvent;
+        public event EventHandler ConnectedEvent;
+        public event EventHandler DisconnectedEvent;
+        public event EventHandler<IReadOnlyList<byte>> DataReceivedEvent;
+
+        override public void OnCommunicationError(object sender, StarIO10Exception exception)
+        {
+            CommunicationErrorEvent?.Invoke(sender, exception);
+        }
+
+        override public void OnConnected(object sender)
+        {
+            ConnectedEvent?.Invoke(sender, EventArgs.Empty);
+        }
+
+        override public void OnDisconnected(object sender)
+        {
+            DisconnectedEvent?.Invoke(sender, EventArgs.Empty);
+        }
+
+        override public void OnDataReceived(object sender, IReadOnlyList<byte> data)
+        {
+            DataReceivedEvent?.Invoke(sender, data);
+        }
+    }
+
+    internal class DisplayDelegateImpl : DisplayDelegate
+    {
+        public event EventHandler<StarIO10Exception> CommunicationErrorEvent;
+        public event EventHandler ConnectedEvent;
+        public event EventHandler DisconnectedEvent;
+
+        override public void OnCommunicationError(object sender, StarIO10Exception exception)
+        {
+            CommunicationErrorEvent?.Invoke(sender, exception);
+        }
+
+        override public void OnConnected(object sender)
+        {
+            ConnectedEvent?.Invoke(sender, EventArgs.Empty);
+        }
+
+        override public void OnDisconnected(object sender)
+        {
+            DisconnectedEvent?.Invoke(sender, EventArgs.Empty);
         }
     }
 }

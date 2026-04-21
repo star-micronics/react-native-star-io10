@@ -43,6 +43,22 @@ namespace StarMicronics.ReactNative.StarIO10
             return result;
         }
 
+        public bool GetIdentifier(T obj, out string objectIdentifier)
+        {
+            objectIdentifier = default;
+
+            foreach (var kvp in ObjectDictionary)
+            {
+                if (Equals(kvp.Value, obj))
+                {
+                    objectIdentifier = kvp.Key;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static void DisposeObject(string objectIdentifier)
         {
             ObjectDictionary.Remove(objectIdentifier, out _);

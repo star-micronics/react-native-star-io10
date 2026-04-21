@@ -1,0 +1,28 @@
+framework module StarIO10ReactNative{
+    umbrella header "StarIO10ReactNative.h"
+
+    export *
+    
+    module * { export * }
+
+    explicit module StarLogger {
+        header "StarLoggerWrapper.h"
+        
+        link "StarLogger"
+        
+        export *
+    }
+    
+    explicit module StarXpandCommandParserWrapper {
+        header "StarXpandCommandParserWrapper.h"
+        
+        link "StarXpandCommandParser"
+        
+        export *
+    }
+}
+
+module StarIO10ReactNative.Swift {
+  header "StarIO10ReactNative-Swift.h"
+  requires objc
+}

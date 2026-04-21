@@ -3,7 +3,7 @@
 #import "StarObjectManager.h"
 #import "StarIO10ValueConverter.h"
 #import "EventParameter.h"
-@import StarIO10;
+@import StarIO10ReactNative;
 
 
 @interface StarPrinterSettingFirmwareWrapper()

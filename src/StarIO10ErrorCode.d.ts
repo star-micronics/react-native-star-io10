@@ -5,6 +5,7 @@ export declare enum StarIO10ErrorCode {
     PrintingTimeout = 1002,
     BluetoothUnavailable = 2000,
     NetworkUnavailable = 2001,
+    BluetoothLeDeviceIsNotPaired = 2003,
     SpoolerIsDisabled = 3000,
     SpoolerBufferIsNotEnough = 3001,
     SpoolerJobIdNotExists = 3002,

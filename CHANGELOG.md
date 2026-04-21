@@ -2,6 +2,33 @@
 
 # Change Log
 
+## 1.12.0 (2026/03/31)
+
+#### Added
+
+* Added MCD10UEWB (mC-Connect Drawer) support.
+* Added support for Bluetooth Low Energy (Bluetooth LE) interface communication for mC-Label2.
+* Added binary data send/receive API (`write()` / `read()`) to StarPrinter class.
+* Added support for the following APIs for external device 2 port:
+  * Detail status retrieval API (`StarPrinterStatusDetail`)
+  * Cash drawer channel (`stario10.starxpandcommand.drawer.Channel`)
+  * Buzzer channel (`stario10.starxpandcommand.buzzer.Channel`)
+* Added support for detailed information retrieval such as connection status to the cash drawer status event retrieval API (`DrawerDelegate`).
+* Added `uniqueId` property to LAN communication information retrieval API (`StarPrinterInformationLan`).
+* Added `deviceName` property to Bluetooth Low Energy communication information retrieval API (`StarPrinterInformationBluetoothLE`).
+
+#### Changed
+
+* Updated React Native version to 0.84.1.
+* Updated React Native for Windows version to 0.81.4.
+* Android: Changed minimum supported OS version from 10 to 11.
+* Windows: Changed minimum supported OS version from Windows 10 to 11.
+  
+#### Fixed
+
+* Fixed an issue where LAN interface communication occasionally failed when interface auto-switch feature was enabled (default).
+* Fixed an issue where communication rarely failed when reconnecting immediately after disconnection with LAN interface communication when interface auto-switching feature was disabled.
+  
 ## 1.10.3 (2025/12/24)
 
 * Improved the peerDependencies version specification in package.json. [#149](https://github.com/star-micronics/react-native-star-io10/issues/149)
@@ -10,6 +37,7 @@
 
 * Android : Fixed an issue where communication with USB printers(Android Open Accessory) occasionally failes. [#49](https://github.com/star-micronics/StarXpand-SDK-Android/issues/49)
 * Android : Fixed an issue where discovery for USB printers crashes when USB permission is not granted. [#52](https://github.com/star-micronics/StarXpand-SDK-Android/issues/52)
+* iOS : Fixed a build error when "useFrameworks" is specified. [#147](https://github.com/star-micronics/react-native-star-io10/issues/147)
 
 ## 1.10.1 (2025/10/31)
 

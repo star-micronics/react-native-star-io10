@@ -5,7 +5,7 @@
 #import "EventParameter.h"
 #import <React/RCTLog.h>
 
-@import StarIO10;
+@import StarIO10ReactNative;
 
 @interface StarDeviceDiscoveryManagerWrapper()
 
@@ -146,6 +146,9 @@ RCT_REMAP_METHOD(stopDiscovery,
         if([printer.information.detail.lan.ipAddress length] >0){
             [params setObject:printer.information.detail.lan.ipAddress forKey:kKeyLanIPAddress];
         }
+        if([printer.information.detail.lan.uniqueId length] >0){
+            [params setObject:printer.information.detail.lan.uniqueId forKey:kKeyLanUniqueId];
+        }
         if([printer.information.detail.bluetooth.portName length] >0){
             [params setObject:printer.information.detail.bluetooth.portName forKey:kKeyBluetoothPortName];
         }
@@ -157,6 +160,9 @@ RCT_REMAP_METHOD(stopDiscovery,
         }
         if([printer.information.detail.bluetoothLE.address length] >0){
             [params setObject:printer.information.detail.bluetoothLE.address forKey:kKeyBluetoothLEAddress];
+        }
+        if([printer.information.detail.bluetoothLE.deviceName length] >0){
+            [params setObject:printer.information.detail.bluetoothLE.deviceName forKey:kKeyBluetoothLEDeviceName];
         }
         if([printer.information.detail.usb.portName length] >0){
             [params setObject:printer.information.detail.usb.portName forKey:kKeyUsbPortName];

@@ -34,6 +34,8 @@ export declare class StarPrinter extends NativeObject {
     get displayDelegate(): DisplayDelegate;
     constructor(connectionSettings: StarConnectionSettings);
     open(): Promise<void>;
+    write(data: Array<number>, timeout?: number): Promise<void>;
+    read(size: number): Promise<Array<number>>;
     print(command: string): Promise<void>;
     print(command: string, starSpoolJobSettings: StarSpoolJobSettings): Promise<number>;
     printRawData(data: Array<number>): Promise<void>;

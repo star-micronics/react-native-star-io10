@@ -35,12 +35,20 @@ export default function App() {
         // If you are using Android 12 and targetSdkVersion is 31 or later,
         // you have to request Bluetooth permission (Nearby devices permission) to use the Bluetooth printer.
         // https://developer.android.com/about/versions/12/features/bluetooth-permissions
-        if (Platform.OS == 'android' && 31 <= Platform.Version) {
+        if (Platform.OS == 'android') {
             if (interfaceType == InterfaceType.Bluetooth || settings.autoSwitchInterface == true) {
                 var hasPermission = await _confirmBluetoothPermission();
 
                 if (!hasPermission) {
                     console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the Bluetooth printer`);
+                    return;
+                }
+            }
+            if (interfaceType == InterfaceType.BluetoothLE) {
+                var hasPermission = await _confirmBluetoothLEPermission();
+
+                if (!hasPermission) {
+                    console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the BluetoothLE printer`);
                     return;
                 }
             }
@@ -106,12 +114,20 @@ export default function App() {
         // If you are using Android 12 and targetSdkVersion is 31 or later,
         // you have to request Bluetooth permission (Nearby devices permission) to use the Bluetooth printer.
         // https://developer.android.com/about/versions/12/features/bluetooth-permissions
-        if (Platform.OS == 'android' && 31 <= Platform.Version) {
+        if (Platform.OS == 'android') {
             if (interfaceType == InterfaceType.Bluetooth || settings.autoSwitchInterface == true) {
                 var hasPermission = await _confirmBluetoothPermission();
 
                 if (!hasPermission) {
                     console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the Bluetooth printer`);
+                    return;
+                }
+            }
+            if (interfaceType == InterfaceType.BluetoothLE) {
+                var hasPermission = await _confirmBluetoothLEPermission();
+
+                if (!hasPermission) {
+                    console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the BluetoothLE printer`);
                     return;
                 }
             }
@@ -199,12 +215,16 @@ export default function App() {
         var hasPermission = false;
 
         try {
-            hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
+            if (Number(Platform.Version) >= 31) {
+                hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
 
-            if (!hasPermission) {
-                const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
+                if (!hasPermission) {
+                    const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
 
-                hasPermission = status == PermissionsAndroid.RESULTS.GRANTED;
+                    hasPermission = status == PermissionsAndroid.RESULTS.GRANTED;
+                }
+            } else {
+                hasPermission = true;
             }
         }
         catch (err) {
@@ -213,6 +233,42 @@ export default function App() {
 
         return hasPermission;
     }
+
+    async function _confirmBluetoothLEPermission(): Promise<boolean> {
+        var hasPermission = false;
+
+        try {
+            if (Number(Platform.Version) >= 31) {
+                const permissions = [
+                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
+                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
+                ];
+
+                const results = await PermissionsAndroid.requestMultiple(permissions);
+
+                hasPermission = permissions.every(
+                    (perm) => results[perm] === PermissionsAndroid.RESULTS.GRANTED
+                );
+            } else {
+                const permissions = [
+                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                ];
+
+                const results = await PermissionsAndroid.requestMultiple(permissions);
+
+                hasPermission = permissions.every(
+                    (perm) => results[perm] === PermissionsAndroid.RESULTS.GRANTED
+                );
+            }
+
+        }
+        catch (err) {
+            console.warn(err);
+        }
+
+        return hasPermission;
+    }
+
     const styles = StyleSheet.create({
         activeButton: {
             margin: 5,

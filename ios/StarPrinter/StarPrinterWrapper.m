@@ -205,6 +205,56 @@ RCT_REMAP_METHOD(open,
     }];
 }
 
+RCT_REMAP_METHOD(write,
+                 writeWithObjectIdentifier:(nonnull NSString *)objID
+                 dataArray:(nonnull NSArray<NSNumber *> *)dataArray
+                 timeout:(nonnull NSNumber *)timeout
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    NSData *data = [StarIO10ValueConverter toData:dataArray];
+        
+    [printer writeWithData:data timeout:timeout.integerValue completion:^(NSError *error) {
+        if (error) {
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+        } else {
+            resolve(nil);
+        }
+    }];
+}
+
+RCT_REMAP_METHOD(read,
+                 readWithObjectIdentifier:(nonnull NSString *)objID
+                 size:(nonnull NSNumber *)size
+                 resolver:(RCTPromiseResolveBlock)resolve
+                 rejecter:(RCTPromiseRejectBlock)reject)
+{
+    STARIO10StarPrinter *printer = [_objManager getObject:objID];
+    
+    if (printer == nil) {
+        reject(@"Error", @"Fail to get object.", nil);
+        return;
+    }
+    
+    [printer readWithSize:size.integerValue completion:^(NSData * data, NSError *error) {
+        if (error) {
+            NSString *errorID = [self->_objManager add:error];
+            reject(errorID, error.localizedDescription, error);
+        } else {
+            NSArray<NSNumber *> *numberArray = [StarIO10ValueConverter toNumberArray:data];
+            resolve(numberArray);
+        }
+    }];
+}
+
 RCT_REMAP_METHOD(printRawData,
                  printRawDataWithObjectIdentifier:(nonnull NSString *)objID
                  dataArray:(nonnull NSArray<NSNumber *> *)dataArray
@@ -500,6 +550,7 @@ RCT_REMAP_METHOD(getErrorDetail,
              kNamePrinterDelegateCommunicationError,
              kNameDrawerDelegateOpenCloseSignalSwitched,
              kNameDrawerDelegateCommunicationError,
+             kNameDrawerDelegateStatusChanged,
              kNameInputDeviceDelegateConnected,
              kNameInputDeviceDelegateDisconnected,
              kNameInputDeviceDelegateDataReceived,
@@ -599,6 +650,16 @@ RCT_REMAP_METHOD(getErrorDetail,
     
     if (objID) {
         [self sendEventWithName:kNameDrawerDelegateOpenCloseSignalSwitched body:@{kKeyIdentifier: objID, kKeyDraweOpenCloseSognalState: @(openCloseSignal)}];
+    }
+}
+
+- (void)drawerWithPrinter:(STARIO10StarPrinter * _Nonnull)printer didSwitchStatusDetails:(id <STARIO10StarPrinterStatusDetail> _Nonnull)statusDetails
+{
+    NSString *objID = [_objManager getExsitingIdentifier:printer];
+    NSDictionary<NSString *, id> *status = [StarIO10ValueConverter toStarPrinterStatusDetailsDictionary:statusDetails];
+    
+    if (objID) {
+        [self sendEventWithName:kNameDrawerDelegateStatusChanged body:@{kKeyIdentifier: objID, kKeyDraweStatus: status}];
     }
 }
 

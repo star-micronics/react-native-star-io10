@@ -1,6 +1,33 @@
 - [English](../CHANGELOG.md)
 
-# 変更点
+# 変更履歴
+
+## 1.12.0 (2026/03/31)
+
+#### 追加
+
+* MCD10UEWB(mC-Connect Drawer)、およびCD5に対応
+* mC-Label2のBluetooth Low Energy (BluetoothLE) インターフェイス通信に対応
+* StarPrinterクラスにバイナリデータ送受信API (`write()` / `read()`) を追加
+* 以下APIに2個目の外部機器駆動用ポート対応を追加
+  * 詳細ステータス取得API (`StarPrinterStatusDetail`)
+  * キャッシュドロアーチャネル (`stario10.starxpandcommand.drawer.Channel`)
+  * ブザーチャネル (`stario10.starxpandcommand.buzzer.Channel`)
+* キャッシュドロアーのステータスイベント取得API (`DrawerDelegate`) に、接続状態などの詳細情報取得機能を追加
+* LAN通信用情報取得API (`StarPrinterInformationLan`) に`uniqueId`プロパティを追加
+* Bluetooth Low Energy通信用情報取得API (`StarPrinterInformationBluetoothLE`)に`deviceName`プロパティを追加
+
+#### 変更
+
+* React Native のバージョンを0.84.1に更新
+* React Native for Windows のバージョンを0.81.4に更新
+* Android: 最低サポートOSバージョンを10から11に変更
+* Windows: 最低サポートOSバージョンをWindows 10から11に変更
+
+#### 修正
+
+* インターフェイス自動切り替え機能 (デフォルトで有効)が有効の場合、まれにLANインターフェイス通信が失敗する不具合を修正
+* インターフェイス自動切り替え機能が無効の場合、LANインターフェイス通信で切断直後に再接続を行うと、まれに通信が失敗する不具合を修正 (iOS)
 
 ## 1.10.3 (2025/12/24)
 
@@ -10,6 +37,7 @@
 
 * Android : USBプリンター(Android Open Accessory)との通信がまれに失敗することがある問題を修正 [#49](https://github.com/star-micronics/StarXpand-SDK-Android/issues/49)
 * Android : USBプリンターを検索する際、USB権限がないとクラッシュする問題を修正 [#52](https://github.com/star-micronics/StarXpand-SDK-Android/issues/52)
+* iOS : "useFrameworks"指定時のビルドエラーを修正 [#147](https://github.com/star-micronics/react-native-star-io10/issues/147)
 
 ## 1.10.1 (2025/10/31)
 
@@ -32,7 +60,7 @@
   * Android : 権限がない状態でBluetoothプリンターの検索を行うとクラッシュする
   * Android : 位置情報権限のコンフリクト [#140](https://github.com/star-micronics/react-native-star-io10/issues/140)
   * StarXpandCommandBuilder APIのパラメータの指定によっては、StarPrinter.print()メソッドでクラッシュする
-  * iOS : Bluetooth, USBインターフェース通信に関する不具合を修正
+  * iOS : Bluetooth, USBインターフェイス通信に関する不具合を修正
 
 ## 1.9.0 (2025/05/19)
 

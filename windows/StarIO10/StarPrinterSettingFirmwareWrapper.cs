@@ -1,5 +1,6 @@
 ﻿using Microsoft.ReactNative.Managed;
 using StarMicronics.StarIO10;
+using StarMicronics.StarIO10.Setting.Firmware;
 using System;
 using System.Collections.Generic;
 
@@ -69,26 +70,44 @@ namespace StarMicronics.ReactNative.StarIO10
                 return;
             }
 
-            nativeFirmware.UpdateDelegate.Progress += (sender, e) =>
+            var updateDelegate = new FirmwareUpdateDelegateImpl();
+            nativeFirmware.UpdateDelegate = updateDelegate;
+
+            updateDelegate.FirmwareUpdateProgressEvent += (sender, firmwareUpdateProgress) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string firmwareIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, firmwareIdentifier);
-                parameter.Add(EventParameter.KeyFirmwareUpdateStep, e.FirmwareUpdateProgress.ToString());
+                parameter.Add(EventParameter.KeyFirmwareUpdateStep, firmwareUpdateProgress.ToString());
 
                 FirmwareUpdateProgress(parameter);
             };
 
-            nativeFirmware.UpdateDelegate.TransmitCompleted += (sender, e) =>
+            updateDelegate.FirmwareUpdateTransmitCompletedEvent += (sender, e) =>
             {
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string firmwareIdentifier))
+                {
+                    return;
+                }
+
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, firmwareIdentifier);
 
                 FirmwareUpdateTransmitComplete(parameter);
             };
 
-            nativeFirmware.UpdateDelegate.Error += (sender, e) =>
+            updateDelegate.FirmwareUpdateErrorEvent += (sender, exception) =>
             {
-                StarIO10ErrorWrapper.SetObject(e.Exception, out string exceptionIdentifier);
+                if (!StarIO10SharedObjectManager.Instance.GetIdentifier(sender, out string firmwareIdentifier))
+                {
+                    return;
+                }
+
+                StarIO10ErrorWrapper.SetObject(exception, out string exceptionIdentifier);
 
                 var parameter = new Dictionary<string, JSValue>();
                 parameter.Add(EventParameter.KeyIdentifier, firmwareIdentifier);
@@ -203,6 +222,28 @@ namespace StarMicronics.ReactNative.StarIO10
                 StarIO10ErrorWrapper.SetObject(e, out string exceptionIdentifier);
                 promise.Reject(new ReactError() { Code = exceptionIdentifier, Exception = e });
             }
+        }
+    }
+
+    internal class FirmwareUpdateDelegateImpl : FirmwareUpdateDelegate
+    {
+        public event EventHandler<FirmwareUpdateStep> FirmwareUpdateProgressEvent;
+        public event EventHandler FirmwareUpdateTransmitCompletedEvent;
+        public event EventHandler<StarIO10Exception> FirmwareUpdateErrorEvent;
+
+        public override void OnFirmwareUpdateProgress(object sender, FirmwareUpdateStep firmwareUpdateProgress)
+        {
+            FirmwareUpdateProgressEvent?.Invoke(sender, firmwareUpdateProgress);
+        }
+
+        public override void OnFirmwareUpdateTransmitCompleted(object sender)
+        {
+            FirmwareUpdateTransmitCompletedEvent?.Invoke(sender, EventArgs.Empty);
+        }
+
+        public override void OnFirmwareUpdateError(object sender, StarIO10Exception exception)
+        {
+            FirmwareUpdateErrorEvent?.Invoke(sender, exception);
         }
     }
 }

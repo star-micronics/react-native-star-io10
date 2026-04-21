@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-@import StarIO10;
+@import StarIO10ReactNative;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)toStringFromInterfaceType:(STARIO10InterfaceType)value;
 
 + (NSDictionary<NSString *, id> *)toStarPrinterStatusReservedDictionary:(NSDictionary<NSString *, id> *)reserved;
++ (NSDictionary<NSString *, id> *)toStarPrinterStatusDetailsDictionary:(id <STARIO10StarPrinterStatusDetail> _Nonnull)statusDetail;
 + (NSString *)toStringFromDrawerOpenedMethod:(STARIO10DrawerOpenedMethod)value;
 
 + (NSString *)toStringFromStarConfigurationSetResult:(STARIO10StarConfigurationSetResult)value;

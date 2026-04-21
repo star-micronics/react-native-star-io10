@@ -16,7 +16,7 @@ import { StarIO10Error } from './StarIO10Error';
 import { StarPrinterStatus } from './StarPrinterStatus';
 
 export class StarIO10ErrorFactory {
-    static async create(identifier: String): Promise<StarIO10Error> {
+    static async create(identifier: String): Promise<any> {
         var error;
 
         try {
@@ -25,8 +25,12 @@ export class StarIO10ErrorFactory {
             var errorCode = await NativeModules.StarIO10ErrorWrapper.getErrorCode(identifier);
             error = await StarIO10ErrorFactory._buildObject(identifier, type, message, errorCode);
         }
-        catch(_) {
-            error = new StarIO10UnknownError("Failed to create Error.");
+        catch(e: any) {
+            if (e.code === 'SYSTEM_ERR_CODE') {
+                error = e;
+            } else {
+                error = new StarIO10UnknownError("Failed to create Error.");
+            }
         }
         finally {
             await NativeModules.StarIO10ErrorWrapper.dispose(identifier);

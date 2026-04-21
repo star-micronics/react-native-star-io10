@@ -48,5 +48,17 @@
     <Capability Name="internetClient" />
     <Capability Name="privateNetworkClientServer"/>
     <DeviceCapability Name="bluetooth"/>
+    <!-- HID Device -->
+    <DeviceCapability Name="humaninterfacedevice">
+      <Device Id="any">
+        <Function Type="usage:0001 0000" />
+      </Device>
+    </DeviceCapability>
+    <!-- USB CDC Device -->
+    <DeviceCapability Name="serialcommunication">
+      <Device Id="any">
+        <Function Type="name:serialPort" />
+      </Device>
+    </DeviceCapability>
   </Capabilities>
 </Package>

@@ -5,6 +5,7 @@ class EventParameter {
         const val KEY_IDENTIFIER = "identifier"
         const val KEY_ERROR_IDENTIFIER = "errorIdentifier"
         const val KEY_DRAWER_OPEN_CLOSE_SIGNAL_STATE = "openCloseSignal"
+        const val KEY_DRAWER_STATUS = "drawerStatus"
         const val KEY_INPUT_DEVICE_DATA = "data"
         const val KEY_INTERFACE_TYPE = "interfaceType"
         const val KEY_MODEL = "model"
@@ -15,8 +16,11 @@ class EventParameter {
 
         const val KEY_LAN_MAC_ADDRESS = "macAddress"
         const val KEY_LAN_IP_ADDRESS = "ipAddress"
+        const val KEY_LAN_UNIQUE_ID = "uniqueId"
         const val KEY_BT_ADDRESS = "bluetoothAddress"
         const val KEY_BT_DEVICE_NAME = "bluetoothDeviceName"
+        const val KEY_BLE_ADDRESS = "bluetoothLEAddress"
+        const val KEY_BLE_DEVICE_NAME = "bluetoothLEDeviceName"
         const val KEY_USB_PORT_NAME = "usbPortName"
         const val KEY_USB_USB_SN = "usbSerialNumber"
 
@@ -30,6 +34,7 @@ class EventParameter {
         const val NAME_PRINTER_DELEGATE_COMMUNICATION_ERROR = "PrinterCommunicationError"
         const val NAME_DRAWER_DELEGATE_OPEN_CLOSE_SIGNAL_SWITCHED = "DrawerOpenCloseSignalSwitched"
         const val NAME_DRAWER_DELEGATE_COMMUNICATION_ERROR = "DrawerCommunicationError"
+        const val NAME_DRAWER_DELEGATE_STATUS_CHANGED = "DrawerStatusChanged"
         const val NAME_INPUT_DEVICE_DELEGATE_CONNECTED = "InputDeviceConnected"
         const val NAME_INPUT_DEVICE_DELEGATE_DISCONNECTED = "InputDeviceDisconnected"
         const val NAME_INPUT_DEVICE_DELEGATE_DATA_RECEIVED = "InputDeviceDataReceived"

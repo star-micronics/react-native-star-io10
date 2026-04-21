@@ -12,8 +12,14 @@ export class StarPrinterStatusDetail {
     _drawer1OpenCloseSignal: boolean | undefined = undefined;
     _drawer2OpenedMethod: DrawerOpenedMethod | undefined = undefined;
     _drawer2OpenCloseSignal: boolean | undefined = undefined;
+    _drawer3OpenedMethod: DrawerOpenedMethod | undefined = undefined;
+    _drawer3OpenCloseSignal: boolean | undefined = undefined;
+    _drawer4OpenedMethod: DrawerOpenedMethod | undefined = undefined;
+    _drawer4OpenCloseSignal: boolean | undefined = undefined;
     _externalDevice1Connected: boolean | undefined = undefined;
     _externalDevice2Connected: boolean | undefined = undefined;
+    _externalDevice3Connected: boolean | undefined = undefined;
+    _externalDevice4Connected: boolean | undefined = undefined;
     _partsReplacementNotification: boolean | undefined = undefined;
     _cleaningNotification: boolean | undefined = undefined;
     _detectedPaperWidth: number | undefined = undefined;
@@ -67,6 +73,22 @@ export class StarPrinterStatusDetail {
         return this._drawer2OpenCloseSignal;
     }
 
+    get drawer3OpenedMethod(): DrawerOpenedMethod | undefined {
+        return this._drawer3OpenedMethod;
+    }
+
+    get drawer3OpenCloseSignal(): boolean | undefined {
+        return this._drawer3OpenCloseSignal;
+    }
+
+    get drawer4OpenedMethod(): DrawerOpenedMethod | undefined {
+        return this._drawer4OpenedMethod;
+    }
+
+    get drawer4OpenCloseSignal(): boolean | undefined {
+        return this._drawer4OpenCloseSignal;
+    }
+
     get externalDevice1Connected(): boolean | undefined {
         return this._externalDevice1Connected;
     }
@@ -75,6 +97,14 @@ export class StarPrinterStatusDetail {
         return this._externalDevice2Connected;
     }
     
+    get externalDevice3Connected(): boolean | undefined {
+        return this._externalDevice3Connected;
+    }
+
+    get externalDevice4Connected(): boolean | undefined {
+        return this._externalDevice4Connected;
+    }
+
     get partsReplacementNotification(): boolean | undefined {
         return this._partsReplacementNotification;
     }

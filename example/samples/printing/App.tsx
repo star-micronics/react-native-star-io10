@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {
     View,
     Text,
+    ScrollView,
     TextInput,
     PermissionsAndroid,
     Platform,
@@ -22,6 +23,7 @@ export default function App() {
 
     const [interfaceType, setInterfaceType] = useState(InterfaceType.Lan);
     const [identifier, setIdentifier] = useState("00:11:62:00:00:00");
+    const [statusText, setStatusText] = useState('\n');
 
     async function _onPressPrintButton() {
         var settings = new StarConnectionSettings();
@@ -32,7 +34,7 @@ export default function App() {
         // If you are using Android 12 and targetSdkVersion is 31 or later,
         // you have to request Bluetooth permission (Nearby devices permission) to use the Bluetooth printer.
         // https://developer.android.com/about/versions/12/features/bluetooth-permissions
-        if (Platform.OS == 'android' && 31 <= Platform.Version) {
+        if (Platform.OS == 'android') {
             if (interfaceType == InterfaceType.Bluetooth || settings.autoSwitchInterface == true) {
                 var hasPermission = await _confirmBluetoothPermission();
 
@@ -41,96 +43,33 @@ export default function App() {
                     return;
                 }
             }
+            if (interfaceType == InterfaceType.BluetoothLE) {
+                var hasPermission = await _confirmBluetoothLEPermission();
+
+                if (!hasPermission) {
+                    console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the BluetoothLE printer`);
+                    return;
+                }
+            }
         }
 
         var printer = new StarPrinter(settings);
 
         try {
-            // TSP100III series and TSP100IIU+ do not support actionPrintText because these products are graphics-only printers.
-            // Please use the actionPrintImage method to create printing data for these products.
-            // For other available methods, please also refer to "Supported Model" of each method.
-            // https://www.star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/api-reference/star-xpand-command/printer-builder/action-print-image.html
-            var builder = new StarXpandCommand.StarXpandCommandBuilder();
-            builder.addDocument(new StarXpandCommand.DocumentBuilder()
-                // To open a cash drawer, comment out the following code.
-                // .addDrawer(new StarXpandCommand.DrawerBuilder()
-                //     .actionOpen(new StarXpandCommand.Drawer.OpenParameter())
-                // )
-                .addPrinter(new StarXpandCommand.PrinterBuilder()
-                    .actionPrintImage(new StarXpandCommand.Printer.ImageParameter("logo_01.png", 406))
-                    .styleInternationalCharacter(StarXpandCommand.Printer.InternationalCharacterType.Usa)
-                    .styleCharacterSpace(0)
-                    .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
-                    .actionPrintText(
-                        "Star Clothing Boutique\n" +
-                        "123 Star Road\n" +
-                        "City, State 12345\n" +
-                        "\n")
-                    .styleAlignment(StarXpandCommand.Printer.Alignment.Left)
-                    .actionPrintText(
-                        "Date:MM/DD/YYYY    Time:HH:MM PM\n" +
-                        "--------------------------------\n" +
-                        "\n")
-                    .actionPrintText(
-                        "SKU         Description    Total\n" +
-                        "300678566   PLAIN T-SHIRT  10.99\n" +
-                        "300692003   BLACK DENIM    29.99\n" +
-                        "300651148   BLUE DENIM     29.99\n" +
-                        "300642980   STRIPED DRESS  49.99\n" +
-                        "300638471   BLACK BOOTS    35.99\n" +
-                        "\n" +
-                        "Subtotal                  156.95\n" +
-                        "Tax                         0.00\n" +
-                        "--------------------------------\n")
-                    .actionPrintText("Total     ")
-                    .add(new StarXpandCommand.PrinterBuilder()
-                        .styleMagnification(new StarXpandCommand.MagnificationParameter(2, 2))
-                        .actionPrintText("   $156.95\n")
-                    )
-                    .actionPrintText(
-                        "--------------------------------\n" +
-                        "\n" +
-                        "Charge\n" +
-                        "156.95\n" +
-                        "Visa XXXX-XXXX-XXXX-0123\n" +
-                        "\n")
-                    .add(new StarXpandCommand.PrinterBuilder()
-                        .styleInvert(true)
-                        .actionPrintText("Refunds and Exchanges\n")
-                    )
-                    .actionPrintText("Within ")
-                    .add(new StarXpandCommand.PrinterBuilder()
-                        .styleUnderLine(true)
-                        .actionPrintText("30 days")
-                    )
-                    .actionPrintText(" with receipt\n")
-                    .actionPrintText("And tags attached\n" +
-                        "\n")
-                    .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
-                    .actionPrintBarcode(new StarXpandCommand.Printer.BarcodeParameter('0123456',
-                        StarXpandCommand.Printer.BarcodeSymbology.Jan8)
-                        .setBarDots(3)
-                        .setBarRatioLevel(StarXpandCommand.Printer.BarcodeBarRatioLevel.Level0)
-                        .setHeight(5)
-                        .setPrintHri(true))
-                    .actionFeedLine(1)
-                    .actionPrintQRCode(new StarXpandCommand.Printer.QRCodeParameter('Hello World.\n')
-                        .setModel(StarXpandCommand.Printer.QRCodeModel.Model2)
-                        .setLevel(StarXpandCommand.Printer.QRCodeLevel.L)
-                        .setCellSize(8))
-                    .actionCut(StarXpandCommand.Printer.CutType.Partial)
-                )
-            );
-
-            var commands = await builder.getCommands();
-
             await printer.open();
+            
+            var commands = await _createDrawerCommand();
             await printer.print(commands);
 
+            commands = await _createPrinterCommand();
+            await printer.print(commands);
+
+            setStatusText(statusText + `Success\n`);
             console.log(`Success`);
         }
         catch (error) {
             console.log(`Error: ${String(error)}`);
+            setStatusText(statusText + `Error: ${String(error)}\n\n`);
         }
         finally {
             await printer.close();
@@ -138,17 +77,141 @@ export default function App() {
         }
     }
 
+    async function _createPrinterCommand(): Promise<string> {
+        // TSP100III series, TSP100IIU+, TSP100IIU(ECO), and TSP100LAN do not support actionPrintText because these products are graphics-only printers.
+        // Please use the actionPrintImage method to create printing data for these products.
+        // For other available methods, please also refer to "Supported Model" of each method.
+        // https://www.star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/api-reference/star-xpand-command/printer-builder/action-print-image.html
+        var builder = new StarXpandCommand.StarXpandCommandBuilder();
+        builder.addDocument(new StarXpandCommand.DocumentBuilder()
+            .addPrinter(new StarXpandCommand.PrinterBuilder()
+                .actionPrintImage(new StarXpandCommand.Printer.ImageParameter("logo_01.png", 406))
+                .styleInternationalCharacter(StarXpandCommand.Printer.InternationalCharacterType.Usa)
+                .styleCharacterSpace(0)
+                .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
+                .actionPrintText(
+                    "Star Clothing Boutique\n" +
+                    "123 Star Road\n" +
+                    "City, State 12345\n" +
+                    "\n")
+                .styleAlignment(StarXpandCommand.Printer.Alignment.Left)
+                .actionPrintText(
+                    "Date:MM/DD/YYYY    Time:HH:MM PM\n" +
+                    "--------------------------------\n" +
+                    "\n")
+                .actionPrintText(
+                    "SKU         Description    Total\n" +
+                    "300678566   PLAIN T-SHIRT  10.99\n" +
+                    "300692003   BLACK DENIM    29.99\n" +
+                    "300651148   BLUE DENIM     29.99\n" +
+                    "300642980   STRIPED DRESS  49.99\n" +
+                    "300638471   BLACK BOOTS    35.99\n" +
+                    "\n" +
+                    "Subtotal                  156.95\n" +
+                    "Tax                         0.00\n" +
+                    "--------------------------------\n")
+                .actionPrintText("Total     ")
+                .add(new StarXpandCommand.PrinterBuilder()
+                    .styleMagnification(new StarXpandCommand.MagnificationParameter(2, 2))
+                    .actionPrintText("   $156.95\n")
+                )
+                .actionPrintText(
+                    "--------------------------------\n" +
+                    "\n" +
+                    "Charge\n" +
+                    "156.95\n" +
+                    "Visa XXXX-XXXX-XXXX-0123\n" +
+                    "\n")
+                .add(new StarXpandCommand.PrinterBuilder()
+                    .styleInvert(true)
+                    .actionPrintText("Refunds and Exchanges\n")
+                )
+                .actionPrintText("Within ")
+                .add(new StarXpandCommand.PrinterBuilder()
+                    .styleUnderLine(true)
+                    .actionPrintText("30 days")
+                )
+                .actionPrintText(" with receipt\n")
+                .actionPrintText("And tags attached\n" +
+                    "\n")
+                .styleAlignment(StarXpandCommand.Printer.Alignment.Center)
+                .actionPrintBarcode(new StarXpandCommand.Printer.BarcodeParameter('0123456',
+                    StarXpandCommand.Printer.BarcodeSymbology.Jan8)
+                    .setBarDots(3)
+                    .setBarRatioLevel(StarXpandCommand.Printer.BarcodeBarRatioLevel.Level0)
+                    .setHeight(5)
+                    .setPrintHri(true))
+                .actionFeedLine(1)
+                .actionPrintQRCode(new StarXpandCommand.Printer.QRCodeParameter('Hello World.\n')
+                    .setModel(StarXpandCommand.Printer.QRCodeModel.Model2)
+                    .setLevel(StarXpandCommand.Printer.QRCodeLevel.L)
+                    .setCellSize(8))
+                .actionCut(StarXpandCommand.Printer.CutType.Partial)
+            )
+        );
+        return await builder.getCommands();
+    }
+
+    async function _createDrawerCommand(): Promise<string> {
+        var builder = new StarXpandCommand.StarXpandCommandBuilder();
+        builder.addDocument(new StarXpandCommand.DocumentBuilder()
+            .addDrawer(new StarXpandCommand.DrawerBuilder()
+                .actionOpen(new StarXpandCommand.Drawer.OpenParameter())
+            )
+        );
+        return await builder.getCommands();
+    }
+
     async function _confirmBluetoothPermission(): Promise<boolean> {
         var hasPermission = false;
 
         try {
-            hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
+            if (Number(Platform.Version) >= 31) {
+                hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
 
-            if (!hasPermission) {
-                const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
+                if (!hasPermission) {
+                    const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
 
-                hasPermission = status == PermissionsAndroid.RESULTS.GRANTED;
+                    hasPermission = status == PermissionsAndroid.RESULTS.GRANTED;
+                }
+            } else {
+                hasPermission = true;
             }
+        }
+        catch (err) {
+            console.warn(err);
+        }
+
+        return hasPermission;
+    }
+
+    async function _confirmBluetoothLEPermission(): Promise<boolean> {
+        var hasPermission = false;
+
+        try {
+            if (Number(Platform.Version) >= 31) {
+                const permissions = [
+                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
+                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
+                ];
+
+                const results = await PermissionsAndroid.requestMultiple(permissions);
+
+                hasPermission = permissions.every(
+                    (perm) => results[perm] === PermissionsAndroid.RESULTS.GRANTED
+                );
+            } else {
+                const permissions = [
+                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                ];
+
+                const results = await PermissionsAndroid.requestMultiple(permissions);
+
+                hasPermission = permissions.every(
+                    (perm) => results[perm] === PermissionsAndroid.RESULTS.GRANTED
+                );
+            }
+
         }
         catch (err) {
             console.warn(err);
@@ -232,6 +295,11 @@ export default function App() {
                     }>
                     <Text style={styles.buttonText}>Print</Text>
                 </Pressable>
+            </View>
+            <View style={{ flex: 1, alignSelf: 'stretch', marginTop: 20 }}>
+                <ScrollView>
+                    <Text>{statusText}</Text>
+                </ScrollView>
             </View>
         </View>
     );

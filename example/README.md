@@ -39,6 +39,7 @@ npx react-native run-android
 ### Windows
 
 ```
+cp .\windows\package.json .\package.json
 npx react-native run-windows
 ```
 

@@ -1,4 +1,5 @@
 ﻿using StarMicronics.StarIO10;
+using StarMicronics.StarIO10.Setting.Firmware;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -53,6 +54,25 @@ namespace StarMicronics.ReactNative.StarIO10
                 }
 
                 return result;
+            }
+        }
+
+        public bool GetIdentifier(object obj, out string objectIdentifier)
+        {
+            lock (Lock)
+            {
+                objectIdentifier = default;
+
+                foreach (var kvp in ObjectDictionary)
+                {
+                    if (Equals(kvp.Value, obj))
+                    {
+                        objectIdentifier = kvp.Key;
+                        return true;
+                    }
+                }
+
+                return false;
             }
         }
 

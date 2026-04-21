@@ -30,5 +30,7 @@ export declare enum StarPrinterModel {
     SP700 = "SP700",
     TUP500 = "TUP500",
     SK1_2xx = "SK1_2xx",
-    SK1_3xx = "SK1_3xx"
+    SK1_3xx = "SK1_3xx",
+    mC_Connect_Drawer = "mC_Connect_Drawer",
+    CD5 = "CD5"
 }

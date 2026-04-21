@@ -2,7 +2,7 @@
 #import <React/RCTLog.h>
 #import "StarObjectManager.h"
 #import "StarIO10ValueConverter.h"
-@import StarIO10;
+@import StarIO10ReactNative;
 
 
 @interface StarPrinterSettingWrapper()

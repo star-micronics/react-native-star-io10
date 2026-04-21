@@ -29,10 +29,11 @@ Please refer [here](DIAG_INFO.md) for details.
 
 | Platform | Version | Arch | Test Environment[*](#TestEnvironment) |
 | --- | --- | --- | --- |
-| iOS | iOS 15.1 or later | Device: arm64<br> Simulator: x86_64, arm64 | Xcode 16.3 |
-| Android | Android 10.0 or later | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 8.12, AGP 8.9.1 |
-| Windows | Windows 11 / Windows 10 22H2 | x64, x86(Windows 10 only) | Visual Studio 2022 |
+| iOS | iOS 15.1 or later | Device: arm64<br> Simulator: x86_64, arm64 | Xcode 26.4 |
+| Android | Android 11.0 or later[*](#OsVersion) | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 8.12, AGP 8.9.1 |
+| Windows | Windows 11 or later | x64 | Visual Studio 2022 |
 
+<a id="OsVersion"></a>*The Bluetooth Low Energy interface is only supported on Android 12.0 and later.<br>
 <a id="TestEnvironment"></a>*The sample app included with this SDK is being built, and its operation is being confirmed.
 
 ## Installation
@@ -49,29 +50,33 @@ However, `react-native-star-io10` does not use the Required Reason API from the 
 #### Some settings and approvals are required depending on the printer interface
 Please check the table below and take action.
 
-| Interface of the printer  | Necessary actions                                                                       |
-|---------------------------|-----------------------------------------------------------------------------------------|
-| Bluetooth                 | [1.](#SupportedEAProtocols) & [2.](#BluetoothAlwaysUsageDescription) & [4.](#MFi) |
-| Bluetooth Low Energy      | [2.](#BluetoothAlwaysUsageDescription)                                                |
-| Ethernet                  | [3.](#LocalNetworkUsageDescription)                                                   |
-| Lightning USB             | [1.](#SupportedEAProtocols) & [4.](#MFi)                                            |
+| Interface of the printer | Necessary actions                                                                 |
+| ------------------------ | --------------------------------------------------------------------------------- |
+| Bluetooth                | [1.](#SupportedEAProtocols) & [2.](#BluetoothAlwaysUsageDescription) & [4.](#MFi) |
+| Bluetooth Low Energy     | [2.](#BluetoothAlwaysUsageDescription) & [5.](#PairingBluetoothLowEnergy)         |
+| Ethernet                 | [3.](#LocalNetworkUsageDescription)                                               |
+| USB                      | [1.](#SupportedEAProtocols) & [4.](#MFi)                                          |
 
 <a id="SupportedEAProtocols"></a>
 ##### 1. Set `Supported external accessory protocols` 
 
-1. Click on the information property list file (default : "Info.plist").
-2. Add the `Supported external accessory protocols` Key.
-3. Click the triangle of this key and set the value for the "Item 0" to `jp.star-m.starpro`.
+1. Select your project file in the Project Navigator.
+2. Select the app target from TARGETS and open the `Info` tab.
+3. Right-click in the `Custom iOS Target Properties` section and select `Add Row`.
+4. Add the `Supported external accessory protocols` Key.
+5. Click the triangle of this key and set the value for the "Item 0" to `jp.star-m.starpro`.
 
 > :warning: If you do not use the printer concerned, do not configure this setting.
 
 <a id="BluetoothAlwaysUsageDescription"></a>
 ##### 2. Set `Bluetooth Always Usage Description`
 
-1. Click on the information property list file (default : "Info.plist").
-2. Add the `Privacy - Bluetooth Always Usage Description` Key.
-3. Set the reason for using Bluetooth in Value (e.g. `Use Bluetooth for communication with the printer.`)
-4. When communicating with the Bluetooth printer, an alert requesting permission to access Bluetooth is displayed. The string set in Value is displayed in the alert as the reason for using Bluetooth.
+1. Select your project file in the Project Navigator.
+2. Select the app target from TARGETS and open the `Info` tab.
+3. Right-click in the `Custom iOS Target Properties` section and select `Add Row`.
+4. Add the `Privacy - Bluetooth Always Usage Description` Key.
+5. Set the reason for using Bluetooth in Value (e.g. `Use Bluetooth for communication with the printer.`)
+6. When communicating with the Bluetooth printer, an alert requesting permission to access Bluetooth is displayed. The string set in Value is displayed in the alert as the reason for using Bluetooth.
 
 For more information, please refer to the following URL.
 
@@ -80,10 +85,12 @@ https://developer.apple.com/documentation/bundleresources/information_property_l
 <a id="LocalNetworkUsageDescription"></a>
 ##### 3. Set `Local Network Usage Description`
 
-1. Click on the information property list file (default : "Info.plist").
-2. Add the `Privacy - Local Network Usage Description` Key.
-3. Set the reason for using Local Network in Value (e.g. `Use Local Network for communication with the printer or discovery the printers.`)
-4. When communicating with the Ethernet printer, an alert requesting permission to access Local Network is displayed. The string set in Value is displayed in the alert as the reason for using Local Network.
+1. Select your project file in the Project Navigator.
+2. Select the app target from TARGETS and open the `Info` tab.
+3. Right-click in the `Custom iOS Target Properties` section and select `Add Row`.
+4. Add the `Privacy - Local Network Usage Description` Key.
+5. Set the reason for using Local Network in Value (e.g. `Use Local Network for communication with the printer or discovery the printers.`)
+6. When communicating with the Ethernet printer, an alert requesting permission to access Local Network is displayed. The string set in Value is displayed in the alert as the reason for using Local Network.
 
 <a id="MFi"></a>
 ##### 4. Apple Approval Process for STAR MFi Applications
@@ -93,6 +100,11 @@ In order to offer your application that communicates a MFi certified printer on 
 https://star-m.jp/eng/products/s_print/apple_app_mfi.html
 
 > :warning: In case of a Bluetooth Low Energy printer, you do not need to obtain this app approval.
+
+##### 5. Pairing (for Bluetooth Low Energy interface)
+
+When using Bluetooth Low Energy communication, pairing is required.  
+For the procedure of pairing, please refer [here](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/pairing.html).
 
 ### Android
 #### 1. Add settings for library dependencies
@@ -109,9 +121,9 @@ allprojects {
 }
 ```
 
-#### 2. When using a Bluetooth printer 
+#### 2. When using a Bluetooth(Classic) printer
 
-Refer to [sample code](example/samples) and request BLUETOOTH_CONNECT permission before starting to communicate with or search for the printer.
+Refer to [sample code](example/samples) and request BLUETOOTH_CONNECT and BLUETOOTH permission before starting to communicate with or search for the printer.
 
 #### 3. To prevent the connection permission dialog from being displayed every time the USB cable is plugged in or unplugged
 
@@ -148,6 +160,7 @@ Store the following resource files under `res/xml` with the names `device_filter
     <usb-device vendor-id="1305" product-id="0025" />   <!--mC-Label3-->
     <usb-device vendor-id="1305" product-id="0029" />   <!--mC-Label2-->
     <usb-device vendor-id="1305" product-id="0023" />   <!--mPOP-->
+    <usb-device vendor-id="1305" product-id="4104" />   <!--mC-Connect Drawer-->
     <usb-device vendor-id="1305" product-id="0001" />   <!--TSP650II/TSP650II SK/TSP700II/TSP800II/SP700/TUP500-->
     <usb-device vendor-id="1305" product-id="0027" />   <!--BSC10II-->
     <usb-device vendor-id="1305" product-id="0011" />   <!--BSC10-->
@@ -156,6 +169,7 @@ Store the following resource files under `res/xml` with the names `device_filter
     <usb-device vendor-id="1305" product-id="0075" />   <!--SK1-211/221/V211-->
     <usb-device vendor-id="1305" product-id="0077" />   <!--SK1-311/321/V311-->
     <usb-device vendor-id="1305" product-id="0067" />   <!--SM-S230i-->
+    <usb-device vendor-id="1305" product-id="4113" />   <!--CD5 : 4113, 4114, ..., 4120-->
 
 </resources>
 ```
@@ -177,6 +191,32 @@ Store the following resource files under `res/xml` with the names `device_filter
 </resources>
 ```
 
+#### 4. When using the Bluetooth Low Energy interface
+
+The Bluetooth Low Energy interface is only supported on Android 12.0 and later.
+
+##### 4.1. Add settings to AndroidManifest.xml
+
+Add the following `<uses-permission>` elements to AndroidManifest.xml.  
+
+- If you need to obtain location information, the neverForLocation specification is not required.
+
+```xml
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
+```
+
+##### 4.2. Bluetooth enablement
+
+Refer to the [sample code](example/samples) and obtain the necessary permissions before starting Bluetooth Low Energy communication. Also, enable Bluetooth in the Android device's Bluetooth settings screen.
+
+##### 4.3. Perform pairing
+
+When using Bluetooth Low Energy communication, pairing is required.  
+For pairing instructions, please refer to [here](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/pairing.html).
+
+Please note that if the Android device is in silent mode, pairing may not be performed correctly. Please disable silent mode when performing pairing.
+
 ### Windows
 
 - Add Capability in `Package.appxmanifest`.
@@ -184,6 +224,37 @@ Store the following resource files under `res/xml` with the names `device_filter
   - Internet (Client)
   - Private Networks (Client & Server)
 - Add "Visual C++ 2015-2019 UWP Desktop Runtime for native apps" to the project "References".
+- When using a Bluetooth Low Energy printer with a Bluetooth dongle, please install the driver provided by the manufacturer of the dongle.
+
+#### When using mC-Connect Drawer (USB connection)
+
+Refer to the [sample project](example/windows/example/Package.appxmanifest) and add the following description to `Package.appxmanifest`.
+
+```
+  <Capabilities>
+    <!-- USB CDC Device -->
+    <DeviceCapability Name="serialcommunication">
+      <Device Id="any">
+        <Function Type="name:serialPort" />
+      </Device>
+    </DeviceCapability>
+  </Capabilities>
+```
+
+#### When using CD5 (USB connection)
+
+Refer to the [sample project](example/windows/example/Package.appxmanifest) and add the following description to `Package.appxmanifest`.
+
+```
+  <Capabilities>
+    <!-- HID Device -->
+    <DeviceCapability Name="humaninterfacedevice">
+      <Device Id="any">
+        <Function Type="usage:0001 0000" />
+      </Device>
+    </DeviceCapability>
+  </Capabilities>
+```
 
 ## Limitations 
 ### When using Android device, an image specified by URL is sometimes printed in a low resolution

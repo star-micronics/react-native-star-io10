@@ -19,6 +19,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
 class StarPrinterSettingFirmwareWrapper internal constructor(context: ReactApplicationContext) :
     ReactContextBaseJavaModule(context) {
@@ -152,7 +153,7 @@ class StarPrinterSettingFirmwareWrapper internal constructor(context: ReactAppli
                 try {
                     val currentVersion = firmware.getCurrentVersionAsync().await()
                     promise.resolve(currentVersion)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -174,7 +175,7 @@ class StarPrinterSettingFirmwareWrapper internal constructor(context: ReactAppli
                 try {
                     firmware.checkVersionsAsync().await()
                     promise.resolve(0)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }
@@ -196,7 +197,7 @@ class StarPrinterSettingFirmwareWrapper internal constructor(context: ReactAppli
                 try {
                     firmware.updateAsync().await()
                     promise.resolve(0)
-                } catch (e: StarIO10Exception) {
+                } catch (e: Exception) {
                     val exceptionIdentifier = InstanceManager.set(e)
                     promise.reject(exceptionIdentifier, e)
                 }

@@ -3,7 +3,7 @@
 #import "StarIO10ValueConverter.h"
 #import <React/RCTLog.h>
 
-@import StarIO10;
+@import StarIO10ReactNative;
 
 @interface MelodySpeakerBuilderWrapper()
 

@@ -1,5 +1,4 @@
-import { StarIO10Error } from './StarIO10Error';
 export declare class StarIO10ErrorFactory {
-    static create(identifier: String): Promise<StarIO10Error>;
+    static create(identifier: String): Promise<any>;
     private static _buildObject;
 }

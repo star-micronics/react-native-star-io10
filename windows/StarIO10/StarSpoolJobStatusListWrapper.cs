@@ -1,5 +1,6 @@
 ﻿using Microsoft.ReactNative.Managed;
 using StarMicronics.StarIO10;
+using StarMicronics.StarIO10.Spooler;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 

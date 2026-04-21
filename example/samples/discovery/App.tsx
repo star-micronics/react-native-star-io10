@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import {
     View,
     Text,
+    TextInput,
     FlatList,
     PermissionsAndroid,
     Platform,
@@ -31,12 +32,20 @@ export default function App() {
         // If you are using Android 12 and targetSdkVersion is 31 or later,
         // you have to request Bluetooth permission (Nearby devices permission) to use the Bluetooth printer.
         // https://developer.android.com/about/versions/12/features/bluetooth-permissions
-        if (Platform.OS == 'android' && 31 <= Platform.Version) {
+        if (Platform.OS == 'android') {
             if (bluetoothIsEnabled) {
                 var hasPermission = await _confirmBluetoothPermission();
 
                 if (!hasPermission) {
                     console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the Bluetooth printer`);
+                    return;
+                }
+            }
+            if (bluetoothLeIsEnabled) {
+                var hasPermission = await _confirmBluetoothLEPermission();
+
+                if (!hasPermission) {
+                    console.log(`PERMISSION ERROR: You have to allow Nearby devices to use the BluetoothLE printer`);
                     return;
                 }
             }
@@ -71,7 +80,12 @@ export default function App() {
         const _startDiscovery = async () => {
             setPrinters([]);
             if (manager != undefined) {
-                manager.discoveryTime = 10000;
+                manager.discoveryTime = 2_000;
+                if (bluetoothLeIsEnabled) {
+                    manager.discoveryTime = 10_000;
+                } else if (lanIsEnabled) {
+                    manager.discoveryTime = 5_000;
+                }
 
                 manager.onPrinterFound = async (printer: StarPrinter) => {
                     setPrinters((printers) => [...printers, printer]);
@@ -98,12 +112,16 @@ export default function App() {
         var hasPermission = false;
 
         try {
-            hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
+            if (Number(Platform.Version) >= 31) {
+                hasPermission = await PermissionsAndroid.check(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
 
-            if (!hasPermission) {
-                const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
+                if (!hasPermission) {
+                    const status = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT);
 
-                hasPermission = status == PermissionsAndroid.RESULTS.GRANTED;
+                    hasPermission = status == PermissionsAndroid.RESULTS.GRANTED;
+                }
+            } else {
+                hasPermission = true;
             }
         }
         catch (err) {
@@ -111,6 +129,58 @@ export default function App() {
         }
 
         return hasPermission;
+    }
+
+    async function _confirmBluetoothLEPermission(): Promise<boolean> {
+        var hasPermission = false;
+
+        try {
+            if (Number(Platform.Version) >= 31) {
+                const permissions = [
+                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
+                    PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
+                ];
+
+                const results = await PermissionsAndroid.requestMultiple(permissions);
+
+                hasPermission = permissions.every(
+                    (perm) => results[perm] === PermissionsAndroid.RESULTS.GRANTED
+                );
+            } else {
+                const permissions = [
+                    PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+                ];
+
+                const results = await PermissionsAndroid.requestMultiple(permissions);
+
+                hasPermission = permissions.every(
+                    (perm) => results[perm] === PermissionsAndroid.RESULTS.GRANTED
+                );
+            }
+
+        }
+        catch (err) {
+            console.warn(err);
+        }
+
+        return hasPermission;
+    }
+
+    function _getFoundPrinterInformation(printer: StarPrinter): string {
+        const connectionSettings = printer.connectionSettings;
+        const information = printer.information;
+        switch (connectionSettings.interfaceType) {
+            case InterfaceType.Lan:
+                    return `${connectionSettings.interfaceType} : ${connectionSettings.identifier} : ${information?.model} : ${information?.detail.lan.uniqueId ?? ''}`;
+            case InterfaceType.Bluetooth:
+                    return `${connectionSettings.interfaceType} : ${connectionSettings.identifier} : ${information?.model}`;
+            case InterfaceType.BluetoothLE:
+                    return `${connectionSettings.interfaceType} : ${connectionSettings.identifier} : ${information?.model} : ${information?.detail.bluetoothLE.deviceName ?? ''}`;
+            case InterfaceType.Usb:
+                    return `${connectionSettings.interfaceType} : ${connectionSettings.identifier} : ${information?.model}`;
+            default:
+                    return '';
+        }
     }
 
     const styles = StyleSheet.create({
@@ -181,7 +251,19 @@ export default function App() {
             <FlatList
                 style={{ margin: 10 }}
                 data={printers}
-                renderItem={({ item }) => <Text>{item.connectionSettings.interfaceType} : {item.connectionSettings.identifier}</Text>}
+                renderItem={({ item }) => (
+                    Platform.OS === 'ios' ? (
+                        <TextInput
+                            editable={false}
+                            multiline={true}
+                            value={_getFoundPrinterInformation(item)}
+                        />
+                    ) : (
+                        <Text selectable={true}>
+                            {_getFoundPrinterInformation(item)}
+                        </Text>
+                    )
+                )}
                 keyExtractor={(item, index) => index.toString()} />
         </View >
     );

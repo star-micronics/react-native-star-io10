@@ -12,8 +12,8 @@ Some of the APIs provided by the StarIO10 library collect information regarding 
 In library version V1.10.0 or later, the following APIs collect and transmit information:  
 **If you use any of these APIs, please ensure that your privacy policy includes appropriate information on the relevant app distribution platform.**
 
-- [StarPrinterSetting](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/api-reference/star-printer-setting-firmware/index.html)
-  - [update()](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/api-reference/star-printer-setting-firmware/update.htmll)
+- [StarPrinterSettingFirmware](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/api-reference/star-printer-setting-firmware/index.html)
+  - [update()](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/api-reference/star-printer-setting-firmware/update.html#star-printer-setting-firmware-update)
 
 ## Disabling the Feature
 

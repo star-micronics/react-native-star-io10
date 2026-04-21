@@ -193,6 +193,14 @@ export class StarPrinter extends NativeObject {
             }, this)
         );
         this._eventSubscriptions.push(
+            eventEmitter.addListener('DrawerStatusChanged', (params: any) => {
+                var actualPrams = NativeObject._getEventParams(params);
+                if(this._nativeObject === actualPrams.identifier) {
+                    this.drawerDelegate.onStatusChanged(actualPrams.drawerStatus);
+                }
+            }, this)
+        );
+        this._eventSubscriptions.push(
             eventEmitter.addListener('InputDeviceCommunicationError', async (params: any) => {
                 var actualPrams = NativeObject._getEventParams(params);
                 if(this._nativeObject === actualPrams.identifier) {
@@ -273,6 +281,26 @@ export class StarPrinter extends NativeObject {
         });
 
         this._setting = await StarPrinterSettingFactory.create(nativeSetting, this._nativeObject);
+    }
+
+    async write(data: Array<number>, timeout: number = 10_000): Promise<void> {
+        await this._initNativeObject();
+
+        await NativeModules.StarPrinterWrapper.write(this._nativeObject, data, timeout)
+        .catch(async (nativeError: any) => {
+            var error = await StarIO10ErrorFactory.create(nativeError.code);
+            throw error;
+        });
+    }
+
+    async read(size: number): Promise<Array<number>> {
+        await this._initNativeObject();
+
+        return await NativeModules.StarPrinterWrapper.read(this._nativeObject, size)
+        .catch(async (nativeError: any) => {
+            var error = await StarIO10ErrorFactory.create(nativeError.code);
+            throw error;
+        }); 
     }
 
     async print(command: string): Promise<void>;

@@ -2,7 +2,7 @@
 #import "StarObjectManager.h"
 #import <React/RCTLog.h>
 
-@import StarIO10;
+@import StarIO10ReactNative;
 
 
 @interface StarIO10ErrorDetailWrapper()

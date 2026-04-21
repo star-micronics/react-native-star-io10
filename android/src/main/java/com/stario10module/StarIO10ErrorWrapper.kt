@@ -13,7 +13,7 @@ class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext
 
     @ReactMethod
     fun getType(identifier: String, promise: Promise) {
-        val type = when (InstanceManager.get(identifier)) {
+        val type = when (val instance = InstanceManager.get(identifier)) {
             is StarIO10ArgumentException -> "Argument"
             is StarIO10BadResponseException -> "BadResponse"
             is StarIO10CommunicationException -> "Communication"
@@ -27,6 +27,12 @@ class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext
             is StarIO10AuthenticationException -> "Authentication"
             is StarIO10ServerCommunicationException -> "ServerCommunication"
             else -> {
+                // StarIO10ExceptionでないそのExceptionはそのままThrowする
+                if (instance is Exception) {
+                    promise.reject("SYSTEM_ERR_CODE", instance.message, instance)
+                }
+
+                // Exceptionでない場合はおかしい
                 promise.reject(ReactNoCrashSoftException("Exception is not defined"))
                 return
             }
@@ -39,7 +45,7 @@ class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext
     fun getMessage(identifier: String, promise: Promise) {
         val exception = InstanceManager.get(identifier)
 
-        if (exception is StarIO10Exception) {
+        if (exception is Exception) {
             promise.resolve(exception.message)
         } else {
             promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
@@ -48,12 +54,10 @@ class StarIO10ErrorWrapper internal constructor(context: ReactApplicationContext
 
     @ReactMethod
     fun getErrorCode(identifier: String, promise: Promise) {
-        val exception = InstanceManager.get(identifier)
-
-        if (exception is StarIO10Exception) {
-            promise.resolve(exception.errorCode.value)
-        } else {
-            promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
+        when (val exception = InstanceManager.get(identifier)) {
+            is StarIO10Exception -> promise.resolve(exception.errorCode.value)
+            is Exception -> promise.resolve(null)
+            else -> promise.reject(ReactNoCrashSoftException("Not found $identifier identifier"))
         }
     }
 

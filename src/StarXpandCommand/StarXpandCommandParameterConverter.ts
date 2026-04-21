@@ -258,7 +258,9 @@ export class StarXpandCommandParameterConverter {
     static convertDrawerChannel(value: StarXpandCommand.Drawer.Channel): string {
         let commandMap = new Map([
             [StarXpandCommand.Drawer.Channel.No1, "No.1"],
-            [StarXpandCommand.Drawer.Channel.No2, "No.2"]
+            [StarXpandCommand.Drawer.Channel.No2, "No.2"],
+            [StarXpandCommand.Drawer.Channel.No3, "No.3"],
+            [StarXpandCommand.Drawer.Channel.No4, "No.4"]
         ]);
 
         return commandMap.get(value) as string;
@@ -267,7 +269,9 @@ export class StarXpandCommandParameterConverter {
     static convertBuzzerChannel(value: StarXpandCommand.Buzzer.Channel): string {
         let commandMap = new Map([
             [StarXpandCommand.Buzzer.Channel.No1, "No.1"],
-            [StarXpandCommand.Buzzer.Channel.No2, "No.2"]
+            [StarXpandCommand.Buzzer.Channel.No2, "No.2"],
+            [StarXpandCommand.Buzzer.Channel.No3, "No.3"],
+            [StarXpandCommand.Buzzer.Channel.No4, "No.4"]
         ]);
 
         return commandMap.get(value) as string;

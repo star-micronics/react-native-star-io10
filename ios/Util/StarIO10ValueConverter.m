@@ -70,7 +70,8 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
             @(STARIO10StarPrinterModelBSC10): @"BSC10",
             @(STARIO10StarPrinterModelTSP043): @"TSP043",
             @(STARIO10StarPrinterModelSP700): @"SP700",
-            @(STARIO10StarPrinterModelTUP500): @"TUP500"
+            @(STARIO10StarPrinterModelTUP500): @"TUP500",
+            @(STARIO10StarPrinterModelmC_Connect_Drawer): @"mC_Connect_Drawer"
         };
         
         kStarPrinterEmulationDictionary = @{
@@ -265,12 +266,16 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
         
         kDrawerChannelDictionary = @{
             @(STARIO10StarXpandCommandDrawerChannelNo1): @"No1",
-            @(STARIO10StarXpandCommandDrawerChannelNo2): @"No2"
+            @(STARIO10StarXpandCommandDrawerChannelNo2): @"No2",
+            @(STARIO10StarXpandCommandDrawerChannelNo3): @"No3",
+            @(STARIO10StarXpandCommandDrawerChannelNo4): @"No4"
         };
         
         kBuzzerChannelDictionary = @{
             @(STARIO10StarXpandCommandBuzzerChannelNo1): @"No1",
-            @(STARIO10StarXpandCommandBuzzerChannelNo2): @"No2"
+            @(STARIO10StarXpandCommandBuzzerChannelNo2): @"No2",
+            @(STARIO10StarXpandCommandBuzzerChannelNo3): @"No3",
+            @(STARIO10StarXpandCommandBuzzerChannelNo4): @"No4"
         };
         
         kMelodySpeakerSoundStorageAreaDictionary = @{
@@ -396,39 +401,13 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
         if (tempValue == nil || [tempValue isEqual:[NSNull null]]) {
             value = [NSNull null];
         }
-        else if ([keyString isEqualToString:@"cutterError"] ||
-                 [keyString isEqualToString:@"paperSeparatorError"] ||
-                 [keyString isEqualToString:@"paperJamError"] ||
-                 [keyString isEqualToString:@"rollPositionError"] ||
-                 [keyString isEqualToString:@"paperPresent"] ||
-                 [keyString isEqualToString:@"drawerOpenError"] ||
-                 [keyString isEqualToString:@"printUnitOpen"] ||
-                 [keyString isEqualToString:@"drawer1OpenCloseSignal"] ||
-                 [keyString isEqualToString:@"drawer2OpenCloseSignal"] ||
-                 [keyString isEqualToString:@"externalDevice1Connected"] ||
-                 [keyString isEqualToString:@"externalDevice2Connected"] ||
-                 [keyString isEqualToString:@"partsReplacementNotification"] ||
-                 [keyString isEqualToString:@"cleaningNotification"] ||
-                 [keyString isEqualToString:@"printHeadOverTemperature"] ||
-                 [keyString isEqualToString:@"unrecoverableError"] ||
-                 [keyString isEqualToString:@"printHeadThermistorError"] ||
-                 [keyString isEqualToString:@"receiveBufferOverflow"] ||
-                 [keyString isEqualToString:@"boardOverTemperature"] ||
-                 [keyString isEqualToString:@"flashAccessError"] ||
-                 [keyString isEqualToString:@"eepromAccessError"] ||
-                 [keyString isEqualToString:@"sramAccessError"] ||
-                 [keyString isEqualToString:@"boardThermistorError"] ||
-                 [keyString isEqualToString:@"sensorAdjustmentError"]) {
+        else if ([tempValue isKindOfClass: [STARIO10NullableBool class]]) {
             value = @(((STARIO10NullableBool *)tempValue).value);
         }
-        else if ([keyString isEqualToString:@"detectedPaperWidth"] ||
-                 [keyString isEqualToString:@"version"] ||
-                 [keyString isEqualToString:@"etbCounter"] ||
-                 [keyString isEqualToString:@"connectedInterface"]) {
+        else if ([tempValue isKindOfClass: [STARIO10NullableInt class]]) {
             value = @(((STARIO10NullableInt *)tempValue).value);
         }
-        else if ([keyString isEqualToString:@"drawer1OpenedMethod"] ||
-                 [keyString isEqualToString:@"drawer2OpenedMethod"]) {
+        else if ([tempValue isKindOfClass: [STARIO10NullableDrawerOpenedMethod class]]) {
             value = (([StarIO10ValueConverter toStringFromDrawerOpenedMethod:((STARIO10NullableDrawerOpenedMethod *)tempValue).value]));
         }
         else {
@@ -439,6 +418,13 @@ NSDictionary<NSNumber *, NSString *> *kDisplayInternationalCharacterTypeDictiona
     }
     
     return jsNamingDictionary;
+}
+
++ (NSDictionary<NSString *, id> *)toStarPrinterStatusDetailsDictionary:(id <STARIO10StarPrinterStatusDetail> _Nonnull)statusDetail;
+{
+    NSDictionary *dict = [StarIO10ValueConverter toStarPrinterStatusReservedDictionary: statusDetail.getAllProperties];
+
+    return dict;
 }
 
 + (NSString *)toStringFromDrawerOpenedMethod:(STARIO10DrawerOpenedMethod)value

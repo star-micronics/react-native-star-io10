@@ -1,5 +1,6 @@
 ﻿using Microsoft.ReactNative.Managed;
 using StarMicronics.StarIO10;
+using StarMicronics.StarIO10.Spooler;
 using StarMicronics.StarIO10.StarXpandCommand;
 using StarMicronics.StarIO10.StarXpandCommand.Buzzer;
 using StarMicronics.StarIO10.StarXpandCommand.Display;
@@ -13,6 +14,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
@@ -67,7 +69,9 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarPrinterModel.SP700, "SP700" },
             { StarPrinterModel.TUP500, "TUP500" },
             { StarPrinterModel.SK12xx, "SK1_2xx" },
-            { StarPrinterModel.SK13xx, "SK1_3xx" }
+            { StarPrinterModel.SK13xx, "SK1_3xx" },
+            { StarPrinterModel.mCConnectDrawer, "mC_Connect_Drawer" },
+            { StarPrinterModel.CD5, "CD5" },
         };
 
         private static readonly IReadOnlyDictionary<StarPrinterEmulation, string> StarPrinterEmulationDictionary = new Dictionary<StarPrinterEmulation, string>()
@@ -77,6 +81,7 @@ namespace StarMicronics.ReactNative.StarIO10
             { StarPrinterEmulation.StarDot, "StarDot" },
             { StarPrinterEmulation.StarGraphic, "StarGraphic" },
             { StarPrinterEmulation.StarPRNT, "StarPRNT" },
+            { StarPrinterEmulation.StarCD5, "StarCD5" },
             { StarPrinterEmulation.EscPos, "EscPos" },
             { StarPrinterEmulation.EscPosMobile, "EscPosMobile" }
         };
@@ -272,12 +277,16 @@ namespace StarMicronics.ReactNative.StarIO10
         {
             { StarMicronics.StarIO10.StarXpandCommand.Buzzer.Channel.No1, "No1" },
             { StarMicronics.StarIO10.StarXpandCommand.Buzzer.Channel.No2, "No2" },
+            { StarMicronics.StarIO10.StarXpandCommand.Buzzer.Channel.No3, "No3" },
+            { StarMicronics.StarIO10.StarXpandCommand.Buzzer.Channel.No4, "No4" },
         };
 
         private static readonly IReadOnlyDictionary<StarMicronics.StarIO10.StarXpandCommand.Drawer.Channel, string> DrawerChannelDictionary = new Dictionary<StarMicronics.StarIO10.StarXpandCommand.Drawer.Channel, string>()
         {
             { StarMicronics.StarIO10.StarXpandCommand.Drawer.Channel.No1, "No1" },
-            { StarMicronics.StarIO10.StarXpandCommand.Drawer.Channel.No2, "No2" }
+            { StarMicronics.StarIO10.StarXpandCommand.Drawer.Channel.No2, "No2" },
+            { StarMicronics.StarIO10.StarXpandCommand.Drawer.Channel.No3, "No3" },
+            { StarMicronics.StarIO10.StarXpandCommand.Drawer.Channel.No4, "No4" },
         };
 
         private static readonly IReadOnlyDictionary<SoundStorageArea, string> MelodySpeakerSoundStorageAreaDictionary = new Dictionary<SoundStorageArea, string>()
@@ -936,6 +945,25 @@ namespace StarMicronics.ReactNative.StarIO10
                 ToString(value, out string method);
 
                 result = new JSValue(method);
+            }
+            else if (value is IStarPrinterStatusDetail)
+            {
+
+                var dict = new Dictionary<string, JSValue>();
+
+                foreach (PropertyInfo prop in value.GetType().GetProperties())
+                {
+                    if (prop.CanRead)
+                    {
+                        object obj = prop.GetValue(value);
+
+                        // プロパティ名の先頭文字を小文字に変換
+                        string propName = char.ToLowerInvariant(prop.Name[0]) + prop.Name.Substring(1);
+
+                        dict[propName] = ToJSValue(obj);
+                    }
+                }
+                result = new JSValue(dict);
             }
             else
             {

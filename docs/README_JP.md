@@ -30,10 +30,11 @@ StarIO10ライブラリが提供するAPIの一部は、実行時にユーザー
 
 | Platform | OS Version | Arch | Test Environment[*](#TestEnvironment) |
 | --- | --- | --- | --- |
-| iOS | iOS 15.1 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | Xcode 16.3 |
-| Android | Android 10.0 以降 | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 8.12, AGP 8.9.1 |
-| Windows | Windows 11 / Windows 10 22H2 | x64, x86(Windows 10のみ) | Visual Studio 2022 |
+| iOS | iOS 15.1 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | Xcode 26.4 |
+| Android | Android 11.0 以降[*](#OsVersion) | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 8.12, AGP 8.9.1 |
+| Windows | Windows 11 24H2 以降 | x64 | Visual Studio 2022 |
 
+<a id="OsVersion"></a>*Bluetooth Low Enegryインターフェースは、Android 12.0以降でのみサポートしています。<br>
 <a id="TestEnvironment"></a>*SDK同梱のサンプルアプリをビルドして動作することを確認しています。
 
 ## 導入
@@ -51,29 +52,33 @@ Manifest fileについては[こちら](https://developer.apple.com/documentatio
 #### プリンターのインターフェースごとに必要な対応
 下記表を確認し対応をしてください。
 
-| プリンターのインターフェース  | 必要な対応                                                                                |
-|--------------------------|-----------------------------------------------------------------------------------------|
-| Bluetooth                | [1.](#SupportedEAProtocols) & [2.](#BluetoothAlwaysUsageDescription) & [4.](#MFi) |
-| Bluetooth Low Energy     | [2.](#BluetoothAlwaysUsageDescription)                                                |
-| Ethernet                 | [3.](#LocalNetworkUsageDescription)                                                   |
-| Lightning USB           | [1.](#SupportedEAProtocols) & [4.](#MFi)                                            |
+| プリンターのインターフェース | 必要な対応                                                                        |
+| ---------------------------- | --------------------------------------------------------------------------------- |
+| Bluetooth                    | [1.](#SupportedEAProtocols) & [2.](#BluetoothAlwaysUsageDescription) & [4.](#MFi) |
+| Bluetooth Low Energy         | [2.](#BluetoothAlwaysUsageDescription) & [5.](#PairingBluetoothLowEnergy)         |
+| Ethernet                     | [3.](#LocalNetworkUsageDescription)                                               |
+| USB                          | [1.](#SupportedEAProtocols) & [4.](#MFi)                                          |
 
 <a id="SupportedEAProtocols"></a>
 ##### 1. `Supported external accessory protocols` 項目の設定
 
-1. Information Property List（デフォルトでは"Info.plist"）を選択します。
-2. Keyに `Supported external accessory protocols` を追加します。
-3. 項目名左側の▽をクリックして表示される"Item 0"の[Value]に `jp.star-m.starpro` を設定します。
+1. プロジェクトナビゲーターでプロジェクトファイルを選択します。
+2. TARGETSからアプリのターゲットを選択し、`Info`タブを開きます。
+3. `Custom iOS Target Properties`セクションで右クリックし、`Add Row`を選択します。
+4. Keyに `Supported external accessory protocols` を追加します。
+5. 項目名左側の▽をクリックして表示される"Item 0"の[Value]に `jp.star-m.starpro` を設定します。
 
 > :warning: 該当するプリンターを使用しない場合は、この設定を行わないでください。
 
 <a id="BluetoothAlwaysUsageDescription"></a>
 ##### 2. `Bluetooth Always Usage Description` 項目の設定
 
-1. Information Property List（デフォルトでは"Info.plist"）を選択します。
-2. Keyに `Privacy – Bluetooth Always Usage Description` を追加します。
-3. Value に Bluetoothの利用目的（例: `Use Bluetooth for communication with the printer.`）を設定します。
-4. Bluetoothにてプリンターと通信するとき、Bluetoothへのアクセス許可を求めるダイアログが表示されます。その際、Valueに設定した文字列がBluetoothを利用する理由として表示されます。
+1. プロジェクトナビゲーターでプロジェクトファイルを選択します。
+2. TARGETSからアプリのターゲットを選択し、`Info`タブを開きます。
+3. `Custom iOS Target Properties`セクションで右クリックし、`Add Row`を選択します。
+4. Keyに `Privacy - Bluetooth Always Usage Description` を追加します。
+5. Value に Bluetoothの利用目的（例: `Use Bluetooth for communication with the printer.`）を設定します。
+6. Bluetoothにてプリンターと通信するとき、Bluetoothへのアクセス許可を求めるダイアログが表示されます。その際、Valueに設定した文字列がBluetoothを利用する理由として表示されます。
 
 より詳しくは、下記URLを参照してください。
 
@@ -82,10 +87,12 @@ https://developer.apple.com/documentation/bundleresources/information_property_l
 <a id="LocalNetworkUsageDescription"></a>
 ##### 3. `Local Network Usage Description` 項目の設定
 
-1. Information Property List（デフォルトでは"Info.plist"）を選択します。
-2. Keyに `Privacy - Local Network Usage Description` を追加します。
-3. Value に Local Networkの利用目的（例: `Use Local Network for communication with the printer or discovery the printers.`）を設定します。
-4. Ethernetプリンターと通信するとき、Local Networkへのアクセス許可を求めるダイアログが表示されます。その際、Valueに設定した文字列がLocal Networkを利用する理由として表示されます。
+1. プロジェクトナビゲーターでプロジェクトファイルを選択します。
+2. TARGETSからアプリのターゲットを選択し、`Info`タブを開きます。
+3. `Custom iOS Target Properties`セクションで右クリックし、`Add Row`を選択します。
+4. Keyに `Privacy - Local Network Usage Description` を追加します。
+5. Value に Local Networkの利用目的（例: `Use Local Network for communication with the printer or discovery the printers.`）を設定します。
+6. Ethernetプリンターと通信するとき、Local Networkへのアクセス許可を求めるダイアログが表示されます。その際、Valueに設定した文字列がLocal Networkを利用する理由として表示されます。
 
 <a id="MFi"></a>
 ##### 4. MFi対応プリンター向けアプリ認証を取得
@@ -95,6 +102,11 @@ MFi認証プリンターに対応したiOSアプリケーションを設計・�
 https://star-m.jp/products/s_print/apple_app_mfi/index.html
 
 > :warning: Bluetooth Low Energyプリンターを使用する場合は、このアプリ認証を行う必要はありません。
+
+##### 5. ペアリング(Bluetooth Low Energyインターフェイス)
+
+Bluetooth Low Energy通信を行う場合、ペアリングを行う必要があります。  
+ペアリングの手順については、[こちら](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/pairing.html)を参照ください。
 
 ### Android
 #### 1. ライブラリの依存関係の設定
@@ -111,9 +123,9 @@ allprojects {
 }
 ```
 
-#### 2. Bluetoothプリンターを使用する場合
+#### 2. Bluetooth(Classic)プリンターを使用する場合
 
-[サンプルコード](../example/samples)を参考にして、プリンターとの通信や検索を開始する前に、BLUETOOTH_CONNECTパーミッションを要求してください。
+[サンプルコード](../example/samples)を参考にして、プリンターとの通信や検索を開始する前に、BLUETOOTH_CONNECTとBLUETOOTHパーミッションを要求してください。
 
 #### 3. USBケーブル挿抜の度に接続許可ダイアログを表示させないようにしたい場合
 
@@ -150,6 +162,7 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
     <usb-device vendor-id="1305" product-id="0025" />   <!--mC-Label3-->
     <usb-device vendor-id="1305" product-id="0029" />   <!--mC-Label2-->
     <usb-device vendor-id="1305" product-id="0023" />   <!--mPOP-->
+    <usb-device vendor-id="1305" product-id="4104" />   <!--mC-Connect Drawer-->
     <usb-device vendor-id="1305" product-id="0001" />   <!--TSP650II/TSP650II SK/TSP700II/TSP800II/SP700/TUP500-->
     <usb-device vendor-id="1305" product-id="0027" />   <!--BSC10II-->
     <usb-device vendor-id="1305" product-id="0011" />   <!--BSC10-->
@@ -158,6 +171,8 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
     <usb-device vendor-id="1305" product-id="0075" />   <!--SK1-211/221/V211-->
     <usb-device vendor-id="1305" product-id="0077" />   <!--SK1-311/321/V311-->
     <usb-device vendor-id="1305" product-id="0067" />   <!--SM-S230i-->
+    <usb-device vendor-id="1305" product-id="4113" />   <!--CD5 : 4113, 4114, ..., 4120-->
+
 </resources>
 ```
 
@@ -178,12 +193,70 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
 </resources>
 ```
 
+#### 4. Bluetooth Low Energyプリンターを使用する場合
+
+Bluetooth Low Enegryインターフェースは、Android 12.0以降でのみサポートしています。
+
+##### 4.1. AndroidManifest.xmlに設定を追加する
+
+AndroidManifest.xmlに下記の `<uses-permission>` 要素を追加してください。  
+
+- 位置情報の取得を行う場合、neverForLocationの指定は不要です。
+
+```xml
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
+```
+
+##### 4.2. Bluetooth機能を有効化する
+
+[サンプルコード](../example/samples)を参考にして、Bluetooth Low Energy通信を開始する前に必要なパーミッションを取得してください。また、AndroidデバイスのBluetooth設定画面でBluetoothを有効にしてください。
+
+##### 4.3. ペアリングを行う
+
+Bluetooth Low Energy通信を行う場合、ペアリングを行う必要があります。  
+ペアリングの手順については、[こちら](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/pairing.html)を参照ください。
+
+Androidデバイスがサイレントモードの場合、ペアリングが正常に行えない場合があります。ペアリングを行う際は、サイレントモードを解除してください。
+
 ### Windows
+
 - 機能を`Package.appxmanifest`に追加してください。
   - Bluetooth
   - インターネット(クライアント)
   - プライベート ネットワーク (クライアントとサーバー)
 - プロジェクトの「参照」に"Visual C++ 2015-2019 UWP Desktop Runtime for native apps"を追加してください。
+- Bluetooth Low Energyプリンターを使用し、Bluetoothドングルを使用する場合、ドングルの製造元が提供するドライバーをインストールしてください。
+
+#### mC-Connect Drawer (USB接続) を利用する場合
+
+[サンプルプロジェクト](../example/windows/example/Package.appxmanifest)を参考に、`Package.appxmanifest`に以下の記述を追加してください.
+
+```
+  <Capabilities>
+    <!-- USB CDC Device -->
+    <DeviceCapability Name="serialcommunication">
+      <Device Id="any">
+        <Function Type="name:serialPort" />
+      </Device>
+    </DeviceCapability>
+  </Capabilities>
+```
+
+#### CD5 (USB接続) を利用する場合
+
+[サンプルプロジェクト](../example/windows/example/Package.appxmanifest)を参考に、`Package.appxmanifest`に以下の記述を追加してください。  
+
+```
+  <Capabilities>
+    <!-- HID Device -->
+    <DeviceCapability Name="humaninterfacedevice">
+      <Device Id="any">
+        <Function Type="usage:0001 0000" />
+      </Device>
+    </DeviceCapability>
+  </Capabilities>
+```
 
 ## 制限事項
 ### Android端末を使用する場合、URLで指定した画像が低い解像度で印字されることがある

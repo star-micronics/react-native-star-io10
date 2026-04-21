@@ -4,6 +4,7 @@ import androidx.annotation.Nullable
 import com.facebook.react.bridge.*
 import com.facebook.react.modules.core.DeviceEventManagerModule
 import com.starmicronics.stario10.*
+import java.lang.Exception
 
 
 class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactApplicationContext) :
@@ -26,7 +27,7 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
             val identifier = InstanceManager.set(manager)
 
             promise.resolve(identifier)
-        } catch (e: StarIO10Exception) {
+        } catch (e: Exception) {
             val exceptionIdentifier = InstanceManager.set(e)
             promise.reject(exceptionIdentifier, e)
         }
@@ -98,6 +99,11 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
                         )
 
                         params.putString(
+                            EventParameter.KEY_LAN_UNIQUE_ID,
+                            printer.information?.detail?.lan?.uniqueId ?: null
+                        )
+
+                        params.putString(
                             EventParameter.KEY_BT_ADDRESS,
                             printer.information?.detail?.bluetooth?.address ?: null
                         )
@@ -105,6 +111,16 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
                         params.putString(
                             EventParameter.KEY_BT_DEVICE_NAME,
                             printer.information?.detail?.bluetooth?.deviceName ?: null
+                        )
+
+                        params.putString(
+                            EventParameter.KEY_BLE_ADDRESS,
+                            printer.information?.detail?.bluetoothLE?.address ?: null
+                        )
+
+                        params.putString(
+                            EventParameter.KEY_BLE_DEVICE_NAME,
+                            printer.information?.detail?.bluetoothLE?.deviceName ?: null
                         )
 
                         params.putString(
@@ -131,7 +147,7 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
                 manager.startDiscovery()
 
                 promise.resolve(0)
-            } catch (e: StarIO10Exception) {
+            } catch (e: Exception) {
                 val exceptionIdentifier = InstanceManager.set(e)
                 promise.reject(exceptionIdentifier, e)
             }
@@ -148,7 +164,7 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
             try {
                 manager.stopDiscovery()
                 promise.resolve(0)
-            } catch (e: StarIO10Exception) {
+            } catch (e: Exception) {
                 val exceptionIdentifier = InstanceManager.set(e)
                 promise.reject(exceptionIdentifier, e)
             }
