@@ -1,0 +1,34 @@
+name: Lock closed issues after 30 days
+
+on:
+  schedule:
+    - cron: "30 0 * * *"  # 毎日 UTC 0:30(クローズワークフローの30分後)
+  workflow_dispatch:
+
+permissions:
+  issues: write
+  # pull-requests: write  # PR も対象にする場合
+  # discussions: write    # Discussions も対象にする場合
+
+concurrency:
+  group: lock-threads
+  cancel-in-progress: false
+
+jobs:
+  lock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dessant/lock-threads@v5
+        with:
+          # ─── Issue 設定 ───
+          issue-inactive-days: 30
+          issue-comment: >
+            This issue has been automatically locked because it has been
+            closed for over 30 days. If you have a related question or
+            problem, please open a new issue or discussion.
+          issue-lock-reason: "resolved"
+
+          # ─── PR も同様にロックしたい場合 ───
+          # pr-inactive-days: 30
+          # pr-comment: >
+          #   This pull request has been automatically locked ...

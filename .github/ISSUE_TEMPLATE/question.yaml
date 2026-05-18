@@ -1,0 +1,197 @@
+name: Question
+description: Ask a question about react-native-star-io10
+title: "[QUESTION]: "
+labels: ["Status:triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please use this Issue template only if:
+        - You believe your question may reveal a bug
+        - The question is sensitive to the project roadmap
+        - You have already searched other issues and found no answer
+
+  # ============================================================
+  # 1. Question
+  # ============================================================
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of your question.
+      placeholder: |
+        e.g. How can I detect printer status changes (cover open, paper out)
+        in real time on iOS when the printer is connected via Bluetooth?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: question-type
+    attributes:
+      label: Type of question
+      description: What kind of question is this?
+      multiple: true
+      options:
+        - How to use a specific API
+        - Setup / installation / build configuration
+        - Printer behavior / status / error handling
+        - Connection / discovery (Bluetooth / Ethernet / USB etc.)
+        - Print quality / image / layout
+        - TypeScript / type definitions
+        - Compatibility (RN / OS / device version)
+        - Project roadmap / future plans
+        - Other
+    validations:
+      required: true
+
+  # ============================================================
+  # 2. Scope
+  # ============================================================
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Related platform(s)
+      description: Which platforms does your question relate to?
+      multiple: true
+      options:
+        - iOS
+        - Android
+        - Windows
+        - Not platform-specific
+    validations:
+      required: true
+
+  # ============================================================
+  # 3. Library / RN versions
+  # ============================================================
+  - type: input
+    id: lib-version
+    attributes:
+      label: react-native-star-io10 version
+      placeholder: "e.g. 1.10.3"
+    validations:
+      required: true
+
+  - type: input
+    id: rn-version
+    attributes:
+      label: react-native version
+      description: "Leave blank if not applicable."
+      placeholder: "e.g. 0.76.5"
+
+  - type: input
+    id: rnw-version
+    attributes:
+      label: react-native-windows version (Windows only)
+      placeholder: "e.g. 0.76.0"
+
+  # ============================================================
+  # 4. Target device
+  # ============================================================
+  - type: input
+    id: device
+    attributes:
+      label: Target device (if applicable)
+      placeholder: "e.g. iPhone 13 / Pixel 7 / Surface Pro 9"
+
+  - type: input
+    id: device-os
+    attributes:
+      label: Target device OS version (if applicable)
+      placeholder: "e.g. iOS 18.0 / Android 14 / Windows 11 23H2"
+
+  # ============================================================
+  # 5. Printer information
+  # ============================================================
+  - type: input
+    id: printer-model
+    attributes:
+      label: Printer model (if applicable)
+      placeholder: "e.g. mC-Print3"
+
+  - type: input
+    id: printer-firmware
+    attributes:
+      label: Printer firmware version (if applicable)
+      placeholder: "e.g. 3.5"
+
+  - type: dropdown
+    id: interface
+    attributes:
+      label: Printer interface (if applicable)
+      multiple: true
+      options:
+        - Ethernet
+        - Wi-Fi
+        - Bluetooth (Classic)
+        - Bluetooth LE
+        - USB
+        - Lightning
+        - Not applicable
+        - Other
+
+  # ============================================================
+  # 6. Development environment
+  # ============================================================
+  - type: dropdown
+    id: host-os
+    attributes:
+      label: Host OS (development machine)
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Not applicable
+
+  - type: input
+    id: host-os-version
+    attributes:
+      label: Host OS version
+      description: |
+        - macOS: output of `sw_vers`
+        - Windows: output of `ver` (or `winver`)
+        - Linux: output of `uname -a`
+      placeholder: "e.g. macOS 15.0 (24A335) / Windows 11 23H2 / Ubuntu 22.04"
+
+  - type: textarea
+    id: rn-info
+    attributes:
+      label: Output of `npx react-native info` (optional but helpful)
+      render: shell
+
+  # ============================================================
+  # 7. Context
+  # ============================================================
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you tried so far?
+      description: |
+        Documentation pages read, similar issues checked, code attempted, etc.
+        This helps avoid suggestions you've already considered.
+
+  - type: textarea
+    id: code
+    attributes:
+      label: Code snippet (optional)
+      description: If your question involves code, please paste a minimal snippet.
+      render: typescript
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Logs, screenshots, links to SDK docs, anything else.
+
+  # ============================================================
+  # 8. Checklist
+  # ============================================================
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have searched existing Issues for similar questions.
+          required: true
+        - label: I have read the relevant sections of the README and the StarXpand SDK documentation.
+          required: true

@@ -1,0 +1,466 @@
+name: Bug report
+description: Report a bug to help us improve react-native-star-io10
+title: "[Bug]: "
+labels: ["Status: triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file a bug report!
+        Environment details are **critical** for reproducing platform-specific
+        build and runtime issues. Please fill in as much detail as possible —
+        leaving fields blank will likely delay our response.
+
+  # ============================================================
+  # 1. Overview
+  # ============================================================
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Affected platform(s)
+      description: Select all platforms where the issue occurs.
+      multiple: true
+      options:
+        - iOS
+        - Android
+        - Windows
+    validations:
+      required: true
+
+  - type: dropdown
+    id: reproducibility
+    attributes:
+      label: Reproducibility
+      options:
+        - Always
+        - Sometimes (please describe in "Additional context")
+        - Only on specific devices
+        - Only after specific operations
+    validations:
+      required: true
+
+  # ============================================================
+  # 2. Library / RN versions (common to all platforms)
+  # ============================================================
+  - type: input
+    id: lib-version
+    attributes:
+      label: react-native-star-io10 version
+      placeholder: "e.g. 1.10.3"
+    validations:
+      required: true
+
+  - type: input
+    id: rn-version
+    attributes:
+      label: react-native version
+      description: "Leave blank if not applicable (e.g. pure native usage)."
+      placeholder: "e.g. 0.76.5"
+
+  - type: input
+    id: rnw-version
+    attributes:
+      label: react-native-windows version (Windows only)
+      placeholder: "e.g. 0.76.0"
+
+  - type: input
+    id: node-version
+    attributes:
+      label: Node.js version
+      placeholder: "e.g. 20.17.0"
+
+  - type: input
+    id: pkg-manager
+    attributes:
+      label: Package manager
+      placeholder: "e.g. npm 10.8.2 / yarn 3.6.4 / pnpm 9.0.0"
+
+  - type: dropdown
+    id: new-arch
+    attributes:
+      label: New Architecture (Fabric / TurboModules) enabled?
+      options:
+        - "No"
+        - "Yes"
+        - "Unknown"
+        - "Not applicable"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: hermes
+    attributes:
+      label: Hermes enabled?
+      options:
+        - "No"
+        - "Yes"
+        - "Unknown"
+        - "Not applicable"
+
+  # ============================================================
+  # 3. Host development machine
+  # ============================================================
+  - type: dropdown
+    id: host-os
+    attributes:
+      label: Host OS (development machine)
+      options:
+        - macOS
+        - Windows
+        - Linux
+        - Others
+    validations:
+      required: true
+
+  - type: input
+    id: host-os-version
+    attributes:
+      label: Host OS version
+      description: |
+        - macOS: output of `sw_vers`
+        - Windows: output of `ver` (or `winver`)
+        - Linux: output of `uname -a`
+      placeholder: "e.g. macOS 15.0 (24A335) / Windows 11 25H2 / Ubuntu 24.04"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: cpu-arch
+    attributes:
+      label: Host machine CPU architecture
+      description: |
+        **This is critical for macOS users.**
+        Run `arch` or `uname -m` in your terminal.
+        Running an Intel terminal under Rosetta on Apple Silicon often causes
+        build issues that don't reproduce on native arm64.
+        For Windows, check System Information for ARM64 / x64.
+      options:
+        - arm64 (Apple Silicon, native)
+        - x86_64 / i386 on macOS (Intel, or Rosetta on Apple Silicon)
+        - x64 (Windows / Linux Intel/AMD)
+        - ARM64 (Windows / Linux)
+        - Unknown
+    validations:
+      required: true
+
+  # ============================================================
+  # 4. Target device
+  # ============================================================
+  - type: input
+    id: device
+    attributes:
+      label: Target device / emulator
+      placeholder: "e.g. iPhone 13 / Pixel 7 / Surface Pro 9 / iOS Simulator / Android Emulator"
+    validations:
+      required: true
+
+  - type: input
+    id: device-os
+    attributes:
+      label: Target device OS version
+      placeholder: "e.g. iOS 26.0 / Android 16 / Windows 11 25H2"
+    validations:
+      required: true
+
+  # ============================================================
+  # 5. Printer information
+  # ============================================================
+  - type: input
+    id: printer-model
+    attributes:
+      label: Printer model
+      placeholder: "e.g. mC-Print3"
+    validations:
+      required: true
+
+  - type: input
+    id: printer-firmware
+    attributes:
+      label: Printer firmware version
+      placeholder: "e.g. 3.5"
+
+  - type: dropdown
+    id: interface
+    attributes:
+      label: Printer interface
+      options:
+        - Ethernet
+        - Wi-Fi
+        - Bluetooth (Classic)
+        - Bluetooth LE
+        - USB
+        - Lightning
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: bt-mode
+    attributes:
+      label: Bluetooth mode (if applicable)
+      options:
+        - "Not applicable"
+        - "Classic (SPP)"
+        - "BLE"
+        - "iAP2 (MFi)"
+
+  # ============================================================
+  # 6. iOS-specific build configuration
+  # ============================================================
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📱 iOS build configuration
+        *Fill in this section only if the issue occurs on iOS.*
+
+  - type: input
+    id: xcode-version
+    attributes:
+      label: "iOS: Xcode version"
+      placeholder: "e.g. 16.0 / 16A242d"
+
+  - type: input
+    id: cocoapods-version
+    attributes:
+      label: "iOS: CocoaPods version"
+      placeholder: "e.g. 1.16.2"
+
+  - type: dropdown
+    id: use-frameworks
+    attributes:
+      label: "iOS: use_frameworks! setting in Podfile"
+      options:
+        - "Not used"
+        - ":linkage => :static"
+        - ":linkage => :dynamic"
+        - "Other (please describe in Additional context)"
+        - "Not applicable"
+
+  - type: input
+    id: ios-deployment-target
+    attributes:
+      label: "iOS: Deployment target"
+      placeholder: "e.g. 15.6"
+
+  # ============================================================
+  # 7. Android-specific build configuration
+  # ============================================================
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 🤖 Android build configuration
+        *Fill in this section only if the issue occurs on Android.*
+
+  - type: input
+    id: android-studio
+    attributes:
+      label: "Android: Android Studio version"
+      placeholder: "e.g. 2024.1 (Koala)"
+
+  - type: input
+    id: gradle-version
+    attributes:
+      label: "Android: Gradle version"
+      placeholder: "e.g. 8.6"
+
+  - type: input
+    id: agp-version
+    attributes:
+      label: "Android: Android Gradle Plugin version"
+      placeholder: "e.g. 8.5.0"
+
+  - type: input
+    id: kotlin-version
+    attributes:
+      label: "Android: Kotlin version"
+      placeholder: "e.g. 1.9.24"
+
+  - type: input
+    id: jdk-version
+    attributes:
+      label: "Android: JDK version"
+      placeholder: "e.g. 17.0.13"
+
+  - type: input
+    id: android-sdk-versions
+    attributes:
+      label: "Android: compileSdk / targetSdk / minSdk"
+      placeholder: "e.g. 34 / 34 / 23"
+
+  - type: dropdown
+    id: android-arch
+    attributes:
+      label: "Android: Target device ABI"
+      multiple: true
+      options:
+        - arm64-v8a
+        - armeabi-v7a
+        - x86_64
+        - x86
+        - "Unknown"
+
+  # ============================================================
+  # 8. Windows-specific build configuration
+  # ============================================================
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 🪟 Windows build configuration
+        *Fill in this section only if the issue occurs on Windows.*
+
+  - type: input
+    id: vs-version
+    attributes:
+      label: "Windows: Visual Studio version"
+      placeholder: "e.g. Visual Studio 2022 17.10.4"
+
+  - type: input
+    id: windows-sdk
+    attributes:
+      label: "Windows: Windows SDK version"
+      placeholder: "e.g. 10.0.22621.0"
+
+  - type: input
+    id: msbuild
+    attributes:
+      label: "Windows: MSBuild version"
+      placeholder: "e.g. 17.10.4"
+
+  - type: input
+    id: nuget
+    attributes:
+      label: "Windows: NuGet version"
+      placeholder: "e.g. 6.10.0"
+
+  - type: dropdown
+    id: win-arch
+    attributes:
+      label: "Windows: Build target architecture"
+      multiple: true
+      options:
+        - x64
+        - x86
+        - ARM64
+        - "Any CPU"
+
+  - type: dropdown
+    id: win-app-type
+    attributes:
+      label: "Windows: Application type"
+      options:
+        - "UWP"
+        - "Win32 (Hermes)"
+        - "Other / Unknown"
+
+  # ============================================================
+  # 9. Environment info dumps
+  # ============================================================
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        ### 📋 Environment dumps
+
+  - type: textarea
+    id: rn-info
+    attributes:
+      label: Output of `npx react-native info`
+      description: Run this command in your project root and paste the full output.
+      render: shell
+    validations:
+      required: true
+
+  # ============================================================
+  # 10. Reproduction / Expected behavior
+  # ============================================================
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: |
+        Minimum steps to reproduce. The smaller the repro, the faster we can fix it.
+        If possible, please provide a minimal reproduction repository.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  # ============================================================
+  # 11. Logs & screenshots
+  # ============================================================
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error logs / Build output
+      description: |
+        Please paste the **full text log**, not just a screenshot.
+        Text logs are searchable and copyable — this dramatically speeds up diagnosis.
+      render: shell
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots (optional)
+      description: Drag & drop images here if they help explain the problem.
+
+  # ============================================================
+  # 12. Workarounds & additional context
+  # ============================================================
+  - type: textarea
+    id: workarounds
+    attributes:
+      label: Workarounds already attempted
+      description: |
+        List any workarounds or troubleshooting steps you have already tried.
+        *e.g. cleaned Pods, deleted node_modules, tried older RN version,
+        cleared Gradle cache, deleted Visual Studio bin/obj folders, etc.*
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Anything else we should know? Related issues, recent changes, etc.
+
+  # ============================================================
+  # 13. Checklist
+  # ============================================================
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have searched existing issues and confirmed this is not a duplicate.
+          required: true
+        - label: I have updated to the latest version of react-native-star-io10 (or stated my reason for not doing so).
+          required: true
+        - label: I have provided a minimal reproduction (steps or repo).
+          required: true
+        - label: I have included full error logs as text (not only screenshots).
+          required: false

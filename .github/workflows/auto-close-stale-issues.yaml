@@ -1,0 +1,140 @@
+name: Auto-close stale issues by status label
+
+on:
+  schedule:
+    # 毎日 UTC 0:00(JST 9:00)に実行
+    - cron: "0 0 * * *"
+  workflow_dispatch:  # 手動実行も可能に
+
+permissions:
+  issues: write
+
+jobs:
+  close-stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close stale issues based on status labels
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // ============================================================
+            // 設定:ラベルごとのクローズ条件
+            // ============================================================
+            const rules = [
+              {
+                labels: ["Status: duplicate"],
+                days: 14,
+                comment: null,  // コメントなしでクローズ
+              },
+              {
+                labels: ["Status: needs info from reporter", "Status: help wanted"],
+                days: 60,
+                comment: "This issue has been closed due to no progress for 60 days. If the issue persists, please post again and we will reopen it.",
+              },
+              {
+                labels: ["Status: fixed", "Status: resolved"],
+                days: 60,
+                comment: "This issue has been resolved by the maintainers, so we will close it.",
+              },
+            ];
+
+            const { owner, repo } = context.repo;
+            const now = Date.now();
+
+            // 全ての対象ラベルを集める
+            const allTargetLabels = [...new Set(rules.flatMap(r => r.labels))];
+
+            for (const targetLabel of allTargetLabels) {
+              // 該当ラベルが付いた open issue を取得(PR は除外)
+              const issues = await github.paginate(
+                github.rest.issues.listForRepo,
+                {
+                  owner,
+                  repo,
+                  state: "open",
+                  labels: targetLabel,
+                  per_page: 100,
+                }
+              );
+
+              for (const issue of issues) {
+                // Pull Request は除外
+                if (issue.pull_request) continue;
+
+                // このラベルに対応するルールを取得
+                const rule = rules.find(r => r.labels.includes(targetLabel));
+                if (!rule) continue;
+
+                // ラベルが「最後に」付与された時刻を取得
+                // (途中で外して再付与された場合に備え、最新の labeled イベントを使う)
+                const events = await github.paginate(
+                  github.rest.issues.listEventsForTimeline,
+                  {
+                    owner,
+                    repo,
+                    issue_number: issue.number,
+                    per_page: 100,
+                  }
+                );
+
+                const lastLabeledAt = events
+                  .filter(e => e.event === "labeled" && e.label?.name === targetLabel)
+                  .map(e => new Date(e.created_at).getTime())
+                  .sort((a, b) => b - a)[0];
+
+                if (!lastLabeledAt) continue;
+
+                // ラベル付与後の最終活動時刻を取得
+                // (issue 自体の updated_at にはラベル変更も含まれるため、
+                //  ここでは「コメント追加」をユーザー活動と見なす)
+                const comments = await github.paginate(
+                  github.rest.issues.listComments,
+                  {
+                    owner,
+                    repo,
+                    issue_number: issue.number,
+                    since: new Date(lastLabeledAt).toISOString(),
+                    per_page: 100,
+                  }
+                );
+
+                const lastCommentAt = comments.length
+                  ? Math.max(...comments.map(c => new Date(c.created_at).getTime()))
+                  : 0;
+
+                // ラベル付与 or それ以降のコメントの、より新しい方を基準にする
+                const referenceTime = Math.max(lastLabeledAt, lastCommentAt);
+                const daysInactive = (now - referenceTime) / (1000 * 60 * 60 * 24);
+
+                if (daysInactive >= rule.days) {
+                  console.log(
+                    `Closing #${issue.number} ` +
+                    `(label="${targetLabel}", inactive=${daysInactive.toFixed(1)}d)`
+                  );
+
+                  // コメント投稿(設定されている場合)
+                  if (rule.comment) {
+                    await github.rest.issues.createComment({
+                      owner,
+                      repo,
+                      issue_number: issue.number,
+                      body: rule.comment,
+                    });
+                  }
+
+                  // クローズ実行
+                  await github.rest.issues.update({
+                    owner,
+                    repo,
+                    issue_number: issue.number,
+                    state: "closed",
+                    state_reason: "not_planned",  // または "completed"
+                  });
+                } else {
+                  console.log(
+                    `Skipping #${issue.number} ` +
+                    `(label="${targetLabel}", inactive=${daysInactive.toFixed(1)}d / ${rule.days}d)`
+                  );
+                }
+              }
+            }

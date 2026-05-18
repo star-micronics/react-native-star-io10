@@ -1,0 +1,212 @@
+name: Feature request
+description: Suggest an idea or improvement for react-native-star-io10
+title: "[REQUEST]: "
+labels: ["Type: enhancement", "Status: triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to suggest a new feature!
+        The more context you provide (use case, platform, printer model, etc.),
+        the better we can evaluate and prioritize your request.
+
+        💡 **Before submitting:** please check existing issues to see 
+        if a similar request already exists.
+
+        Please understand in advance that we are not guaranteed 
+        to implement all suggestions you provide.
+
+  # ============================================================
+  # 1. Problem statement
+  # ============================================================
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem? Please describe.
+      description: |
+        A clear and concise description of what the problem is.
+        *Ex. I'm always frustrated when [...]*
+      placeholder: |
+        e.g. There is currently no way to detect when a printer's cover is opened
+        during a long print job, which makes our app unable to recover gracefully.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: A clear and concise description of what you want to happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives you've considered
+      description: |
+        A clear and concise description of any alternative solutions
+        or features you've considered (including third-party libraries,
+        workarounds, or native SDK usage).
+
+  # ============================================================
+  # 2. Scope of the request
+  # ============================================================
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Type of request
+      description: What kind of change are you requesting?
+      multiple: true
+      options:
+        - New API / new method
+        - New supported printer model / interface
+        - Behavior change of existing API
+        - Performance improvement
+        - Documentation / sample improvement
+        - TypeScript / type-definition improvement
+        - Tooling / build / CI improvement
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Target platform(s)
+      description: Which platforms should this feature support?
+      multiple: true
+      options:
+        - iOS
+        - Android
+        - Windows
+        - All platforms
+        - Not platform-specific
+    validations:
+      required: true
+
+  # ============================================================
+  # 3. Use case context
+  # ============================================================
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case / Real-world scenario
+      description: |
+        Please describe a concrete scenario where this feature would be used.
+        Real use cases help us prioritize.
+      placeholder: |
+        e.g. In our retail POS app, we print receipts continuously during peak
+        hours. When a cover opens mid-print, we want to display an in-app
+        recovery dialog without restarting the print queue.
+    validations:
+      required: true
+
+  - type: input
+    id: printer-models
+    attributes:
+      label: Related printer model(s) (if applicable)
+      description: List the Star printer model(s) involved in this use case.
+      placeholder: "e.g. mC-Print3, TSP100IV, SP742"
+
+  - type: dropdown
+    id: interface
+    attributes:
+      label: Related interface(s) (if applicable)
+      multiple: true
+      options:
+        - Ethernet
+        - Wi-Fi
+        - Bluetooth (Classic)
+        - Bluetooth LE
+        - USB
+        - Lightning
+        - Not applicable
+        - Other
+
+  # ============================================================
+  # 4. Priority / impact
+  # ============================================================
+  - type: dropdown
+    id: importance
+    attributes:
+      label: How important is this feature to you?
+      options:
+        - "Nice to have"
+        - "Would significantly improve our app"
+        - "Blocking our adoption / development"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: workaround
+    attributes:
+      label: Do you currently have a workaround?
+      options:
+        - "No workaround available"
+        - "Yes, but it is fragile / limited"
+        - "Yes, working but not ideal"
+        - "Not yet investigated"
+
+  - type: textarea
+    id: workaround-detail
+    attributes:
+      label: Workaround details (if any)
+      description: If you have a workaround, please briefly describe it.
+
+  # ============================================================
+  # 5. Reference / proposal
+  # ============================================================
+  - type: textarea
+    id: api-proposal
+    attributes:
+      label: API proposal (optional)
+      description: |
+        If you have an idea of what the API should look like, please share it.
+        TypeScript / pseudo-code snippets are welcome.
+      render: typescript
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References (optional)
+      description: |
+        Links to related StarXpand SDK docs, similar features in other libraries,
+        Star native SDK references, or related issues.
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: |
+        Add any other context, screenshots, mockups, or sketches about
+        the feature request here.
+
+  # ============================================================
+  # 6. Contribution willingness
+  # ============================================================
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: Are you willing to contribute?
+      description: Knowing this helps us coordinate; it is not required.
+      options:
+        - "No, I'm just requesting"
+        - "I could help test a preview build"
+        - "I could help with documentation"
+        - "I could submit a Pull Request"
+
+  # ============================================================
+  # 7. Checklist
+  # ============================================================
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission checklist
+      options:
+        - label: I have searched existing issues and confirmed this is not a duplicate.
+          required: true
+        - label: I have described a concrete use case (not only an abstract idea).
+          required: true
+        - label: I have checked the latest version of react-native-star-io10 to confirm this feature does not already exist.
+          required: true

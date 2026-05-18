@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📘 StarXpand SDK Documentation
+    url: https://www.star-m.jp/products/s_print/sdk/starxpand/manual/en/index.html
+    about: Please check the official SDK documentation first.
+  - name: 🔖 Release Notes
+    url: https://github.com/star-micronics/react-native-star-io10/releases
+    about: Your question may already be answered in a recent release.
+  - name: 💡 Wiki
+    url: https://github.com/star-micronics/react-native-star-io10/wiki
+    about: This section summarizes frequently asked questions and issues.
