@@ -24,5 +24,4 @@ framework module StarIO10ReactNative{
 
 module StarIO10ReactNative.Swift {
   header "StarIO10ReactNative-Swift.h"
-  requires objc
 }

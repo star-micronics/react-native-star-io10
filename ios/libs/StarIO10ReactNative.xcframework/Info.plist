@@ -8,12 +8,13 @@
 			<key>BinaryPath</key>
 			<string>StarIO10ReactNative.framework/StarIO10ReactNative</string>
 			<key>LibraryIdentifier</key>
-			<string>ios-arm64</string>
+			<string>ios-arm64_arm64e</string>
 			<key>LibraryPath</key>
 			<string>StarIO10ReactNative.framework</string>
 			<key>SupportedArchitectures</key>
 			<array>
 				<string>arm64</string>
+				<string>arm64e</string>
 			</array>
 			<key>SupportedPlatform</key>
 			<string>ios</string>

@@ -2,6 +2,17 @@
 
 # 変更履歴
 
+## 1.12.1 (2026/05/22)
+
+#### 追加
+
+* Android : JNIによる呼び出し箇所のPAC/BTI対応
+
+#### 修正
+
+* 接続先のLANプリンターが他ホストデバイスから利用されていて接続できなかったとき、`StarPrinter.errorDetail`に格納される接続失敗要因が`StarIO10InUseError`にならないことがある問題を修正
+* Android : LAN通信を可能とするアドレス範囲の制限を解除 [#56](https://github.com/star-micronics/StarXpand-SDK-Android/issues/56)
+
 ## 1.12.0 (2026/03/31)
 
 #### 追加

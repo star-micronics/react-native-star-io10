@@ -2,6 +2,17 @@
 
 # Change Log
 
+## 1.12.1 (2026/05/22)
+
+#### Added
+
+* Android : Added PAC/BTI support for JNI call sites.
+
+#### Fixed
+
+* Fixed an issue where the connection failure reason stored in `StarPrinter.errorDetail` was not set to `StarIO10InUseException` in some cases when a target LAN printer was being used by another host device and a connection cannot be established.
+* Android : Removed the restriction on the address range allowed for LAN communication. [#56](https://github.com/star-micronics/StarXpand-SDK-Android/issues/56)
+
 ## 1.12.0 (2026/03/31)
 
 #### Added

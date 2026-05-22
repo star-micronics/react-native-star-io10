@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/StarIO10ReactNative-Swift.h</key>
 		<data>
-		4gD0DjBHp1m1CwMuX+ikWIky1YU=
+		ZhND27DiIB7ps7d3+mPXzPc2+xA=
 		</data>
 		<key>Headers/StarIO10ReactNative.h</key>
 		<data>
@@ -22,51 +22,51 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		kNtKx6mTIz3J3QlilPts8UUT07c=
+		aOtueKmmuP+cW9MhiYB4PtXzvB4=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		7/2ov4OYtfJsd74qAIracbSjmd8=
+		BuHr2vWSwKLTpgvVi4MDk/dMVdU=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		dLemgp899gE2E98mB/Zz2raxnOU=
+		kmgVL0mQPDjKIwllvRSR7PjZRAo=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		V40bTZcX2ExVddoQlK8PHIVyvzw=
+		cJjWSeqoYALWADUHcI/c7XUnmYM=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		dLemgp899gE2E98mB/Zz2raxnOU=
+		kmgVL0mQPDjKIwllvRSR7PjZRAo=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		A6hth+s+mw9al5rcApQjtfdZAIM=
+		6cvmbRby8E3XMcvuEdjnCwe12MM=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		7/2ov4OYtfJsd74qAIracbSjmd8=
+		BuHr2vWSwKLTpgvVi4MDk/dMVdU=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		fCnziAzIZODh/fccx35Kx+rMTTE=
+		Si4hm52jglgdzQIKf03mCF51q+I=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		9PBisp/L1aTpZKVhhKS1QPxsgkg=
+		7+RD/yFr/5uHvD+qWd3O94lf/Sg=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		fCnziAzIZODh/fccx35Kx+rMTTE=
+		Si4hm52jglgdzQIKf03mCF51q+I=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		7cKwTWsZ8bCnHCzRTDSW2YAA+Js=
+		iURQKEHDA5qowSTES03NkLqoLQE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		fDt44RNwHUfLjRQ/eXXNzpXFJm0=
+		5OCafi8VMYVsZQwJSCPYCWvfDPU=
 		</data>
 		<key>PrivacyInfo.xcprivacy</key>
 		<data>
@@ -101,7 +101,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Gk7Bv+93aYDDno7aYlFcmNB8TrnMsiiiodKMikbXsmk=
+			sQjuRXVTuk/Bmb3cZB4x8GEsUL2B/v6oMALyACDU2K0=
 			</data>
 		</dict>
 		<key>Headers/StarIO10ReactNative.h</key>
@@ -115,77 +115,77 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			nPfoMPpChxT+Swv98tL8PG3ODkKypeGCiEReGfpw8uk=
+			gc5xxuKp4pYEH1TDeOWPy9KIPl60mRttKoG1r6/YfKI=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VBlT3iF3TyzYIUZ7oWS2Oy/wfIwpF4BODnxNqh60GeM=
+			VGanS3vn5Jco775gHI5kX6175y6i/8dpWYvTGq9FIoM=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9zVYZd7CUSyih9S+F9ZQUP9oIXH6LGcb/vCP6MFLCmE=
+			NbvkTpDO/xLRZ7g3vVlIdxep5mOzQZY6EUIwC3UGKWI=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VBlT3iF3TyzYIUZ7oWS2Oy/wfIwpF4BODnxNqh60GeM=
+			VGanS3vn5Jco775gHI5kX6175y6i/8dpWYvTGq9FIoM=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wULea7IdNMZiSFAXE1TVglpLoO8bLlAbr3qRgoyqH44=
+			sJ23YqGGcajPO68va/Awf8KHl7/5hzpxlgSHmSJgZEE=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nPfoMPpChxT+Swv98tL8PG3ODkKypeGCiEReGfpw8uk=
+			gc5xxuKp4pYEH1TDeOWPy9KIPl60mRttKoG1r6/YfKI=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rxabCYJu1WzHT/e4JJNJ7AHN6AWE2LMv4ooIGdDD0aw=
+			SlzVlBA6es1d9BLTTkvgZqMBri0po05gCRqQBqWTOiY=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			lQmpQgYTSbw6pIphw0OuPB/4WjGZhVHLPBNRsaCjVEQ=
+			MsQpu1Nkxx01BcLeqLI5Ij1a8kLKvj13XbuWqpg9wTk=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			rxabCYJu1WzHT/e4JJNJ7AHN6AWE2LMv4ooIGdDD0aw=
+			SlzVlBA6es1d9BLTTkvgZqMBri0po05gCRqQBqWTOiY=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			PCNT4qGJWtmeaKE8C6/TAwj1IjqsHzBoG2FF0tBRPUo=
+			EAxzy/q7rkpScS67CKBVYBReYyi+7Z3FV7DQGh8BGeI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bP48BwCctmHLOyBjGVEoetl/DAOtOtpK47nk51Nyq6E=
+			UGrbnzbkgh9IDQpCUlZSZ78xpATHO/MWkCDDhaSBOdY=
 			</data>
 		</dict>
 		<key>PrivacyInfo.xcprivacy</key>
