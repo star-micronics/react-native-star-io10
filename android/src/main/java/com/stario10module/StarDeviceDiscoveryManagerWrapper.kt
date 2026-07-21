@@ -50,11 +50,12 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
     }
 
     @ReactMethod
-    fun startDiscovery(identifier: String, discoveryTime: Int, promise: Promise) {
+    fun startDiscovery(identifier: String, discoveryTime: Int, isEnabledFindSameDevice: Boolean, promise: Promise) {
         val manager = InstanceManager.get(identifier)
 
         if (manager is StarDeviceDiscoveryManager) {
             manager.discoveryTime = discoveryTime
+            manager.isEnabledFindSameDevice = isEnabledFindSameDevice
 
             try {
                 manager.callback = object : StarDeviceDiscoveryManager.Callback {
@@ -122,6 +123,13 @@ class StarDeviceDiscoveryManagerWrapper internal constructor(context: ReactAppli
                             EventParameter.KEY_BLE_DEVICE_NAME,
                             printer.information?.detail?.bluetoothLE?.deviceName ?: null
                         )
+                        
+                        printer.information?.detail?.bluetoothLE?.rssi?.let { rssi ->
+                            params.putInt(
+                                EventParameter.KEY_BLE_RSSI,
+                                rssi
+                            )
+                        }
 
                         params.putString(
                             EventParameter.KEY_USB_PORT_NAME,

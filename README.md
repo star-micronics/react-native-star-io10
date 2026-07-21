@@ -27,14 +27,29 @@ Please refer [here](DIAG_INFO.md) for details.
 
 ## Requirements
 
-| Platform | Version | Arch | Test Environment[*](#TestEnvironment) |
+| Platform | Version | Arch | Test Environment[*3](#TestEnvironment) |
 | --- | --- | --- | --- |
 | iOS | iOS 15.1 or later | Device: arm64<br> Simulator: x86_64, arm64 | Xcode 26.4 |
-| Android | Android 11.0 or later[*](#OsVersion) | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 8.12, AGP 8.9.1 |
+| Android | Android 8.0 or later[*1](#AndroidBle) [*2](#OsVersion) | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 9.3.1, AGP 8.12.0 |
 | Windows | Windows 11 or later | x64 | Visual Studio 2022 |
 
-<a id="OsVersion"></a>*The Bluetooth Low Energy interface is only supported on Android 12.0 and later.<br>
-<a id="TestEnvironment"></a>*The sample app included with this SDK is being built, and its operation is being confirmed.
+<a id="AndroidBle"></a>*1 The Bluetooth Low Energy interface is only supported on Android 12.0 and later.<br>
+<a id="OsVersion"></a>*2 Testing has been performed on Android 11 or later. For Android 8.0 to 10, operation is expected to be possible on the design.<br>
+<a id="TestEnvironment"></a>*3 The sample app included with this SDK is being built, and its operation is being confirmed.
+
+#### Notes for Android 17
+
+- The Android device-control library included in react-native-star-io10 is configured with targetSdkVersion and compileSdkVersion set to 37 (Android 17).  
+Therefore, your application must also set compileSdkVersion to 37 or higher. [Reference](example/android/build.gradle)
+- For apps targeting Android 17 or later, the ACCESS_LOCAL_NETWORK permission is now required for local network communication. [Local network access permission](https://developer.android.com/privacy-and-security/local-network-permission)  
+However, as of React Native v0.86.0 (latest as of 2026/6/30), this permission is not yet supported. [PermissionsAndroid](https://reactnative.dev/docs/permissionsandroid)  
+In apps like this sample app that request the `NEARBY_DEVICES` permission, please note that LAN communication may not work properly if the `NEARBY_DEVICES` permission is not granted.
+
+#### About the end of Windows support
+
+Support for the UWP platform via react-native-star-io10 is scheduled to end with this version; it will be removed in the next feature update release. Please refer to the details [here](https://github.com/star-micronics/react-native-star-io10/wiki/FAQ#windows-regarding-the-discontinuation-of-windows-uwp-support).
+
+We offer the [StarXpand SDK for Windows](https://github.com/star-micronics/Starlabs-StarXpand-SDK-Windows) as the new SDK for Windows. This SDK targets the Windows .NET (Desktop) platform.
 
 ## Installation
 
@@ -43,11 +58,14 @@ npm install react-native-star-io10 --save
 ```
 
 ### iOS
+
 #### Privacy manifest file
+
 In accordance with Apple's guidelines, `react-native-star-io10` V1.6.1 or later includes a privacy manifest file. Please see [here](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files) for the Manifest file.
 However, `react-native-star-io10` does not use the Required Reason API from the first release. (As of January 29, 2024)
 
 #### Some settings and approvals are required depending on the printer interface
+
 Please check the table below and take action.
 
 | Interface of the printer | Necessary actions                                                                 |
@@ -107,6 +125,7 @@ When using Bluetooth Low Energy communication, pairing is required.
 For the procedure of pairing, please refer [here](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/en/pairing.html).
 
 ### Android
+
 #### 1. Add settings for library dependencies
 
 Add the following configuration to the build.gradle of the app module of the app you wish to embed, which refers to the local Maven repository.
@@ -132,6 +151,7 @@ When communicating with a USB printer, a dialog box will appear asking for conne
 If you do not want to display the connection permission dialog every time the USB cable is plugged in or unplugged, configure the following settings. This setting will also allow the application to start automatically when the USB cable is plugged.
 
 ##### 3.1. Add settings to AndroidManifest.xml
+
 Add the following `<intent-filter>` and `<meta-data>` elements to AndroidManifest.xml.
 
 ```xml
@@ -145,6 +165,7 @@ Add the following `<intent-filter>` and `<meta-data>` elements to AndroidManifes
 ```
 
 ##### 3.2. Add a resource file
+
 Store the following resource files under `res/xml` with the names `device_filter.xml` and `accessory_filter.xml`.
 
 - device_filter.xml
@@ -256,7 +277,8 @@ Refer to the [sample project](example/windows/example/Package.appxmanifest) and 
   </Capabilities>
 ```
 
-## Limitations 
+## Limitations
+
 ### When using Android device, an image specified by URL is sometimes printed in a low resolution
 
 In Android, when an image file size is large, and its URL is specified as the source of the ImageParameter which is the argument of the actionPrintImage method, the image may be printed in low resolution. 

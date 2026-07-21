@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/StarIO10ReactNative-Swift.h</key>
 		<data>
-		ZhND27DiIB7ps7d3+mPXzPc2+xA=
+		qyQlKFXITnjQ7+jhw9kDXzy30p8=
 		</data>
 		<key>Headers/StarIO10ReactNative.h</key>
 		<data>
@@ -22,15 +22,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		aOtueKmmuP+cW9MhiYB4PtXzvB4=
+		uTAZUUOVVYmm+BSmPnrtyn5Q0u4=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		BuHr2vWSwKLTpgvVi4MDk/dMVdU=
+		vcj+PsAr7wxRTo7ExL/lzAd+UhI=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		kmgVL0mQPDjKIwllvRSR7PjZRAo=
+		oh1TJRe1uWNRETQvypjYyfSqNxs=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -38,19 +38,19 @@
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		kmgVL0mQPDjKIwllvRSR7PjZRAo=
+		oh1TJRe1uWNRETQvypjYyfSqNxs=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		6cvmbRby8E3XMcvuEdjnCwe12MM=
+		AK3bQCKnzA/PSIZuyYCCa0BLIko=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		BuHr2vWSwKLTpgvVi4MDk/dMVdU=
+		vcj+PsAr7wxRTo7ExL/lzAd+UhI=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		Si4hm52jglgdzQIKf03mCF51q+I=
+		FQRYNuDifrtsyccHEIZ+45VkORU=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -58,11 +58,11 @@
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		Si4hm52jglgdzQIKf03mCF51q+I=
+		FQRYNuDifrtsyccHEIZ+45VkORU=
 		</data>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		iURQKEHDA5qowSTES03NkLqoLQE=
+		kehxfLXGtVRubjYAQngqw64zouM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -101,7 +101,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			sQjuRXVTuk/Bmb3cZB4x8GEsUL2B/v6oMALyACDU2K0=
+			cacBsGezRuVieKDLKzS2WkCFZ9y2xxtY+OBxrPVh6WY=
 			</data>
 		</dict>
 		<key>Headers/StarIO10ReactNative.h</key>
@@ -115,14 +115,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gc5xxuKp4pYEH1TDeOWPy9KIPl60mRttKoG1r6/YfKI=
+			dn3aGvsRj2dkan0fHHNyD1z/Q88GgishqovkMVuD7bU=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VGanS3vn5Jco775gHI5kX6175y6i/8dpWYvTGq9FIoM=
+			u/6YNr20u0cVinAiHrETIl9cpNMIYPy7k2Z3MaQ2sLk=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
@@ -136,28 +136,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VGanS3vn5Jco775gHI5kX6175y6i/8dpWYvTGq9FIoM=
+			u/6YNr20u0cVinAiHrETIl9cpNMIYPy7k2Z3MaQ2sLk=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			sJ23YqGGcajPO68va/Awf8KHl7/5hzpxlgSHmSJgZEE=
+			wxMnVooWCamz2B5gf8Bf6XFYA/2cW/9Ll35RZ9W6rcY=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gc5xxuKp4pYEH1TDeOWPy9KIPl60mRttKoG1r6/YfKI=
+			dn3aGvsRj2dkan0fHHNyD1z/Q88GgishqovkMVuD7bU=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SlzVlBA6es1d9BLTTkvgZqMBri0po05gCRqQBqWTOiY=
+			DJQSx04GMPUhP3+EaBZXTWofZPPPb+PJcZ556G+nfkA=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -171,14 +171,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SlzVlBA6es1d9BLTTkvgZqMBri0po05gCRqQBqWTOiY=
+			DJQSx04GMPUhP3+EaBZXTWofZPPPb+PJcZ556G+nfkA=
 			</data>
 		</dict>
 		<key>Modules/StarIO10ReactNative.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			EAxzy/q7rkpScS67CKBVYBReYyi+7Z3FV7DQGh8BGeI=
+			enLqoXdklrfBOE+AbG9VmXLFSyOpsZevn3Aw6jfrj9Q=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

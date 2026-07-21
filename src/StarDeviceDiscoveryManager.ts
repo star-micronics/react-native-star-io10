@@ -19,6 +19,7 @@ export class StarDeviceDiscoveryManager extends NativeObject {
     private _discoveryStarting: boolean = false;
 
     discoveryTime: number = -1;
+    isEnabledFindSameDevice: boolean = false;
     onPrinterFound: (printer: StarPrinter) => void = () => {};
     onDiscoveryFinished: () => void = () => {};
 
@@ -51,12 +52,16 @@ export class StarDeviceDiscoveryManager extends NativeObject {
                         information._detail._lan._macAddress = actualPrams.macAddress ?? undefined;
                         information._detail._lan._ipAddress = actualPrams.ipAddress ?? undefined;
                         information._detail._lan._uniqueId = actualPrams.uniqueId ?? undefined;
+
                         information.detail._bluetooth._portName = actualPrams.bluetoothPortName ?? undefined;
                         information.detail._bluetooth._serialNumber = actualPrams.bluetoothSerialNumber ?? undefined;
                         information._detail._bluetooth._address = actualPrams.bluetoothAddress ?? undefined;
                         information._detail._bluetooth._deviceName = actualPrams.bluetoothDeviceName ?? undefined;
+
                         information.detail._bluetoothLE._address = actualPrams.bluetoothLEAddress ?? undefined;
                         information.detail._bluetoothLE._deviceName = actualPrams.bluetoothLEDeviceName ?? undefined;
+                        information.detail._bluetoothLE._rssi = actualPrams.bluetoothLERssi ?? undefined;
+
                         information.detail._usb._portName= actualPrams.usbPortName ?? undefined;
                         information.detail._usb._productSerialNumber = actualPrams.productSerialNumber ?? undefined;
                         information.detail._usb._usbSerialNumber = actualPrams.usbSerialNumber ?? undefined;
@@ -88,7 +93,7 @@ export class StarDeviceDiscoveryManager extends NativeObject {
             );
         }
 
-        await NativeModules.StarDeviceDiscoveryManagerWrapper.startDiscovery(this._nativeObject, this.discoveryTime)
+        await NativeModules.StarDeviceDiscoveryManagerWrapper.startDiscovery(this._nativeObject, this.discoveryTime,this.isEnabledFindSameDevice)
         .catch(async (nativeError: any) => {
             this._discoveryStarting = false;
 

@@ -23,6 +23,7 @@ extern NSString * const kKeyBluetoothSerialNumber;
 extern NSString * const kKeyBluetoothAddress;
 extern NSString * const kKeyBluetoothLEAddress;
 extern NSString * const kKeyBluetoothLEDeviceName;
+extern NSString * const kKeyBluetoothLERssi;
 extern NSString * const kKeyUsbPortName;
 extern NSString * const kKeyUsbProductSN;
 extern NSString * const kKeyUsbUsbSN;

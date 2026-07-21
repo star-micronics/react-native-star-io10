@@ -28,14 +28,29 @@ StarIO10ライブラリが提供するAPIの一部は、実行時にユーザー
 
 ## 動作環境
 
-| Platform | OS Version | Arch | Test Environment[*](#TestEnvironment) |
+| Platform | OS Version | Arch | Test Environment[*3](#TestEnvironment) |
 | --- | --- | --- | --- |
 | iOS | iOS 15.1 以降 | 実機: arm64<br> シミュレータ: x86_64, arm64 | Xcode 26.4 |
-| Android | Android 11.0 以降[*](#OsVersion) | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 8.12, AGP 8.9.1 |
+| Android | Android 8.0 以降[*1](#AndroidBle) [*2](#OsVersion) | arm64-v8a, armeabi-v7a, x86, x86_64 | Gradle 9.3.1, AGP 8.12.0 |
 | Windows | Windows 11 24H2 以降 | x64 | Visual Studio 2022 |
 
-<a id="OsVersion"></a>*Bluetooth Low Enegryインターフェースは、Android 12.0以降でのみサポートしています。<br>
-<a id="TestEnvironment"></a>*SDK同梱のサンプルアプリをビルドして動作することを確認しています。
+<a id="AndroidBle"></a>*1 Bluetooth Low Energyインターフェースは、Android 12.0以降でのみサポートしています。<br>
+<a id="OsVersion"></a>*2 動作確認は Android 11 以降で実施しています。Android 8 ~ 10 については、設計上動作可能です。<br>
+<a id="TestEnvironment"></a>*3 SDK同梱のサンプルアプリをビルドして動作することを確認しています。
+
+#### Android 17における注意点
+
+- react-native-star-io10に含まれるデバイス制御用のライブラリは、targetSdkVersionおよびcompileSdkVersionが37 (Android 17) に設定されています。  
+そのため、アプリケーション側のcompileSdkVersionも37以上を指定する必要があります。 [参考](../example/android/build.gradle)
+- Android 17以降をターゲットとするアプリでは、ローカルネットワーク通信のために`ACCESS_LOCAL_NETWORK`権限が必要となりました。 [ローカル ネットワークへのアクセス権](https://developer.android.com/privacy-and-security/local-network-permission?hl=ja)
+しかし、React Native V0.86.0 (2026/6/30時点の最新版) では、上記権限がまだサポートされておりません。 [PermissionsAndroid](https://reactnative.dev/docs/permissionsandroid)  
+本サンプルアプリのように`付近のデバイス`権限を要求するアプリにて、`付近のデバイス`権限が許可されていない状態では、LAN通信が正しく行えなくなることにご注意ください。
+
+#### Windowsのサポート終了について
+
+react-native-star-io10によるWindows (UWP) プラットフォームのサポートは、本バージョンにて終了予定です。次の機能アップデートリリースで削除されます。詳細は[こちら](https://github.com/star-micronics/react-native-star-io10/wiki/FAQ#windows-regarding-the-discontinuation-of-windows-uwp-support)をご参照ください。
+
+新しいWindows用SDKとして、[StarXpand SDK for Windows](https://github.com/star-micronics/Starlabs-StarXpand-SDK-Windows) を提供しています。これはWindows .NET (Desktop) プラットフォームをターゲットとするSDKです。
 
 ## 導入
 
@@ -44,12 +59,15 @@ npm install react-native-star-io10 --save
 ```
 
 ### iOS
+
 #### プライバシーマニュフェスト
+
 Apple社の指針に従い、`react-native-star-io10` V1.6.1以降はプライバシーマニフェストファイルを含みます。
 Manifest fileについては[こちら](https://developer.apple.com/documentation/bundleresources/privacy_manifest_files)をご参照ください。
 ただし、`react-native-star-io10`では過去バージョンを含め、Required Reason APIは使用しておりません。（2024年1月29日現在）
 
 #### プリンターのインターフェースごとに必要な対応
+
 下記表を確認し対応をしてください。
 
 | プリンターのインターフェース | 必要な対応                                                                        |
@@ -109,6 +127,7 @@ Bluetooth Low Energy通信を行う場合、ペアリングを行う必要があ
 ペアリングの手順については、[こちら](https://star-m.jp/products/s_print/sdk/react-native-star-io10/manual/ja/pairing.html)を参照ください。
 
 ### Android
+
 #### 1. ライブラリの依存関係の設定
 
 組み込みたいアプリのappモジュールのbuild.gradleに、下記のローカルのMavenリポジトリを参照する設定を追加してください。
@@ -134,6 +153,7 @@ USBプリンターと通信を行うとき、接続許可を求めるダイ�
 USBケーブル挿抜の度に接続許可ダイアログを表示させないようにしたい場合、次の設定を行ってください。また、この設定を行うことで、USBケーブルを挿入したときにアプリケーションが自動で起動するようになります。
 
 ##### 3.1. AndroidManifest.xmlに設定を追加する
+
 AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素を追加してください。
 
 ```xml
@@ -147,6 +167,7 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
 ```
 
 ##### 3.2. リソースファイルを追加する
+
 下記のリソースファイルを `res/xml` 以下に `device_filter.xml`、`accessory_filter.xml` という名前で保存してください。
 
 - device_filter.xml
@@ -195,7 +216,7 @@ AndroidManifest.xmlに下記の `<intent-filter>` 要素と `<meta-data>` 要素
 
 #### 4. Bluetooth Low Energyプリンターを使用する場合
 
-Bluetooth Low Enegryインターフェースは、Android 12.0以降でのみサポートしています。
+Bluetooth Low Energyインターフェースは、Android 12.0以降でのみサポートしています。
 
 ##### 4.1. AndroidManifest.xmlに設定を追加する
 
@@ -259,6 +280,7 @@ Androidデバイスがサイレントモードの場合、ペアリングが正�
 ```
 
 ## 制限事項
+
 ### Android端末を使用する場合、URLで指定した画像が低い解像度で印字されることがある
 
 actionPrintImageメソッドの引数ImageParameterのsourceにある程度サイズが大きい画像ファイルのURLを指定した場合、Android端末から印刷データが送付されると、画像が粗く印字されることがあります。

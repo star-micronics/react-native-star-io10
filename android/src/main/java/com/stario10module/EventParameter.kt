@@ -21,6 +21,7 @@ class EventParameter {
         const val KEY_BT_DEVICE_NAME = "bluetoothDeviceName"
         const val KEY_BLE_ADDRESS = "bluetoothLEAddress"
         const val KEY_BLE_DEVICE_NAME = "bluetoothLEDeviceName"
+        const val KEY_BLE_RSSI = "bluetoothLERssi"
         const val KEY_USB_PORT_NAME = "usbPortName"
         const val KEY_USB_USB_SN = "usbSerialNumber"
 

@@ -32,10 +32,10 @@ android {
     compileSdk getExtOrIntegerDefault('compileSdkVersion')
     buildToolsVersion getExtOrDefault('buildToolsVersion')
     defaultConfig {
-        minSdkVersion 29
+        minSdkVersion 26
         targetSdkVersion getExtOrIntegerDefault('targetSdkVersion')
         versionCode 1
-        versionName "1.12.1"
+        versionName "1.13.0"
     }
 
     buildTypes {
@@ -133,9 +133,9 @@ dependencies {
     api 'com.facebook.react:react-native:+'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation (name: 'stario10', ext: 'aar')
-    def coroutines_version = '1.6.4' // Version of the library for Kotlin coroutines (async, await)
+    def coroutines_version = '1.7.3' // Version of the library for Kotlin coroutines (async, await)
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version" // Library for Kotlin coroutines (async, await)
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1" // kotlin 1.7.20
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1" // kotlin 1.8.22
 }

@@ -1289,6 +1289,7 @@ SWIFT_PROTOCOL_NAMED("StarDeviceDiscoveryManager")
 @protocol STARIO10StarDeviceDiscoveryManager
 @property (nonatomic, weak) id <STARIO10StarDeviceDiscoveryManagerDelegate> _Nullable delegate;
 @property (nonatomic) NSInteger discoveryTime;
+@property (nonatomic) BOOL isEnabledFindSameDevice;
 - (BOOL)startDiscoveryWithError:(NSError * _Nullable * _Nullable)error;
 - (void)stopDiscovery;
 @end
@@ -1432,11 +1433,13 @@ SWIFT_CLASS_NAMED("StarPrinterInformationBluetooth")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class NSNumber;
 SWIFT_CLASS_NAMED("StarPrinterInformationBluetoothLE")
 @interface STARIO10StarPrinterInformationBluetoothLE : NSObject
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;
 @property (nonatomic, readonly, copy) NSString * _Nullable address;
 @property (nonatomic, readonly, copy) NSString * _Nullable deviceName;
+@property (nonatomic, readonly, strong) NSNumber * _Nullable rssi;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -3134,6 +3137,7 @@ SWIFT_PROTOCOL_NAMED("StarDeviceDiscoveryManager")
 @protocol STARIO10StarDeviceDiscoveryManager
 @property (nonatomic, weak) id <STARIO10StarDeviceDiscoveryManagerDelegate> _Nullable delegate;
 @property (nonatomic) NSInteger discoveryTime;
+@property (nonatomic) BOOL isEnabledFindSameDevice;
 - (BOOL)startDiscoveryWithError:(NSError * _Nullable * _Nullable)error;
 - (void)stopDiscovery;
 @end
@@ -3277,11 +3281,13 @@ SWIFT_CLASS_NAMED("StarPrinterInformationBluetooth")
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
+@class NSNumber;
 SWIFT_CLASS_NAMED("StarPrinterInformationBluetoothLE")
 @interface STARIO10StarPrinterInformationBluetoothLE : NSObject
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;
 @property (nonatomic, readonly, copy) NSString * _Nullable address;
 @property (nonatomic, readonly, copy) NSString * _Nullable deviceName;
+@property (nonatomic, readonly, strong) NSNumber * _Nullable rssi;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

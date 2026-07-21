@@ -6,6 +6,7 @@ export declare class StarDeviceDiscoveryManager extends NativeObject {
     private _interfaceTypes;
     private _discoveryStarting;
     discoveryTime: number;
+    isEnabledFindSameDevice: boolean;
     onPrinterFound: (printer: StarPrinter) => void;
     onDiscoveryFinished: () => void;
     constructor(_interfaceTypes: Array<InterfaceType>, _nativeObject: string);

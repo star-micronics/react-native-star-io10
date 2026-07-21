@@ -2,6 +2,17 @@
 
 # Change Log
 
+## 1.13.0 (2026/7/10)
+
+#### Added
+
+* Added the `rssi` property to the Bluetooth LE communication information retrieval API (`StarPrinterInformationBluetoothLE`), except Windows.
+* Added the `isEnabledFindSameDevice` property to the device discovery API (`StarDeviceDiscoveryManager`) to allow repeated discovery notifications (`onPrinterFound`) for the same device.
+
+#### Notice of Upcoming Breaking Changes
+
+* Support for the UWP platform via react-native-star-io10 is scheduled to end with this version; it will be removed in the next feature update release. Please refer to the details [here](https://github.com/star-micronics/react-native-star-io10/wiki/FAQ#windows-regarding-the-discontinuation-of-windows-uwp-support).
+
 ## 1.12.1 (2026/05/22)
 
 #### Added

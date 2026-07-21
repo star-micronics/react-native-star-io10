@@ -426,7 +426,7 @@
 					"$(SRCROOT)/../node_modules/react-native/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.12.1;
+				MARKETING_VERSION = 1.13.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = StarIo10;
 				SKIP_INSTALL = YES;
@@ -452,7 +452,7 @@
 					"$(SRCROOT)/../node_modules/react-native/**",
 				);
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.12.1;
+				MARKETING_VERSION = 1.13.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = StarIo10;
 				SKIP_INSTALL = YES;

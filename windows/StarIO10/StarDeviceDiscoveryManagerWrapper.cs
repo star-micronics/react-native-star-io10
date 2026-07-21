@@ -144,7 +144,7 @@ namespace StarMicronics.ReactNative.StarIO10
         }
 
         [ReactMethod("startDiscovery")]
-        public void StartDiscovery(string objectIdentifier, int discoveryTime, IReactPromise<JSValue.Void> promise)
+        public void StartDiscovery(string objectIdentifier, int discoveryTime, bool isEnabledFindSameDevice, IReactPromise<JSValue.Void> promise)
         {
             if (!GetObject(objectIdentifier, out IStarDeviceDiscoveryManager nativeObject))
             {
@@ -153,6 +153,7 @@ namespace StarMicronics.ReactNative.StarIO10
             }
 
             nativeObject.DiscoveryTime = discoveryTime;
+            nativeObject.IsEnabledFindSameDevice = isEnabledFindSameDevice;
 
             try
             {

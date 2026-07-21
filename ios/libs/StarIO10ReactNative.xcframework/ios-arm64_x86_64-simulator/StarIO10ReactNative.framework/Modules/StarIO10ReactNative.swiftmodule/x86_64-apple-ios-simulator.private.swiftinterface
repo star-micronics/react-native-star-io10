@@ -439,6 +439,7 @@ extension StarIO10ReactNative.StarXpandCommand.Drawer {
 @objc(STARIO10StarDeviceDiscoveryManager) public protocol StarDeviceDiscoveryManager {
   @objc weak var delegate: (any StarIO10ReactNative.StarDeviceDiscoveryManagerDelegate)? { get set }
   @objc var discoveryTime: Swift.Int { get set }
+  @objc var isEnabledFindSameDevice: Swift.Bool { get set }
   @objc(startDiscoveryWithError:) func startDiscovery() throws
   @objc func stopDiscovery()
 }
@@ -1208,6 +1209,9 @@ extension StarIO10ReactNative.StarXpandCommand {
     get
   }
   @objc public var deviceName: Swift.String? {
+    get
+  }
+  @objc public var rssi: Foundation.NSNumber? {
     get
   }
   @objc override dynamic public init()

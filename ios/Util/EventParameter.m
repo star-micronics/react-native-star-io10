@@ -21,6 +21,7 @@ NSString * const kKeyBluetoothSerialNumber = @"bluetoothSerialNumber";
 NSString * const kKeyBluetoothAddress = @"bluetoothAddress";
 NSString * const kKeyBluetoothLEAddress = @"bluetoothLEAddress";
 NSString * const kKeyBluetoothLEDeviceName = @"bluetoothLEDeviceName";
+NSString * const kKeyBluetoothLERssi = @"bluetoothLERssi";
 NSString * const kKeyUsbPortName = @"usbPortName";
 NSString * const kKeyUsbProductSN = @"productSerialNumber";
 NSString * const kKeyUsbUsbSN = @"usbSerialNumber";

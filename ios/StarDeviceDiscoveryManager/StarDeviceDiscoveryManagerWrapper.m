@@ -76,6 +76,7 @@ RCT_REMAP_METHOD(dispose,
 RCT_REMAP_METHOD(startDiscovery,
                  startDiscoveryWithObjectIdentifier:(nonnull NSString *)objID
                  discoveryTime:(nonnull NSNumber *)discoveryTime
+                 isEnabledFindSameDevice:(BOOL)isEnabledFindSameDevice
                  resolver:(RCTPromiseResolveBlock)resolve
                  rejecter:(RCTPromiseRejectBlock)reject)
 {
@@ -87,6 +88,7 @@ RCT_REMAP_METHOD(startDiscovery,
     }
     
     manager.discoveryTime = discoveryTime.integerValue;
+    manager.isEnabledFindSameDevice = isEnabledFindSameDevice;
     
     NSError *error = nil;
     [manager startDiscoveryWithError:&error];
@@ -149,6 +151,7 @@ RCT_REMAP_METHOD(stopDiscovery,
         if([printer.information.detail.lan.uniqueId length] >0){
             [params setObject:printer.information.detail.lan.uniqueId forKey:kKeyLanUniqueId];
         }
+
         if([printer.information.detail.bluetooth.portName length] >0){
             [params setObject:printer.information.detail.bluetooth.portName forKey:kKeyBluetoothPortName];
         }
@@ -158,12 +161,17 @@ RCT_REMAP_METHOD(stopDiscovery,
         if([printer.information.detail.bluetooth.address length] >0){
             [params setObject:printer.information.detail.bluetooth.address forKey:kKeyBluetoothAddress];
         }
+
         if([printer.information.detail.bluetoothLE.address length] >0){
             [params setObject:printer.information.detail.bluetoothLE.address forKey:kKeyBluetoothLEAddress];
         }
         if([printer.information.detail.bluetoothLE.deviceName length] >0){
             [params setObject:printer.information.detail.bluetoothLE.deviceName forKey:kKeyBluetoothLEDeviceName];
         }
+        if(printer.information.detail.bluetoothLE.rssi != nil){
+            [params setObject:printer.information.detail.bluetoothLE.rssi forKey:kKeyBluetoothLERssi];
+        }
+        
         if([printer.information.detail.usb.portName length] >0){
             [params setObject:printer.information.detail.usb.portName forKey:kKeyUsbPortName];
         }
